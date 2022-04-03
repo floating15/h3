@@ -6622,15 +6622,15 @@ China,35,44,30
 &lt;h2 id=&#34;calculate-the-maximum-number-of-iterations&#34;&gt;Calculate the maximum number of iterations:&lt;/h2&gt;
 &lt;p&gt;we have&lt;/p&gt;
 &lt;p&gt;$$
-\mathbb{w}&lt;em&gt;{f}^{T} = \mathbb{w}&lt;/em&gt;{t}
+\mathbb{w}_{f}^{T} = \mathbb{w}_{t}
 $$&lt;/p&gt;
 &lt;p&gt;and&lt;/p&gt;
 &lt;p&gt;$$
 \begin{aligned}
-||\mathbf{w}&lt;em&gt;{t+1}||^2 &amp;amp;= || \mathbf{w}&lt;/em&gt;{t}+y_{n(t)}\mathbf{x}&lt;em&gt;{n(t)} ||^2\
-&amp;amp;= ||\mathbf{w}&lt;/em&gt;{t}||^2+2y_{n(t)}\mathbf{w}&lt;em&gt;{t}^{T}\mathbf{x}&lt;/em&gt;{n(t)} + y_{n(t)}^{2}||\mathbf{x}&lt;em&gt;{n}||^2\
-&amp;amp;\leq ||\mathbf{w}&lt;/em&gt;{t}||^2+||\mathbf{x}&lt;em&gt;{n}||^2\
-&amp;amp;\leq ||\mathbf{w}&lt;/em&gt;{t}||^2 + \max_{n}||\mathbf{x}_{n}||^2.
+||\mathbf{w}_{t+1}||^2 &amp;amp;= || \mathbf{w}_{t}+y_{n(t)}\mathbf{x}_{n(t)} ||^2\\
+&amp;amp;= ||\mathbf{w}_{t}||^2+2y_{n(t)}\mathbf{w}_{t}^{T}\mathbf{x}_{n(t)} + y_{n(t)}^{2}||\mathbf{x}_{n}||^2\\
+&amp;amp;\leq ||\mathbf{w}_{t}||^2+||\mathbf{x}_{n}||^2\\
+&amp;amp;\leq ||\mathbf{w}_{t}||^2 + \max_{n}||\mathbf{x}_{n}||^2.
 \end{aligned}
 $$&lt;/p&gt;
 &lt;p&gt;define $R^2 = \max_{n}||\mathbf{x}||^2$ and $\rho = \min_{n}\frac{y_n\mathbf{w}_{f}^{T}\mathbf{x}_n}{||\mathbf{w}_f||}$&lt;/p&gt;
@@ -6702,13 +6702,13 @@ $$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;$$
 \begin{aligned}
-\frac{\mathbf{w}&lt;em&gt;{f}^{T}\mathbf{w}&lt;em&gt;t}{||\mathbf{w}&lt;/em&gt;{f}^{T}||\cdot||\mathbf{w}&lt;/em&gt;{t}||} &amp;amp; =
-\frac{\mathbf{w}&lt;em&gt;{f}^{T}(\mathbf{w}&lt;/em&gt;{t-1}+y_{n(t-1)}\mathbf{x}&lt;em&gt;{n(t-1)})}{||\mathbf{w}&lt;/em&gt;{f}^{T}||\cdot||\mathbf{w}&lt;em&gt;{t}||}\
-&amp;amp;=\frac{\mathbf{w}&lt;/em&gt;{f}^{T}\mathbf{w}&lt;em&gt;{t-1}}{||\mathbf{w}&lt;/em&gt;{f}^{T}||\cdot||\mathbf{w}&lt;em&gt;{t}||} + \frac{y&lt;/em&gt;{n(t-1)}\mathbf{w}&lt;em&gt;{f}^{T}\mathbf{x}&lt;/em&gt;{n(t-1)}}{||\mathbf{w}&lt;em&gt;{f}^{T}||\cdot||\mathbf{w}&lt;/em&gt;{t}||}\
-&amp;amp;= \frac{\mathbf{w}&lt;em&gt;{f}^{T}\mathbf{w}&lt;/em&gt;{t-2}}{||\mathbf{w}&lt;em&gt;{f}^{T}||\cdot||\mathbf{w}&lt;/em&gt;{t}||} + \frac{y_{n(t-2)}\mathbf{w}&lt;em&gt;{f}^{T}\mathbf{x}&lt;/em&gt;{n(t-2)}}{||\mathbf{w}&lt;em&gt;{f}^{T}||\cdot||\mathbf{w}&lt;/em&gt;{t}||} + \frac{y_{n(t-1)}\mathbf{w}&lt;em&gt;{f}^{T}\mathbf{x}&lt;/em&gt;{n(t-1)}}{||\mathbf{w}&lt;em&gt;{f}^{T}||\cdot||\mathbf{w}&lt;/em&gt;{t}||}\
-&amp;amp;\cdots\
-&amp;amp;=\frac{1}{||\mathbf{w}&lt;em&gt;t||}\cdot\sum^{t}&lt;/em&gt;{i=1}\frac{y_{n(i)}\mathbf{w}&lt;em&gt;{f}^{T}\mathbf{x}&lt;/em&gt;{n(i)}}{||\mathbf{w}_{f}^{T}||} \
-&amp;amp;\geq \frac{1}{||\mathbf{w}_t||}\cdot t\cdot \rho\geq \frac{t\rho}{R\sqrt{t}}\
+\frac{\mathbf{w}_{f}^{T}\mathbf{w}_t}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} &amp;amp; =
+\frac{\mathbf{w}_{f}^{T}(\mathbf{w}_{t-1}+y_{n(t-1)}\mathbf{x}_{n(t-1)})}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||}\\
+&amp;amp;=\frac{\mathbf{w}_{f}^{T}\mathbf{w}_{t-1}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} + \frac{y_{n(t-1)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(t-1)}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||}\\
+&amp;amp;= \frac{\mathbf{w}_{f}^{T}\mathbf{w}_{t-2}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} + \frac{y_{n(t-2)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(t-2)}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} + \frac{y_{n(t-1)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(t-1)}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||}\\
+&amp;amp;\cdots\\
+&amp;amp;=\frac{1}{||\mathbf{w}_t||}\cdot\sum^{t}_{i=1}\frac{y_{n(i)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(i)}}{||\mathbf{w}_{f}^{T}||} \\
+&amp;amp;\geq \frac{1}{||\mathbf{w}_t||}\cdot t\cdot \rho\geq \frac{t\rho}{R\sqrt{t}}\\
 &amp;amp;=\frac{\rho}{R}\sqrt{t}.
 \end{aligned}
 $$&lt;/p&gt;

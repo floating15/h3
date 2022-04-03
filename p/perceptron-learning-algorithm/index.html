@@ -487,15 +487,15 @@
 <h2 id="calculate-the-maximum-number-of-iterations">Calculate the maximum number of iterations:</h2>
 <p>we have</p>
 <p>$$
-\mathbb{w}<em>{f}^{T} = \mathbb{w}</em>{t}
+\mathbb{w}_{f}^{T} = \mathbb{w}_{t}
 $$</p>
 <p>and</p>
 <p>$$
 \begin{aligned}
-||\mathbf{w}<em>{t+1}||^2 &amp;= || \mathbf{w}</em>{t}+y_{n(t)}\mathbf{x}<em>{n(t)} ||^2\
-&amp;= ||\mathbf{w}</em>{t}||^2+2y_{n(t)}\mathbf{w}<em>{t}^{T}\mathbf{x}</em>{n(t)} + y_{n(t)}^{2}||\mathbf{x}<em>{n}||^2\
-&amp;\leq ||\mathbf{w}</em>{t}||^2+||\mathbf{x}<em>{n}||^2\
-&amp;\leq ||\mathbf{w}</em>{t}||^2 + \max_{n}||\mathbf{x}_{n}||^2.
+||\mathbf{w}_{t+1}||^2 &amp;= || \mathbf{w}_{t}+y_{n(t)}\mathbf{x}_{n(t)} ||^2\\
+&amp;= ||\mathbf{w}_{t}||^2+2y_{n(t)}\mathbf{w}_{t}^{T}\mathbf{x}_{n(t)} + y_{n(t)}^{2}||\mathbf{x}_{n}||^2\\
+&amp;\leq ||\mathbf{w}_{t}||^2+||\mathbf{x}_{n}||^2\\
+&amp;\leq ||\mathbf{w}_{t}||^2 + \max_{n}||\mathbf{x}_{n}||^2.
 \end{aligned}
 $$</p>
 <p>define $R^2 = \max_{n}||\mathbf{x}||^2$ and $\rho = \min_{n}\frac{y_n\mathbf{w}_{f}^{T}\mathbf{x}_n}{||\mathbf{w}_f||}$</p>
@@ -567,13 +567,13 @@ $$</p>
 </div>
 </div><p>$$
 \begin{aligned}
-\frac{\mathbf{w}<em>{f}^{T}\mathbf{w}<em>t}{||\mathbf{w}</em>{f}^{T}||\cdot||\mathbf{w}</em>{t}||} &amp; =
-\frac{\mathbf{w}<em>{f}^{T}(\mathbf{w}</em>{t-1}+y_{n(t-1)}\mathbf{x}<em>{n(t-1)})}{||\mathbf{w}</em>{f}^{T}||\cdot||\mathbf{w}<em>{t}||}\
-&amp;=\frac{\mathbf{w}</em>{f}^{T}\mathbf{w}<em>{t-1}}{||\mathbf{w}</em>{f}^{T}||\cdot||\mathbf{w}<em>{t}||} + \frac{y</em>{n(t-1)}\mathbf{w}<em>{f}^{T}\mathbf{x}</em>{n(t-1)}}{||\mathbf{w}<em>{f}^{T}||\cdot||\mathbf{w}</em>{t}||}\
-&amp;= \frac{\mathbf{w}<em>{f}^{T}\mathbf{w}</em>{t-2}}{||\mathbf{w}<em>{f}^{T}||\cdot||\mathbf{w}</em>{t}||} + \frac{y_{n(t-2)}\mathbf{w}<em>{f}^{T}\mathbf{x}</em>{n(t-2)}}{||\mathbf{w}<em>{f}^{T}||\cdot||\mathbf{w}</em>{t}||} + \frac{y_{n(t-1)}\mathbf{w}<em>{f}^{T}\mathbf{x}</em>{n(t-1)}}{||\mathbf{w}<em>{f}^{T}||\cdot||\mathbf{w}</em>{t}||}\
-&amp;\cdots\
-&amp;=\frac{1}{||\mathbf{w}<em>t||}\cdot\sum^{t}</em>{i=1}\frac{y_{n(i)}\mathbf{w}<em>{f}^{T}\mathbf{x}</em>{n(i)}}{||\mathbf{w}_{f}^{T}||} \
-&amp;\geq \frac{1}{||\mathbf{w}_t||}\cdot t\cdot \rho\geq \frac{t\rho}{R\sqrt{t}}\
+\frac{\mathbf{w}_{f}^{T}\mathbf{w}_t}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} &amp; =
+\frac{\mathbf{w}_{f}^{T}(\mathbf{w}_{t-1}+y_{n(t-1)}\mathbf{x}_{n(t-1)})}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||}\\
+&amp;=\frac{\mathbf{w}_{f}^{T}\mathbf{w}_{t-1}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} + \frac{y_{n(t-1)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(t-1)}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||}\\
+&amp;= \frac{\mathbf{w}_{f}^{T}\mathbf{w}_{t-2}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} + \frac{y_{n(t-2)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(t-2)}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||} + \frac{y_{n(t-1)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(t-1)}}{||\mathbf{w}_{f}^{T}||\cdot||\mathbf{w}_{t}||}\\
+&amp;\cdots\\
+&amp;=\frac{1}{||\mathbf{w}_t||}\cdot\sum^{t}_{i=1}\frac{y_{n(i)}\mathbf{w}_{f}^{T}\mathbf{x}_{n(i)}}{||\mathbf{w}_{f}^{T}||} \\
+&amp;\geq \frac{1}{||\mathbf{w}_t||}\cdot t\cdot \rho\geq \frac{t\rho}{R\sqrt{t}}\\
 &amp;=\frac{\rho}{R}\sqrt{t}.
 \end{aligned}
 $$</p>
