@@ -3,7 +3,7 @@
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  [toc]
-1. Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
+Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
  flat files such as dot txts and dot csvs; files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files; relational databases such as SQLite &amp;amp; PostgreSQL.'><title>Importing Data in Python I</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/importing-data-in-python-i/'>
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Importing Data in Python I'>
 <meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  [toc]
-1. Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
+Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
  flat files such as dot txts and dot csvs; files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files; relational databases such as SQLite &amp;amp; PostgreSQL.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/importing-data-in-python-i/'>
 <meta property='og:site_name' content='Haoming Wang'>
@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Importing Data in Python I">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  [toc]
-1. Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
+Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
  flat files such as dot txts and dot csvs; files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files; relational databases such as SQLite &amp;amp; PostgreSQL.">
     </head>
     <body class="
@@ -82,7 +82,7 @@
             
                 <li>
                     <a 
-                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        href='https://github.com/floating15'
                         target="_blank"
                         title="GitHub"
                     >
@@ -169,7 +169,7 @@
                 
                 
                 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#B2BABB" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
   <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
@@ -338,14 +338,14 @@
 <p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
 </blockquote>
 <p>[toc]</p>
-<h2 id="1-importing-data-from-flat-files">1. Importing data from flat files</h2>
+<h1 id="importing-data-from-flat-files">Importing data from flat files</h1>
 <p>We&rsquo;ll discuss how to import data from 3 kind of data sources</p>
 <ol>
 <li>flat files such as dot txts and dot csvs;</li>
 <li>files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files;</li>
 <li>relational databases such as SQLite &amp; PostgreSQL.</li>
 </ol>
-<h3 id="11-importing-flat-files-using-open">1.1 Importing flat files using <code>open()</code></h3>
+<h2 id="importing-flat-files-using-open">Importing flat files using <code>open()</code></h2>
 <p>To check out any plain text file, you can use Python’s basic <code>open()</code> function to open a connection to the file. To do so, you pass the filename to the function <code>open()</code> and also pass it the argument <code>mode=&quot;r&quot;</code>, which makes sure that we can only read it (we wouldn&rsquo;t want to accidentally write to it!), assign the text from the file to a variable by applying the method <code>read()</code> to the connection to the file. After you do this, make sure that you close the connection to the file using the <code>close()</code> method.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -358,7 +358,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;moby_dick.txt&#34;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span> <span class="c1">## Check whether the file is closed</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span> <span class="c1"># Check whether the file is closed</span>
 <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -429,7 +429,7 @@ little or no money in my purse, and nothing particular to interest me on
 shore, I thought I would sail about a little and see the watery part of
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="12-importing-flat-files-using-numpy">1.2 Importing flat files using <code>NumPy</code></h3>
+</div><h2 id="importing-flat-files-using-numpy">Importing flat files using <code>NumPy</code></h2>
 <p>If all the data are numerical, you can use the package <code>numpy</code> to import the data as a numpy array with the NumPy functions <a class="link" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html"  target="_blank" rel="noopener"
     >loadtxt( )</a>. We call <code>loadtxt()</code> and pass it the filename as the first argument, along with the <code>delimiter</code> as the 2nd argument. Note that the default delimiter is any white space so we’ll usually need to specify it explicitly.</p>
 <div class="highlight"><div class="chroma">
@@ -653,7 +653,7 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 (3, 1, 3, b&#39;female&#39;, 26., 0, 0, b&#39;STON/O2. 3101282&#39;,  7.925 , b&#39;&#39;, b&#39;S&#39;)]
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="13-importing-flat-files-using-pandas">1.3 Importing flat files using <code>Pandas</code></h3>
+</div><h2 id="importing-flat-files-using-pandas">Importing flat files using <code>Pandas</code></h2>
 <p>If we wish to import a CSV in the most basic case all we need to do is to call the function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"  target="_blank" rel="noopener"
     >read_csv( )</a> and supply it with a single argument, the name of the file, it will return a DataFrame object of the file.</p>
 <blockquote>
@@ -669,7 +669,7 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;digits.csv&#39;</span>
-<span class="c1">## Read the first 5 rows of the file except header into a DataFrame: data</span>
+<span class="c1"># Read the first 5 rows of the file except header into a DataFrame: data</span>
 <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> 
 <span class="n">data_array</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data_array</span><span class="p">))</span>
@@ -709,9 +709,9 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;titanic_corrupt.txt&#39;</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
     <span class="n">file</span><span class="p">,</span> 
-    <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="c1">## &lt;-- the pandas version of delim</span>
-    <span class="n">comment</span><span class="o">=</span><span class="s2">&#34;#&#34;</span><span class="p">,</span> <span class="c1">## &lt;-- indicates remainder of line should not be parsed.</span>
-    <span class="n">na_values</span><span class="o">=</span><span class="s2">&#34;Nothing&#34;</span> <span class="c1">## &lt;-- takes str (in this case, &#34;Nothing&#34;) to recognize as NA/NaN</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="c1"># &lt;-- the pandas version of delim</span>
+    <span class="n">comment</span><span class="o">=</span><span class="s2">&#34;#&#34;</span><span class="p">,</span> <span class="c1"># &lt;-- indicates remainder of line should not be parsed.</span>
+    <span class="n">na_values</span><span class="o">=</span><span class="s2">&#34;Nothing&#34;</span> <span class="c1"># &lt;-- takes str (in this case, &#34;Nothing&#34;) to recognize as NA/NaN</span>
 <span class="p">)</span>
 <span class="n">data_origin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -742,14 +742,14 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">PassengerId  Survived  Pclass     Sex   Age  ...  Parch            Ticket    Fare  Cabin Embarked
 0            1         0       3    male  22.0  ...      0         A/5 21171   7.250    NaN       S 
-1            2         1       1  female  38.0  ...      0          PC 17599     NaN    NaN      NaN   ## &lt;-- Notice here
+1            2         1       1  female  38.0  ...      0          PC 17599     NaN    NaN      NaN   # &lt;-- Notice here
 2            3         1       3  female  26.0  ...      0  STON/O2. 3101282   7.925    NaN        S
 3            4         1       1  female  35.0  ...      0            113803  53.100   C123        S
 4            5         0       3    male  35.0  ...      0            373450   8.050    NaN        S
 
   PassengerId\tSurvived\tPclass\tSex\tAge\tSibSp\tParch\tTicket\tFare\tCabin\tEmbarked
 0  1\t0\t3\tmale\t22.0\t1\t0\tA/5 21171\t7.25\tNo...                                  
-1  2\t1\t1\tfemale\t38.0\t1\t0\tPC 17599#to\t71.2... ## &lt;-- Notice here &#34;#&#34;                                  
+1  2\t1\t1\tfemale\t38.0\t1\t0\tPC 17599#to\t71.2... # &lt;-- Notice here &#34;#&#34;                                  
 2  3\t1\t3\tfemale\t26.0\t0\t0\tSTON/O2. 3101282\...                                  
 3  4\t1\t1\tfemale\t35.0\t1\t0\t113803\t53.1\tC12...                                  
 4       5\t0\t3\tmale\t35.0\t0\t0\t373450\t8.05\t\tS    
@@ -763,8 +763,8 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 	
 	
 ></p>
-<h2 id="2-importing-data-from-other-file-types">2. Importing data from other file types</h2>
-<h3 id="21-importing-pickle-and-excel-file">2.1 Importing Pickle and Excel file</h3>
+<h1 id="importing-data-from-other-file-types">Importing data from other file types</h1>
+<h2 id="importing-pickle-and-excel-file">Importing Pickle and Excel file</h2>
 <p><a class="link" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter11.03-Pickle-Files.html"  target="_blank" rel="noopener"
     >Pickle Files</a> is a file type native to Python, which can store data-types in python such as dictionaries, tuples, lists etc. It can <strong>serialize</strong> objects so that they can be saved into a file and loaded again later. when opening such a file, you can specify that it is <strong>read only</strong> and is a <strong>binary file</strong>, by passing the string &lsquo;<code>rb</code>&rsquo; as the second argument of <code>open</code>.</p>
 <div class="highlight"><div class="chroma">
@@ -785,10 +785,10 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="mi">88</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dump.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
-<span class="c1">## wirte</span>
+<span class="c1"># wirte</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="c1">## read</span>
+<span class="c1"># read</span>
 <span class="n">g</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./dump.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">e</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -903,7 +903,7 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <p><code>pd.ExcelFile.parse()</code> is equivalent to <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html"  target="_blank" rel="noopener"
     >pd.read_excel</a> method.</p>
 </blockquote>
-<h3 id="22-importing-sasstata-files">2.2 Importing SAS/Stata files</h3>
+<h2 id="importing-sasstata-files">Importing SAS/Stata files</h2>
 <p>The most common SAS files have the extension <code>.sas7bdat</code> and <code>.sas7bcat</code>, which are dataset files and catalog files respectively. We can import the former as DataFrames using the function <code>SAS7BDAT</code> (upper case) from the package <code>sas7bdat</code> (lower case). We can bind the variable <code>file</code> to a connection to the file &lsquo;xxx.sas7bdat&rsquo; in a context manager. Within this context, We can assign to a variable <code>df_sas</code> the result of applying method <code>to_data_frame</code> to <code>file</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -975,20 +975,20 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 	
 	
 ></p>
-<h3 id="23-importing-hdf5-files">2.3 Importing HDF5 files</h3>
+<h2 id="importing-hdf5-files">Importing HDF5 files</h2>
 <blockquote>
 <p>&ldquo;In the Python world, consensus is rapidly converging on Hierarchical Data Format version 5, or &lsquo;HDF5,&rsquo; as the standard mechanism for storing large quantities of numerical data.&rdquo;
 &mdash;-  2013 O&rsquo;Reilly book <em>Python and HDF5</em> by Andrew Collette,</p>
 </blockquote>
-<h4 id="intro-to-hdf5">Intro to HDF5</h4>
-<h5 id="i-group--dataset">i. Group &amp; Dataset</h5>
+<h2 id="intro-to-hdf5">Intro to HDF5</h2>
+<h3 id="i-group--dataset">i. Group &amp; Dataset</h3>
 <p>The <a class="link" href="https://www.neonscience.org/resources/learning-hub/tutorials/about-hdf5"  target="_blank" rel="noopener"
     >Hierarchical Data Format version 5 (HDF5)</a> format can be thought of as a file system contained and described within one single file. Think about the files and folders stored on your computer. You might have a data directory with some temperature data for multiple field sites. These temperature data are collected every minute and summarized on an hourly, daily and weekly basis. Within one HDF5 file, you can store a similar set of data organized in the same way that you might organize files and folders on your computer. However in a HDF5 file, what we call <strong>&ldquo;directories&rdquo; or &ldquo;folders&rdquo;</strong> on our computers, are called <code>groups</code> and what we call <strong>files</strong> on our computer are called <code>datasets</code>.</p>
 <ul>
 <li>Group: A folder like element within an HDF5 file that might contain other groups or datasets within it.</li>
 <li>Dataset: The actual data contained within the HDF5 file. Datasets are often (but don&rsquo;t have to be) stored within groups in the file.</li>
 </ul>
-<h5 id="ii-metadata">ii. Metadata</h5>
+<h3 id="ii-metadata">ii. Metadata</h3>
 <p>HDF5 format is <strong>self describing</strong>. This means that each file, group and dataset can have associated <strong>metadata</strong> that describes exactly what the data are. One key benefit of having metadata that are attached to each file, group and dataset, is that this facilitates automation without the need for a separate (and additional) metadata document. Using a programming language, like <code>R</code> or <code>Python</code>, we can grab information from the metadata that are already associated with the dataset, and which we might need to process the dataset.</p>
 <p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021216082.png"
 	
@@ -998,18 +998,18 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 	
 	
 ></p>
-<h5 id="iii-compressed--subsetting">iii. Compressed &amp; Subsetting</h5>
+<h3 id="iii-compressed--subsetting">iii. Compressed &amp; Subsetting</h3>
 <p>The HDF5 format is a <strong>compressed format</strong>. The size of all data contained within HDF5 is optimized which makes the overall file size smaller. Even when compressed, however, HDF5 files often contain big data and can thus still be quite large. A powerful attribute of HDF5 is <code>data slicing</code>, by which a particular subsets of a dataset can be extracted for processing. This means that the entire dataset doesn&rsquo;t have to be read into memory (RAM); very helpful in allowing us to more efficiently work with very large (gigabytes or more) datasets!</p>
-<h5 id="iv-heterogeneous">iv. Heterogeneous</h5>
+<h3 id="iv-heterogeneous">iv. Heterogeneous</h3>
 <p>HDF5 files can store many different types of data within in the same file. For example, one <code>group</code> may contain a set of datasets to contain integer (numeric) and text (string) data. Or, one <code>dataset</code> can contain heterogeneous data types (e.g., both text and numeric data even images in one dataset).</p>
-<h5 id="v-summary-points">v. Summary Points</h5>
+<h3 id="v-summary-points">v. Summary Points</h3>
 <ul>
 <li><strong>Self-Describing</strong>: The datasets with an HDF5 file are self describing. This allows us to efficiently extract metadata without needing an additional metadata document.</li>
 <li><strong>Supporta Heterogeneous Data</strong>: Different types of datasets can be contained within one HDF5 file.</li>
 <li><strong>Supports Large, Complex Data</strong>: HDF5 is a compressed format that is designed to support large, heterogeneous, and complex datasets.</li>
 <li><strong>Supports Data Slicing</strong>: &ldquo;Data slicing&rdquo;, or extracting portions of the dataset as needed for analysis, means large files don&rsquo;t need to be completely read into the computers memory or RAM.</li>
 </ul>
-<h4 id="h5py-package"><code>h5py</code> package</h4>
+<h2 id="h5py-package"><code>h5py</code> package</h2>
 <p>We import the package <a class="link" href="https://docs.h5py.org/en/stable/"  target="_blank" rel="noopener"
     >h5py</a> and then import the file using <a class="link" href="https://docs.h5py.org/en/stable/high/file.html?highlight=file"  target="_blank" rel="noopener"
     >h5py.File</a> function, remembering to use &lsquo;<code>r</code>&rsquo; in order to specify read only.</p>
@@ -1098,7 +1098,7 @@ strain
 	
 	
 ></p>
-<h3 id="24-importing-matlab-files">2.4 Importing MATLAB files</h3>
+<h2 id="importing-matlab-files">Importing MATLAB files</h2>
 <p>The standard library <code>scipy.io</code> has functions <a class="link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html"  target="_blank" rel="noopener"
     >loadmat</a> and <code>savemat</code>, which allow us to read and write <code>.mat</code> files, respectively.</p>
 <p>A <code>.mat</code> file is simply a collection of many objects like strings, floats, vectors and arrays. This means when importing a <code>.mat</code> file in Python, we should expect to see a number of different variables and objects.</p>
@@ -1171,13 +1171,13 @@ strain
 	
 	
 ></p>
-<h2 id="3-relational-databases-in-python">3. Relational databases in Python</h2>
-<h3 id="31-creating-a-database-engine-in-python">3.1 Creating a database engine in Python</h3>
-<h4 id="intro-to-relational-database">Intro to Relational database</h4>
+<h1 id="relational-databases-in-python">Relational databases in Python</h1>
+<h2 id="creating-a-database-engine-in-python">Creating a database engine in Python</h2>
+<h2 id="intro-to-relational-database">Intro to Relational database</h2>
 <p>Relational database is a type of database that is based upon the Relational model of data, first described by Ted Codd in the late 1960s.</p>
 <p>A database consists of <strong>tables</strong>. A table generally represents one <code>entity type</code>. Notice that the table looks a great deal like a dataframe. In a relational database table, each <strong>row</strong> or record represents an <code>instance</code> of the <code>entity type</code>. Each <strong>column</strong> represents an <code>attribute</code> of each <code>instance</code>. In this sense, a table is entirely analogous to a dataframe. It is essential that each row contain a <strong>unique identifier</strong>, known as a primary key, that we can use to explicitly access the row in question.</p>
 <p>The really cool thing about relational databases is not merely that you have a bunch of tables, but that the tables are <strong>linked</strong>. Some column in a table corresponds precisely to the primary keys in other tables. This is cool because it means that you don&rsquo;t need to store all the details in one table, it saves an incredible amount of space.</p>
-<h4 id="build-engine">Build engine</h4>
+<h2 id="build-engine">Build engine</h2>
 <p>We&rsquo;ll use an SQLite database as an example because SQLite is fast and simple while still containing enough functionality to introduce the necessary concepts of querying a database. There are many packages we could use to access an SQLite database such as <code>sqlite3</code> and <code>SQLAlchemy</code>. We&rsquo;ll use <a class="link" href="https://docs.sqlalchemy.org/en/14/intro.html"  target="_blank" rel="noopener"
     >SQLAlchemy</a> as it works with many other Relational Database Management Systems, such as Postgres and MySQL.</p>
 <p>To connect to database, we need to import the relevant funtion <a class="link" href="https://docs.sqlalchemy.org/en/14/core/engines.html"  target="_blank" rel="noopener"
@@ -1219,7 +1219,7 @@ strain
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Album&#39;, &#39;Artist&#39;, &#39;Customer&#39;, &#39;Employee&#39;, &#39;Genre&#39;, &#39;Invoice&#39;, &#39;InvoiceLine&#39;, &#39;MediaType&#39;, &#39;Playlist&#39;, &#39;PlaylistTrack&#39;, &#39;Track&#39;]
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="32-querying-relational-databases-in-python">3.2 Querying relational databases in Python</h3>
+</div><h2 id="querying-relational-databases-in-python">Querying relational databases in Python</h2>
 <p>The workflow of SQL querying will be as follows.</p>
 <ol>
 <li><strong>import the required packages and functions;</strong></li>
@@ -1252,14 +1252,14 @@ To close the connection, execute <code>close()</code> method on connection objec
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">## step 1. import package</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># step 1. import package</span>
 
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///Chinook.sqlite&#39;</span><span class="p">)</span> <span class="c1">## step2. create engine</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="c1">## step3. create connection</span>
-<span class="n">rs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from Album&#34;</span><span class="p">)</span> <span class="c1">## step4. query</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span> <span class="c1">## step5. save result </span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///Chinook.sqlite&#39;</span><span class="p">)</span> <span class="c1"># step2. create engine</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="c1"># step3. create connection</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from Album&#34;</span><span class="p">)</span> <span class="c1"># step4. query</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span> <span class="c1"># step5. save result </span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-<span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1">## step6. close connection</span>
+<span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># step6. close connection</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
@@ -1369,7 +1369,7 @@ To close the connection, execute <code>close()</code> method on connection objec
 
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="33-querying-relational-databases-directly-with-pandas">3.3 Querying relational databases directly with pandas</h3>
+</div><h2 id="33-querying-relational-databases-directly-with-pandas">3.3 Querying relational databases directly with pandas</h2>
 <p>You can actually query datebase in 2 line, utilizing the pandas function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_sql_query.html"  target="_blank" rel="noopener"
     >read_sql_query</a> and passing it 2 arguments. The first argument will be the query you wish to make, the 2nd argument the engine you want to connect to.</p>
 <div class="highlight"><div class="chroma">
@@ -1726,35 +1726,29 @@ To close the connection, execute <code>close()</code> method on connection objec
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#1-importing-data-from-flat-files">1. Importing data from flat files</a>
+    <li><a href="#importing-data-from-flat-files">Importing data from flat files</a>
       <ol>
-        <li><a href="#11-importing-flat-files-using-open">1.1 Importing flat files using <code>open()</code></a></li>
-        <li><a href="#12-importing-flat-files-using-numpy">1.2 Importing flat files using <code>NumPy</code></a></li>
-        <li><a href="#13-importing-flat-files-using-pandas">1.3 Importing flat files using <code>Pandas</code></a></li>
+        <li><a href="#importing-flat-files-using-open">Importing flat files using <code>open()</code></a></li>
+        <li><a href="#importing-flat-files-using-numpy">Importing flat files using <code>NumPy</code></a></li>
+        <li><a href="#importing-flat-files-using-pandas">Importing flat files using <code>Pandas</code></a></li>
       </ol>
     </li>
-    <li><a href="#2-importing-data-from-other-file-types">2. Importing data from other file types</a>
+    <li><a href="#importing-data-from-other-file-types">Importing data from other file types</a>
       <ol>
-        <li><a href="#21-importing-pickle-and-excel-file">2.1 Importing Pickle and Excel file</a></li>
-        <li><a href="#22-importing-sasstata-files">2.2 Importing SAS/Stata files</a></li>
-        <li><a href="#23-importing-hdf5-files">2.3 Importing HDF5 files</a>
-          <ol>
-            <li><a href="#intro-to-hdf5">Intro to HDF5</a></li>
-            <li><a href="#h5py-package"><code>h5py</code> package</a></li>
-          </ol>
-        </li>
-        <li><a href="#24-importing-matlab-files">2.4 Importing MATLAB files</a></li>
+        <li><a href="#importing-pickle-and-excel-file">Importing Pickle and Excel file</a></li>
+        <li><a href="#importing-sasstata-files">Importing SAS/Stata files</a></li>
+        <li><a href="#importing-hdf5-files">Importing HDF5 files</a></li>
+        <li><a href="#intro-to-hdf5">Intro to HDF5</a></li>
+        <li><a href="#h5py-package"><code>h5py</code> package</a></li>
+        <li><a href="#importing-matlab-files">Importing MATLAB files</a></li>
       </ol>
     </li>
-    <li><a href="#3-relational-databases-in-python">3. Relational databases in Python</a>
+    <li><a href="#relational-databases-in-python">Relational databases in Python</a>
       <ol>
-        <li><a href="#31-creating-a-database-engine-in-python">3.1 Creating a database engine in Python</a>
-          <ol>
-            <li><a href="#intro-to-relational-database">Intro to Relational database</a></li>
-            <li><a href="#build-engine">Build engine</a></li>
-          </ol>
-        </li>
-        <li><a href="#32-querying-relational-databases-in-python">3.2 Querying relational databases in Python</a></li>
+        <li><a href="#creating-a-database-engine-in-python">Creating a database engine in Python</a></li>
+        <li><a href="#intro-to-relational-database">Intro to Relational database</a></li>
+        <li><a href="#build-engine">Build engine</a></li>
+        <li><a href="#querying-relational-databases-in-python">Querying relational databases in Python</a></li>
         <li><a href="#33-querying-relational-databases-directly-with-pandas">3.3 Querying relational databases directly with pandas</a></li>
       </ol>
     </li>

@@ -16,8 +16,8 @@
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h2 id=&#34;1-iterators-in-pythonland&#34;&gt;1. Iterators in PythonLand&lt;/h2&gt;
-&lt;h3 id=&#34;11-introduction-to-iterators&#34;&gt;1.1 Introduction to iterators&lt;/h3&gt;
+&lt;h1 id=&#34;iterators-in-pythonland&#34;&gt;Iterators in PythonLand&lt;/h1&gt;
+&lt;h2 id=&#34;introduction-to-iterators&#34;&gt;Introduction to iterators&lt;/h2&gt;
 &lt;p&gt;When you use a for loop to print out each element of a &lt;strong&gt;list&lt;/strong&gt;, you&amp;rsquo;re iterating over the list. You can also use a for loop to iterate over characters in a &lt;strong&gt;string&lt;/strong&gt;. You can also use a for loop to iterate a over a sequence of numbers produced by a special &lt;strong&gt;range&lt;/strong&gt; object. The reason that we can loop over such objects is that they are special objects called &lt;strong&gt;iterables&lt;/strong&gt;: lists, strings and range objects are all iterables, as are many other Python objects, such as &lt;strong&gt;dictionaries&lt;/strong&gt; and &lt;strong&gt;file connections&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The actual definition of an &lt;strong&gt;iterable&lt;/strong&gt; is an object that has an associated &lt;code&gt;iter()&lt;/code&gt; method. Once this &lt;code&gt;iter()&lt;/code&gt; method is applied to an iterable, an &lt;strong&gt;iterator&lt;/strong&gt; object is created. An &lt;strong&gt;iterator&lt;/strong&gt; is defined as an object that has an associated &lt;code&gt;next()&lt;/code&gt; method that produces the consecutive values. To create an iterator from an iterable, all we need to do is use the function &lt;code&gt;iter()&lt;/code&gt; and pass it the iterable. Once we have the iterator defined, we pass it to the function &lt;code&gt;next()&lt;/code&gt; and this returns the first value. Calling &lt;code&gt;next()&lt;/code&gt; again on the iterator returns the next value until there are no values left to return and then it throws us a StopIteration error.&lt;/p&gt;
 &lt;ul&gt;
@@ -45,7 +45,7 @@
 &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;item&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flash&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
-&lt;span class=&#34;c1&#34;&gt;## e.t.&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# e.t.&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;superhero&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;iter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flash&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;superhero&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;superhero&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
@@ -207,7 +207,7 @@ the third line
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;pr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ob: &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## Placing it below *ob will cause an error because there are no more elements in the iterator&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# Placing it below *ob will cause an error because there are no more elements in the iterator&lt;/span&gt;
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*ob: &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;type: &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
@@ -231,13 +231,13 @@ the third line
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;ob:  &amp;lt;_io.TextIOWrapper name=&amp;#39;file.txt&amp;#39; mode=&amp;#39;r&amp;#39; encoding=&amp;#39;UTF-8&amp;#39;&amp;gt;
 the first line
 
-*ob:  the second line  ## &amp;lt;-- Notice here
+*ob:  the second line  # &amp;lt;-- Notice here
  the third line
 
 type:  &amp;lt;class &amp;#39;_io.TextIOWrapper&amp;#39;&amp;gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;12-operating-iterator&#34;&gt;1.2 Operating iterator&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;operating-iterator&#34;&gt;Operating iterator&lt;/h2&gt;
 &lt;p&gt;Now, we are going to introduce two useful functions. The first function, &lt;code&gt;enumerate&lt;/code&gt;, will allow us to add a counter to any iterable while the second function, &lt;code&gt;zip&lt;/code&gt;, will allow us to stitch together an arbitrary number of iterables.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;enumerate&lt;/code&gt; is a function that &lt;strong&gt;takes&lt;/strong&gt; any iterable as argument, such as a list, and &lt;strong&gt;returns&lt;/strong&gt; a special enumerate object, which consists of pairs containing the elements of the original iterable, along with their index within the iterable. The enumerate object itself is also an &lt;strong&gt;iterable&lt;/strong&gt; and we can loop over it while unpacking its elements using the clause for index, value in enumerate(avengers). The default behavior of enumerate to begin indexing at 0. However, you can alter this with &lt;code&gt;start&lt;/code&gt;argument, such as &lt;code&gt;start=10&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -273,7 +273,7 @@ type:  &amp;lt;class &amp;#39;_io.TextIOWrapper&amp;#39;&amp;gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;a s d f g h j k l l
 [&amp;#39;a&amp;#39;, &amp;#39;s&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;f&amp;#39;, &amp;#39;g&amp;#39;, &amp;#39;h&amp;#39;, &amp;#39;j&amp;#39;, &amp;#39;k&amp;#39;, &amp;#39;l&amp;#39;, &amp;#39;l&amp;#39;]
 (0, &amp;#39;a&amp;#39;) (1, &amp;#39;s&amp;#39;) (2, &amp;#39;d&amp;#39;) (3, &amp;#39;f&amp;#39;) (4, &amp;#39;g&amp;#39;) (5, &amp;#39;h&amp;#39;) (6, &amp;#39;j&amp;#39;) (7, &amp;#39;k&amp;#39;) (8, &amp;#39;l&amp;#39;) (9, &amp;#39;l&amp;#39;)
-[] ## &amp;lt;-- lazy evaluation
+[] # &amp;lt;-- lazy evaluation
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;Notice that The enumerate object has the characteristics of &lt;strong&gt;lazy evaluation&lt;/strong&gt;. The elements that have been visited in the enumerate object cannot be accessed again, and the use of square brackets to index the elements is not supported. (Objects like zip, filter, map, etc. have similar characteristics.)&lt;/p&gt;
@@ -438,7 +438,7 @@ True
 True
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;13-using-iterators-to-load-large-files-into-memory&#34;&gt;1.3 Using iterators to load large files into memory&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;using-iterators-to-load-large-files-into-memory&#34;&gt;Using iterators to load large files into memory&lt;/h2&gt;
 &lt;p&gt;If you are pulling data that you can&amp;rsquo;t hold it in memory. One solution is to load the data in chunks, perform the desired operation or operations on each chuck, store the result, discard the chunk and then load the next chunk. To surmount this challenge, we can use the pandas function &lt;code&gt;pd.read_csv()&lt;/code&gt;and specify the argument &lt;code&gt;chunksize&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The object created by the &lt;code&gt;read_csv()&lt;/code&gt; call is an &lt;strong&gt;iterable&lt;/strong&gt; so you can can iterate over it, using a &lt;code&gt;for&lt;/code&gt; loop, in which each chunk will be a DataFrame.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -487,8 +487,8 @@ True
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;en&amp;#39;: 97, &amp;#39;et&amp;#39;: 1, &amp;#39;und&amp;#39;: 2}
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;2-list-comprehensions-and-generators&#34;&gt;2. List comprehensions and generators&lt;/h2&gt;
-&lt;h3 id=&#34;21-list-comprehensions&#34;&gt;2.1 List comprehensions&lt;/h3&gt;
+&lt;/div&gt;&lt;h1 id=&#34;list-comprehensions-and-generators&#34;&gt;List comprehensions and generators&lt;/h1&gt;
+&lt;h2 id=&#34;list-comprehensions&#34;&gt;List comprehensions&lt;/h2&gt;
 &lt;p&gt;You can finish a &lt;code&gt;for&lt;/code&gt; loop in one line of code by comprehensions. The syntax is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -596,7 +596,7 @@ Name: created_at, dtype: object
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[(0, 3), (0, 4), (0, 5), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)]
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;22-advanced-comprehensions&#34;&gt;2.2 Advanced comprehensions&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;advanced-comprehensions&#34;&gt;Advanced comprehensions&lt;/h2&gt;
 &lt;p&gt;We can filter the output of a list comprehension using a conditional on the iterable, the syntax is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -640,7 +640,7 @@ Name: created_at, dtype: object
     &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loop&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 
-&lt;span class=&#34;c1&#34;&gt;## e.t.&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# e.t.&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;con&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;exp&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.1&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;elif&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;con&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
@@ -722,7 +722,7 @@ Name: created_at, dtype: object
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[&amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;]
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;23-dictionary-comprehensions&#34;&gt;2.3 Dictionary comprehensions&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;dictionary-comprehensions&#34;&gt;Dictionary comprehensions&lt;/h2&gt;
 &lt;p&gt;Now we can also write dictionary comprehensions to create new dictionaries from iterables. The syntax is almost the same as in list comprehensions and there are 2 differences.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;One, we use curly braces instead of square brackets.&lt;/li&gt;
@@ -885,7 +885,7 @@ Name: created_at, dtype: object
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;frodo&amp;#39;: 5, &amp;#39;samwise&amp;#39;: 7, &amp;#39;merry&amp;#39;: 5, &amp;#39;aragorn&amp;#39;: 7, &amp;#39;legolas&amp;#39;: 7, &amp;#39;boromir&amp;#39;: 7, &amp;#39;gimli&amp;#39;: 5}
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;24-generator-expressions&#34;&gt;2.4 Generator expressions&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;generator-expressions&#34;&gt;Generator expressions&lt;/h2&gt;
 &lt;p&gt;Recall that this list comprehension will create a list. Now lets replace the square brackets with round &lt;strong&gt;parentheses&lt;/strong&gt;. Something called a &lt;strong&gt;generator object&lt;/strong&gt; has been created.&lt;/p&gt;
 &lt;p&gt;A generator is like a list comprehension except &lt;strong&gt;it does not store the list in memory&lt;/strong&gt;: it does not construct the list, but is an object we can iterate over to produce elements of the list as required. Like any other &lt;strong&gt;iterator&lt;/strong&gt;, we can pass a generator to the function &lt;code&gt;next()&lt;/code&gt; in order to iterate through its elements.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -911,7 +911,7 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
-&lt;span class=&#34;c1&#34;&gt;## Print the rest of the values&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# Print the rest of the values&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -1021,7 +1021,7 @@ Name: created_at, dtype: object
 7
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;3-world-bank-data-analysis-case&#34;&gt;3. World Bank Data Analysis Case&lt;/h2&gt;
+&lt;/div&gt;&lt;h1 id=&#34;world-bank-data-analysis-case&#34;&gt;World Bank Data Analysis Case&lt;/h1&gt;
 &lt;p&gt;Here, we will use the skills of writing user-defined functions, iterators, list comprehensions and generators to wrangle and extract meaningful information from a real-world dataset, the World Bank World Development Indicators dataset.&lt;/p&gt;
 &lt;p&gt;This dataset contains data on 217 world economies for over half a century, from 1960 up until 2015. The data contains hundreds of indicators from population, electricity consumption and CO2 emissions to literacy rates, unemployment and mortality rates.&lt;/p&gt;
 &lt;hr&gt;
@@ -1034,7 +1034,7 @@ Name: created_at, dtype: object
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;zipped_lists&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;zip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature_names&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;row_vals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;rs_dict&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zipped_lists&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## e.t. rs_dict = {k:v for k,v in zipped_lists}&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;rs_dict&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zipped_lists&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# e.t. rs_dict = {k:v for k,v in zipped_lists}&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rs_dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -1174,9 +1174,9 @@ Name: created_at, dtype: object
 
     &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
         &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file_object&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;readline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;        
-        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Break if this is the end of the file&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Break if this is the end of the file&lt;/span&gt;
             &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- After calling read_large_file(), in each loop, programme will freeze here until calling next()&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- After calling read_large_file(), in each loop, programme will freeze here until calling next()&lt;/span&gt;
         
 &lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;world_dev_ind.csv&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;gen_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;read_large_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -1224,8 +1224,8 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 
 &lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;world_dev_ind.csv&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
 
-    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;line&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;read_large_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Each loop is a call to next()&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;row&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;line&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Separate each line of the CSV with a comma and generate a list&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;line&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;read_large_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Each loop is a call to next()&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;row&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;line&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Separate each line of the CSV with a comma and generate a list&lt;/span&gt;
         &lt;span class=&#34;n&#34;&gt;first_col&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;row&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
         &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;first_col&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;counts_dict&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;keys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
             &lt;span class=&#34;n&#34;&gt;counts_dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;first_col&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
@@ -1269,13 +1269,13 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df_reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; 
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df_reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 
-&lt;span class=&#34;c1&#34;&gt;## e.t.&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## t=0&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## for i in df_reaedr: ## &amp;lt;-- Each loop is a next()&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##     t += 1&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##     print(i)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##     if t == 2:&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##         break&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# e.t.&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# t=0&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# for i in df_reaedr: # &amp;lt;-- Each loop is a next()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#     t += 1&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#     print(i)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#     if t == 2:&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#         break&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1509,7 +1509,7 @@ Using the method &lt;code&gt;append()&lt;/code&gt; of the DataFrame data, append
     &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;ind_pop_data.csv&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## plot_pop(fn, &amp;#34;CEB&amp;#34;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# plot_pop(fn, &amp;#34;CEB&amp;#34;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;plot_pop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;ARB&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;

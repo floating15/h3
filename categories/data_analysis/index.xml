@@ -28,14 +28,14 @@
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h2 id=&#34;1-importing-data-from-flat-files&#34;&gt;1. Importing data from flat files&lt;/h2&gt;
+&lt;h1 id=&#34;importing-data-from-flat-files&#34;&gt;Importing data from flat files&lt;/h1&gt;
 &lt;p&gt;We&amp;rsquo;ll discuss how to import data from 3 kind of data sources&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;flat files such as dot txts and dot csvs;&lt;/li&gt;
 &lt;li&gt;files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files;&lt;/li&gt;
 &lt;li&gt;relational databases such as SQLite &amp;amp; PostgreSQL.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;11-importing-flat-files-using-open&#34;&gt;1.1 Importing flat files using &lt;code&gt;open()&lt;/code&gt;&lt;/h3&gt;
+&lt;h2 id=&#34;importing-flat-files-using-open&#34;&gt;Importing flat files using &lt;code&gt;open()&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;To check out any plain text file, you can use Python’s basic &lt;code&gt;open()&lt;/code&gt; function to open a connection to the file. To do so, you pass the filename to the function &lt;code&gt;open()&lt;/code&gt; and also pass it the argument &lt;code&gt;mode=&amp;quot;r&amp;quot;&lt;/code&gt;, which makes sure that we can only read it (we wouldn&amp;rsquo;t want to accidentally write to it!), assign the text from the file to a variable by applying the method &lt;code&gt;read()&lt;/code&gt; to the connection to the file. After you do this, make sure that you close the connection to the file using the &lt;code&gt;close()&lt;/code&gt; method.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -48,7 +48,7 @@
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;moby_dick.txt&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;closed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## Check whether the file is closed&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;closed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# Check whether the file is closed&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;closed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -119,7 +119,7 @@ little or no money in my purse, and nothing particular to interest me on
 shore, I thought I would sail about a little and see the watery part of
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;12-importing-flat-files-using-numpy&#34;&gt;1.2 Importing flat files using &lt;code&gt;NumPy&lt;/code&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;importing-flat-files-using-numpy&#34;&gt;Importing flat files using &lt;code&gt;NumPy&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;If all the data are numerical, you can use the package &lt;code&gt;numpy&lt;/code&gt; to import the data as a numpy array with the NumPy functions &lt;a class=&#34;link&#34; href=&#34;https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;loadtxt( )&lt;/a&gt;. We call &lt;code&gt;loadtxt()&lt;/code&gt; and pass it the filename as the first argument, along with the &lt;code&gt;delimiter&lt;/code&gt; as the 2nd argument. Note that the default delimiter is any white space so we’ll usually need to specify it explicitly.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -343,7 +343,7 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 (3, 1, 3, b&amp;#39;female&amp;#39;, 26., 0, 0, b&amp;#39;STON/O2. 3101282&amp;#39;,  7.925 , b&amp;#39;&amp;#39;, b&amp;#39;S&amp;#39;)]
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;13-importing-flat-files-using-pandas&#34;&gt;1.3 Importing flat files using &lt;code&gt;Pandas&lt;/code&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;importing-flat-files-using-pandas&#34;&gt;Importing flat files using &lt;code&gt;Pandas&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;If we wish to import a CSV in the most basic case all we need to do is to call the function &lt;a class=&#34;link&#34; href=&#34;https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;read_csv( )&lt;/a&gt; and supply it with a single argument, the name of the file, it will return a DataFrame object of the file.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -359,7 +359,7 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;digits.csv&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Read the first 5 rows of the file except header into a DataFrame: data&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# Read the first 5 rows of the file except header into a DataFrame: data&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nrows&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
 &lt;span class=&#34;n&#34;&gt;data_array&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
@@ -399,9 +399,9 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;titanic_corrupt.txt&amp;#39;&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
-    &lt;span class=&#34;n&#34;&gt;sep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\t&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- the pandas version of delim&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- indicates remainder of line should not be parsed.&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;na_values&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Nothing&amp;#34;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- takes str (in this case, &amp;#34;Nothing&amp;#34;) to recognize as NA/NaN&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;sep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\t&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- the pandas version of delim&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- indicates remainder of line should not be parsed.&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;na_values&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Nothing&amp;#34;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- takes str (in this case, &amp;#34;Nothing&amp;#34;) to recognize as NA/NaN&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;data_origin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;
@@ -432,14 +432,14 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;PassengerId  Survived  Pclass     Sex   Age  ...  Parch            Ticket    Fare  Cabin Embarked
 0            1         0       3    male  22.0  ...      0         A/5 21171   7.250    NaN       S 
-1            2         1       1  female  38.0  ...      0          PC 17599     NaN    NaN      NaN   ## &amp;lt;-- Notice here
+1            2         1       1  female  38.0  ...      0          PC 17599     NaN    NaN      NaN   # &amp;lt;-- Notice here
 2            3         1       3  female  26.0  ...      0  STON/O2. 3101282   7.925    NaN        S
 3            4         1       1  female  35.0  ...      0            113803  53.100   C123        S
 4            5         0       3    male  35.0  ...      0            373450   8.050    NaN        S
 
   PassengerId\tSurvived\tPclass\tSex\tAge\tSibSp\tParch\tTicket\tFare\tCabin\tEmbarked
 0  1\t0\t3\tmale\t22.0\t1\t0\tA/5 21171\t7.25\tNo...                                  
-1  2\t1\t1\tfemale\t38.0\t1\t0\tPC 17599#to\t71.2... ## &amp;lt;-- Notice here &amp;#34;#&amp;#34;                                  
+1  2\t1\t1\tfemale\t38.0\t1\t0\tPC 17599#to\t71.2... # &amp;lt;-- Notice here &amp;#34;#&amp;#34;                                  
 2  3\t1\t3\tfemale\t26.0\t0\t0\tSTON/O2. 3101282\...                                  
 3  4\t1\t1\tfemale\t35.0\t1\t0\t113803\t53.1\tC12...                                  
 4       5\t0\t3\tmale\t35.0\t0\t0\t373450\t8.05\t\tS    
@@ -453,8 +453,8 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;2-importing-data-from-other-file-types&#34;&gt;2. Importing data from other file types&lt;/h2&gt;
-&lt;h3 id=&#34;21-importing-pickle-and-excel-file&#34;&gt;2.1 Importing Pickle and Excel file&lt;/h3&gt;
+&lt;h1 id=&#34;importing-data-from-other-file-types&#34;&gt;Importing data from other file types&lt;/h1&gt;
+&lt;h2 id=&#34;importing-pickle-and-excel-file&#34;&gt;Importing Pickle and Excel file&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://pythonnumericalmethods.berkeley.edu/notebooks/chapter11.03-Pickle-Files.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Pickle Files&lt;/a&gt; is a file type native to Python, which can store data-types in python such as dictionaries, tuples, lists etc. It can &lt;strong&gt;serialize&lt;/strong&gt; objects so that they can be saved into a file and loaded again later. when opening such a file, you can specify that it is &lt;strong&gt;read only&lt;/strong&gt; and is a &lt;strong&gt;binary file&lt;/strong&gt;, by passing the string &amp;lsquo;&lt;code&gt;rb&lt;/code&gt;&amp;rsquo; as the second argument of &lt;code&gt;open&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -475,10 +475,10 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;age&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;score&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;88&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;dump.pkl&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## wirte&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# wirte&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;pickle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## read&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# read&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;g&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;./dump.pkl&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pickle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -593,7 +593,7 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 &lt;p&gt;&lt;code&gt;pd.ExcelFile.parse()&lt;/code&gt; is equivalent to &lt;a class=&#34;link&#34; href=&#34;https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;pd.read_excel&lt;/a&gt; method.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;22-importing-sasstata-files&#34;&gt;2.2 Importing SAS/Stata files&lt;/h3&gt;
+&lt;h2 id=&#34;importing-sasstata-files&#34;&gt;Importing SAS/Stata files&lt;/h2&gt;
 &lt;p&gt;The most common SAS files have the extension &lt;code&gt;.sas7bdat&lt;/code&gt; and &lt;code&gt;.sas7bcat&lt;/code&gt;, which are dataset files and catalog files respectively. We can import the former as DataFrames using the function &lt;code&gt;SAS7BDAT&lt;/code&gt; (upper case) from the package &lt;code&gt;sas7bdat&lt;/code&gt; (lower case). We can bind the variable &lt;code&gt;file&lt;/code&gt; to a connection to the file &amp;lsquo;xxx.sas7bdat&amp;rsquo; in a context manager. Within this context, We can assign to a variable &lt;code&gt;df_sas&lt;/code&gt; the result of applying method &lt;code&gt;to_data_frame&lt;/code&gt; to &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -665,20 +665,20 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;23-importing-hdf5-files&#34;&gt;2.3 Importing HDF5 files&lt;/h3&gt;
+&lt;h2 id=&#34;importing-hdf5-files&#34;&gt;Importing HDF5 files&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;In the Python world, consensus is rapidly converging on Hierarchical Data Format version 5, or &amp;lsquo;HDF5,&amp;rsquo; as the standard mechanism for storing large quantities of numerical data.&amp;rdquo;
 &amp;mdash;-  2013 O&amp;rsquo;Reilly book &lt;em&gt;Python and HDF5&lt;/em&gt; by Andrew Collette,&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;intro-to-hdf5&#34;&gt;Intro to HDF5&lt;/h4&gt;
-&lt;h5 id=&#34;i-group--dataset&#34;&gt;i. Group &amp;amp; Dataset&lt;/h5&gt;
+&lt;h2 id=&#34;intro-to-hdf5&#34;&gt;Intro to HDF5&lt;/h2&gt;
+&lt;h3 id=&#34;i-group--dataset&#34;&gt;i. Group &amp;amp; Dataset&lt;/h3&gt;
 &lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://www.neonscience.org/resources/learning-hub/tutorials/about-hdf5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hierarchical Data Format version 5 (HDF5)&lt;/a&gt; format can be thought of as a file system contained and described within one single file. Think about the files and folders stored on your computer. You might have a data directory with some temperature data for multiple field sites. These temperature data are collected every minute and summarized on an hourly, daily and weekly basis. Within one HDF5 file, you can store a similar set of data organized in the same way that you might organize files and folders on your computer. However in a HDF5 file, what we call &lt;strong&gt;&amp;ldquo;directories&amp;rdquo; or &amp;ldquo;folders&amp;rdquo;&lt;/strong&gt; on our computers, are called &lt;code&gt;groups&lt;/code&gt; and what we call &lt;strong&gt;files&lt;/strong&gt; on our computer are called &lt;code&gt;datasets&lt;/code&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Group: A folder like element within an HDF5 file that might contain other groups or datasets within it.&lt;/li&gt;
 &lt;li&gt;Dataset: The actual data contained within the HDF5 file. Datasets are often (but don&amp;rsquo;t have to be) stored within groups in the file.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&#34;ii-metadata&#34;&gt;ii. Metadata&lt;/h5&gt;
+&lt;h3 id=&#34;ii-metadata&#34;&gt;ii. Metadata&lt;/h3&gt;
 &lt;p&gt;HDF5 format is &lt;strong&gt;self describing&lt;/strong&gt;. This means that each file, group and dataset can have associated &lt;strong&gt;metadata&lt;/strong&gt; that describes exactly what the data are. One key benefit of having metadata that are attached to each file, group and dataset, is that this facilitates automation without the need for a separate (and additional) metadata document. Using a programming language, like &lt;code&gt;R&lt;/code&gt; or &lt;code&gt;Python&lt;/code&gt;, we can grab information from the metadata that are already associated with the dataset, and which we might need to process the dataset.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204021216082.png&#34;
 	
@@ -688,18 +688,18 @@ Like &lt;code&gt;recfromtxt&lt;/code&gt;, but with a default &lt;code&gt;delimit
 	
 	
 &gt;&lt;/p&gt;
-&lt;h5 id=&#34;iii-compressed--subsetting&#34;&gt;iii. Compressed &amp;amp; Subsetting&lt;/h5&gt;
+&lt;h3 id=&#34;iii-compressed--subsetting&#34;&gt;iii. Compressed &amp;amp; Subsetting&lt;/h3&gt;
 &lt;p&gt;The HDF5 format is a &lt;strong&gt;compressed format&lt;/strong&gt;. The size of all data contained within HDF5 is optimized which makes the overall file size smaller. Even when compressed, however, HDF5 files often contain big data and can thus still be quite large. A powerful attribute of HDF5 is &lt;code&gt;data slicing&lt;/code&gt;, by which a particular subsets of a dataset can be extracted for processing. This means that the entire dataset doesn&amp;rsquo;t have to be read into memory (RAM); very helpful in allowing us to more efficiently work with very large (gigabytes or more) datasets!&lt;/p&gt;
-&lt;h5 id=&#34;iv-heterogeneous&#34;&gt;iv. Heterogeneous&lt;/h5&gt;
+&lt;h3 id=&#34;iv-heterogeneous&#34;&gt;iv. Heterogeneous&lt;/h3&gt;
 &lt;p&gt;HDF5 files can store many different types of data within in the same file. For example, one &lt;code&gt;group&lt;/code&gt; may contain a set of datasets to contain integer (numeric) and text (string) data. Or, one &lt;code&gt;dataset&lt;/code&gt; can contain heterogeneous data types (e.g., both text and numeric data even images in one dataset).&lt;/p&gt;
-&lt;h5 id=&#34;v-summary-points&#34;&gt;v. Summary Points&lt;/h5&gt;
+&lt;h3 id=&#34;v-summary-points&#34;&gt;v. Summary Points&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Self-Describing&lt;/strong&gt;: The datasets with an HDF5 file are self describing. This allows us to efficiently extract metadata without needing an additional metadata document.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Supporta Heterogeneous Data&lt;/strong&gt;: Different types of datasets can be contained within one HDF5 file.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Supports Large, Complex Data&lt;/strong&gt;: HDF5 is a compressed format that is designed to support large, heterogeneous, and complex datasets.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Supports Data Slicing&lt;/strong&gt;: &amp;ldquo;Data slicing&amp;rdquo;, or extracting portions of the dataset as needed for analysis, means large files don&amp;rsquo;t need to be completely read into the computers memory or RAM.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;h5py-package&#34;&gt;&lt;code&gt;h5py&lt;/code&gt; package&lt;/h4&gt;
+&lt;h2 id=&#34;h5py-package&#34;&gt;&lt;code&gt;h5py&lt;/code&gt; package&lt;/h2&gt;
 &lt;p&gt;We import the package &lt;a class=&#34;link&#34; href=&#34;https://docs.h5py.org/en/stable/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;h5py&lt;/a&gt; and then import the file using &lt;a class=&#34;link&#34; href=&#34;https://docs.h5py.org/en/stable/high/file.html?highlight=file&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;h5py.File&lt;/a&gt; function, remembering to use &amp;lsquo;&lt;code&gt;r&lt;/code&gt;&amp;rsquo; in order to specify read only.&lt;/p&gt;
@@ -788,7 +788,7 @@ strain
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;24-importing-matlab-files&#34;&gt;2.4 Importing MATLAB files&lt;/h3&gt;
+&lt;h2 id=&#34;importing-matlab-files&#34;&gt;Importing MATLAB files&lt;/h2&gt;
 &lt;p&gt;The standard library &lt;code&gt;scipy.io&lt;/code&gt; has functions &lt;a class=&#34;link&#34; href=&#34;https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;loadmat&lt;/a&gt; and &lt;code&gt;savemat&lt;/code&gt;, which allow us to read and write &lt;code&gt;.mat&lt;/code&gt; files, respectively.&lt;/p&gt;
 &lt;p&gt;A &lt;code&gt;.mat&lt;/code&gt; file is simply a collection of many objects like strings, floats, vectors and arrays. This means when importing a &lt;code&gt;.mat&lt;/code&gt; file in Python, we should expect to see a number of different variables and objects.&lt;/p&gt;
@@ -861,13 +861,13 @@ strain
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;3-relational-databases-in-python&#34;&gt;3. Relational databases in Python&lt;/h2&gt;
-&lt;h3 id=&#34;31-creating-a-database-engine-in-python&#34;&gt;3.1 Creating a database engine in Python&lt;/h3&gt;
-&lt;h4 id=&#34;intro-to-relational-database&#34;&gt;Intro to Relational database&lt;/h4&gt;
+&lt;h1 id=&#34;relational-databases-in-python&#34;&gt;Relational databases in Python&lt;/h1&gt;
+&lt;h2 id=&#34;creating-a-database-engine-in-python&#34;&gt;Creating a database engine in Python&lt;/h2&gt;
+&lt;h2 id=&#34;intro-to-relational-database&#34;&gt;Intro to Relational database&lt;/h2&gt;
 &lt;p&gt;Relational database is a type of database that is based upon the Relational model of data, first described by Ted Codd in the late 1960s.&lt;/p&gt;
 &lt;p&gt;A database consists of &lt;strong&gt;tables&lt;/strong&gt;. A table generally represents one &lt;code&gt;entity type&lt;/code&gt;. Notice that the table looks a great deal like a dataframe. In a relational database table, each &lt;strong&gt;row&lt;/strong&gt; or record represents an &lt;code&gt;instance&lt;/code&gt; of the &lt;code&gt;entity type&lt;/code&gt;. Each &lt;strong&gt;column&lt;/strong&gt; represents an &lt;code&gt;attribute&lt;/code&gt; of each &lt;code&gt;instance&lt;/code&gt;. In this sense, a table is entirely analogous to a dataframe. It is essential that each row contain a &lt;strong&gt;unique identifier&lt;/strong&gt;, known as a primary key, that we can use to explicitly access the row in question.&lt;/p&gt;
 &lt;p&gt;The really cool thing about relational databases is not merely that you have a bunch of tables, but that the tables are &lt;strong&gt;linked&lt;/strong&gt;. Some column in a table corresponds precisely to the primary keys in other tables. This is cool because it means that you don&amp;rsquo;t need to store all the details in one table, it saves an incredible amount of space.&lt;/p&gt;
-&lt;h4 id=&#34;build-engine&#34;&gt;Build engine&lt;/h4&gt;
+&lt;h2 id=&#34;build-engine&#34;&gt;Build engine&lt;/h2&gt;
 &lt;p&gt;We&amp;rsquo;ll use an SQLite database as an example because SQLite is fast and simple while still containing enough functionality to introduce the necessary concepts of querying a database. There are many packages we could use to access an SQLite database such as &lt;code&gt;sqlite3&lt;/code&gt; and &lt;code&gt;SQLAlchemy&lt;/code&gt;. We&amp;rsquo;ll use &lt;a class=&#34;link&#34; href=&#34;https://docs.sqlalchemy.org/en/14/intro.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;SQLAlchemy&lt;/a&gt; as it works with many other Relational Database Management Systems, such as Postgres and MySQL.&lt;/p&gt;
 &lt;p&gt;To connect to database, we need to import the relevant funtion &lt;a class=&#34;link&#34; href=&#34;https://docs.sqlalchemy.org/en/14/core/engines.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -909,7 +909,7 @@ strain
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[&amp;#39;Album&amp;#39;, &amp;#39;Artist&amp;#39;, &amp;#39;Customer&amp;#39;, &amp;#39;Employee&amp;#39;, &amp;#39;Genre&amp;#39;, &amp;#39;Invoice&amp;#39;, &amp;#39;InvoiceLine&amp;#39;, &amp;#39;MediaType&amp;#39;, &amp;#39;Playlist&amp;#39;, &amp;#39;PlaylistTrack&amp;#39;, &amp;#39;Track&amp;#39;]
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;32-querying-relational-databases-in-python&#34;&gt;3.2 Querying relational databases in Python&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;querying-relational-databases-in-python&#34;&gt;Querying relational databases in Python&lt;/h2&gt;
 &lt;p&gt;The workflow of SQL querying will be as follows.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;import the required packages and functions;&lt;/strong&gt;&lt;/li&gt;
@@ -942,14 +942,14 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sqlalchemy&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;create_engine&lt;/span&gt;
-&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandas&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pd&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## step 1. import package&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandas&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pd&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# step 1. import package&lt;/span&gt;
 
-&lt;span class=&#34;n&#34;&gt;engine&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;create_engine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sqlite:///Chinook.sqlite&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## step2. create engine&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;con&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;engine&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;connect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## step3. create connection&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;rs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;con&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;select * from Album&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## step4. query&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DataFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fetchall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## step5. save result &lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;engine&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;create_engine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sqlite:///Chinook.sqlite&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# step2. create engine&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;con&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;engine&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;connect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# step3. create connection&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;rs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;con&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;select * from Album&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# step4. query&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DataFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fetchall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# step5. save result &lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;columns&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;keys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;con&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## step6. close connection&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;con&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# step6. close connection&lt;/span&gt;
 
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -1059,7 +1059,7 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;33-querying-relational-databases-directly-with-pandas&#34;&gt;3.3 Querying relational databases directly with pandas&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;33-querying-relational-databases-directly-with-pandas&#34;&gt;3.3 Querying relational databases directly with pandas&lt;/h2&gt;
 &lt;p&gt;You can actually query datebase in 2 line, utilizing the pandas function &lt;a class=&#34;link&#34; href=&#34;https://pandas.pydata.org/docs/reference/api/pandas.read_sql_query.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;read_sql_query&lt;/a&gt; and passing it 2 arguments. The first argument will be the query you wish to make, the 2nd argument the engine you want to connect to.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
