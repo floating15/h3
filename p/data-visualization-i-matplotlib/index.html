@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Introduction to Matplotlib 1.1 Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
+1 2  import matplotlib.'><title>Data Visualization I (Matplotlib)</title>
+
+<link rel='canonical' href='https://example.com/p/data-visualization-i-matplotlib/'>
+
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Data Visualization I (Matplotlib)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Introduction to Matplotlib 1.1 Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
+1 2  import matplotlib.'>
+<meta property='og:url' content='https://example.com/p/data-visualization-i-matplotlib/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-04-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-04-16T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Data Visualization I (Matplotlib)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Introduction to Matplotlib 1.1 Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
+1 2  import matplotlib.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/icon2_hucf6f8424268716378b1227c5667c34d4_30631_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: false; color: false;">
+                Python
+            </a>
+        
+            <a href="/categories/data_visualization/" style="background-color: false; color: false;">
+                Data Visualization
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/data-visualization-i-matplotlib/">Data Visualization I (Matplotlib)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 16, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    15 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<p>[toc]</p>
+<h1 id="1-introduction-to-matplotlib">1. Introduction to Matplotlib</h1>
+<h2 id="11-intro-to-data-visualization-with-matplotlib">1.1 Intro to data visualization with matplotlib</h2>
+<p>we will use the main <strong>object-oriented interface</strong>. This interface is provided through the pyplot submodule. The <code>plt.subplots()</code> command, when called without any inputs, creates two different objects: a <code>Figure</code> object and an <code>Axes</code> object.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>Figure</code> object is a container that holds everything that you see on the <strong>page</strong>. Meanwhile, the <code>Axes</code> is the part of the <strong>page</strong> that holds the data. It is the canvas on which we will draw with our data.</p>
+<p>To add the data to the <code>Axes</code>, we call a <code>ax.plot()</code> command. If you want, you can add more data to the plot by this way. Finally, we call the <code>plt.show()</code> function to show the effect of the plotting command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">col1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">col2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">col1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">col3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">],</span> <span class="n">df2</span><span class="p">[</span><span class="s2">&#34;col2&#34;</span><span class="p">])</span> <span class="c1"># you can also add data to a figure from different tables.</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Here is what all of the code to create this figure would then look like.</p>
+<ul>
+<li>First, we create the <code>Figure</code> and the <code>Axes</code> objects.</li>
+<li>We call the <code>Axes</code> method <code>plot</code> to add first the <code>df.col2</code>, and then the <code>df.col3</code> to the Axes.</li>
+<li>Finally, we ask Matplotlib to show us the figure.</li>
+</ul>
+<h2 id="12-customizing-plots">1.2 Customizing Plots</h2>
+<p>The <code>plot</code> method takes an optional keyword argument, <code>marker</code>, which lets you indicate what kind of markers you&rsquo;d like. To see all the possible marker styles, you can visit this <a class="link" href="https://matplotlib.org/stable/api/markers_api.html"  target="_blank" rel="noopener"
+    >page</a> in the Matplotlib online documentation.</p>
+<p>You can change the appearance of these connecting lines by adding the <code>linestyle</code> keyword argument. Like marker shapes, there are a few linestyles you can choose from, listed in this <a class="link" href="https://matplotlib.org/3.0.3/gallery/lines_bars_and_markers/line_styles_reference.html"  target="_blank" rel="noopener"
+    >page</a>.</p>
+<p>You can even go so far as to eliminate the lines altogether, by passing the string &ldquo;<code>None</code>&rdquo; as input to this keyword argument.</p>
+<p>you can also add the <code>color</code> argument. For example, here we&rsquo;ve chosen to show this data in red, indicated by the letter &ldquo;<code>r</code>&rdquo;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Plot Seattle data, setting data appearance</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> 
+    <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">],</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> 
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&#34;o&#34;</span><span class="p">,</span> 
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&#34;--&#34;</span>
+<span class="p">)</span>
+<span class="c1"># Plot Austin data, setting data appearance</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> 
+    <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">],</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">,</span> 
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&#34;v&#34;</span><span class="p">,</span> 
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&#34;--&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323145928.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The <code>Axes</code> object has several methods that start with the word <code>set</code>. These are methods that you can use to change certain properties of the object, before calling show to display it.</p>
+<p>For example, there is a <code>set_xlabel</code> method that you can use to set the value of the label of the x-axis.</p>
+<p>Similarly, a <code>set_ylabel</code> method customizes the label that is associated with the y-axis.</p>
+<p>Finally, you can also add a title to your Axes using the <code>set_title</code> method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Time (months)&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Precipitation (inches)&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&#34;Weather patterns in Austin and Seattle&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323150150.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="13-small-multiples">1.3 Small Multiples</h2>
+<p>In some cases, adding more data to a plot can make the plot too busy, obscuring patterns rather than revealing them. One way to overcome this kind of mess is to use what are called <strong>small multiples</strong>. These are multiple small plots that show similar data across different conditions.</p>
+<p>In Matplotlib, small multiples are called <strong>sub-plots</strong>. That is also the reason that the function that creates these is called <code>subplots</code>.</p>
+<p>Previously, we called this function with no inputs. This creates <strong>one subplot</strong>. Now, we&rsquo;ll give it some inputs. <strong>Small multiples are typically arranged on the page as a grid with rows and columns</strong>. Here, we are creating a Figure object with 2 rows of subplots, and 2 columns. This is what this would look like before we add any data to it.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">sublpots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323153418.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>In this case, the variable <code>ax</code> is no longer only one <code>Axes</code> object. Instead, it is <strong>an <code>numpy.ndarray</code> of Axes objects with a shape of 2 by 2</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ax</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(2, 2)
+&lt;class &#39;numpy.ndarray&#39;&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>To add data, we would now have to index into this object and call the <code>plot</code> method on an element of the array.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-NORMAL&#34;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-NORMAL&#34;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323153546.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>There is a special case for situations where you have <strong>only one row or only one column</strong> of plots. In this case, the resulting array will be <strong>one-dimensional</strong> and you will only have to provide <strong>one index</strong> to access the elements of this array.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(3,)
+</code></pre></td></tr></table>
+</div>
+</div><p>To make sure that all the subplots have the <strong>same range</strong> of y-axis values, we initialize the figure and its <code>subplots</code> with the key-word argument <code>sharey</code> set to <code>True</code>. This means that both subplots will have the <strong>same range</strong> of y-axis values.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-25PCTL&#34;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&#34;--&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-75PCTL&#34;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&#34;--&#34;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-NORMAL&#34;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-25PCTL&#34;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&#34;--&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-PRCP-75PCTL&#34;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&#34;--&#34;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Seattle&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Austin&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;MONTH&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323154407.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="2-plotting-time-series">2. Plotting time-series</h1>
+<h2 id="21-plotting-time-series-data">2.1 Plotting time-series data</h2>
+<p>If we want pandas to recognize column with <code>YYYY-MM-DD</code> format as time-series, we&rsquo;ll need to tell it to parse the this column as a date by <code>parse_dates</code> argument in <code>read_csv</code> method. To use the full power of pandas indexing facilities, we&rsquo;ll also designate the date column as our index by using the <code>index_col</code> argument in <code>read_csv</code> method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>base<span class="o">)</span> wanghaoming@localhost ~ % head -6 ~/Downloads/climate_change.csv
+date,co2,relative_temp
+1958-03-06,315.71,0.1
+1958-04-06,317.45,0.01
+1958-05-06,317.5,0.08
+1958-06-06,,-0.05
+1958-07-06,315.86,0.06
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">climate_change</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="s2">&#34;~/Downloads/climate_change.csv&#34;</span><span class="p">,</span> 
+        <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;date&#34;</span><span class="p">],</span> 
+        <span class="n">index_col</span><span class="o">=</span><span class="s2">&#34;date&#34;</span>
+    <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Matplotlib automatically chooses to show the time on the x-axis with intervals of 10 years or years or month depending on the length of data.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Time&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Relative temperature (Celsius)&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323162201.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">seventies</span> <span class="o">=</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;1970-01-01&#34;</span><span class="p">:</span> <span class="s2">&#34;1979-12-31&#34;</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seventies</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">seventies</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323162359.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="22-plotting-time-series-with-different-variables">2.2 Plotting time-series with different variables</h2>
+<p>You could plot two time-series in separate sub-plots. Here, we&rsquo;re going to plot them in the same sub-plot, using <strong>two different y-axis scales</strong>.</p>
+<p>We start by adding the first variable to the Axes. Then, we use the <code>twinx</code> method to create a twin of this Axes. This means that the two Axes share the <strong>same x-axis</strong>, but the <strong>y-axes are separate</strong>.</p>
+<p>We add the other variable to this second Axes object and show the figure. There is one y-axis scale on the left, and another y-axis scale to the right.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323165332.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>We set <code>color</code> argument in our calls to <code>plot</code> and <code>set_ylabel</code> method from the origin Axes twin Axes object. In the resulting figure, each variable has its own color and the y-axis labels clearly tell us which scale belongs to which variable.</p>
+<p>We can also make encoding by color more distinct by setting <strong>y-axis ticks and the y-axis tick labels</strong>. This is done by adding a call to the <code>tick_params</code> method.  This method takes either <code>y</code> or <code>x</code> as its first argument, pointing to the fact that we are modifying the parameters of the y-axis or x-axis ticks and tick labels. To change their color, we use the <code>colors</code> key-word argument.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;CO2&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span> <span class="c1"># &lt;-- Notice &#34;s&#34;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Year&#34;</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Relative Temp&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323170030.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>We can implement this as a <strong>function</strong> that we can reuse. Using our function, we don&rsquo;t have to repeat these calls, and the code is simpler.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">plot_timeseries</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">):</span>
+  <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+  <span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+  <span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+  <span class="n">axes</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">plot_timeseries</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">],</span> 
+    <span class="s2">&#34;blue&#34;</span><span class="p">,</span> 
+    <span class="s2">&#34;Time (years)&#34;</span><span class="p">,</span> 
+    <span class="s2">&#34;CO2 levels&#34;</span>
+<span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">plot_timeseries</span><span class="p">(</span>
+    <span class="n">ax2</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">],</span> 
+    <span class="s2">&#34;red&#34;</span><span class="p">,</span> 
+    <span class="s2">&#34;Time (years)&#34;</span><span class="p">,</span> 
+    <span class="s2">&#34;Relative temperature (Celsius)&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323170649.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="23-annotating-time-series-data">2.3 Annotating time-series data</h2>
+<p>Annotations are usually small pieces of text that refer to a particular part of the visualization, focusing our attention on some feature of the data and explaining this feature.</p>
+<p>We call a method of the <code>Axes</code> object called <code>annotate</code>. This function takes the annotation text as <code>input</code>, and the <code>xy</code> coordinate that we would like to annotate. The <code>annotate</code> method takes an optional <code>xy text</code> argument that selects the xy position of the text.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+    <span class="s2">&#34;&gt;1 degree&#34;</span><span class="p">,</span> 
+    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2015-10-06&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> 
+    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2010-10-06&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323172723.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>To connect between the annotation text and the annotated data, we can add an arrow. The key-word argument of <code>annotate</code> method to do this is called <code>arrowprops</code>. This argument takes as input a <strong>dictionary</strong> that defines the properties of the arrow that we would like to use.</p>
+<p>If we pass an empty dictionary into the key-word argument, the arrow will have the default properties. We can also customize the appearance of the arrow, by dictionary key &ldquo;<code>arrowstyle</code>&rdquo; and &ldquo;<code>color</code>&rdquo;. Look more customizing method <a class="link" href="https://matplotlib.org/2.0.2/users/annotations.html"  target="_blank" rel="noopener"
+    >here</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">plot_timeseries</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">],</span> 
+    <span class="s1">&#39;blue&#39;</span><span class="p">,</span> 
+    <span class="s2">&#34;Time (years)&#34;</span><span class="p">,</span> 
+    <span class="s2">&#34;CO2 levels&#34;</span>
+<span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">plot_timeseries</span><span class="p">(</span>
+    <span class="n">ax2</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+    <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">],</span> 
+    <span class="s1">&#39;red&#39;</span><span class="p">,</span> 
+    <span class="s2">&#34;Time (years)&#34;</span><span class="p">,</span> 
+    <span class="s2">&#34;Relative temp (Celsius)&#34;</span>
+<span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+    <span class="s2">&#34;&gt;1 degree&#34;</span><span class="p">,</span> 
+    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2015-10-06&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> 
+    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2008-10-06&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">),</span> 
+    <span class="n">arrowprops</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;arrowstyle&#34;</span><span class="p">:</span> <span class="s2">&#34;-&gt;&#34;</span><span class="p">,</span> 
+        <span class="s2">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;gray&#34;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220323173415.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="3-quantitative-comparisons-and-statistical-visualizations">3. Quantitative comparisons and statistical visualizations</h1>
+<h2 id="31-quantitative-comparisons-bar-charts">3.1 Quantitative comparisons: bar-charts</h2>
+<p>We will use a dataset that contains information about the number of medals won by a few countries in the 2016 Olympic Games.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="o">(</span>base<span class="o">)</span> wanghaoming@localhost ~ % head -6 ~/Downloads/medals_by_country_2016.csv
+,Bronze,Gold,Silver
+United States,67,137,52
+Germany,67,47,43
+Great Britain,26,64,55
+Russia,35,50,28
+China,35,44,30
+</code></pre></td></tr></table>
+</div>
+</div><p>We tell pandas to create a DataFrame from a file that contains the data and to use the first column as the index for the DataFrame.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">medals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;~/Downloads/medals_by_country_2016.csv&#34;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We create a Figure and an Axes object and call the Axes <code>bar</code> method to create a bar chart. The labels of the x-axis ticks can be rotated by using the <code>set_xticklabels</code> method of the Axes.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">medals</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">medals</span><span class="p">[</span><span class="s2">&#34;Gold&#34;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">medals</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span> <span class="c1"># &lt;-- Notice here</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Number of medals&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241142755.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>To add others information into the same plot, we&rsquo;ll create a <strong>stacked bar chart</strong>. We add another call to the <code>bar</code> method to add the other data. We add the <code>bottom</code> key-word argument to tell Matplotlib that the bottom of this data should be at the height of the previous data.</p>
+<p>We also need to add the <code>label</code> key-word argument to each call of the bar method with the label for the bars plotted in this call. Then add a call to the Axes <code>legend</code> method before calling show.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">medals</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">medals</span><span class="p">[</span><span class="s2">&#34;Gold&#34;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Gold&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">medals</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+    <span class="n">medals</span><span class="p">[</span><span class="s2">&#34;Silver&#34;</span><span class="p">],</span> 
+    <span class="n">bottom</span><span class="o">=</span><span class="n">medals</span><span class="p">[</span><span class="s2">&#34;Gold&#34;</span><span class="p">]</span> <span class="p">,</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Silver&#34;</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">medals</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+    <span class="n">medals</span><span class="p">[</span><span class="s2">&#34;Bronze&#34;</span><span class="p">],</span> 
+    <span class="n">bottom</span><span class="o">=</span><span class="n">medals</span><span class="p">[</span><span class="s2">&#34;Gold&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">medals</span><span class="p">[</span><span class="s2">&#34;Silver&#34;</span><span class="p">],</span> <span class="c1"># &lt;-- Notice here</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Bronze&#34;</span>
+<span class="p">)</span> 
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241144520.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="32-quantitative-comparisons-histograms">3.2 Quantitative comparisons: histograms</h2>
+<p>A histogram would show the full distribution of values within each variable. We call the Axes <code>hist</code> method with the column of the DataFrame.</p>
+<p>As before, we can label a variable by calling the <code>hist</code> method with the <code>label</code> key-word argument and then calling the <code>legend</code> method before we call <code>plt.show</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mens_rowing</span><span class="p">[</span><span class="s2">&#34;Weight&#34;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Rowing&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mens_gymnastics</span><span class="p">[</span><span class="s2">&#34;Weight&#34;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Gymnastics&#34;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Weight (kg)&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;# of observations&#34;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241234478.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The number of default bars or bins in a histogram is 10, but we can <strong>customize</strong> that. If we provide an <strong>scalar</strong> to the <code>bins</code> key-word argument, the histogram will have that number of bins.</p>
+<p>If we instead provide a <strong>list</strong>, these numbers will be set to be the boundaries between the bins.</p>
+<p>The occlusion of two histogram plots can be eliminated by changing the type of histogram that is used. you can specify a <code>histtype</code> of &ldquo;<code>step</code>&rdquo;, which displays the histogram as thin <strong>lines</strong>, instead of solid bars.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">mens_rowing</span><span class="p">[</span><span class="s2">&#34;Weight&#34;</span><span class="p">],</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Rowing&#34;</span><span class="p">,</span> 
+    <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+    <span class="n">histtype</span><span class="o">=</span><span class="s2">&#34;step&#34;</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">mens_gymnastics</span><span class="p">[</span><span class="s2">&#34;Weight&#34;</span><span class="p">],</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Gymnastics&#34;</span><span class="p">,</span> 
+    <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+    <span class="n">histtype</span><span class="o">=</span><span class="s2">&#34;step&#34;</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Weight (kg)&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;# of observations&#34;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241236056.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="33-statistical-plotting">3.3 Statistical plotting</h2>
+<p>The first is the use of <strong>error bars</strong> in plots. These are additional markers on a plot or bar chart that tell us something about the distribution of the data.</p>
+<blockquote>
+<p>Histograms show the entire distribution. Error bars instead summarize the distribution of the data in one number, such as the standard deviation of the values.</p>
+</blockquote>
+<p>There are at least <strong>two different ways</strong> to display error bars. Here, we add the error bar as an argument to a bar chart. Each call to the <code>ax.bar</code> method takes an <code>x</code> argument and a <code>y</code> argument. The <code>yerr</code> key-word argument takes an additional number.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="s2">&#34;Rowing&#34;</span><span class="p">,</span> <span class="n">mens_rowing</span><span class="p">[</span><span class="s2">&#34;Height&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">mens_rowing</span><span class="p">[</span><span class="s2">&#34;Height&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="s2">&#34;Gymnastics&#34;</span><span class="p">,</span> <span class="n">mens_gymnastics</span><span class="p">[</span><span class="s2">&#34;Height&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">mens_gymnastics</span><span class="p">[</span><span class="s2">&#34;Height&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Height (cm)&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241308882.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>It summarizes the full distribution that you saw in the histograms in two numbers: the mean value, and the spread of values, quantified as the standard deviation.</p>
+<p>We can also add error bars to a line plot. To plot this data with error bars, we will use the <code>ax.errorbar</code> method. This method takes a sequence of <code>x</code> values, <code>y</code> values and <code>yerr</code> values.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> 
+    <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-NORMAL&#34;</span><span class="p">],</span> 
+    <span class="n">seattle_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-STDDEV&#34;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> 
+    <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-NORMAL&#34;</span><span class="p">],</span> 
+    <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-STDDEV&#34;</span><span class="p">]</span>
+<span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Temperature (Fahrenheit)&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241311807.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The second statistical visualization technique is the <strong>boxplot</strong>. It is implemented by <code>ax.boxplot</code> method. We can call it with a sequence of sequences. We add labels on each of the variables separately by calling <code>ax.set_xticklabels</code> method, labeling the y-axis as well.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">mens_rowing</span><span class="p">[</span><span class="s2">&#34;Height&#34;</span><span class="p">],</span>
+        <span class="n">mens_gymnastics</span><span class="p">[</span><span class="s2">&#34;Height&#34;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">&#34;Rowing&#34;</span><span class="p">,</span> <span class="s2">&#34;Gymnastics&#34;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Height (cm)&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241314969.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="34-quantitative-comparisons-scatter-plots">3.4 Quantitative comparisons: scatter plots</h2>
+<p>A standard visualization for bi-variate comparisons is a scatter plot. To create this plot, we initialize a Figure and Axes objects and call the Axes <code>scatter</code> method.</p>
+<p>We can customize scatter plots in a manner that is similar to the customization that we introduced in other plots. For example,  we set the <code>color</code> argument to set color on each group of points.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">eighty</span> <span class="o">=</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;1980-01-01&#34;</span><span class="p">:</span> <span class="s2">&#34;1989-12-31&#34;</span><span class="p">]</span>
+<span class="n">ninety</span> <span class="o">=</span> <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;1990-01-01&#34;</span><span class="p">:</span> <span class="s2">&#34;1999-12-31&#34;</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">eighty</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">],</span> <span class="n">eighty</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;1980s&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ninety</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">],</span> <span class="n">ninety</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;1990s&#34;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;CO2 (ppm)&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Relative temperature (C)&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241359542.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>But we can also enter a <code>Serise</code> as input to the <code>c</code> key-word argument, this variable will get encoded as color.</p>
+<blockquote>
+<p>Note that this is not the <code>color</code> key-word argument that we used before, but is instead just the letter <code>c</code>.</p>
+</blockquote>
+<p>Now, time of the measurements is encoded in the brightness of the color applied to the points, with dark blue points early on and later points in bright yellow.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;co2&#34;</span><span class="p">],</span>
+    <span class="n">climate_change</span><span class="p">[</span><span class="s2">&#34;relative_temp&#34;</span><span class="p">],</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">climate_change</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;CO2 (ppm)&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Relative temperature (C)&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241356018.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="4-sharing-visualizations-with-others">4. Sharing visualizations with others</h1>
+<h2 id="41-plot-style">4.1 Plot style</h2>
+<p>we&rsquo;ll change the overall style of the figure. we call <code>plt.style.use()</code> method before the plotting code, the figure style will look completely different.</p>
+<p>we can choose &ldquo;ggplot&rdquo; style, or &ldquo;seaborn-colorblind&rdquo;, click <a class="link" href="https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html"  target="_blank" rel="noopener"
+    >here</a> to find more style.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&#34;seaborn&#34;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-NORMAL&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MONTH&#34;</span><span class="p">],</span> <span class="n">austin_weather</span><span class="p">[</span><span class="s2">&#34;MLY-TAVG-STDDEV&#34;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;MONTH&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;MLY-TAVG-NORMAL&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;MLY-TAVG-NORMAL&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&#34;Title&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241424259.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="42-saving-visualizations">4.2 Saving visualizations</h2>
+<p>Now, we <strong>replace</strong> the call to <code>plt.show()</code> with a call to the Figure object&rsquo;s <code>fig.savefig</code> method. We provide a file-path as input to the function. If we do this, the figure will no longer appear on our screen, but instead appear as a file on our file-system.</p>
+<p>Using <code>savefig</code> method, we can saved the figure as a png, jpg, svg &hellip; file.  You can control how small the resulting file will be, and the degree of loss of quality, by setting the <code>quality</code> key-word argument. This will be a number between 1 and 100. you can also control the quality through setting the <code>dpi</code> key-word argument.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;~/Documents/figure.png&#34;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Finally, you can call <code>set_size_inches</code> method to control is the size of the figure. This function takes a list. The first number sets the width of the figure and the second number sets the height of the figure.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;~/Documents/figure_3_5.png&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="43-automating-figures-from-data">4.3 Automating figures from data</h2>
+<p>you can write functions and programs that automatically adjust what they are doing based on the input data.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sports_column</span> <span class="o">=</span> <span class="n">summer_2016_medals</span><span class="p">[</span><span class="s2">&#34;Sport&#34;</span><span class="p">]</span>
+<span class="n">sports</span> <span class="o">=</span> <span class="n">sports_column</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">sport</span> <span class="ow">in</span> <span class="n">sports</span><span class="p">:</span>
+    <span class="n">sport_df</span> <span class="o">=</span> <span class="n">summer_2016_medals</span><span class="p">[</span><span class="n">summer_2016_medals</span><span class="p">[</span><span class="s2">&#34;Sport&#34;</span><span class="p">]</span><span class="o">==</span><span class="n">sport</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">sport</span><span class="p">,</span> <span class="n">sport_df</span><span class="p">[</span><span class="s2">&#34;Weight&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">sport_df</span><span class="p">[</span><span class="s2">&#34;Weight&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Weight&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">sports</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203241454234.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>You can also do this to achieve a similar effect:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">summer_2016_medals</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;Sport&#34;</span><span class="p">)[</span><span class="s2">&#34;Weight&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/data-visualization-iii-seaborn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Visualization III (Seaborn)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/data-visualization-ii-seaborn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Visualization II (Seaborn)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#11-intro-to-data-visualization-with-matplotlib">1.1 Intro to data visualization with matplotlib</a></li>
+    <li><a href="#12-customizing-plots">1.2 Customizing Plots</a></li>
+    <li><a href="#13-small-multiples">1.3 Small Multiples</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#21-plotting-time-series-data">2.1 Plotting time-series data</a></li>
+    <li><a href="#22-plotting-time-series-with-different-variables">2.2 Plotting time-series with different variables</a></li>
+    <li><a href="#23-annotating-time-series-data">2.3 Annotating time-series data</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#31-quantitative-comparisons-bar-charts">3.1 Quantitative comparisons: bar-charts</a></li>
+    <li><a href="#32-quantitative-comparisons-histograms">3.2 Quantitative comparisons: histograms</a></li>
+    <li><a href="#33-statistical-plotting">3.3 Statistical plotting</a></li>
+    <li><a href="#34-quantitative-comparisons-scatter-plots">3.4 Quantitative comparisons: scatter plots</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#41-plot-style">4.1 Plot style</a></li>
+    <li><a href="#42-saving-visualizations">4.2 Saving visualizations</a></li>
+    <li><a href="#43-automating-figures-from-data">4.3 Automating figures from data</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

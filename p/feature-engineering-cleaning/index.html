@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Overview 1 2 3 4 5 6 7  df.head(x) df.info() df.describe() df.shape df.values df.columns df.index   1 2  df.sort_values(by=&amp;#34;col&amp;#34;).tail(n) # n largest, e.t. df.nlargest(n, &amp;#34;col&amp;#34;)   1 2 3  df.sample(n) # Return n random samples df.sample(frac=0.3) # Return a random sample of 30 percent df.sample(frac=1) # Shuffle   1 2  df.corr() df.diff()   Sort 1 2 3 4 5 6 7 8 9 10 11  df.'><title>Feature Engineering (Cleaning)</title>
+
+<link rel='canonical' href='https://example.com/p/feature-engineering-cleaning/'>
+
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Feature Engineering (Cleaning)'>
+<meta property='og:description' content='Overview 1 2 3 4 5 6 7  df.head(x) df.info() df.describe() df.shape df.values df.columns df.index   1 2  df.sort_values(by=&amp;#34;col&amp;#34;).tail(n) # n largest, e.t. df.nlargest(n, &amp;#34;col&amp;#34;)   1 2 3  df.sample(n) # Return n random samples df.sample(frac=0.3) # Return a random sample of 30 percent df.sample(frac=1) # Shuffle   1 2  df.corr() df.diff()   Sort 1 2 3 4 5 6 7 8 9 10 11  df.'>
+<meta property='og:url' content='https://example.com/p/feature-engineering-cleaning/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2019-08-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-08-14T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Feature Engineering (Cleaning)">
+<meta name="twitter:description" content="Overview 1 2 3 4 5 6 7  df.head(x) df.info() df.describe() df.shape df.values df.columns df.index   1 2  df.sort_values(by=&amp;#34;col&amp;#34;).tail(n) # n largest, e.t. df.nlargest(n, &amp;#34;col&amp;#34;)   1 2 3  df.sample(n) # Return n random samples df.sample(frac=0.3) # Return a random sample of 30 percent df.sample(frac=1) # Shuffle   1 2  df.corr() df.diff()   Sort 1 2 3 4 5 6 7 8 9 10 11  df.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/icon2_hucf6f8424268716378b1227c5667c34d4_30631_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/feature-engineering-cleaning/">Feature Engineering (Cleaning)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 14, 2019</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    16 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="overview">Overview</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">df</span><span class="o">.</span><span class="n">values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># n largest, e.t.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&#34;col&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># Return n random samples</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># Return a random sample of 30 percent</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Shuffle</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="sort">Sort</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">by</span><span class="o">=</span><span class="s2">&#34;col_name&#34;</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">,</span> <span class="s2">&#34;col3&#34;</span><span class="p">],</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span> <span class="c1"># sort col1 by ascending; sort col2 by descending; sort col3 by ascending</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;outter_index&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index&#34;</span><span class="p">],</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="set-index">Set index</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;col&#34;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;outter_index&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index&#34;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;xxxx.csv&#34;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col&#34;</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="subset-and-slice-">Subset and Slice ※</h1>
+<h2 id="by-row">By row</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Subset by row</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;col&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">df</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">col1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">col2</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">df</span><span class="p">[</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&#34;xxx&#34;</span><span class="p">,</span> <span class="s2">&#34;yyy&#34;</span><span class="p">])</span>
+<span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># With loc method</span>
+<span class="c1">## The first input to .loc[] accessor allows you to select the rows it returns.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">[</span><span class="s2">&#34;outer_index1&#34;</span><span class="p">,</span> <span class="s2">&#34;outer_index_2&#34;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&#34;outer_index_1&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_1&#34;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&#34;outer_index_2&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_2&#34;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&#34;outer_index_3&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_3&#34;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="s2">&#34;outer_index_i&#34;</span> <span class="p">:</span> <span class="s2">&#34;outer_index_j&#34;</span>
+<span class="p">]</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&#34;outer_index_i&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_i&#34;</span><span class="p">):</span>
+    <span class="p">(</span><span class="s2">&#34;outer_index_j&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_j&#34;</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># With iloc method</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;y&#34;</span><span class="p">]</span><span class="o">==+</span><span class="mi">1</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;y&#34;</span><span class="p">]</span><span class="o">==+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># subset by row and then by row</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># With query method </span>
+<span class="c1"># df.query(&#34;SQL Statements string&#34;)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&#34;col1 == &#39;xxx&#39; or (col1 == &#39;yyy&#39; and col2 &lt; 90)&#34;</span>
+<span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;date &gt;= &#34;1991-01-01&#34;&#39;</span><span class="p">)</span> <span class="c1"># date could be DateFrame index name.</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="by-col">By col</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Subset &amp; Slice by col</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&#34;col&#34;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">col</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">col</span> <span class="o">==</span> <span class="n">df</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span><span class="o">.</span><span class="n">col</span>  <span class="c1"># equal to df.col.max()</span>
+<span class="n">df</span><span class="p">[</span>
+    <span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">]</span>
+<span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># With loc method</span>
+<span class="n">df_sort_id</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&#34;outer_index_1&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_1&#34;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&#34;outer_index_2&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_2&#34;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&#34;outer_index_3&#34;</span><span class="p">,</span> <span class="s2">&#34;inner_index_3&#34;</span><span class="p">),</span>
+    <span class="p">]</span> <span class="p">,</span>
+    <span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span>  <span class="s2">&#34;col2&#34;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">df_sort_id</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&#34;Julia&#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="p">):</span> <span class="p">(</span><span class="s2">&#34;Julia&#34;</span><span class="p">,</span> <span class="s2">&#34;3&#34;</span><span class="p">)</span> <span class="p">,</span>
+    <span class="s2">&#34;col_i&#34;</span><span class="p">:</span> <span class="s2">&#34;col_j&#34;</span>
+<span class="p">]</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">col1</span> <span class="o">==</span> <span class="s2">&#34;xxx&#34;</span><span class="p">,</span> <span class="c1"># the first input of .loc select the rows</span>
+    <span class="s2">&#34;col2&#34;</span> <span class="c1"># the second input of .loc select the columns</span>
+<span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Add a col</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&#34;newcol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="nb">list</span>
+<span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&#34;newcol&#34;</span><span class="p">,</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">)</span> <span class="c1"># 0 is the location of the new column</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="aggregate">Aggregate</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">pct30</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">col</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span> <span class="n">pct30</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">cumsum</span><span class="p">,</span> <span class="n">cummin</span><span class="p">,</span> <span class="n">cumprod</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;col1&#34;</span><span class="p">:</span> <span class="s2">&#34;sum&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;col2&#34;</span><span class="p">:</span> <span class="s2">&#34;mean&#34;</span><span class="p">,</span>  <span class="c1"># There is no need to call the numpy module at this time.</span>
+        <span class="s2">&#34;col3&#34;</span><span class="p">:</span> <span class="s2">&#34;median&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;col4&#34;</span><span class="p">:</span> <span class="s2">&#34;count&#34;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&#34;columns&#34;</span><span class="p">)</span> <span class="c1"># calculate for every rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&#34;index&#34;</span><span class="p">)</span> <span class="c1"># calculate for every columns</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="duplicate-value">Duplicate Value</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span>
+    <span class="n">subset</span><span class="o">=</span><span class="s2">&#34;col&#34;</span>
+<span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span>
+    <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="counting">Counting</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span>
+    <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="c1"># e.t.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;col&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># count missing value of each columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322131723.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="group">Group</h1>
+<h2 id="groupby">Groupby</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Groupby method</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+    <span class="s2">&#34;col&#34;</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="c1"># e.t.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;col2&#34;</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;col1&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&#34;sum&#34;</span><span class="p">)[</span><span class="s2">&#34;col2&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">)</span>
+<span class="c1"># e.t.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;col1&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&#34;sum&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;col2&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Argument <code>level = 0</code> separates rows with the same (outest) index.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">ind</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">ind</span><span class="p">)</span>
+<span class="n">sg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sg</span><span class="o">.</span><span class="n">first</span><span class="p">(),</span> <span class="n">sg</span><span class="o">.</span><span class="n">last</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">1     1
+2     2
+3     3
+4    40
+dtype: int64 
+1    10
+2    20
+3    30
+4    40
+dtype: int64
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df1_2_3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;7Jul&#39;</span><span class="p">,</span> <span class="s1">&#39;8Aug&#39;</span><span class="p">,</span> <span class="s1">&#39;9Sep&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1_2_3</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">         iid  cid invoice_date  total       bill_ctry
+8Aug 18  220    6   2011-08-22   5.94  Czech Republic
+7Jul 28  371    8   2013-07-02   1.98         Belgium
+8Aug 28  378   46   2013-08-02   1.98         Ireland
+9Sep 27  386   27   2013-09-02   1.98             USA
+     23  309   22   2012-09-26   3.98             USA  # &lt;-- there is a Multi indexs
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sumdf</span> <span class="o">=</span> <span class="n">df_1_2_3</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sumdf</span><span class="p">)</span>
+<span class="n">sumdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">       iid   cid  total
+7Jul  7385   961  190.1
+8Aug  7630  1170  198.1
+9Sep  7417   961  196.2
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220321214359.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="pivot">Pivot</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Pivot table</span>
+<span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">],</span> 
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col3&#34;</span><span class="p">,</span> <span class="s2">&#34;col4&#34;</span><span class="p">],</span> 
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col5&#34;</span><span class="p">,</span> <span class="s2">&#34;col6&#34;</span><span class="p">],</span>
+    <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> 
+    <span class="n">fill_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">margins</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+    <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">margins_name</span><span class="o">=</span><span class="s1">&#39;All&#39;</span>
+<span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">,</span> <span class="s2">&#34;col3&#34;</span><span class="p">)</span> <span class="c1"># values = col1, index = col2, columns = col3</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="melt">Melt</h2>
+<p><code>melt</code> method will <strong>unpivot a table from wide to long format</strong>. This is often a much more computer-friendly format. Imagine a situation where you have <strong>merged</strong> many columns, making your table very wide. The merge() method can then be used to reshape that table into a more computer-friendly format.</p>
+<blockquote>
+<p>Recall that we call each row of the table an observation and each column a variable. The <code>melt</code> method integrates certain columns (name) into a variable column and the values of those columns into the value column.</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322122341.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The first input argument to the method is <code>id_vars</code>. These are columns to be used as identifier variables. We can also think of them as columns in our original dataset that we <strong>do not want to change</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+        <span class="s2">&#34;b&#34;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+        <span class="s2">&#34;c&#34;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+        <span class="s2">&#34;d&#34;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    a variable  value
+56  4        d      2
+17  3        b      3
+27  4        c      2
+47  4        d      2
+10  0        b      1
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    a  b variable  value
+12  3  1        c      1
+19  2  1        c      0
+4   3  1        c      1
+32  3  1        d      1
+5   3  1        c      3
+</code></pre></td></tr></table>
+</div>
+</div><p>The argument <code>value_vars</code> with the <code>melt()</code> will allow us to control which columns are unpivoted. If you set this argument, the others columns (except for <code>id_vars</code> and <code>value_vars</code>) will be ignored.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    a variable  value
+2   3        b      2
+32  3        c      1
+18  2        b      3
+16  4        b      2
+3   2        b      2
+37  3        c      1
+21  2        c      1
+19  2        b      1
+34  4        c      0
+28  3        c      1
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>var_name</code> argument will allow us to set the name of the variable column in the output. Similarly, the <code>value_name</code> argument will allow us to set the name of the value column in the output.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&#34;bc&#34;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">&#34;va&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    a bc  va
+13  2  b   3
+7   4  b   4
+36  4  c   1
+38  2  c   0
+9   3  b   3
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="plot">Plot</h1>
+<h2 id="histograms">Histograms</h2>
+<p>We can create a histogram of the variable by selecting the <strong>column</strong> and calling <code>.hist()</code>.</p>
+<p>We can adjust the number of bars, or bins, using the <code>bins</code> argument. Plots can also be <strong>layered</strong> on top of one another.  We can use <code>plt.legend()</code>, passing in a <strong>list of labels</strong>, and then call show. We can use hist&rsquo;s <code>alpha</code> argument, which takes a number. 0 means completely transparent that is, invisible, and 1 means completely opaque.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Histogram of conventional avg_price </span>
+<span class="n">avo</span><span class="p">[</span><span class="n">avo</span><span class="p">[</span><span class="s2">&#34;type&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;conventional&#34;</span><span class="p">][</span><span class="s2">&#34;avg_price&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># Histogram of organic avg_price</span>
+<span class="n">avo</span><span class="p">[</span><span class="n">avo</span><span class="p">[</span><span class="s2">&#34;type&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;organic&#34;</span><span class="p">][</span><span class="s2">&#34;avg_price&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Add a legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&#34;conventional&#34;</span><span class="p">,</span> <span class="s2">&#34;organic&#34;</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322130550.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>You can also plot histograms for multiple variables at a time as follows: <code>df[[&quot;col1&quot;, &quot;col2&quot;]].hist()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">avo</span><span class="p">[[</span><span class="s2">&#34;avg_price&#34;</span><span class="p">,</span> <span class="s2">&#34;nb_sold&#34;</span><span class="p">]]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322130736.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="bar-plots">Bar plots</h2>
+<p>Bar plots can reveal relationships between <strong>a categorical variable and a numeric variable</strong>, like lang and rand1. we group by lang, select the rand1 column, and take the mean, giving us the average rand1 values of each lang.</p>
+<p>Now we can create a bar plot from the mean using the <code>.plot()</code> method, setting <code>“kind”</code> equal to <code>“bar”</code>. To add a title to our plot, we can use the <code>title</code> argument of the plot method. We may want to rotate the x-axis labels to make the text easier to read. This can be done by passing an angle in degrees with the <code>“rot”</code> argument</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Get the total number of avocados sold of each size</span>
+<span class="n">nb_sold_by_size</span> <span class="o">=</span> <span class="n">avo</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;size&#34;</span><span class="p">)[</span><span class="s2">&#34;nb_sold&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Create a bar plot of the number of avocados sold by size</span>
+<span class="n">nb_sold_by_size</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322130948.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>You can set the color of the graph by setting the <code>color</code> argument. Color accepts scalar or lists.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">is_recession</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">s</span><span class="o">==</span><span class="s1">&#39;recession&#39;</span> <span class="k">else</span> <span class="s1">&#39;g&#39;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">gdp_recession</span><span class="p">[</span><span class="s1">&#39;econ_status&#39;</span><span class="p">]]</span>
+<span class="n">gdp_recession</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;gdp&#34;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&#34;date&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">is_recession</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322114028.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="line-plots">Line plots</h2>
+<p>Line plots are great for visualizing changes in <strong>numeric variables over time</strong>. We can use the <code>.plot()</code> method again, but this time, we pass in three arguments: date as <code>x</code>, rand2 as <code>y</code>, and <code>“kind”</code> equals <code>“line”</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Get the total number of avocados sold on each date</span>
+<span class="n">nb_sold_by_date</span> <span class="o">=</span> <span class="n">avo</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;date&#34;</span><span class="p">)[</span><span class="s2">&#34;nb_sold&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># &lt;-- note groupby date</span>
+
+<span class="c1"># Create a line plot of the number of avocados sold by date</span>
+<span class="n">nb_sold_by_date</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322131120.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>You can also draw multiple lines by setting a list of columns for the <code>y</code> argument:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;close_jpm&#34;</span><span class="p">,</span> <span class="s2">&#34;close_wells&#34;</span><span class="p">,</span> <span class="s2">&#34;close_bac&#34;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322112821.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="scatter-plots">Scatter plots</h2>
+<p>Scatter plots are great for visualizing relationships between two <strong>numeric variables</strong>. we call the <code>.plot()</code> method with <code>x</code> equal to rand2, <code>y</code> equal to rand3, and <code>“kind”</code> equal to <code>“scatter</code>.”</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Scatter plot of nb_sold vs avg_price with title</span>
+<span class="n">avo</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;nb_sold&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;avg_price&#34;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&#34;Number of avocados sold vs. average price&#34;</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322131222.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="merge-">Merge ※</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Inner Join</span>
+<span class="n">df1_df2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;_l&#34;</span><span class="p">,</span> <span class="s2">&#34;_r&#34;</span><span class="p">))</span>
+<span class="n">df1_df2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">])</span>
+<span class="n">df1_df2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s2">&#34;col2&#34;</span><span class="p">)</span> <span class="c1"># The columns to be merged in the two tables have different names</span>
+
+<span class="c1"># Left Join</span>
+<span class="n">df1_2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">)</span> <span class="c1"># default argument how is &#34;inner&#34;</span>
+<span class="c1"># Right Join</span>
+<span class="n">df1_2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s2">&#34;right&#34;</span><span class="p">)</span> 
+<span class="c1"># Outer Join</span>
+<span class="n">df1_2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s2">&#34;outer&#34;</span><span class="p">)</span> 
+
+<span class="c1"># Symmetric Difference</span>
+<span class="n">df1_2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&#34;outer&#34;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">df1_2</span><span class="p">[</span><span class="s2">&#34;col1_x&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">())</span> <span class="o">|</span> <span class="p">(</span><span class="n">df1_2</span><span class="p">[</span><span class="s2">&#34;col1_y&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">())</span>
+<span class="n">df1_2</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+
+<span class="c1"># Self Join</span>
+<span class="n">df_1s</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&#34;c1&#34;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s2">&#34;c3&#34;</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;_x&#34;</span><span class="p">,</span> <span class="s2">&#34;_y&#34;</span><span class="p">))</span> 
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Merge on Index</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;index_name&#34;</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">df2</span><span class="p">,</span>
+    <span class="n">left_on</span><span class="o">=</span><span class="s2">&#34;left_index_name&#34;</span><span class="p">,</span>
+    <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">right_on</span><span class="o">=</span><span class="s2">&#34;right_index_name&#34;</span><span class="p">,</span>
+    <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">df2</span><span class="p">,</span>
+    <span class="n">left_on</span><span class="o">=</span><span class="s2">&#34;col_name&#34;</span><span class="p">,</span>
+    <span class="n">right_on</span><span class="o">=</span><span class="s2">&#34;right_index_name&#34;</span><span class="p">,</span>
+    <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Merge multiple DataFrame</span>
+<span class="n">df1_df2_df3</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col3&#34;</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;_2&#34;</span><span class="p">,</span> <span class="s2">&#34;_3&#34;</span><span class="p">))</span> 
+<span class="c1"># e.t.  (equal to)</span>
+<span class="n">df1_df2_df3</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">])</span>\ <span class="c1"># &lt;-- note this backslash</span>
+                 <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col3&#34;</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;_2&#34;</span><span class="p">,</span> <span class="s2">&#34;_3&#34;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Merge with other operation</span>
+<span class="n">df_1_2_3</span> <span class="o">=</span> <span class="n">df_1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col1&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_3</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col2&#34;</span><span class="p">)</span>
+
+<span class="n">df_1_2_3</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;col3&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;col4&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">)</span>
+    <span class="c1"># e.t.</span>
+<span class="n">df_1_2_3</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;col3&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">col4</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">)</span>
+    <span class="c1"># e.t.</span>
+<span class="n">df_1_2_3</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;col3&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;col4&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/03-18-13-16-10-037.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="advanced-merge">Advanced Merge</h1>
+<h2 id="semi-join">Semi Join</h2>
+<p>A semi join filters the left table down to those observations that have a match in the right table. It is similar to an inner join where only the intersection between the tables is returned, but unlike an inner join, only the columns from the left table are shown. Finally, no duplicate rows from the left table are returned, even if there is a one-to-many relationship.</p>
+<p>Semi Join Three Steps:</p>
+<ol>
+<li>Merge the left and right tables on key column using an inner join;</li>
+<li>Search if the key column in the left table is in the merged tables using the <code>.isin()</code> method creating a Boolean <code>Series</code>;</li>
+<li>Subset the rows of left table.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># 1. </span>
+<span class="n">df_merged</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col1&#34;</span><span class="p">)</span>
+
+<span class="c1"># 2. </span>
+<span class="n">bs</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="s2">&#34;col2&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_merged</span><span class="p">[</span><span class="s2">&#34;col2&#34;</span><span class="p">])</span> <span class="c1"># bs means boolean series</span>
+
+<span class="c1"># 3.</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="n">bs</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="anti-join">Anti Join</h2>
+<p>An anti join returns the observations in the left table that do not have a matching observation in the right table. It also only returns the columns from the left table.</p>
+<p>With <code>indicator</code> set to <code>True</code>, the <code>merge</code> method adds a column called &ldquo;<code>_merge</code>&rdquo; to the output. This column tells the source of each row. For example, if rows found a match in both tables, the <code>_merge</code> column shows <code>both</code>; if rows can only be found in the left table, the <code>_merge</code> column shows <code>left_only</code>. Obviously, <code>right_only</code> will not appear in a left join.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># 1.</span>
+<span class="n">df_merge</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">,</span> <span class="n">indicater</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 2.</span>
+<span class="n">ls</span> <span class="o">=</span> <span class="n">df_merge</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">df_merge</span><span class="p">[</span><span class="s2">&#34;_merge&#34;</span><span class="p">]</span><span class="o">==</span><span class="s2">&#34;left_only&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;col1&#34;</span>
+<span class="p">]</span>
+
+<span class="c1"># 3.</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="n">df1</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ls</span><span class="p">)]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="concatenate">Concatenate</h2>
+<p>So far, we have only discussed how to merge two tables, which mainly grows them <strong>horizontally</strong>. Now we concern how to grow them <strong>vertically</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Notice the column headers are the same. The result is a vertically combined table. <strong>Notice</strong> each table&rsquo;s index value was retained.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span>
+    <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If the index contains no valuable information, then we can ignore it in the concat method by setting <code>ignore_index</code> to <code>True</code>. The result is that the index will go from <strong>0 to n-1</strong>.</p>
+<p>Now, suppose we wanted to associate specific keys with each of the pieces of our three original tables. We can provide a list of labels to the <code>keys</code> argument. Make sure that <code>ignore_index</code> argument is <code>False</code>, since you can&rsquo;t add a key and ignore the index at the same time. This results in a table with a <strong>multi-index</strong>, with the label on the first level.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span>
+    <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;df1&#34;</span><span class="p">,</span> <span class="s2">&#34;df2&#34;</span><span class="p">,</span> <span class="s2">&#34;df3&#34;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>When we need to combine tables that have <strong>different</strong> column names, the <code>concat</code> method by default will include <strong>all of the columns</strong> in the different tables it&rsquo;s combining. If we only want the matching columns between tables, we set the <code>join</code> argument to &ldquo;<code>inner</code>&rdquo;. Its default value is equal to &ldquo;<code>outer</code>&rdquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span>
+    <span class="n">join</span><span class="o">=</span><span class="s2">&#34;inner&#34;</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Append</code> is a simplified <code>concat</code> method. It supports the <code>ignore_index</code> argument. However, it does not support <code>keys</code> or <code>join</code>. <code>Join</code> is always set to <strong>outer</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span>
+    <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="verifying-integrity">Verifying Integrity</h2>
+<p>Both the <code>merge</code> and <code>concat</code> methods have special features that allow us to verify the structure of our data. The <code>validate</code> and <code>verify_integrity</code> arguments of the <code>merge</code> and <code>concat</code> methods respectively will allow us to verify the data.</p>
+<p>When merging two tables, we might expect the tables to have a <code>one-to-one</code> relationship. However, one of the columns we are merging on may have a duplicated value, which will turn the relationship into a <code>one-to-many</code>.</p>
+<p>If we provide the <code>validate</code> argument one of these key strings:</p>
+<ul>
+<li><code>one_to_one</code></li>
+<li><code>one_to_many</code></li>
+<li><code>many_to_one</code></li>
+<li><code>many_to_many</code></li>
+</ul>
+<p>it will validate the relationship between the two tables. For example, if we specify we want a one-to-one relationship, but it turns out the relationship is not one-to-one, <strong>then an error is raised</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+        <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;adfgh&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;tvdsv&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">&#34;one_to_one&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">MergeError: Merge keys are not unique in right dataset; not a one-to-one merge
+</code></pre></td></tr></table>
+</div>
+</div><p>When concatenating tables vertically, we might unintentionally create duplicate records if a record exists in both tables.</p>
+<blockquote>
+<p>Notice, the recode represent <strong>index</strong>, not columns values.</p>
+</blockquote>
+<p><code>concat</code> method has the argument <code>verify_integrity</code>, which by default is <code>False</code>. However, if set to <code>True</code>, it will check if there are duplicate values in the <strong>index</strong> and <strong>raise an error</strong> if there are. <strong>It will only check the index values and not the columns</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+        <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+        <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+        <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+        <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">df2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">          a         b         c
+0  0.131960  0.559110  0.803359
+1  0.862007  0.349336  0.594149
+2  0.805661  0.313103  0.937367
+3  0.893554  0.633904  0.475403
+4  0.381487  0.096156  0.219184 
+           a         b         c
+4  0.469545  0.142471  0.906317
+5  0.035282  0.481996  0.207780
+6  0.241841  0.355997  0.599351
+7  0.684347  0.592812  0.833834
+8  0.036764  0.347563  0.895287
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span>
+    <span class="n">verify_integrity</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ValueError: Indexes have overlapping values: Int64Index([4], dtype=&#39;int64&#39;)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="merge_ordered">.merge_ordered()</h2>
+<p>The <code>merge_ordered</code> method are similar to the standard merge method with an <strong>outer join</strong>, but the results are <strong>sorted</strong>. The sorted results make this a useful method for <strong>ordered or time-series data</strong>.</p>
+<p>It has many of the same arguments we have already covered with the merge method:</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/20220322102317.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">merge_ordered</span><span class="p">(</span>
+    <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="c1"># &lt;-- no bracket </span>
+    <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">,</span> <span class="n">suffixes</span><span class="p">(</span><span class="s2">&#34;_l&#34;</span><span class="p">,</span> <span class="s2">&#34;_r&#34;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">merge_ordered</span><span class="p">(</span>
+    <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> 
+    <span class="n">left_on</span><span class="o">=</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s2">&#34;col2&#34;</span><span class="p">,</span> 
+    <span class="n">how</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">merge_ordered</span><span class="p">(</span>
+    <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span>
+    <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span> <span class="s2">&#34;col2&#34;</span><span class="p">]</span> <span class="c1"># Note the difference with `on=[&#34;col2&#34;, &#34;col1&#34;]`</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># on=[&#34;date&#34;, &#34;country&#34;]
+                date    country         gdp  series_code_x       pop series_code_y
+        0  1990-01-01  Australia  158051.132  NYGDPMKTPSAKD  17065100   SP.POP.TOTL
+        1  1990-01-01     Sweden   79837.846  NYGDPMKTPSAKD   8558835   SP.POP.TOTL
+        2  1990-04-01  Australia  158263.582  NYGDPMKTPSAKD   8558835   SP.POP.TOTL
+        3  1990-04-01     Sweden   80582.286  NYGDPMKTPSAKD   8558835   SP.POP.TOTL
+        4  1990-07-01  Australia  157329.279  NYGDPMKTPSAKD   8558835   SP.POP.TOTL
+        5  1990-07-01     Sweden   79974.360  NYGDPMKTPSAKD   8558835   SP.POP.TOTL
+        6  1990-09-01  Australia  158240.678  NYGDPMKTPSAKD   8558835   SP.POP.TOTL
+        7  1990-09-01     Sweden   80106.497  NYGDPMKTPSAKD   8558835   SP.POP.TOTL
+        8  1991-01-01  Australia  156195.954  NYGDPMKTPSAKD  17284000   SP.POP.TOTL
+        9  1991-01-01     Sweden   79524.242  NYGDPMKTPSAKD   8617375   SP.POP.TOTL
+
+# on=[&#34;country&#34;, &#34;date&#34;]
+        date    country         gdp  series_code_x       pop series_code_y
+        0  1990-01-01  Australia  158051.132  NYGDPMKTPSAKD  17065100   SP.POP.TOTL
+        1  1990-04-01  Australia  158263.582  NYGDPMKTPSAKD  17065100   SP.POP.TOTL
+        2  1990-07-01  Australia  157329.279  NYGDPMKTPSAKD  17065100   SP.POP.TOTL
+        3  1990-09-01  Australia  158240.678  NYGDPMKTPSAKD  17065100   SP.POP.TOTL
+        4  1991-01-01  Australia  156195.954  NYGDPMKTPSAKD  17284000   SP.POP.TOTL
+        5  1991-04-01  Australia  155989.033  NYGDPMKTPSAKD  17284000   SP.POP.TOTL
+        6  1991-07-01  Australia  156635.858  NYGDPMKTPSAKD  17284000   SP.POP.TOTL
+        7  1991-09-01  Australia  156744.057  NYGDPMKTPSAKD  17284000   SP.POP.TOTL
+        8  1992-01-01  Australia  157916.081  NYGDPMKTPSAKD  17495000   SP.POP.TOTL
+        9  1992-04-01  Australia  159047.827  NYGDPMKTPSAKD  17495000   SP.POP.TOTL
+</code></pre></td></tr></table>
+</div>
+</div><p>We can fill in the missing data by setting the <code>fill_method</code> argument to &ldquo;<code>ffill</code>&rdquo; for forward fill. It will interpolate missing data by filling the missing values with the <strong>previous value</strong> (the upper row).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">merge_ordered</span><span class="p">(</span>
+    <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> 
+    <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col&#34;</span><span class="p">,</span>
+    <span class="n">fill_method</span><span class="o">=</span><span class="s2">&#34;ffill&#34;</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="merge_asof">.merge_asof()</h2>
+<p>The <code>merge_asof()</code> method is similar to an ordered left join. It has similar features as <code>merge_ordered()</code>. However, unlike an ordered left join, <code>merge_asof()</code> will match on the <strong>nearest value</strong> columns rather than equal values.</p>
+<p>For each row in the left DataFrame, <code>merge_asof()</code> select the <strong>last row</strong> in the right DataFrame where the value for the key is <strong>less than or equal</strong> the value for the left key. This brings up an important point - <strong>whatever columns you merge on must be sorted</strong>. (left and right key columns must be sorted)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="s2">&#34;b&#34;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="s2">&#34;b&#34;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df_1_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span>
+    <span class="n">df1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">),</span> <span class="n">df2</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;a&#34;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">df2</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;a&#34;</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">df_1_2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    a  b
+0  1  0
+1  3  1
+2  4  2
+4  5  4
+3  7  3 
+    a  b
+0  1  0
+1  2  1
+2  3  2
+4  5  4
+3  8  3 
+    a  b_x  b_y
+0  1    0    0
+1  3    1    2
+2  4    2    2
+3  5    4    4
+4  7    3    4
+</code></pre></td></tr></table>
+</div>
+</div><p>Setting the <code>direction</code> argument as &ldquo;<code>forward</code>&rdquo; will change the behavior of the method to select the row in the right table. The default value for the direction argument is &ldquo;<code>backward</code>&rdquo;. Setting the <code>direction</code> argument as <code>nearest</code> to match rows with the nearest times in <strong>either</strong> direction.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span>
+    <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span>
+    <span class="n">on</span><span class="o">=</span><span class="s2">&#34;col1&#34;</span><span class="p">,</span>
+    <span class="n">direction</span><span class="o">=</span><span class="s2">&#34;forward&#34;</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#by-row">By row</a></li>
+    <li><a href="#by-col">By col</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#groupby">Groupby</a></li>
+    <li><a href="#pivot">Pivot</a></li>
+    <li><a href="#melt">Melt</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#histograms">Histograms</a></li>
+    <li><a href="#bar-plots">Bar plots</a></li>
+    <li><a href="#line-plots">Line plots</a></li>
+    <li><a href="#scatter-plots">Scatter plots</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#semi-join">Semi Join</a></li>
+    <li><a href="#anti-join">Anti Join</a></li>
+    <li><a href="#concatenate">Concatenate</a></li>
+    <li><a href="#verifying-integrity">Verifying Integrity</a></li>
+    <li><a href="#merge_ordered">.merge_ordered()</a></li>
+    <li><a href="#merge_asof">.merge_asof()</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

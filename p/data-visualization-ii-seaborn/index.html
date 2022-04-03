@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Introduction to Seaborn 1.1 Using pandas with Seaborn 1 2 3  # Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.'><title>Data Visualization II (Seaborn)</title>
+
+<link rel='canonical' href='https://example.com/p/data-visualization-ii-seaborn/'>
+
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Data Visualization II (Seaborn)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Introduction to Seaborn 1.1 Using pandas with Seaborn 1 2 3  # Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.'>
+<meta property='og:url' content='https://example.com/p/data-visualization-ii-seaborn/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-04-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-04-20T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Data Visualization II (Seaborn)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Introduction to Seaborn 1.1 Using pandas with Seaborn 1 2 3  # Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/icon2_hucf6f8424268716378b1227c5667c34d4_30631_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: false; color: false;">
+                Python
+            </a>
+        
+            <a href="/categories/data_visualization/" style="background-color: false; color: false;">
+                Data Visualization
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/data-visualization-ii-seaborn/">Data Visualization II (Seaborn)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 20, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    14 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<p>[toc]</p>
+<h1 id="1-introduction-to-seaborn">1. Introduction to Seaborn</h1>
+<h2 id="11-using-pandas-with-seaborn">1.1 Using pandas with Seaborn</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Import Matplotlib and Seaborn</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>To create a count plot with a pandas DataFrame column instead of a list of data, set <code>x</code> (or <code>y</code>) equal to the name of the column in the DataFrame. Then, we&rsquo;ll set the <code>data</code> parameter equal to DataFrame. Finally calling &ldquo;plt.show()&rdquo;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;xxxx.csv&#34;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;Spiders&#34;</span><span class="p">,</span> <span class="c1"># column name</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251050033.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>Notice that because we&rsquo;re using a named column in the DataFrame, Seaborn automatically adds the name of the column as the x-axis label at the bottom.</p>
+</blockquote>
+<h2 id="12-adding-a-third-variable-with-hue">1.2 Adding a third variable with <code>hue</code></h2>
+<p>we&rsquo;ll be using Seaborn&rsquo;s built-in <code>tips</code> dataset. You can access it by using the &ldquo;<code>load_dataset</code>&rdquo; function in Seaborn and passing in the name of the dataset. These are the first five rows of the tips dataset.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&#34;tips&#34;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">   total_bill   tip     sex smoker  day    time  size
+0       16.99  1.01  Female     No  Sun  Dinner     2
+1       10.34  1.66    Male     No  Sun  Dinner     3
+2       21.01  3.50    Male     No  Sun  Dinner     3
+3       23.68  3.31    Male     No  Sun  Dinner     2
+4       24.59  3.61  Female     No  Sun  Dinner     4
+</code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s explore the relationship between the &ldquo;<code>total_bill</code>&rdquo; and &ldquo;<code>tip</code>&rdquo; columns using a scatter plot.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;total_bill&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;tip&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251217255.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>If you want to add a third variable to plots by adding color, you can set the &ldquo;<code>hue</code>&rdquo; parameter equal to the DataFrame column name or a list, and then Seaborn will automatically color each point by groups.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;total_bill&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;tip&#34;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;smoker&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251236789.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The &ldquo;<code>hue_order</code>&rdquo; parameter takes in a <strong>list</strong> of values and will set the order of the values in the plot accordingly. You can control the colors assigned to each value using the &ldquo;<code>palette</code>&rdquo; parameter. This parameter takes in a <strong>dictionary</strong>. This dictionary should map the variable values to the colors you want to represent the value.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">hc</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&#34;Yes&#34;</span><span class="p">:</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;No&#34;</span><span class="p">:</span> <span class="s2">&#34;g&#34;</span>
+<span class="p">}</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;total_bill&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;tip&#34;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;smoker&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;No&#34;</span><span class="p">,</span> <span class="s2">&#34;Yes&#34;</span><span class="p">],</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">hc</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251234368.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Here is the list of Matplotlib colors and their names. Note that you can use a single-letter Matplotlib abbreviation instead of the full name.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251236474.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><code>hue</code> is available in most of Seaborn&rsquo;s plot types. For example, <code>countplot</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">palette_colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;Rural&#34;</span><span class="p">:</span> <span class="s2">&#34;green&#34;</span><span class="p">,</span> <span class="s2">&#34;Urban&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">}</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;school&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;location&#34;</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">palette_colors</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251231138.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>The other way to add the third variable into a plot is calling arguments <code>col</code> or <code>row</code> in <code>sns.relplot()</code> or <code>sns.catplot()</code> method.</p>
+</blockquote>
+<h1 id="2-relational-plot">2. Relational Plot</h1>
+<h2 id="21-relational-plots-and-subplots">2.1 relational plots and subplots</h2>
+<p>Sometimes we suspect that the relationship may be different within certain <strong>subgroups</strong>. In the last chapter, we started to look at subgroups by using the &ldquo;<code>hue</code>&rdquo; parameter to visualize each subgroup using a different color on the same plot.</p>
+<p>Now we&rsquo;ll try out a different method <code>relplot()</code> (relationship plot) to creat a separate plot per subgroup. We call the &ldquo;<code>relplot()</code>&rdquo; method and use the &ldquo;<code>kind</code>&rdquo; parameter to specify what kind of relational plot to use - scatter plot or line plot.</p>
+<p>By setting &ldquo;<code>col</code>&rdquo; equal to &ldquo;smoker&rdquo;, we get a separate scatter plot groups by &ldquo;smoker&rdquo;, arranged horizontally in columns. You can use the &ldquo;<code>col_wrap</code>&rdquo; parameter to specify how many subplots you want per row.  If you want to arrange these vertically in rows instead, you can use the &ldquo;<code>row</code>&rdquo; parameter instead of &ldquo;<code>col</code>&rdquo;. We can also change the order of the subplots by using the &ldquo;<code>col_order</code>&rdquo; and &ldquo;<code>row_order</code>&rdquo; parameters and giving it a list of ordered values.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;G1&#34;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;G3&#34;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span><span class="p">,</span> 
+    <span class="n">col</span><span class="o">=</span><span class="s2">&#34;schoolsup&#34;</span><span class="p">,</span>
+    <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;yes&#34;</span><span class="p">,</span> <span class="s2">&#34;no&#34;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251309816.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;absences&#34;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;G3&#34;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span><span class="p">,</span> 
+    <span class="n">row</span><span class="o">=</span><span class="s2">&#34;study_time&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251304838.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>It is possible to use both &ldquo;<code>col</code>&rdquo; and &ldquo;<code>row</code>&rdquo; at the same time. Here, we set &ldquo;<code>col</code>&rdquo; equal to smoking status and &ldquo;<code>row</code>&rdquo; equal to the time of day (lunch or dinner). Now we have a subplot for each combination of these two categorical variables.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;G1&#34;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;G3&#34;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span><span class="p">,</span> 
+    <span class="n">col</span><span class="o">=</span><span class="s2">&#34;schoolsup&#34;</span><span class="p">,</span>
+    <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;yes&#34;</span><span class="p">,</span> <span class="s2">&#34;no&#34;</span><span class="p">],</span>
+    <span class="n">row</span><span class="o">=</span><span class="s2">&#34;famsup&#34;</span><span class="p">,</span>
+    <span class="n">row_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251311068.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="22-customizing-scatter-plots">2.2 Customizing scatter plots</h2>
+<p>Seaborn allows you to add more information to scatter plots by varying <strong>the size, the style</strong>, and <strong>the transparency</strong> of the points.</p>
+<blockquote>
+<p>All of these options can be used in both the &ldquo;<code>scatterplot()</code>&rdquo; and &ldquo;<code>relplot()</code>&rdquo; functions, but we&rsquo;ll continue to use &ldquo;<code>relplot()</code>&rdquo; since it&rsquo;s more flexible and allows us to create subplots.</p>
+</blockquote>
+<p>We want each point on the scatter plot to be sized based on the number of variable with larger number having bigger points on the plot. To do this, we&rsquo;ll set the &ldquo;<code>size</code>&rdquo; parameter equal to the variable name from the dataset.</p>
+<p>We can make it easier by using the &ldquo;<code>size</code>&rdquo; parameter in combination with the &ldquo;<code>hue</code>&rdquo; parameter. To do this, set &ldquo;<code>hue</code>&rdquo; equal to the variable name.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;horsepower&#34;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg&#34;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span> 
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span><span class="p">,</span> 
+    <span class="n">size</span><span class="o">=</span><span class="s2">&#34;cylinders&#34;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;cylinders&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251336109.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>Notice that because &ldquo;size&rdquo; is a quantitative variable, Seaborn will automatically color the points <strong>the same color with different depth</strong>, instead of different colors per category value like we saw in previous plots.</p>
+</blockquote>
+<p>We use &ldquo;<code>hue</code>&rdquo; to create different colored points based on groups. Setting &ldquo;<code>style</code>&rdquo; equal to allows us to better distinguish these subgroups by plotting points with a different point style in addition to a different color.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;acceleration&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251338888.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Setting the &ldquo;<code>alpha</code>&rdquo; parameter to a value between 0 and 1 will vary the transparency of the points in the plot, with 0 being completely transparent and 1 being completely non-transparent.</p>
+<h2 id="23-line-plots">2.3 Line plots</h2>
+<p>In Seaborn, we have two types of relational plots: scatter plots and line plots. Line plots are the visualization of choice when we need to track the same thing over <strong>time</strong>.</p>
+<p>By specifying &ldquo;<code>kind</code>&rdquo; equals &ldquo;<code>line</code>&rdquo;, we can create a line plot. We can also track <strong>subgroups</strong> over time with line plots.  Setting the &ldquo;<code>style</code>&rdquo; and &ldquo;<code>hue</code>&rdquo; parameters equal to the variable name  creates different lines for each group that vary in both line style and color.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;horsepower&#34;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span> 
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span><span class="p">,</span> 
+    <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251402594.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;horsepower&#34;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span> 
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span><span class="p">,</span> 
+    <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span> 
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251404602.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Setting the &ldquo;<code>markers</code>&rdquo; parameter equal to &ldquo;<code>True</code>&rdquo; will display a marker for each data point. The marker will vary based on the subgroup you&rsquo;ve set using the &ldquo;<code>style</code>&rdquo; parameter. If you don&rsquo;t want the line styles to vary by subgroup, set the &ldquo;<code>dashes</code>&rdquo; parameter equal to &ldquo;<code>False</code>&rdquo;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;horsepower&#34;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span> 
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span><span class="p">,</span> 
+    <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span> 
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span>
+    <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dashes</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251407028.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Line plots can also be used when you have <strong>more than one observation per x-value</strong>.  If a line plot is given multiple observations per x-value, it will <strong>aggregate them into a single summary measure</strong>. By default, it will display the <strong>mean</strong>. This is the scatter plot</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251409574.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>and the line plot</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251410104.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>Notice that Seaborn will automatically calculate a <strong>confidence interval</strong> for the mean, displayed by the shaded region.</p>
+</blockquote>
+<p>Set the &ldquo;<code>ci</code>&rdquo; parameter equal to the string &ldquo;<code>sd</code>&rdquo; to make <strong>the shaded area represent the standard deviation</strong> instead of the confidence interval for the mean which shows the spread of the distribution of observations at each x value. We can also turn off the confidence interval by setting the &ldquo;<code>ci</code>&rdquo; parameter equal to &ldquo;<code>None</code>&rdquo;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span><span class="p">,</span>
+    <span class="n">ci</span><span class="o">=</span><span class="s2">&#34;sd&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203251411794.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="3-categorical-plot">3. Categorical Plot</h1>
+<h2 id="31-count-plots-and-bar-plots">3.1 Count plots and bar plots</h2>
+<p>Count plots and bar plots are two types of visualizations that Seaborn calls &ldquo;categorical plots&rdquo;.</p>
+<p>We call <code>catplot()</code> method and use the &ldquo;<code>kind</code>&rdquo; parameter to specify what kind of categorical plot to use. &ldquo;<code>catplot()</code>&rdquo; offers the same flexibility that &ldquo;<code>relplot()</code>&rdquo; does, which means it will be easy to create subplots if we need to using the same &ldquo;<code>col</code>&rdquo; and &ldquo;<code>row</code>&rdquo; parameters.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;Internet usage&#34;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">survey_data</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;count&#34;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s2">&#34;Age Category&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261053892.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Use the &ldquo;<code>order</code>&rdquo; parameter which accepts a <strong>list</strong> can specific ordering of categories. This works for all types of categorical plots.</p>
+<p>Bar plots look similar to count plots, but instead of the count of observations in each category, they show <strong>the mean of a quantitative variable among observations in each category</strong>. To create this bar plot, we use &ldquo;<code>catplot</code>&rdquo;. Specify the categorical variable  on the <code>x</code>-axis, the quantitative variable on the <code>y</code>-axis, and set the &ldquo;<code>kind</code>&rdquo; parameter equal to &ldquo;<code>bar</code>&rdquo;.</p>
+<blockquote>
+<p>Of course, you can also change the orientation of the bars in bar plots and count plots by switching the <code>x</code> and <code>y</code> parameters.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">category_order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;&lt;2 hours&#34;</span><span class="p">,</span> 
+                  <span class="s2">&#34;2 to 5 hours&#34;</span><span class="p">,</span> 
+                  <span class="s2">&#34;5 to 10 hours&#34;</span><span class="p">,</span> 
+                  <span class="s2">&#34;&gt;10 hours&#34;</span><span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;study_time&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;G3&#34;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">,</span>
+            <span class="n">order</span><span class="o">=</span><span class="n">category_order</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261057604.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Notice also that Seaborn automatically shows 95% confidence intervals for these means. we can turn off these confidence intervals by setting the &ldquo;<code>ci</code>&rdquo; parameter equal to &ldquo;<code>None</code>&rdquo;.</p>
+<h2 id="32-box-plot">3.2 Box plot</h2>
+<p>A box plot shows the distribution of quantitative data. The colored box represents the 25th to 75th percentile, and the line in the middle of the box represents the median. The whiskers give a sense of the spread of the distribution, and the floating points represent outliers.</p>
+<p>We can use the &ldquo;<code>catplot()</code>&rdquo; function to crate a box plot. We&rsquo;ll put the categorical variable on the x-axis and the quantitative variable on the y-axis, and specify <code>kind=&quot;box&quot;</code>.</p>
+<blockquote>
+<p>As a reminder, &ldquo;catplot&rdquo; allows you to change the order of the categories with a list by &ldquo;<code>order</code>&rdquo; parameter.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">study_time_order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;&lt;2 hours&#34;</span><span class="p">,</span> <span class="s2">&#34;2 to 5 hours&#34;</span><span class="p">,</span> 
+                    <span class="s2">&#34;5 to 10 hours&#34;</span><span class="p">,</span> <span class="s2">&#34;&gt;10 hours&#34;</span><span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;study_time&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;G3&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;box&#34;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="n">study_time_order</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261113276.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>You can omit the outliers using the specify <code>sym=&quot;&quot;</code>. &ldquo;<code>sym</code>&rdquo; can also be used to change the appearance of the outliers instead of omitting them.</p>
+<p>You can change the way the whiskers using the &ldquo;<code>whis</code>&rdquo; parameter. You can have the whiskers define specific lower and upper percentiles by passing in a list of the lower and upper values such as <code>whis=[5, 95]</code> or <code>whis=[0, 100]</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;internet&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;G3&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;box&#34;</span><span class="p">,</span>
+    <span class="n">sym</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">,</span>
+    <span class="n">whis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="c1"># &lt;-- Min &amp; Max</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;location&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261118237.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="33-point-plots">3.3 Point plots</h2>
+<p>Point plots show the mean of a quantitative variable for the observations in each category, plotted as a single point.</p>
+<p>Both line plots and point plots show the mean of a quantitative variable and 95% confidence intervals for the mean. However, there is a <strong>key difference</strong>. Line plots are relational plots, so both the x- and y-axis are quantitative variables. In a point plot, one axis - usually the x-axis - is a categorical variable, making it a categorical plot.</p>
+<p>Since Point plot is a categorical plot, we use &ldquo;catplot&rdquo; and set &ldquo;<code>kind</code>&rdquo; equal to &ldquo;<code>point</code>&rdquo;. To remove the lines connecting each point, set the &ldquo;<code>join</code>&rdquo; parameter equal to <code>False</code>. You can also add “caps” to the end of the confidence intervals, set the <code>“capsize”</code> parameter equal to the desired width of the caps. Finally, you can turn the confidence intervals off by setting the &ldquo;<code>ci</code>&rdquo; parameter equal to <code>None</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;famrel&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;absences&#34;</span><span class="p">,</span>
+			<span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;point&#34;</span><span class="p">,</span>
+            <span class="n">capsize</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+            
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261134122.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>To have the points and confidence intervals be calculated for the <strong>median</strong> instead of the mean, set &ldquo;<code>estimator=np.median</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">median</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;romantic&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;absences&#34;</span><span class="p">,</span>
+			<span class="n">data</span><span class="o">=</span><span class="n">student_data</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;point&#34;</span><span class="p">,</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;school&#34;</span><span class="p">,</span>
+            <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">estimator</span><span class="o">=</span><span class="n">median</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261137912.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="4-customizing-seaborn-plots">4. Customizing Seaborn Plots</h1>
+<h2 id="41-changing-plot-style-and-color">4.1 Changing plot style and color</h2>
+<p>Seaborn has five preset figure styles which change the background and axes of the plot. You can refer to them by name: &ldquo;<code>white</code>&rdquo; (default), &ldquo;<code>dark</code>&rdquo;, &ldquo;<code>whitegrid</code>&rdquo;, &ldquo;<code>darkgrid</code>&rdquo;, and &ldquo;<code>ticks</code>&rdquo;. To set one of these as the global style for all of your plots, use the &ldquo;<code>sns.set_style()</code>&rdquo; method.</p>
+<p>You can change the color of the main elements of the plot with Seaborn&rsquo;s &ldquo;<code>sns.set_palette()</code>&rdquo; method. Seaborn has many preset color palettes that you can refer to by name, or you can create your own custom palette with list.</p>
+<p>Seaborn has a group of preset palettes called <strong>diverging palettes</strong> that are great to use if your visualization deals with a scale where the <strong>two ends</strong> of the scale are opposites and there is a neutral midpoint.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261154420.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Another group of palettes are called <strong>sequential palettes</strong>. These are a single color (or two colors blended) moving from light to dark values. Sequential palettes are great for emphasizing a variable on a continuous scale.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261156728.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>You can also create your own custom palettes by passing in a <strong>list</strong> of color names.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&#34;whitegrid&#34;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&#34;RdBu&#34;</span><span class="p">)</span>
+
+<span class="n">category_order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Never&#34;</span><span class="p">,</span> <span class="s2">&#34;Rarely&#34;</span><span class="p">,</span> <span class="s2">&#34;Sometimes&#34;</span><span class="p">,</span> 
+                  <span class="s2">&#34;Often&#34;</span><span class="p">,</span> <span class="s2">&#34;Always&#34;</span><span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;Parents Advice&#34;</span><span class="p">,</span> 
+            <span class="n">data</span><span class="o">=</span><span class="n">survey_data</span><span class="p">,</span> 
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;count&#34;</span><span class="p">,</span> 
+            <span class="n">order</span><span class="o">=</span><span class="n">category_order</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261159329.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&#34;darkgrid&#34;</span><span class="p">)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;#39A7D0&#34;</span><span class="p">,</span> <span class="s2">&#34;#36ADA4&#34;</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;Gender&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Age&#34;</span><span class="p">,</span> 
+            <span class="n">data</span><span class="o">=</span><span class="n">survey_data</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;box&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261202751.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Finally, you can change the scale of your plot by using the &ldquo;<code>sns.set_context()</code>&rdquo; method. The scale options from smallest to largest are &ldquo;<code>paper</code>&rdquo; (default), &ldquo;<code>notebook</code>&rdquo;, &ldquo;<code>talk</code>&rdquo;, and &ldquo;<code>poster</code>&rdquo;.</p>
+<h2 id="42-adding-titles-and-labels">4.2 Adding titles and labels</h2>
+<p>In this section, we will focus on the title, label and x axis tick label in the plot.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261238517.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Seaborn&rsquo;s plot functions create two different types of objects: <strong><code>FacetGrids</code></strong> and <strong><code>AxesSubplots</code></strong>. To figure out which type of object you&rsquo;re working with, first assign the plot output to a variable such as <code>g</code>, and call the function <code>type(g)</code> .</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;weight&#34;</span><span class="p">,</span> 
+                <span class="n">y</span><span class="o">=</span><span class="s2">&#34;horsepower&#34;</span><span class="p">,</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;weight&#34;</span><span class="p">,</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;count&#34;</span><span class="p">)</span>
+<span class="n">g3</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;weight&#34;</span><span class="p">,</span> 
+                <span class="n">y</span><span class="o">=</span><span class="s2">&#34;horsepower&#34;</span><span class="p">,</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span>
+<span class="n">g4</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;weight&#34;</span><span class="p">,</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">g1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">g2</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">g3</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">g4</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;seaborn.axisgrid.FacetGrid&#39;&gt; 
+&lt;class &#39;seaborn.axisgrid.FacetGrid&#39;&gt; 
+&lt;class &#39;matplotlib.axes._subplots.AxesSubplot&#39;&gt;
+&lt;class &#39;matplotlib.axes._subplots.AxesSubplot&#39;&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>Recall that &ldquo;<code>relplot()</code>&rdquo; and &ldquo;<code>catplot()</code>&rdquo; both support making subplots. This means that they are creating <code>FacetGrid</code> objects. In contrast, single-type plot functions like &ldquo;<code>scatterplot()</code>&rdquo; and &ldquo;<code>countplot()</code>&rdquo; return a single <code>AxesSubplot</code> object.</p>
+<blockquote>
+<p>A <code>FacetGrid</code> consists of one or more <code>AxesSubplots</code>, which is how it supports subplots.</p>
+</blockquote>
+<p>To add a title to a <strong><code>FacetGrid</code></strong> object, first assign the plot to the variable &ldquo;<code>g</code>&rdquo;. And then, you can set the title using &ldquo;<code>g.fig.suptitle()</code>&rdquo;. To adjust the height of the title, you can use the &ldquo;<code>y</code>&rdquo; parameter whose default value is 1.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;weight&#34;</span><span class="p">,</span> 
+                <span class="n">y</span><span class="o">=</span><span class="s2">&#34;horsepower&#34;</span><span class="p">,</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;scatter&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Car Weight vs. Horsepower&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261309745.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&#34;Blues&#34;</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;Gender&#34;</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Age&#34;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">survey_data</span><span class="p">,</span> 
+                <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;box&#34;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;Interested in Pets&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Age of Those Interested in Pets vs. Not&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261348729.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>To add a title to an <strong><code>AxesSubplot</code></strong> object, call the method “<code>g.set_titles()</code>”. You can also use the “<code>y</code>” parameter here to adjust the height of the title. Notice that a <code>FacetGrid</code> consists of one or more <code>AxesSubplots</code>, thus you can set title on each of subplot in a plot.</p>
+<p>Since <code>g</code> is a FacetGrid object, using &ldquo;<code>g.fig.suptitle()</code>&rdquo; will add a title to the figure as a whole. To alter the subplot titles, call &ldquo;<code>g.set_titles()</code>&rdquo; repeatly to set the titles for each AxesSubplot. If you want to use the variable name in the title, you can use <code>{col_name}</code> to reference the column value.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg_mean&#34;</span><span class="p">,</span> 
+                 <span class="n">data</span><span class="o">=</span><span class="n">mpg_mean</span><span class="p">,</span>
+                 <span class="n">col</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Average MPG Over Time&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s2">&#34;EU&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s2">&#34;JP&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s2">&#34;US&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261333499.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>or</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg_mean&#34;</span><span class="p">,</span> 
+                 <span class="n">data</span><span class="o">=</span><span class="n">mpg_mean</span><span class="p">,</span> 
+                 <span class="n">col</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;line&#34;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Average MPG Over Time&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{col_name}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261340166.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>To add axis labels, assign the plot to a variable and then call the &ldquo;<code>set</code>&rdquo; function. Set the parameters &ldquo;<code>xlabel</code>&rdquo; and &ldquo;<code>ylabel</code>&rdquo; to set the desired x-axis and y-axis labels, respectively. This works with <strong>both</strong> FacetGrid and AxesSubplot objects.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;model_year&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;mpg_mean&#34;</span><span class="p">,</span> 
+                 <span class="n">data</span><span class="o">=</span><span class="n">mpg_mean</span><span class="p">,</span>
+                 <span class="n">hue</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&#34;Average MPG Over Time&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&#34;Car Model Year&#34;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&#34;Average MPG&#34;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261327678.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&#34;darkgrid&#34;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&#34;RdBu_r&#34;</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;Village - town&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&#34;Likes Techno&#34;</span><span class="p">,</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">survey_data</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span><span class="p">,</span>
+                <span class="n">col</span><span class="o">=</span><span class="s2">&#34;Gender&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Percentage of Young People Who Like Techno&#34;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{col_name}</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&#34;Location of Residence&#34;</span><span class="p">,</span> 
+       <span class="n">ylabel</span><span class="o">=</span><span class="s2">&#34;% Who Like Techno&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261353393.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Sometimes your tick labels may overlap, one way to address this is by rotating the tick labels. To do this, after we create the plot, we call the matplotlib function &ldquo;<code>plt.xticks()</code>&rdquo; and set &ldquo;<code>rotation=90</code>&rdquo;. This works with <strong>both</strong> FacetGrid and AxesSubplot objects.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&#34;origin&#34;</span><span class="p">,</span> 
+            <span class="n">y</span><span class="o">=</span><span class="s2">&#34;acceleration&#34;</span><span class="p">,</span> 
+            <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span> 
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&#34;point&#34;</span><span class="p">,</span> 
+            <span class="n">join</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+            <span class="n">capsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261328070.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/data-visualization-iii-seaborn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Visualization III (Seaborn)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/data-visualization-i-matplotlib/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Visualization I (Matplotlib)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#11-using-pandas-with-seaborn">1.1 Using pandas with Seaborn</a></li>
+    <li><a href="#12-adding-a-third-variable-with-hue">1.2 Adding a third variable with <code>hue</code></a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#21-relational-plots-and-subplots">2.1 relational plots and subplots</a></li>
+    <li><a href="#22-customizing-scatter-plots">2.2 Customizing scatter plots</a></li>
+    <li><a href="#23-line-plots">2.3 Line plots</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#31-count-plots-and-bar-plots">3.1 Count plots and bar plots</a></li>
+    <li><a href="#32-box-plot">3.2 Box plot</a></li>
+    <li><a href="#33-point-plots">3.3 Point plots</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#41-changing-plot-style-and-color">4.1 Changing plot style and color</a></li>
+    <li><a href="#42-adding-titles-and-labels">4.2 Adding titles and labels</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

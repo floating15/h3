@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='预测建筑物的能源消耗 ASHRAE（American Society of Heating, Refrigerating and Air-Conditioning Engineers），中文名称“美国采暖、制冷与空调工程师学会”，于1894年在美国纽约成立，是由暖通空调（HVAC）工程师所组成的学会，全球拥有超过54,000名成员。协会及其成员专注于建筑系统、能源效率、室内空气质量、制冷和行业内的可持续性。通过调研、标准编写、出版和继续教育，ASHRAE发展至现在的规模。
+问：夏天给大楼降温需要多少钱？
+答：非常多！政府正在进行投资，以降低能源成本，减少排放。但是问题是，这些改进是否真的有效？
+在这次竞赛中，我们通过预测冷水表、电表、热水表和蒸汽表的读数来对这些节能投资进行更好的估计。数据来自近三年来1000栋建筑中的各表读数。大型投资者和金融机构将更倾向于在这一领域投资，以提高建筑能源使用效率。
+我们将这个notebook分为不同的步骤，你可以使用下面的链接来浏览此notebook。
+ Step 1: 导入数据 Step 2: 探索性数据分析 Step 3: 数据预处理 Step 4: LightGBM Step 5: 结果预测  在该项目中包含了如下的问题：
+ 问题 1: 回顾课上内容并查阅资料，归纳总结数据预处理需要的步骤。 问题 2: 思考此处为何要进行对数转换。 问题 3: 查阅资料，总结LightGBM与CatBoost的差异。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  #导入必要的库 import pandas as pd import numpy as np import os import gc import copy import warnings import lightgbm as lgb from lightgbm import LGBMRegressor from sklearn.'><title>Kaggle - ASHRAE, Great Energy Predictor III</title>
+
+<link rel='canonical' href='https://example.com/p/kaggle-ashrae-great-energy-predictor-iii/'>
+
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Kaggle - ASHRAE, Great Energy Predictor III'>
+<meta property='og:description' content='预测建筑物的能源消耗 ASHRAE（American Society of Heating, Refrigerating and Air-Conditioning Engineers），中文名称“美国采暖、制冷与空调工程师学会”，于1894年在美国纽约成立，是由暖通空调（HVAC）工程师所组成的学会，全球拥有超过54,000名成员。协会及其成员专注于建筑系统、能源效率、室内空气质量、制冷和行业内的可持续性。通过调研、标准编写、出版和继续教育，ASHRAE发展至现在的规模。
+问：夏天给大楼降温需要多少钱？
+答：非常多！政府正在进行投资，以降低能源成本，减少排放。但是问题是，这些改进是否真的有效？
+在这次竞赛中，我们通过预测冷水表、电表、热水表和蒸汽表的读数来对这些节能投资进行更好的估计。数据来自近三年来1000栋建筑中的各表读数。大型投资者和金融机构将更倾向于在这一领域投资，以提高建筑能源使用效率。
+我们将这个notebook分为不同的步骤，你可以使用下面的链接来浏览此notebook。
+ Step 1: 导入数据 Step 2: 探索性数据分析 Step 3: 数据预处理 Step 4: LightGBM Step 5: 结果预测  在该项目中包含了如下的问题：
+ 问题 1: 回顾课上内容并查阅资料，归纳总结数据预处理需要的步骤。 问题 2: 思考此处为何要进行对数转换。 问题 3: 查阅资料，总结LightGBM与CatBoost的差异。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  #导入必要的库 import pandas as pd import numpy as np import os import gc import copy import warnings import lightgbm as lgb from lightgbm import LGBMRegressor from sklearn.'>
+<meta property='og:url' content='https://example.com/p/kaggle-ashrae-great-energy-predictor-iii/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Kaggle' /><meta property='article:published_time' content='2021-07-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-07-23T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Kaggle - ASHRAE, Great Energy Predictor III">
+<meta name="twitter:description" content="预测建筑物的能源消耗 ASHRAE（American Society of Heating, Refrigerating and Air-Conditioning Engineers），中文名称“美国采暖、制冷与空调工程师学会”，于1894年在美国纽约成立，是由暖通空调（HVAC）工程师所组成的学会，全球拥有超过54,000名成员。协会及其成员专注于建筑系统、能源效率、室内空气质量、制冷和行业内的可持续性。通过调研、标准编写、出版和继续教育，ASHRAE发展至现在的规模。
+问：夏天给大楼降温需要多少钱？
+答：非常多！政府正在进行投资，以降低能源成本，减少排放。但是问题是，这些改进是否真的有效？
+在这次竞赛中，我们通过预测冷水表、电表、热水表和蒸汽表的读数来对这些节能投资进行更好的估计。数据来自近三年来1000栋建筑中的各表读数。大型投资者和金融机构将更倾向于在这一领域投资，以提高建筑能源使用效率。
+我们将这个notebook分为不同的步骤，你可以使用下面的链接来浏览此notebook。
+ Step 1: 导入数据 Step 2: 探索性数据分析 Step 3: 数据预处理 Step 4: LightGBM Step 5: 结果预测  在该项目中包含了如下的问题：
+ 问题 1: 回顾课上内容并查阅资料，归纳总结数据预处理需要的步骤。 问题 2: 思考此处为何要进行对数转换。 问题 3: 查阅资料，总结LightGBM与CatBoost的差异。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  #导入必要的库 import pandas as pd import numpy as np import os import gc import copy import warnings import lightgbm as lgb from lightgbm import LGBMRegressor from sklearn.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/icon2_hucf6f8424268716378b1227c5667c34d4_30631_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/example/" >
+                Example
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kaggle-ashrae-great-energy-predictor-iii/">Kaggle - ASHRAE, Great Energy Predictor III</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 23, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="预测建筑物的能源消耗">预测建筑物的能源消耗</h1>
+<p><img src="/../../../../img/2022-03-03-10-01-41.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>ASHRAE（American Society of Heating, Refrigerating and Air-Conditioning Engineers），中文名称“美国采暖、制冷与空调工程师学会”，于1894年在美国纽约成立，是由暖通空调（HVAC）工程师所组成的学会，全球拥有超过54,000名成员。协会及其成员专注于建筑系统、能源效率、室内空气质量、制冷和行业内的可持续性。通过调研、标准编写、出版和继续教育，ASHRAE发展至现在的规模。</p>
+<p>问：夏天给大楼降温需要多少钱？</p>
+<p>答：非常多！政府正在进行投资，以降低能源成本，减少排放。但是问题是，这些改进是否真的有效？</p>
+<p>在这次竞赛中，我们通过<strong>预测冷水表、电表、热水表和蒸汽表的读数</strong>来对这些节能投资进行更好的估计。数据来自近三年来1000栋建筑中的各表读数。大型投资者和金融机构将更倾向于在这一领域投资，以提高建筑能源使用效率。</p>
+<p>我们将这个notebook分为不同的步骤，你可以使用下面的链接来浏览此notebook。</p>
+<ul>
+<li><a class="link" href="#step1" >Step 1</a>: 导入数据</li>
+<li><a class="link" href="#step2" >Step 2</a>: 探索性数据分析</li>
+<li><a class="link" href="#step3" >Step 3</a>: 数据预处理</li>
+<li><a class="link" href="#step4" >Step 4</a>: LightGBM</li>
+<li><a class="link" href="#step5" >Step 5</a>: 结果预测</li>
+</ul>
+<p>在该项目中包含了如下的问题：</p>
+<ul>
+<li><a class="link" href="#question1" >问题 1</a>: 回顾课上内容并查阅资料，归纳总结数据预处理需要的步骤。</li>
+<li><a class="link" href="#question2" >问题 2</a>: 思考此处为何要进行对数转换。</li>
+<li><a class="link" href="#question3" >问题 3</a>: 查阅资料，总结LightGBM与CatBoost的差异。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#导入必要的库</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">lightgbm</span> <span class="k">as</span> <span class="nn">lgb</span>
+<span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_log_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&#34;max_columns&#34;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="1-导入数据">1. 导入数据</h1>
+<p>ASHRAE给出的数据包含大量的特征数据，包括仪表读数，天气和建筑的数据等等。该问题为典型的监督学习问题。比赛举办方提供了6个csv文件，包括5个数据集与1个提交样本。其中数据集的字段含义为：</p>
+<p><code>[train/test].csv</code></p>
+<ul>
+<li>building_id：建筑原数据的外键</li>
+<li>meter : 仪表的id码, {0: 电表 , 1: 冷水表, 2: 蒸汽表, 3: 热水表}，不是每栋建筑都有全部类型的仪表</li>
+<li>timestamp：读表的时间</li>
+<li>meter_reading：目标变量, 用千瓦时（或等效值）表示的能耗。这是带有测量误差的真实数据，其中site0的电表读数出现问题，单位是千英热</li>
+</ul>
+<p><code>building_meta.csv</code></p>
+<ul>
+<li>site_id: 天气文件的外键</li>
+<li>building_id: training.csv对应的外键</li>
+<li>primary_use: 基于EnergyStar property type definitions的建筑物活动的主要类别的指标（education, office…)</li>
+<li>square_feet: 建筑物的总建筑面积</li>
+<li>year_built: 建筑完成的年份</li>
+<li>floor_count: 建筑物层数</li>
+</ul>
+<p><code>weather_[train/test].csv</code>：气象站提供的气象数据,尽可能接近现场。</p>
+<ul>
+<li>site_id: 天气文件的外键</li>
+<li>air_temperature: 气温，单位为摄氏度</li>
+<li>cloud_coverage: 天空中被云层覆盖的部分，单位为oktas</li>
+<li>dew_temperature: 露点温度，单位为摄氏度</li>
+<li>precip_depth_1_hr: 降水深度，单位为毫米</li>
+<li>sea_level_pressure: 海平面压力，单位为毫巴/公顷</li>
+<li>wind_direction: 风向，使用的是指南针方向（0-360）</li>
+<li>wind_speed: 风速，单位为米每秒</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;../input/ashrae-energy-prediction/train.csv&#34;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;timestamp&#34;</span><span class="p">])</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;../input/ashrae-energy-prediction/test.csv&#34;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;timestamp&#34;</span><span class="p">])</span>
+<span class="n">building</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/ashrae-energy-prediction/building_metadata.csv&#39;</span><span class="p">)</span>
+<span class="n">weather_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/ashrae-energy-prediction/weather_train.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;timestamp&#34;</span><span class="p">])</span>
+<span class="n">weather_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;../input/ashrae-energy-prediction/weather_test.csv&#34;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;timestamp&#34;</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">weather_train</span><span class="p">[</span><span class="s1">&#39;site_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">df</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="2-探索性数据分析">2. 探索性数据分析</h1>
+<ul>
+<li>根据主办方提供的数据，&ldquo;meter&quot;代表仪表的类型，对应关系为 {0: 电表 , 1: 冷水表, 2: 蒸汽表, 3: 热水表}</li>
+<li>观察各个建筑的仪表读数，可以发现，其中一些建筑的读数在某些区间出现了持续为0的异常情况,也有读数异常的高的值</li>
+<li>可以通过修改<code>site</code>,<code>meter_type</code>,<code>primary_use</code>三个参数选择想要绘制的数据</li>
+</ul>
+<p>关联train表格和building表格用于作图</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">train_plot</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;building_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="n">site</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#建筑物的地点</span>
+<span class="n">meter_type</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#仪表的类型</span>
+<span class="n">primary_use</span> <span class="o">=</span> <span class="s1">&#39;Education&#39;</span> <span class="c1">#建筑物的用途</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span>
+            <span class="n">train_plot</span><span class="p">[</span>
+                <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;site_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">site</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;primary_use&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">primary_use</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">meter_type</span><span class="p">)</span>
+            <span class="p">][</span><span class="s1">&#39;building_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span> <span class="o">=</span> <span class="nb">enumerate</span><span class="p">(</span>
+    <span class="n">train_plot</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;site_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">site</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;primary_use&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">primary_use</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">meter_type</span><span class="p">)</span>
+    <span class="p">][</span><span class="s1">&#39;building_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">36</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">building_id</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="n">train_plot</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;site_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">site</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;primary_use&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">primary_use</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">meter_type</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;building_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">building_id</span><span class="p">)</span>
+    <span class="p">][</span>
+        <span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;meter_reading&#39;</span><span class="p">]</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;meter_reading&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="n">r</span><span class="p">][</span><span class="n">i</span><span class="o">//</span><span class="n">r</span><span class="p">],</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;By hour&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Mean meter reading&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">);</span>
+
+    <span class="n">train_plot</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;site_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">site</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;primary_use&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">primary_use</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">meter_type</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">train_plot</span><span class="p">[</span><span class="s1">&#39;building_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">building_id</span> <span class="p">)</span>
+    <span class="p">][</span>
+        <span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;meter_reading&#39;</span><span class="p">]</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;meter_reading&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="n">r</span><span class="p">][</span><span class="n">i</span><span class="o">//</span><span class="n">r</span><span class="p">],</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;By day&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="n">r</span><span class="p">][</span><span class="n">i</span><span class="o">//</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="n">r</span><span class="p">][</span><span class="n">i</span><span class="o">//</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;building_id: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">building_id</span> <span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+
+<span class="k">del</span> <span class="n">train_plot</span><span class="p">,</span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="p">,</span><span class="n">r</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../../img/2022-03-05-18-59-30.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="3-数据预处理">3. 数据预处理</h1>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="__问题-1__"><strong>问题 1:</strong></h3>
+<p>回顾课上内容并查阅资料，归纳总结数据预处理需要的步骤。</p>
+<p><strong>回答:</strong></p>
+<h2 id="31-数据类型转换">3.1 数据类型转换</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">compress_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;将所有数据的类型都转换为数值型&#39;&#39;&#39;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">col_data</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+        <span class="n">dn</span> <span class="o">=</span> <span class="n">col_data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="n">dn</span> <span class="o">==</span> <span class="s2">&#34;object&#34;</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">col_data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&#34;category&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">&#34;integer&#34;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dn</span> <span class="o">==</span> <span class="s2">&#34;bool&#34;</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">col_data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&#34;int8&#34;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dn</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;int&#34;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">col_data</span><span class="o">.</span><span class="n">round</span><span class="p">()</span> <span class="o">==</span> <span class="n">col_data</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">col_data</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">&#34;integer&#34;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">col_data</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="32-缺失值填充与特征扩展">3.2 缺失值填充与特征扩展</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">set_time</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&#34;2016-01-01&#34;</span><span class="p">))</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">//</span> <span class="mi">3600</span>
+    <span class="c1">#这里将timestamp转换成了16年1月1日0点开始计算的小时数‘//’代表除法运算后取整</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># 根据分析得出各个site来自哪个时区，来修正时间</span>
+<span class="c1"># https://www.kaggle.com/patrick0302/locate-cities-according-weather-temperature</span>
+<span class="n">site_GMT_offsets</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c1">#转换天气数据表格中的时间,并填充缺失值</span>
+<span class="k">def</span> <span class="nf">weather_set_time</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">time_zone</span><span class="p">):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&#34;2016-01-01&#34;</span><span class="p">))</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">//</span> <span class="mi">3600</span>
+    
+    <span class="n">GMT_offset_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">site</span><span class="p">:</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">site</span><span class="p">,</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">site_GMT_offsets</span><span class="p">)}</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">site_id</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">GMT_offset_map</span><span class="p">)</span>
+    <span class="c1">#根据时区的不同，统一时间</span>
+    <span class="n">site_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">site_id</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">site_id</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="c1"># 确保包括所有可能的小时数</span>
+        <span class="n">site_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">site_id</span> <span class="o">==</span> <span class="n">site_id</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;timestamp&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">time_zone</span><span class="p">)</span>
+        <span class="n">site_df</span><span class="o">.</span><span class="n">site_id</span> <span class="o">=</span> <span class="n">site_id</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">site_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="s2">&#34;site_id&#34;</span><span class="p">]:</span>
+            <span class="n">site_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&#34;had_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="o">~</span><span class="n">site_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+            <span class="n">site_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">site_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+            <span class="c1"># 这里使用中位数来填充缺失值</span>
+            <span class="n">site_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">site_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+        <span class="n">site_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">site_df</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">site_dfs</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>  <span class="c1"># make timestamp back into a regular column</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span> <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&#34;had_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+    <span class="c1">#如果某列其中有缺失值，就增加一列新的特征：had_xxx 表示这一行在xxx这一列是否有记录</span>
+    <span class="k">return</span> <span class="n">df</span>
+    
+<span class="c1">#增加星期，月份，时间的特征</span>
+<span class="k">def</span> <span class="nf">_add_time_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">tm_day_of_week</span><span class="o">=</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">//</span> <span class="mi">24</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span><span class="p">),</span> <span class="n">tm_hour_of_day</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">%</span> <span class="mi">24</span><span class="p">))</span>
+
+<span class="n">building</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">building</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;building_id&#34;</span><span class="p">)</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">set_time</span><span class="p">(</span><span class="n">train</span><span class="p">))</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">set_time</span><span class="p">(</span><span class="n">test</span><span class="p">))</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;row_id&#34;</span><span class="p">)</span>
+<span class="n">weather_train</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">weather_set_time</span><span class="p">(</span><span class="n">weather_train</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">8784</span><span class="p">)))</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&#34;site_id&#34;</span><span class="p">,</span> <span class="s2">&#34;timestamp&#34;</span><span class="p">])</span>
+<span class="n">weather_test</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">weather_set_time</span><span class="p">(</span><span class="n">weather_test</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">8784</span><span class="p">,</span><span class="mi">26304</span><span class="p">)))</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&#34;site_id&#34;</span><span class="p">,</span> <span class="s2">&#34;timestamp&#34;</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="33-关联数据">3.3 关联数据</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">combined_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">weather</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;building_id&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">weather</span><span class="p">,</span>
+        <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;site_id&#34;</span><span class="p">,</span> <span class="s2">&#34;timestamp&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;meter_reading&#34;</span><span class="p">]),</span><span class="n">df</span><span class="o">.</span><span class="n">meter_reading</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="34-异常值处理">3.4 异常值处理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">make_is_bad_zero</span><span class="p">(</span><span class="n">Xy_subset</span><span class="p">,</span> <span class="n">min_interval</span><span class="o">=</span><span class="mi">48</span><span class="p">,</span> <span class="n">summer_start</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">summer_end</span><span class="o">=</span><span class="mi">7500</span><span class="p">):</span>
+    <span class="c1">#夏天，3000/24=125，7500/24=312.5,第125天到第312.5天为夏天。</span>
+
+    <span class="n">meter</span> <span class="o">=</span> <span class="n">Xy_subset</span><span class="o">.</span><span class="n">meter_id</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">is_zero</span> <span class="o">=</span> <span class="n">Xy_subset</span><span class="o">.</span><span class="n">meter_reading</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1">#返回读数为0的电表的indices</span>
+    <span class="k">if</span> <span class="n">meter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1">#电表的度数不应该为0，所以电表（meter为0）读数为0的行从training dataframe中drop掉</span>
+        <span class="k">return</span> <span class="n">is_zero</span>
+
+    <span class="n">transitions</span> <span class="o">=</span> <span class="p">(</span><span class="n">is_zero</span> <span class="o">!=</span> <span class="n">is_zero</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="c1">#出现0和非0变化的位置</span>
+    <span class="n">all_sequence_ids</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="c1">#到各位置出现的变化的和，是一个pd.Seires</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">all_sequence_ids</span><span class="p">[</span><span class="n">is_zero</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&#34;ids&#34;</span><span class="p">)</span><span class="c1">#将其中读数为0的提取出来</span>
+    <span class="k">if</span> <span class="n">meter</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+        <span class="c1"># 蒸汽和热水有可能在夏天被关闭</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ids</span><span class="p">[(</span><span class="n">Xy_subset</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">&lt;</span> <span class="n">summer_start</span><span class="p">)</span> <span class="o">|</span>
+                       <span class="p">(</span><span class="n">Xy_subset</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">&gt;</span> <span class="n">summer_end</span><span class="p">)]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="c1">#不在夏天的indices</span>
+        <span class="n">is_bad</span> <span class="o">=</span> <span class="n">ids</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">keep</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ids</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">ids</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span> <span class="o">&gt;=</span> <span class="n">min_interval</span><span class="p">)</span> 
+        <span class="c1">#将不在夏天却被关闭的蒸汽和热水表提取出来，至少被关闭了48小时以上的</span>
+    <span class="k">elif</span> <span class="n">meter</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">time_ids</span> <span class="o">=</span> <span class="n">ids</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Xy_subset</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;timestamp&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">ids</span><span class="c1">#将ids和timestamp对应起来</span>
+        <span class="n">is_bad</span> <span class="o">=</span> <span class="n">ids</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">ids</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span> <span class="o">&gt;=</span> <span class="n">min_interval</span><span class="c1">#关闭时间大于48小时的</span>
+
+        <span class="c1"># 冷水在冬天可能被关闭</span>
+        <span class="n">jan_id</span> <span class="o">=</span> <span class="n">time_ids</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="c1">#一月份的开始的id</span>
+        <span class="n">dec_id</span> <span class="o">=</span> <span class="n">time_ids</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">8283</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="c1">#十二月份开始的id</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">jan_id</span> <span class="ow">and</span> <span class="n">dec_id</span> <span class="ow">and</span> <span class="n">jan_id</span> <span class="o">==</span> <span class="n">time_ids</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="n">dec_id</span> <span class="o">==</span> <span class="n">time_ids</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">8783</span><span class="p">,</span> <span class="kc">False</span><span class="p">)):</span>
+        <span class="c1">#如果一月500小时和十二月500小时的读表都为0的话</span>
+            <span class="n">is_bad</span> <span class="o">=</span> <span class="n">is_bad</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">ids</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">jan_id</span><span class="p">,</span> <span class="n">dec_id</span><span class="p">]))))</span>
+            <span class="c1">#将这一部分的的行从is_bad中删除</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Unexpected meter type: </span><span class="si">{</span><span class="n">meter</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">is_zero</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">is_bad</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">find_bad_zeros</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;返回仅包含应该删除的行的Index&#34;&#34;&#34;</span>
+    <span class="n">Xy</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">meter_reading</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">meter_id</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">meter</span><span class="p">)</span>
+    <span class="n">is_bad_zero</span> <span class="o">=</span> <span class="n">Xy</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;building_id&#34;</span><span class="p">,</span> <span class="s2">&#34;meter&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_is_bad_zero</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">is_bad_zero</span><span class="p">[</span><span class="n">is_bad_zero</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">find_bad_sitezero</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;返回Site 0 读数异常的行的index.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">[(</span><span class="n">X</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">&lt;</span> <span class="mi">3378</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">site_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">meter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span>
+
+<span class="k">def</span> <span class="nf">find_bad_building1099</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;返回建筑1099的读数异常高的行的index .&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">[(</span><span class="n">X</span><span class="o">.</span><span class="n">building_id</span> <span class="o">==</span> <span class="mi">1099</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">meter</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mf">3e4</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span>
+
+<span class="k">def</span> <span class="nf">find_bad_rows</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">find_bad_zeros</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">find_bad_sitezero</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">find_bad_building1099</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">combined_data</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="n">weather_train</span><span class="p">)</span>
+
+<span class="n">bad_rows</span> <span class="o">=</span> <span class="n">find_bad_rows</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1">#输出异常值的index</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">bad_rows</span><span class="o">.</span><span class="n">sort_values</span><span class="p">())</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&#34;rows_to_drop.csv&#34;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">bad_rows</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reindex_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">_add_time_features</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&#34;timestamp&#34;</span><span class="p">)</span>  <span class="c1"># drop掉原本的timestamp</span>
+
+<span class="k">del</span> <span class="n">bad_rows</span><span class="p">,</span><span class="n">train</span><span class="p">,</span><span class="n">weather_train</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="35-评价函数">3.5 评价函数</h2>
+<p>由于需要预测连续值，因此需要采用回归模型。由于该项目是Kaggle赛题，测试集是使用均方根对数误差 RMSLE（Root Mean Squared Logarithmic Error, RMSLE)评测的，因此这里只能使用RMSLE。RMSLE的计算公式为：</p>
+<p>$${\rm RMSLE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (\log(p_i + 1) - \log(a_i+1))^2 }$$</p>
+<p>其中</p>
+<ul>
+<li>$n$（public/private）数据集中的样本总数,</li>
+<li>$p_i$ 是目标的预测值</li>
+<li>$a_i$ 第i个目标的真实值.</li>
+<li>$\log(x)$ 是自然对数</li>
+</ul>
+<p>我们只需要对目标值进行$y = \log(y+1)$的变换，就可以使用常见的RMSE作为评价函数，我们使用numpy中的log1p就可以实现。</p>
+<p>注意：进行预测的时候需要使用$y = e^y-1$将目标值转换回去，可以使用 y = np.exp1m(y)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#对目标值进行变换</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="__问题-2__"><strong>问题 2:</strong></h3>
+<p>思考此处为何要进行对数转换。</p>
+<p><strong>回答:</strong></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="4-lightgbm">4. LightGBM</h1>
+<h2 id="41-模型参数">4.1 模型参数</h2>
+<p>LightGBM 主要调节的参数包括：</p>
+<ul>
+<li><code>learning_rate</code>：迭代步长,学习率；</li>
+<li><code>num_leaves</code>：LightGBM使用leaf-wise的算法，在调节树的复杂度时，使用num_leaves，较小导致欠拟合，较大导致过拟合；</li>
+<li><code>subsample</code>：0-1之间，控制每棵树随机采样的比例，减小这个参数的值，算法会更加保守，避免过拟合。但如果这个值设置得过小，可能会导致欠拟合；</li>
+<li><code>lambda_l2</code>：L2正则化系数，用来控制过拟合；</li>
+<li><code>num_trees</code>：迭代步数。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boosting_type&#39;</span><span class="p">:</span> <span class="s1">&#39;gbdt&#39;</span><span class="p">,</span>  
+    <span class="s1">&#39;objective&#39;</span><span class="p">:</span> <span class="s1">&#39;regression&#39;</span><span class="p">,</span>  
+    <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="s1">&#39;rmse&#39;</span><span class="p">,</span>  
+    <span class="s1">&#39;num_leaves&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>  
+    <span class="s1">&#39;subsample&#39;</span><span class="p">:</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>  
+    <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;lambda_l2&#39;</span><span class="p">:</span><span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="n">num_trees</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#设置分类变量</span>
+<span class="n">categorical_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;building_id&#39;</span><span class="p">,</span> <span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;primary_use&#39;</span><span class="p">,</span> <span class="s1">&#39;had_air_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;had_cloud_coverage&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;had_dew_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;had_precip_depth_1_hr&#39;</span><span class="p">,</span><span class="s1">&#39;had_sea_level_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;had_wind_direction&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;had_wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;tm_day_of_week&#39;</span><span class="p">,</span> <span class="s1">&#39;tm_hour_of_day&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="42-模型训练">4.2 模型训练</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">n_splits</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">X1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">])</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="c1">#使用StratifiedKFold，让指定列在每一个fold中的分布相同，这里设置分为3个fold</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X1</span><span class="p">[</span><span class="s1">&#39;tm_hour_of_day&#39;</span><span class="p">]):</span>
+        <span class="c1">#让每个fold中[&#39;tm_hour_of_day&#39;]的分布相同</span>
+        <span class="n">train_features</span> <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span>
+        <span class="n">train_target</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        
+        <span class="n">test_features</span> <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+        <span class="n">test_target</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">X1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        
+        <span class="n">d_train</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">categorical_feature</span><span class="o">=</span><span class="n">categorical_features</span><span class="p">)</span>
+        <span class="n">d_eval</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">test_features</span><span class="p">,</span><span class="n">test_target</span><span class="p">,</span> <span class="n">categorical_feature</span><span class="o">=</span><span class="n">categorical_features</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Building model meter :&#34;</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="s1">&#39;fold:&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>        
+        
+        <span class="n">md</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">d_train</span><span class="p">,</span> <span class="n">num_boost_round</span><span class="o">=</span><span class="n">num_trees</span><span class="p">,</span> <span class="n">valid_sets</span><span class="o">=</span><span class="p">(</span><span class="n">d_train</span><span class="p">,</span> <span class="n">d_eval</span><span class="p">),</span> 
+                       <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">verbose_eval</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+        <span class="n">md</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s1">&#39;lgb_val</span><span class="si">{}</span><span class="s1">_fold</span><span class="si">{}</span><span class="s1">.bin&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">del</span> <span class="n">X1</span>  
+        
+<span class="k">del</span> <span class="n">d_train</span><span class="p">,</span> <span class="n">d_eval</span><span class="p">,</span> <span class="n">train_features</span><span class="p">,</span> <span class="n">test_features</span><span class="p">,</span> <span class="n">md</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="__问题-3__"><strong>问题 3:</strong></h3>
+<p>查阅资料，总结LightGBM与CatBoost的差异。</p>
+<p><strong>回答:</strong></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="5-结果预测">5. 结果预测</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">X</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&#34;building_id&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">weather_test</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;site_id&#34;</span><span class="p">,</span> <span class="s2">&#34;timestamp&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">compress_dataframe</span><span class="p">(</span><span class="n">_add_time_features</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&#34;timestamp&#34;</span><span class="p">)</span>  <span class="c1"># drop掉原本的timestamp</span>
+
+<span class="k">del</span> <span class="n">test</span><span class="p">,</span> <span class="n">weather_test</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#输出预测结果</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">ix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)):</span>
+        <span class="c1">#加载刚才保存的模型</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">Booster</span><span class="p">(</span><span class="n">model_file</span><span class="o">=</span><span class="s1">&#39;lgb_val</span><span class="si">{}</span><span class="s1">_fold</span><span class="si">{}</span><span class="s1">.bin&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span> <span class="o">+=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;meter&#39;</span><span class="p">]),</span> <span class="n">num_iteration</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">best_iteration</span><span class="p">)</span><span class="o">/</span><span class="n">n_splits</span>
+        <span class="k">del</span> <span class="n">model</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">();</span>
+    
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&#34;row_id&#34;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="s2">&#34;meter_reading&#34;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">result</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># float_format设置保留四位小数，减少文件大小，为文件上传节省时间</span>
+<span class="n">predictions</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&#34;submission.csv&#34;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">float_format</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">%.4f</span><span class="s2">&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kaggle/">Kaggle</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#__问题-1__"><strong>问题 1:</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#31-数据类型转换">3.1 数据类型转换</a></li>
+    <li><a href="#32-缺失值填充与特征扩展">3.2 缺失值填充与特征扩展</a></li>
+    <li><a href="#33-关联数据">3.3 关联数据</a></li>
+    <li><a href="#34-异常值处理">3.4 异常值处理</a></li>
+    <li><a href="#35-评价函数">3.5 评价函数</a>
+      <ol>
+        <li><a href="#__问题-2__"><strong>问题 2:</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#41-模型参数">4.1 模型参数</a></li>
+    <li><a href="#42-模型训练">4.2 模型训练</a>
+      <ol>
+        <li><a href="#__问题-3__"><strong>问题 3:</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

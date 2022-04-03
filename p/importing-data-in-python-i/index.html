@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
+ flat files such as dot txts and dot csvs; files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files; relational databases such as SQLite &amp;amp; PostgreSQL.'><title>Importing Data in Python I</title>
+
+<link rel='canonical' href='https://example.com/p/importing-data-in-python-i/'>
+
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Importing Data in Python I'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
+ flat files such as dot txts and dot csvs; files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files; relational databases such as SQLite &amp;amp; PostgreSQL.'>
+<meta property='og:url' content='https://example.com/p/importing-data-in-python-i/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2020-04-26T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-04-26T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Importing Data in Python I">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ [toc]
+1. Importing data from flat files We&amp;rsquo;ll discuss how to import data from 3 kind of data sources
+ flat files such as dot txts and dot csvs; files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files; relational databases such as SQLite &amp;amp; PostgreSQL.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/icon2_hucf6f8424268716378b1227c5667c34d4_30631_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/data_analysis/" style="background-color: false; color: false;">
+                Data Analysis
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/importing-data-in-python-i/">Importing Data in Python I</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 26, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    19 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<p>[toc]</p>
+<h1 id="1-importing-data-from-flat-files">1. Importing data from flat files</h1>
+<p>We&rsquo;ll discuss how to import data from 3 kind of data sources</p>
+<ol>
+<li>flat files such as dot txts and dot csvs;</li>
+<li>files native to other software such as Excel spreadsheets, Stata, SAS and MATLAB files;</li>
+<li>relational databases such as SQLite &amp; PostgreSQL.</li>
+</ol>
+<h2 id="11-importing-flat-files-using-open">1.1 Importing flat files using <code>open()</code></h2>
+<p>To check out any plain text file, you can use Python’s basic <code>open()</code> function to open a connection to the file. To do so, you pass the filename to the function <code>open()</code> and also pass it the argument <code>mode=&quot;r&quot;</code>, which makes sure that we can only read it (we wouldn&rsquo;t want to accidentally write to it!), assign the text from the file to a variable by applying the method <code>read()</code> to the connection to the file. After you do this, make sure that you close the connection to the file using the <code>close()</code> method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;moby_dick.txt&#34;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&#34;r&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span> <span class="c1"># Check whether the file is closed</span>
+<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">CHAPTER 1. Loomings.
+
+Call me Ishmael. Some years ago--never mind how long precisely--having
+little or no money in my purse, and nothing particular to interest me on
+shore, I thought I would sail abou
+False
+True
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>If you wanted to open a file in order to write to it, you would pass it the argument <code>mode=&quot;w&quot;</code>.</p>
+</blockquote>
+<p>using a <code>with</code> statement. This allows you to create a context in which you can execute commands with the file open. Once out of this context, the file will be closed, for this reason, it is called a <strong>Context Manager</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;moby_dick.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">CHAPTER 1. Loomings.
+
+
+
+Call me Ishmael. Some years ago--never mind how long precisely--having
+
+little or no money in my purse, and nothing particular to interest me on
+
+shore, I thought I would sail about a little and see the watery part of
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="12-importing-flat-files-using-numpy">1.2 Importing flat files using <code>NumPy</code></h2>
+<p>If all the data are numerical, you can use the package <code>numpy</code> to import the data as a numpy array with the NumPy functions <a class="link" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html"  target="_blank" rel="noopener"
+    >loadtxt( )</a>. We call <code>loadtxt()</code> and pass it the filename as the first argument, along with the <code>delimiter</code> as the 2nd argument. Note that the default delimiter is any white space so we’ll usually need to specify it explicitly.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;digits.csv&#39;</span>
+<span class="n">digits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&#34;,&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">digits</span><span class="p">),</span> <span class="n">digits</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">digits</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="mi">1</span><span class="p">:]</span>
+        <span class="n">im_sq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+            <span class="n">im_sq</span><span class="p">,</span> 
+            <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">,</span> 
+            <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span>
+        <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;numpy.ndarray&#39;&gt; (100, 785)
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011031415.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>You can skip the first row by calling <code>loadtxt</code> with the argument <code>skiprows=1</code>; You can select the 1st and 3rd columns of the data, by setting <code>usecols=[0,2]</code>. You can also import different datatypes into NumPy arrays: for example, setting the argument <code>dtype=&quot;str&quot;</code> will ensure that all entries are imported as strings.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;digits_header.txt&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[[1. 0.]
+ [0. 0.]
+ [1. 0.]
+ [4. 0.]
+ [0. 0.]]
+</code></pre></td></tr></table>
+</div>
+</div><p>Notice that <code>loadtxt</code> tends to <strong>break down</strong> when we have <strong>mixed datatypes</strong>, for example, columns consisting of floats and columns consisting of strings. And you should import in different datatypes respectively.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;seaslug.txt&#39;</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">data_float</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_float</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_float</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_float</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (min.)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;percentage of larvae&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Time&#39; &#39;Percent&#39;]
+[0.    0.357]
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011040444.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Much of the time you will need to import datasets which have different datatypes in different columns; one column may contain strings and another floats, for example. The function <code>np.loadtxt()</code> will <strong>freak</strong> at this. There is another function, <a class="link" href="https://numpy.org/doc/stable/reference/generated/numpy.genfromtxt.html?highlight=genfromtxt#numpy.genfromtxt"  target="_blank" rel="noopener"
+    >genfromtxt( )</a>, which can handle such structures. If we pass <code>dtype=None</code> to it, it will figure out what types each column should be.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span>
+    <span class="s1">&#39;titanic.csv&#39;</span><span class="p">,</span> 
+    <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> 
+    <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">array([( 1, 0, 3, b&#39;male&#39;, 22., 1, 0, b&#39;A/5 21171&#39;,  7.25  , b&#39;&#39;, b&#39;S&#39;),
+       ( 2, 1, 1, b&#39;female&#39;, 38., 1, 0, b&#39;PC 17599&#39;, 71.2833, b&#39;C85&#39;, b&#39;C&#39;),
+       ( 3, 1, 3, b&#39;female&#39;, 26., 0, 0, b&#39;STON/O2. 3101282&#39;,  7.925 , b&#39;&#39;, b&#39;S&#39;),
+       ( 4, 1, 1, b&#39;female&#39;, 35., 1, 0, b&#39;113803&#39;, 53.1   , b&#39;C123&#39;, b&#39;S&#39;),
+       ( 5, 0, 3, b&#39;male&#39;, 35., 0, 0, b&#39;373450&#39;,  8.05  , b&#39;&#39;, b&#39;S&#39;),
+       ( 6, 0, 3, b&#39;male&#39;, nan, 0, 0, b&#39;330877&#39;,  8.4583, b&#39;&#39;, b&#39;Q&#39;),
+       ( 7, 0, 1, b&#39;male&#39;, 54., 0, 0, b&#39;17463&#39;, 51.8625, b&#39;E46&#39;, b&#39;S&#39;),
+       ( 8, 0, 3, b&#39;male&#39;,  2., 3, 1, b&#39;349909&#39;, 21.075 , b&#39;&#39;, b&#39;S&#39;),
+       ( 9, 1, 3, b&#39;female&#39;, 27., 0, 2, b&#39;347742&#39;, 11.1333, b&#39;&#39;, b&#39;S&#39;),
+       (10, 1, 2, b&#39;female&#39;, 14., 1, 0, b&#39;237736&#39;, 30.0708, b&#39;&#39;, b&#39;C&#39;)],
+      dtype=[(&#39;PassengerId&#39;, &#39;&lt;i8&#39;), (&#39;Survived&#39;, &#39;&lt;i8&#39;), (&#39;Pclass&#39;, &#39;&lt;i8&#39;), (&#39;Sex&#39;, &#39;S6&#39;), (&#39;Age&#39;, &#39;&lt;f8&#39;), (&#39;SibSp&#39;, &#39;&lt;i8&#39;), (&#39;Parch&#39;, &#39;&lt;i8&#39;), (&#39;Ticket&#39;, &#39;S18&#39;), (&#39;Fare&#39;, &#39;&lt;f8&#39;), (&#39;Cabin&#39;, &#39;S15&#39;), (&#39;Embarked&#39;, &#39;S1&#39;)])
+</code></pre></td></tr></table>
+</div>
+</div><p>In addition to <code>genfromtxt</code>, the <code>numpy</code> module provides several convenience functions derived from <code>genfromtxt</code>. These functions work the same way as the original, but they have different default values.</p>
+<ul>
+<li>
+<p><code>recfromtxt</code>
+Returns a standard <code>numpy.recarray</code> (if <code>usemask=False</code>) or a <code>MaskedRecords</code> array (if <code>usemaske=True</code>). The default dtype is <code>dtype=None</code>, meaning that <strong>the types of each column will be automatically determined</strong>.</p>
+</li>
+<li>
+<p><code>recfromcsv</code>
+Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</code>.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;titanic.csv&#39;</span>
+<span class="n">d</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">recfromcsv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[(1, 0, 3, b&#39;male&#39;, 22., 1, 0, b&#39;A/5 21171&#39;,  7.25  , b&#39;&#39;, b&#39;S&#39;)
+(2, 1, 1, b&#39;female&#39;, 38., 1, 0, b&#39;PC 17599&#39;, 71.2833, b&#39;C85&#39;, b&#39;C&#39;)
+(3, 1, 3, b&#39;female&#39;, 26., 0, 0, b&#39;STON/O2. 3101282&#39;,  7.925 , b&#39;&#39;, b&#39;S&#39;)]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="13-importing-flat-files-using-pandas">1.3 Importing flat files using <code>Pandas</code></h2>
+<p>If we wish to import a CSV in the most basic case all we need to do is to call the function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"  target="_blank" rel="noopener"
+    >read_csv( )</a> and supply it with a single argument, the name of the file, it will return a DataFrame object of the file.</p>
+<blockquote>
+<p>As Hadley Wickham tweeted, &ldquo;A matrix has rows and columns. A data frame has observations and variables.&rdquo;</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;digits.csv&#39;</span>
+<span class="c1"># Read the first 5 rows of the file except header into a DataFrame: data</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> 
+<span class="n">data_array</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data_array</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;numpy.ndarray&#39;&gt;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;titanic_corrupt.txt&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">file</span><span class="p">,</span> 
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="c1"># &lt;-- the pandas version of delim</span>
+    <span class="n">comment</span><span class="o">=</span><span class="s2">&#34;#&#34;</span><span class="p">,</span> <span class="c1"># &lt;-- indicates remainder of line should not be parsed.</span>
+    <span class="n">na_values</span><span class="o">=</span><span class="s2">&#34;Nothing&#34;</span> <span class="c1"># &lt;-- takes str (in this case, &#34;Nothing&#34;) to recognize as NA/NaN</span>
+<span class="p">)</span>
+<span class="n">data_origin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_origin</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Age&#39;</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age (years)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">PassengerId  Survived  Pclass     Sex   Age  ...  Parch            Ticket    Fare  Cabin Embarked
+0            1         0       3    male  22.0  ...      0         A/5 21171   7.250    NaN       S 
+1            2         1       1  female  38.0  ...      0          PC 17599     NaN    NaN      NaN   # &lt;-- Notice here
+2            3         1       3  female  26.0  ...      0  STON/O2. 3101282   7.925    NaN        S
+3            4         1       1  female  35.0  ...      0            113803  53.100   C123        S
+4            5         0       3    male  35.0  ...      0            373450   8.050    NaN        S
+
+  PassengerId\tSurvived\tPclass\tSex\tAge\tSibSp\tParch\tTicket\tFare\tCabin\tEmbarked
+0  1\t0\t3\tmale\t22.0\t1\t0\tA/5 21171\t7.25\tNo...                                  
+1  2\t1\t1\tfemale\t38.0\t1\t0\tPC 17599#to\t71.2... # &lt;-- Notice here &#34;#&#34;                                  
+2  3\t1\t3\tfemale\t26.0\t0\t0\tSTON/O2. 3101282\...                                  
+3  4\t1\t1\tfemale\t35.0\t1\t0\t113803\t53.1\tC12...                                  
+4       5\t0\t3\tmale\t35.0\t0\t0\t373450\t8.05\t\tS    
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011127745.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="2-importing-data-from-other-file-types">2. Importing data from other file types</h1>
+<h2 id="21-importing-pickle-and-excel-file">2.1 Importing Pickle and Excel file</h2>
+<p><a class="link" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter11.03-Pickle-Files.html"  target="_blank" rel="noopener"
+    >Pickle Files</a> is a file type native to Python, which can store data-types in python such as dictionaries, tuples, lists etc. It can <strong>serialize</strong> objects so that they can be saved into a file and loaded again later. when opening such a file, you can specify that it is <strong>read only</strong> and is a <strong>binary file</strong>, by passing the string &lsquo;<code>rb</code>&rsquo; as the second argument of <code>open</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="mi">88</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dump.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="c1"># wirte</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c1"># read</span>
+<span class="n">g</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./dump.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">e</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;name&#39;: &#39;Bob&#39;, &#39;age&#39;: 20, &#39;score&#39;: 88}
+{&#39;name&#39;: &#39;Bob&#39;, &#39;age&#39;: 20, &#39;score&#39;: 88}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">! hexdump -x ./dump.pkl
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0000000    0480    2495    0000    0000    0000    7d00    2894    048c
+0000010    616e    656d    8c94    4203    626f    8c94    6103    6567
+0000020    4b94    8c14    7305    6f63    6572    4b94    7558    002e
+000002f
+</code></pre></td></tr></table>
+</div>
+</div><p>An Excel working book generally consists of a number of working sheets, and each working sheets has a mass of working cells. There are many ways (like <code>openpyxl</code> and <code>pyexcel</code> module) to import Excel files and we&rsquo;ll use <code>pandas</code> to do so because it produces dataframes natively.</p>
+<p>We can use the function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.ExcelFile.parse.html?highlight=excelfile"  target="_blank" rel="noopener"
+    >Excelfile</a> to assign an Excel file to a variable <code>data</code>. As an Excel file consists of sheets, the first thing to do is figure out what the sheets are. This is straightforward with the <code>data.sheet_names</code> attribute.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">&#34;/Users/wanghaoming/Documents/gpa.xlsx&#34;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sheet_names</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Sheet1&#39;, &#39;Sheet2&#39;, &#39;Sheet3&#39;, &#39;Sheet4&#39;, &#39;Sheet5&#39;, &#39;Sheet6&#39;]
+</code></pre></td></tr></table>
+</div>
+</div><p>To then load a particular sheet as a dataframe, we need only apply the method <code>parse()</code> to the object <code>data</code> with a single argument, which is either the name as a string or the index as a float of the sheet.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df6</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+    <span class="n">sheet_name</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">usecols</span><span class="o">=</span><span class="s2">&#34;A:F&#34;</span><span class="p">,</span>
+    <span class="n">nrows</span><span class="o">=</span><span class="mi">12</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df6</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">       课程名称  学分  成绩    课程名称.1  学分.1  成绩.1
+0     实变函数论   3  97  金融衍生品定价Ⅰ     4    93
+1       投资学   4  96     金融经济学     4    93
+2   概率论（理科）   4  96     高等数学Ⅱ     5    93
+3     货币金融学   4  96     高等代数Ⅰ     4    93
+4   金融随机分析Ⅱ   3  95  商业银行经营管理     4    92
+5    衍生金融工具   4  95      随机过程     4    91
+6   金融随机分析Ⅰ   4  94     高等数学Ⅰ     5    91
+7    固定收益证券   4  94       统计学     4    91
+8     国际金融学   4  94      优化理论     3    90
+9     偏微分方程   3  94    金融风险管理     4    90
+10      财政学   4  94       会计学     4    90
+11    计量经济学   4  93      公司金融     4    80
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>pd.ExcelFile.parse()</code> is equivalent to <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html"  target="_blank" rel="noopener"
+    >pd.read_excel</a> method.</p>
+</blockquote>
+<h2 id="22-importing-sasstata-files">2.2 Importing SAS/Stata files</h2>
+<p>The most common SAS files have the extension <code>.sas7bdat</code> and <code>.sas7bcat</code>, which are dataset files and catalog files respectively. We can import the former as DataFrames using the function <code>SAS7BDAT</code> (upper case) from the package <code>sas7bdat</code> (lower case). We can bind the variable <code>file</code> to a connection to the file &lsquo;xxx.sas7bdat&rsquo; in a context manager. Within this context, We can assign to a variable <code>df_sas</code> the result of applying method <code>to_data_frame</code> to <code>file</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sas7bdat</span> <span class="kn">import</span> <span class="n">SAS7BDAT</span>
+
+<span class="k">with</span> <span class="n">SAS7BDAT</span><span class="p">(</span><span class="s1">&#39;sales.sas7bdat&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">df_sas</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">to_data_frame</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_sas</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_sas</span><span class="p">[[</span><span class="s1">&#39;P&#39;</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021119271.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>The other way to import sas (<code>xport</code> and <code>sas7bdat</code>) file is <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_sas.html"  target="_blank" rel="noopener"
+    >pd.read_sas</a>.</p>
+</blockquote>
+<p>Stata files have extension <code>.dta</code> and we can import them using <code>pandas</code>. We don&rsquo;t even need to initialize a context manager in this case. We merely pass the filename to the function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_stata.html"  target="_blank" rel="noopener"
+    >pd.read_stata</a> and assign it to a variable.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s1">&#39;disarea.dta&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;disa10&#39;</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Extent of disease&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of countries&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021120375.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="23-importing-hdf5-files">2.3 Importing HDF5 files</h2>
+<blockquote>
+<p>&ldquo;In the Python world, consensus is rapidly converging on Hierarchical Data Format version 5, or &lsquo;HDF5,&rsquo; as the standard mechanism for storing large quantities of numerical data.&rdquo;
+&mdash;-  2013 O&rsquo;Reilly book <em>Python and HDF5</em> by Andrew Collette,</p>
+</blockquote>
+<h3 id="intro-to-hdf5">Intro to HDF5</h3>
+<h4 id="i-group--dataset">i. Group &amp; Dataset</h4>
+<p>The <a class="link" href="https://www.neonscience.org/resources/learning-hub/tutorials/about-hdf5"  target="_blank" rel="noopener"
+    >Hierarchical Data Format version 5 (HDF5)</a> format can be thought of as a file system contained and described within one single file. Think about the files and folders stored on your computer. You might have a data directory with some temperature data for multiple field sites. These temperature data are collected every minute and summarized on an hourly, daily and weekly basis. Within one HDF5 file, you can store a similar set of data organized in the same way that you might organize files and folders on your computer. However in a HDF5 file, what we call <strong>&ldquo;directories&rdquo; or &ldquo;folders&rdquo;</strong> on our computers, are called <code>groups</code> and what we call <strong>files</strong> on our computer are called <code>datasets</code>.</p>
+<ul>
+<li>Group: A folder like element within an HDF5 file that might contain other groups or datasets within it.</li>
+<li>Dataset: The actual data contained within the HDF5 file. Datasets are often (but don&rsquo;t have to be) stored within groups in the file.</li>
+</ul>
+<h4 id="ii-metadata">ii. Metadata</h4>
+<p>HDF5 format is <strong>self describing</strong>. This means that each file, group and dataset can have associated <strong>metadata</strong> that describes exactly what the data are. One key benefit of having metadata that are attached to each file, group and dataset, is that this facilitates automation without the need for a separate (and additional) metadata document. Using a programming language, like <code>R</code> or <code>Python</code>, we can grab information from the metadata that are already associated with the dataset, and which we might need to process the dataset.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021216082.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h4 id="iii-compressed--subsetting">iii. Compressed &amp; Subsetting</h4>
+<p>The HDF5 format is a <strong>compressed format</strong>. The size of all data contained within HDF5 is optimized which makes the overall file size smaller. Even when compressed, however, HDF5 files often contain big data and can thus still be quite large. A powerful attribute of HDF5 is <code>data slicing</code>, by which a particular subsets of a dataset can be extracted for processing. This means that the entire dataset doesn&rsquo;t have to be read into memory (RAM); very helpful in allowing us to more efficiently work with very large (gigabytes or more) datasets!</p>
+<h4 id="iv-heterogeneous">iv. Heterogeneous</h4>
+<p>HDF5 files can store many different types of data within in the same file. For example, one <code>group</code> may contain a set of datasets to contain integer (numeric) and text (string) data. Or, one <code>dataset</code> can contain heterogeneous data types (e.g., both text and numeric data even images in one dataset).</p>
+<h4 id="v-summary-points">v. Summary Points</h4>
+<ul>
+<li><strong>Self-Describing</strong>: The datasets with an HDF5 file are self describing. This allows us to efficiently extract metadata without needing an additional metadata document.</li>
+<li><strong>Supporta Heterogeneous Data</strong>: Different types of datasets can be contained within one HDF5 file.</li>
+<li><strong>Supports Large, Complex Data</strong>: HDF5 is a compressed format that is designed to support large, heterogeneous, and complex datasets.</li>
+<li><strong>Supports Data Slicing</strong>: &ldquo;Data slicing&rdquo;, or extracting portions of the dataset as needed for analysis, means large files don&rsquo;t need to be completely read into the computers memory or RAM.</li>
+</ul>
+<h3 id="h5py-package"><code>h5py</code> package</h3>
+<p>We import the package <a class="link" href="https://docs.h5py.org/en/stable/"  target="_blank" rel="noopener"
+    >h5py</a> and then import the file using <a class="link" href="https://docs.h5py.org/en/stable/high/file.html?highlight=file"  target="_blank" rel="noopener"
+    >h5py.File</a> function, remembering to use &lsquo;<code>r</code>&rsquo; in order to specify read only.</p>
+<p>You can explore HDF5&rsquo;s hierarchical structure as you would that of a Python dictionary using the method <code>keys</code>. Each of keys is an HDF group. You can think of these groups as directories too.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s2">&#34;LIGO_data.hdf5&#34;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;h5py._hl.files.File&#39;&gt;
+meta
+quality
+strain
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">group</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;strain&#39;</span><span class="p">]</span> 
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="n">strain</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;strain&#39;</span><span class="p">][</span><span class="s1">&#39;Strain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">strain</span><span class="p">[:</span><span class="n">num_samples</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;GPS Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;strain&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Strain
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021202367.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="24-importing-matlab-files">2.4 Importing MATLAB files</h2>
+<p>The standard library <code>scipy.io</code> has functions <a class="link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html"  target="_blank" rel="noopener"
+    >loadmat</a> and <code>savemat</code>, which allow us to read and write <code>.mat</code> files, respectively.</p>
+<p>A <code>.mat</code> file is simply a collection of many objects like strings, floats, vectors and arrays. This means when importing a <code>.mat</code> file in Python, we should expect to see a number of different variables and objects.</p>
+<p>We first import <code>scipy.io</code> and then load the <code>.mat</code> file. Then a dictionary object results returns. How this dictionary relates to a MATLAB workspace is straightforward: the keys of the Python dictionary are the MATLAB variable names and the values of the Python dictionary are the objects that are assigned to the variables.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">scipy.io</span>
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="s2">&#34;albeck_gene_expression.mat&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;dict&#39;&gt;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="s2">&#34;CYratioCyt&#34;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="s2">&#34;CYratioCyt&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="s1">&#39;CYratioCyt&#39;</span><span class="p">][</span><span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">:]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (min.)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;normalized fluorescence (measure of expression)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">dict_keys([&#39;__header__&#39;, &#39;__version__&#39;, &#39;__globals__&#39;, &#39;rfpCyt&#39;, &#39;rfpNuc&#39;, &#39;cfpNuc&#39;, &#39;cfpCyt&#39;, &#39;yfpNuc&#39;, &#39;yfpCyt&#39;, &#39;CYratioCyt&#39;])
+&lt;class &#39;numpy.ndarray&#39;&gt;
+(200, 137)
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021251238.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="3-relational-databases-in-python">3. Relational databases in Python</h1>
+<h2 id="31-creating-a-database-engine-in-python">3.1 Creating a database engine in Python</h2>
+<h3 id="intro-to-relational-database">Intro to Relational database</h3>
+<p>Relational database is a type of database that is based upon the Relational model of data, first described by Ted Codd in the late 1960s.</p>
+<p>A database consists of <strong>tables</strong>. A table generally represents one <code>entity type</code>. Notice that the table looks a great deal like a dataframe. In a relational database table, each <strong>row</strong> or record represents an <code>instance</code> of the <code>entity type</code>. Each <strong>column</strong> represents an <code>attribute</code> of each <code>instance</code>. In this sense, a table is entirely analogous to a dataframe. It is essential that each row contain a <strong>unique identifier</strong>, known as a primary key, that we can use to explicitly access the row in question.</p>
+<p>The really cool thing about relational databases is not merely that you have a bunch of tables, but that the tables are <strong>linked</strong>. Some column in a table corresponds precisely to the primary keys in other tables. This is cool because it means that you don&rsquo;t need to store all the details in one table, it saves an incredible amount of space.</p>
+<h3 id="build-engine">Build engine</h3>
+<p>We&rsquo;ll use an SQLite database as an example because SQLite is fast and simple while still containing enough functionality to introduce the necessary concepts of querying a database. There are many packages we could use to access an SQLite database such as <code>sqlite3</code> and <code>SQLAlchemy</code>. We&rsquo;ll use <a class="link" href="https://docs.sqlalchemy.org/en/14/intro.html"  target="_blank" rel="noopener"
+    >SQLAlchemy</a> as it works with many other Relational Database Management Systems, such as Postgres and MySQL.</p>
+<p>To connect to database, we need to import the relevant funtion <a class="link" href="https://docs.sqlalchemy.org/en/14/core/engines.html"  target="_blank" rel="noopener"
+    >create_engine</a> from the package <code>sqlalchemy</code>. We then use the function <code>create_engine</code> to fire up an SQL engine that will communicate our queries to the database. The only required argument of <code>create_engine</code> is a string that indicates the <strong>type</strong> of database you&rsquo;re connecting to and the <strong>name</strong> of the database.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&#34;sqlite:///Chinook.sqlite&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We would like to know the names of the tables it contains. To do this, apply the method <code>table_names</code> to the object engine. This will return a list of the table names.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&#34;sqlite:///Chinook.sqlite&#34;</span><span class="p">)</span>
+<span class="n">table_names</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table_names</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Album&#39;, &#39;Artist&#39;, &#39;Customer&#39;, &#39;Employee&#39;, &#39;Genre&#39;, &#39;Invoice&#39;, &#39;InvoiceLine&#39;, &#39;MediaType&#39;, &#39;Playlist&#39;, &#39;PlaylistTrack&#39;, &#39;Track&#39;]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="32-querying-relational-databases-in-python">3.2 Querying relational databases in Python</h2>
+<p>The workflow of SQL querying will be as follows.</p>
+<ol>
+<li><strong>import the required packages and functions;</strong></li>
+<li><strong>create the engine;</strong>
+Create the engine object using the function <code>create_engine()</code>.</li>
+<li><strong>connect to it</strong>;
+To connect to the database after creating the engine, you create a <code>connection object</code> by applying the method <a class="link" href="https://docs.sqlalchemy.org/en/14/core/connections.html"  target="_blank" rel="noopener"
+    >connect( )</a> to the engine object.</li>
+<li><strong>query the database</strong> ;
+To query the DB, apply the method <code>execute()</code> to the connection object and pass it the relevant SQL query. The query <code>SELECT * FROM Table_Name</code>, where <code>Table_name</code> is the name of any of the tables in the database, returns all columns of all rows of the Table of interest.</li>
+<li><strong>save the results to a dataframe</strong>;
+query manipulation creates a sqlalchemy results object. To turn the results object into a dataframe, we apply the method <a class="link" href="https://docs.sqlalchemy.org/en/14/core/connections.html?highlight=fetchall#sqlalchemy.engine.Result.fetchall"  target="_blank" rel="noopener"
+    >fetchmany(size=None) or fetchall( )</a> to result object and save it as a dataframe using the pandas function <code>DataFrame()</code>.  Don&rsquo;t forget setting dataframe columns name by <code>df.columns = rs.keys()</code></li>
+<li><strong>close the connection</strong>.
+To close the connection, execute <code>close()</code> method on connection object.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># step 1. import package</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///Chinook.sqlite&#39;</span><span class="p">)</span> <span class="c1"># step2. create engine</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="c1"># step3. create connection</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from Album&#34;</span><span class="p">)</span> <span class="c1"># step4. query</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span> <span class="c1"># step5. save result </span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># step6. close connection</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">   AlbumId                                  Title  ArtistId
+0        1  For Those About To Rock We Salute You         1
+1        2                      Balls to the Wall         2
+2        3                      Restless and Wild         2
+3        4                      Let There Be Rock         1
+4        5                               Big Ones         3
+</code></pre></td></tr></table>
+</div>
+</div><p>You can also leverage the <strong>context manager</strong> construct to open a connection, which will save you the trouble of closing the connection.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///Chinook.sqlite&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select LastName, Title from Employee&#34;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">3
+    LastName                Title
+0    Adams      General Manager
+1  Edwards        Sales Manager
+2  Peacock  Sales Support Agent
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">query_sql</span><span class="p">(</span><span class="n">dbtype</span><span class="p">,</span> <span class="n">dbname</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">dbtype</span><span class="o">+</span><span class="s2">&#34;:///&#34;</span><span class="o">+</span><span class="n">dbname</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">rs</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">query_sql</span><span class="p">(</span>
+    <span class="n">dbtype</span><span class="o">=</span><span class="s2">&#34;sqlite&#34;</span><span class="p">,</span> <span class="n">dbname</span><span class="o">=</span><span class="s2">&#34;Chinook.sqlite&#34;</span><span class="p">,</span>
+    <span class="n">query</span><span class="o">=</span><span class="s2">&#34;select * from Employee where ReportsTo=2.0 order by BirthDate&#34;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">FirstName                Title  ReportsTo  ... Country PostalCode              Phone                Fax                     Email
+0           4     Park  Margaret  Sales Support Agent          2  ...  Canada    T2P 5G3  +1 (403) 263-4423  +1 (403) 263-4289  margaret@chinookcorp.com
+1           5  Johnson     Steve  Sales Support Agent          2  ...  Canada    T3B 1Y7   1 (780) 836-9987   1 (780) 836-9543     steve@chinookcorp.com
+2           3  Peacock      Jane  Sales Support Agent          2  ...  Canada    T2P 5M5  +1 (403) 262-3443  +1 (403) 262-6712      jane@chinookcorp.com
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="33-querying-relational-databases-directly-with-pandas">3.3 Querying relational databases directly with pandas</h2>
+<p>You can actually query datebase in 2 line, utilizing the pandas function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_sql_query.html"  target="_blank" rel="noopener"
+    >read_sql_query</a> and passing it 2 arguments. The first argument will be the query you wish to make, the 2nd argument the engine you want to connect to.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&#34;sqlite:///Chinook.sqlite&#34;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&#34;select * from Album&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    AlbumId                                  Title  ArtistId
+0        1  For Those About To Rock We Salute You         1
+1        2                      Balls to the Wall         2
+2        3                      Restless and Wild         2
+3        4                      Let There Be Rock         1
+4        5                               Big Ones         3
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&#34;sqlite:///Chinook.sqlite&#34;</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&#34;select * from Employee where EmployeeId &gt;= 6 order by BirthDate&#34;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">EmployeeId  LastName FirstName       Title  ReportsTo  ... Country PostalCode              Phone                Fax                    Email
+0           8  Callahan     Laura    IT Staff          6  ...  Canada    T1H 1Y8  +1 (403) 467-3351  +1 (403) 467-8772    laura@chinookcorp.com
+1           7      King    Robert    IT Staff          6  ...  Canada    T1K 5N8  +1 (403) 456-9986  +1 (403) 456-8485   robert@chinookcorp.com
+2           6  Mitchell   Michael  IT Manager          1  ...  Canada    T3B 0C5  +1 (403) 246-9887  +1 (403) 246-9899  michael@chinookcorp.com
+</code></pre></td></tr></table>
+</div>
+</div><p>Recall SQL inner join syntax:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">table2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">table1</span><span class="p">.</span><span class="n">col1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table2</span><span class="p">.</span><span class="n">col2</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select Title, Name from Album inner join Artist on Album.ArtistID=Artist.ArtistID&#34;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">                                    Title       Name
+0  For Those About To Rock We Salute You      AC/DC
+1                      Balls to the Wall     Accept
+2                      Restless and Wild     Accept
+3                      Let There Be Rock      AC/DC
+4                               Big Ones  Aerosmith
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span>
+    <span class="s2">&#34;select * from PlaylistTrack INNER JOIN Track on PlaylistTrack.TrackId = Track.TrackId where Milliseconds &lt; 250000&#34;</span><span class="p">,</span>
+    <span class="n">engine</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    PlaylistId  TrackId  TrackId              Name  AlbumId  ...  GenreId  Composer Milliseconds    Bytes  UnitPrice
+0           1     3390     3390  One and the Same      271  ...       23      None       217732  3559040       0.99
+1           1     3392     3392     Until We Fall      271  ...       23      None       230758  3766605       0.99
+2           1     3393     3393     Original Fire      271  ...       23      None       218916  3577821       0.99
+3           1     3394     3394       Broken City      271  ...       23      None       228366  3728955       0.99
+4           1     3395     3395          Somedays      271  ...       23      None       213831  3497176       0.99
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/importing-data-in-python-ii/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Importing Data in Python II</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#11-importing-flat-files-using-open">1.1 Importing flat files using <code>open()</code></a></li>
+    <li><a href="#12-importing-flat-files-using-numpy">1.2 Importing flat files using <code>NumPy</code></a></li>
+    <li><a href="#13-importing-flat-files-using-pandas">1.3 Importing flat files using <code>Pandas</code></a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#21-importing-pickle-and-excel-file">2.1 Importing Pickle and Excel file</a></li>
+    <li><a href="#22-importing-sasstata-files">2.2 Importing SAS/Stata files</a></li>
+    <li><a href="#23-importing-hdf5-files">2.3 Importing HDF5 files</a>
+      <ol>
+        <li><a href="#intro-to-hdf5">Intro to HDF5</a>
+          <ol>
+            <li><a href="#i-group--dataset">i. Group &amp; Dataset</a></li>
+            <li><a href="#ii-metadata">ii. Metadata</a></li>
+            <li><a href="#iii-compressed--subsetting">iii. Compressed &amp; Subsetting</a></li>
+            <li><a href="#iv-heterogeneous">iv. Heterogeneous</a></li>
+            <li><a href="#v-summary-points">v. Summary Points</a></li>
+          </ol>
+        </li>
+        <li><a href="#h5py-package"><code>h5py</code> package</a></li>
+      </ol>
+    </li>
+    <li><a href="#24-importing-matlab-files">2.4 Importing MATLAB files</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#31-creating-a-database-engine-in-python">3.1 Creating a database engine in Python</a>
+      <ol>
+        <li><a href="#intro-to-relational-database">Intro to Relational database</a></li>
+        <li><a href="#build-engine">Build engine</a></li>
+      </ol>
+    </li>
+    <li><a href="#32-querying-relational-databases-in-python">3.2 Querying relational databases in Python</a></li>
+    <li><a href="#33-querying-relational-databases-directly-with-pandas">3.3 Querying relational databases directly with pandas</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
