@@ -2034,8 +2034,8 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&#34;1-seaborn-introduction&#34;&gt;1. Seaborn Introduction&lt;/h1&gt;
-&lt;h2 id=&#34;11-distribution-plot&#34;&gt;1.1 Distribution plot&lt;/h2&gt;
+&lt;h2 id=&#34;seaborn-introduction&#34;&gt;Seaborn Introduction&lt;/h2&gt;
+&lt;h3 id=&#34;distribution-plot&#34;&gt;Distribution plot&lt;/h3&gt;
 &lt;p&gt;The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2048,7 +2048,7 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Award_Amount&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hist&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Clear out the pandas histogram&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Clear out the pandas histogram&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202203291030759.png&#34;
@@ -2093,7 +2093,7 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;sns&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;distplot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Award_Amount&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-             &lt;span class=&#34;n&#34;&gt;kde&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Kernel Density Estimate curve, default True&lt;/span&gt;
+             &lt;span class=&#34;n&#34;&gt;kde&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Kernel Density Estimate curve, default True&lt;/span&gt;
              &lt;span class=&#34;n&#34;&gt;bins&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -2134,7 +2134,7 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;12-regression-plots&#34;&gt;1.2 Regression Plots&lt;/h2&gt;
+&lt;h3 id=&#34;regression-plots&#34;&gt;Regression Plots&lt;/h3&gt;
 &lt;p&gt;Now we will transition to another basic visualization process by plotting linear regression lines.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;regplot()&lt;/code&gt; function is the &lt;strong&gt;basis function&lt;/strong&gt; for building regression plots in Seaborn. We explicitly define the &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; variables as well as the source of the &lt;code&gt;data&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2275,8 +2275,8 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;2-customizing-seaborn-plots&#34;&gt;2. Customizing Seaborn Plots&lt;/h1&gt;
-&lt;h2 id=&#34;21-seaborn-styles&#34;&gt;2.1 Seaborn styles&lt;/h2&gt;
+&lt;h2 id=&#34;customizing-seaborn-plots&#34;&gt;Customizing Seaborn Plots&lt;/h2&gt;
+&lt;h3 id=&#34;seaborn-styles&#34;&gt;Seaborn styles&lt;/h3&gt;
 &lt;p&gt;Seaborn has several default built in themes that are more appealing than the default matplotlib styles. In order to set a default theme, use the &lt;code&gt;sns.set()&lt;/code&gt; function.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2355,7 +2355,7 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;22-colors-in-seaborn&#34;&gt;2.2 Colors in Seaborn&lt;/h2&gt;
+&lt;h3 id=&#34;colors-in-seaborn&#34;&gt;Colors in Seaborn&lt;/h3&gt;
 &lt;p&gt;Since Seaborn is built on top of matplotlib, it is able to interpret and apply matplotlib color codes. By using the familiar &lt;code&gt;sns.set()&lt;/code&gt; function with &lt;code&gt;color_codes=True&lt;/code&gt;, any matplotlib color codes, like &lt;code&gt;color=&#39;g&#39;&lt;/code&gt;, will be appropriately mapped to the Seaborn palette.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2545,7 +2545,7 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;23-customizing-with-matplotlib&#34;&gt;2.3 Customizing with matplotlib&lt;/h2&gt;
+&lt;h3 id=&#34;customizing-with-matplotlib&#34;&gt;Customizing with matplotlib&lt;/h3&gt;
 &lt;p&gt;Since Seaborn is based on matplotlib, there is a wide variety of options for further modifying your Seaborn plots. By using matplotlib&amp;rsquo;s &lt;code&gt;axes&lt;/code&gt; objects, you can customize almost any element of your plot.&lt;/p&gt;
 &lt;p&gt;The most important concept is to add additional code to create the subplots using matplotlib&amp;rsquo;s &lt;code&gt;plt.subplots()&lt;/code&gt; functions and pass the resulting &lt;code&gt;axes&lt;/code&gt; object to the Seaborn function. &lt;strong&gt;Seaborn will then plot the data on the given axes&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2662,7 +2662,7 @@ BrBG
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;fig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ax0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ax1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;subplots&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nrows&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ncols&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sharey&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Make the Y-axis of the two subgraphs consistent&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;fig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ax0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ax1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;subplots&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nrows&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ncols&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sharey&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Make the Y-axis of the two subgraphs consistent&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;sns&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;distplot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;fmr_1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ax0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;ax0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xlabel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;1 Bedroom Fair Market Rent&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;xlim&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1500&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
@@ -2706,8 +2706,8 @@ BrBG
 &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;3-additional-plot-types&#34;&gt;3. Additional Plot Types&lt;/h1&gt;
-&lt;h2 id=&#34;31-categorical-plot-types&#34;&gt;3.1 Categorical Plot Types&lt;/h2&gt;
+&lt;/div&gt;&lt;h2 id=&#34;additional-plot-types&#34;&gt;Additional Plot Types&lt;/h2&gt;
+&lt;h3 id=&#34;categorical-plot-types&#34;&gt;Categorical Plot Types&lt;/h3&gt;
 &lt;p&gt;Seaborn supports many plot types with categorical data. Seaborn breaks categorical data plots into &lt;strong&gt;three&lt;/strong&gt; groups.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -2893,7 +2893,7 @@ BrBG
     &gt;barplot( )&lt;/a&gt; shows an estimate of the value as well as a confidence interval. The &lt;a class=&#34;link&#34; href=&#34;https://www.cntofu.com/book/172/docs/19.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;pointplot( )&lt;/a&gt; is similar to the &lt;code&gt;barplot()&lt;/code&gt; in that it shows a summary measure and confidence interval.  the &lt;a class=&#34;link&#34; href=&#34;https://www.cntofu.com/book/172/docs/21.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;countplot( )&lt;/a&gt; displays the number of instances of each variable.&lt;/p&gt;
-&lt;h2 id=&#34;32-regression-plots&#34;&gt;3.2 Regression Plots&lt;/h2&gt;
+&lt;h3 id=&#34;regression-plots-1&#34;&gt;Regression Plots&lt;/h3&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cntofu.com/book/172/docs/28.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;regplot( )&lt;/a&gt;, like most of the Seaborn functions we have reviewed, requires the definition of the data and the &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; variables and you include a marker for the observations by setting &lt;code&gt;marker=&amp;quot;+&amp;quot;&lt;/code&gt;. If a value greater than 1 is passed to the &lt;code&gt;order&lt;/code&gt; parameter of &lt;code&gt;regplot()&lt;/code&gt;, then Seaborn will attempt a polynomial fit using underlying &lt;code&gt;NumPy&lt;/code&gt; functions.&lt;/p&gt;
 &lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://www.cntofu.com/book/172/docs/29.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -3036,7 +3036,7 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;33-matrix-plots&#34;&gt;3.3 Matrix plots&lt;/h2&gt;
+&lt;h3 id=&#34;matrix-plots&#34;&gt;Matrix plots&lt;/h3&gt;
 &lt;p&gt;Seaborn&amp;rsquo;s &lt;a class=&#34;link&#34; href=&#34;https://www.cntofu.com/book/172/docs/30.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;heatmap( )&lt;/a&gt; function expects the data to be in a matrix. You can use &lt;code&gt;pd.crosstab()&lt;/code&gt; or &lt;code&gt;pd.pivot_table()&lt;/code&gt; to create this matirx.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -3076,8 +3076,8 @@ BrBG
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;One common usage for a heatmap is to visually represent the correlation between variables. pandas DataFrames have a &lt;code&gt;corr()&lt;/code&gt; function that calculates the correlation between the values in the columns. The output of this function is ideally structured to be displayed as a heatmap.&lt;/p&gt;
-&lt;h1 id=&#34;4-creating-plots-on-data-aware-grids&#34;&gt;4. Creating Plots on Data Aware Grids&lt;/h1&gt;
-&lt;h2 id=&#34;41-facetgrid-factorplot-and-lmplot&#34;&gt;4.1 &lt;code&gt;FacetGrid&lt;/code&gt;, &lt;code&gt;factorplot&lt;/code&gt; and &lt;code&gt;lmplot&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;creating-plots-on-data-aware-grids&#34;&gt;Creating Plots on Data Aware Grids&lt;/h2&gt;
+&lt;h3 id=&#34;facetgrid-factorplot-and-lmplot&#34;&gt;&lt;code&gt;FacetGrid&lt;/code&gt;, &lt;code&gt;factorplot&lt;/code&gt; and &lt;code&gt;lmplot&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;One of Seaborn&amp;rsquo;s most powerful features is its ability to combine multiple smaller plots into a larger visualization that can help identify trends in data with many variables.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;One very important requirement for Seaborn to create these plots is that the data must be in &lt;strong&gt;tidy format&lt;/strong&gt;. This means that each row of the data is a single observation and the columns contain the variables.&lt;/p&gt;
@@ -3121,10 +3121,10 @@ BrBG
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# single variable plot&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## single variable plot&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hist&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;total_bill&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bins&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bins&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
-&lt;span class=&#34;c1&#34;&gt;# double variables plot&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## double variables plot&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;scatter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;total_bill&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;tip&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;edgecolor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;w&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;marker&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -3323,7 +3323,7 @@ BrBG
 &lt;blockquote&gt;
 &lt;p&gt;Notice, &lt;code&gt;factorplot()&lt;/code&gt;, &lt;code&gt;lmplot()&lt;/code&gt;, &lt;code&gt;relplot()&lt;/code&gt;, &lt;code&gt;catplot()&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;42-pairgrid-and-pairplot&#34;&gt;4.2 &lt;code&gt;PairGrid&lt;/code&gt; and &lt;code&gt;pairplot&lt;/code&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;pairgrid-and-pairplot&#34;&gt;&lt;code&gt;PairGrid&lt;/code&gt; and &lt;code&gt;pairplot&lt;/code&gt;&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3522,7 +3522,7 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;43-jointgrid-and-jointplot&#34;&gt;4.3 &lt;code&gt;JointGrid&lt;/code&gt; and &lt;code&gt;jointplot&lt;/code&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;jointgrid-and-jointplot&#34;&gt;&lt;code&gt;JointGrid&lt;/code&gt; and &lt;code&gt;jointplot&lt;/code&gt;&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4004,15 +4004,15 @@ BrBG
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id=&#34;44-union-frame&#34;&gt;4.4 Union Frame&lt;/h2&gt;
+&lt;h3 id=&#34;union-frame&#34;&gt;Union Frame&lt;/h3&gt;
 &lt;p&gt;The final section of this blog will bring all of the concepts together and give a framework for deciding when to use each Seaborn plot.&lt;/p&gt;
-&lt;h3 id=&#34;univariate-distribution-analysis&#34;&gt;Univariate Distribution Analysis&lt;/h3&gt;
+&lt;h4 id=&#34;univariate-distribution-analysis&#34;&gt;Univariate Distribution Analysis&lt;/h4&gt;
 &lt;p&gt;One of the first steps in analyzing numerical data is looking at its &lt;strong&gt;distribution&lt;/strong&gt;. Seaborn&amp;rsquo;s &lt;code&gt;distplot()&lt;/code&gt; combines many of the features of the &lt;code&gt;rugplot()&lt;/code&gt;, &lt;code&gt;kdeplot()&lt;/code&gt;, and &lt;code&gt;plt.histplot()&lt;/code&gt; into a single function. The &lt;code&gt;distplot()&lt;/code&gt; function is the best place to start when trying to do distribution analysis with Seaborn.&lt;/p&gt;
-&lt;h3 id=&#34;regression-analysis&#34;&gt;Regression Analysis&lt;/h3&gt;
+&lt;h4 id=&#34;regression-analysis&#34;&gt;Regression Analysis&lt;/h4&gt;
 &lt;p&gt;A regression plot is an example of a plot that shows the &lt;strong&gt;relationship&lt;/strong&gt; between two variables. matplotlib&amp;rsquo;s &lt;code&gt;scatter()&lt;/code&gt; plot is a very simple method to compare the interaction of two variables on the x and y-axis. The &lt;code&gt;lmplot()&lt;/code&gt; combines many of these features of the underlying &lt;code&gt;regplot()&lt;/code&gt; and &lt;code&gt;residplot()&lt;/code&gt; in addition to the ability to plot the data on a &lt;code&gt;FacetGrid()&lt;/code&gt;. In many instances, &lt;code&gt;lmplot()&lt;/code&gt; is the best function to use for determining linear relationships between data.&lt;/p&gt;
-&lt;h3 id=&#34;categorical-plots&#34;&gt;Categorical Plots&lt;/h3&gt;
+&lt;h4 id=&#34;categorical-plots&#34;&gt;Categorical Plots&lt;/h4&gt;
 &lt;p&gt;Seaborn has many types of categorical plots as well. In most scenarios, it makes sense to use one of the categorical plots such as the &lt;code&gt;boxplot()&lt;/code&gt; or &lt;code&gt;violinplot()&lt;/code&gt; to examine the distribution of the variables. Then, follow up with the statistical estimation plots such as the point, bar, or countplot. If you need to facet the data across rows or columns, use a &lt;code&gt;factorplot()&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;relation&#34;&gt;Relation&lt;/h3&gt;
+&lt;h4 id=&#34;relation&#34;&gt;Relation&lt;/h4&gt;
 &lt;p&gt;The &lt;code&gt;pairplot()&lt;/code&gt; and &lt;code&gt;jointplot()&lt;/code&gt; visualizations are going to be most useful after you have done some preliminary analysis of regressions or distributions of the data. Once you are familiar with the data, the &lt;code&gt;pairplot()&lt;/code&gt; and &lt;code&gt;jointplot()&lt;/code&gt; can be very useful in understanding how two or more variables interact with each other.&lt;/p&gt;
 </description>
         </item>
