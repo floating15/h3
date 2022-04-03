@@ -2,19 +2,19 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- 1. Introduction to Seaborn 1.1 Using pandas with Seaborn 1 2 3  ## Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.'><title>Data Visualization II (Seaborn)</title>
+ Introduction to Seaborn Using pandas with Seaborn 1 2 3  ## Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.'><title>Data Visualization II (Seaborn)</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/data-visualization-ii-seaborn/'>
 
-<link rel="stylesheet" href="/scss/style.min.a08bf74b6cebb61a5c44577cd7595f862dcdc6b756246725ee9ed8f96a43615b.css"><meta property='og:title' content='Data Visualization II (Seaborn)'>
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Data Visualization II (Seaborn)'>
 <meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- 1. Introduction to Seaborn 1.1 Using pandas with Seaborn 1 2 3  ## Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.'>
+ Introduction to Seaborn Using pandas with Seaborn 1 2 3  ## Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/data-visualization-ii-seaborn/'>
 <meta property='og:site_name' content='Haoming Wang'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-04-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-04-20T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Data Visualization II (Seaborn)">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- 1. Introduction to Seaborn 1.1 Using pandas with Seaborn 1 2 3  ## Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.">
+ Introduction to Seaborn Using pandas with Seaborn 1 2 3  ## Import Matplotlib and Seaborn import matplotlib.pyplot as plt import seaborn as sns   To create a count plot with a pandas DataFrame column instead of a list of data, set x (or y) equal to the name of the column in the DataFrame.">
     </head>
     <body class="
     article-page
@@ -335,8 +335,8 @@
     <blockquote>
 <p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
 </blockquote>
-<h2 id="1-introduction-to-seaborn">1. Introduction to Seaborn</h2>
-<h3 id="11-using-pandas-with-seaborn">1.1 Using pandas with Seaborn</h3>
+<h2 id="introduction-to-seaborn">Introduction to Seaborn</h2>
+<h3 id="using-pandas-with-seaborn">Using pandas with Seaborn</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -379,7 +379,7 @@
 <blockquote>
 <p>Notice that because we&rsquo;re using a named column in the DataFrame, Seaborn automatically adds the name of the column as the x-axis label at the bottom.</p>
 </blockquote>
-<h3 id="12-adding-a-third-variable-with-hue">1.2 Adding a third variable with <code>hue</code></h3>
+<h3 id="adding-a-third-variable-with-hue">Adding a third variable with <code>hue</code></h3>
 <p>we&rsquo;ll be using Seaborn&rsquo;s built-in <code>tips</code> dataset. You can access it by using the &ldquo;<code>load_dataset</code>&rdquo; function in Seaborn and passing in the name of the dataset. These are the first five rows of the tips dataset.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -557,8 +557,8 @@
 <blockquote>
 <p>The other way to add the third variable into a plot is calling arguments <code>col</code> or <code>row</code> in <code>sns.relplot()</code> or <code>sns.catplot()</code> method.</p>
 </blockquote>
-<h2 id="2-relational-plot">2. Relational Plot</h2>
-<h3 id="21-relational-plots-and-subplots">2.1 relational plots and subplots</h3>
+<h2 id="relational-plot">Relational Plot</h2>
+<h3 id="relational-plots-and-subplots">relational plots and subplots</h3>
 <p>Sometimes we suspect that the relationship may be different within certain <strong>subgroups</strong>. In the last chapter, we started to look at subgroups by using the &ldquo;<code>hue</code>&rdquo; parameter to visualize each subgroup using a different color on the same plot.</p>
 <p>Now we&rsquo;ll try out a different method <code>relplot()</code> (relationship plot) to creat a separate plot per subgroup. We call the &ldquo;<code>relplot()</code>&rdquo; method and use the &ldquo;<code>kind</code>&rdquo; parameter to specify what kind of relational plot to use - scatter plot or line plot.</p>
 <p>By setting &ldquo;<code>col</code>&rdquo; equal to &ldquo;smoker&rdquo;, we get a separate scatter plot groups by &ldquo;smoker&rdquo;, arranged horizontally in columns. You can use the &ldquo;<code>col_wrap</code>&rdquo; parameter to specify how many subplots you want per row.  If you want to arrange these vertically in rows instead, you can use the &ldquo;<code>row</code>&rdquo; parameter instead of &ldquo;<code>col</code>&rdquo;. We can also change the order of the subplots by using the &ldquo;<code>col_order</code>&rdquo; and &ldquo;<code>row_order</code>&rdquo; parameters and giving it a list of ordered values.</p>
@@ -667,7 +667,7 @@
 	
 	
 ></p>
-<h3 id="22-customizing-scatter-plots">2.2 Customizing scatter plots</h3>
+<h3 id="customizing-scatter-plots">Customizing scatter plots</h3>
 <p>Seaborn allows you to add more information to scatter plots by varying <strong>the size, the style</strong>, and <strong>the transparency</strong> of the points.</p>
 <blockquote>
 <p>All of these options can be used in both the &ldquo;<code>scatterplot()</code>&rdquo; and &ldquo;<code>relplot()</code>&rdquo; functions, but we&rsquo;ll continue to use &ldquo;<code>relplot()</code>&rdquo; since it&rsquo;s more flexible and allows us to create subplots.</p>
@@ -747,7 +747,7 @@
 	
 ></p>
 <p>Setting the &ldquo;<code>alpha</code>&rdquo; parameter to a value between 0 and 1 will vary the transparency of the points in the plot, with 0 being completely transparent and 1 being completely non-transparent.</p>
-<h3 id="23-line-plots">2.3 Line plots</h3>
+<h3 id="line-plots">Line plots</h3>
 <p>In Seaborn, we have two types of relational plots: scatter plots and line plots. Line plots are the visualization of choice when we need to track the same thing over <strong>time</strong>.</p>
 <p>By specifying &ldquo;<code>kind</code>&rdquo; equals &ldquo;<code>line</code>&rdquo;, we can create a line plot. We can also track <strong>subgroups</strong> over time with line plots.  Setting the &ldquo;<code>style</code>&rdquo; and &ldquo;<code>hue</code>&rdquo; parameters equal to the variable name  creates different lines for each group that vary in both line style and color.</p>
 <div class="highlight"><div class="chroma">
@@ -963,8 +963,8 @@
 	
 	
 ></p>
-<h2 id="3-categorical-plot">3. Categorical Plot</h2>
-<h3 id="31-count-plots-and-bar-plots">3.1 Count plots and bar plots</h3>
+<h2 id="categorical-plot">Categorical Plot</h2>
+<h3 id="count-plots-and-bar-plots">Count plots and bar plots</h3>
 <p>Count plots and bar plots are two types of visualizations that Seaborn calls &ldquo;categorical plots&rdquo;.</p>
 <p>We call <code>catplot()</code> method and use the &ldquo;<code>kind</code>&rdquo; parameter to specify what kind of categorical plot to use. &ldquo;<code>catplot()</code>&rdquo; offers the same flexibility that &ldquo;<code>relplot()</code>&rdquo; does, which means it will be easy to create subplots if we need to using the same &ldquo;<code>col</code>&rdquo; and &ldquo;<code>row</code>&rdquo; parameters.</p>
 <div class="highlight"><div class="chroma">
@@ -1031,7 +1031,7 @@
 	
 ></p>
 <p>Notice also that Seaborn automatically shows 95% confidence intervals for these means. we can turn off these confidence intervals by setting the &ldquo;<code>ci</code>&rdquo; parameter equal to &ldquo;<code>None</code>&rdquo;.</p>
-<h3 id="32-box-plot">3.2 Box plot</h3>
+<h3 id="box-plot">Box plot</h3>
 <p>A box plot shows the distribution of quantitative data. The colored box represents the 25th to 75th percentile, and the line in the middle of the box represents the median. The whiskers give a sense of the spread of the distribution, and the floating points represent outliers.</p>
 <p>We can use the &ldquo;<code>catplot()</code>&rdquo; function to crate a box plot. We&rsquo;ll put the categorical variable on the x-axis and the quantitative variable on the y-axis, and specify <code>kind=&quot;box&quot;</code>.</p>
 <blockquote>
@@ -1113,7 +1113,7 @@
 	
 	
 ></p>
-<h3 id="33-point-plots">3.3 Point plots</h3>
+<h3 id="point-plots">Point plots</h3>
 <p>Point plots show the mean of a quantitative variable for the observations in each category, plotted as a single point.</p>
 <p>Both line plots and point plots show the mean of a quantitative variable and 95% confidence intervals for the mean. However, there is a <strong>key difference</strong>. Line plots are relational plots, so both the x- and y-axis are quantitative variables. In a point plot, one axis - usually the x-axis - is a categorical variable, making it a categorical plot.</p>
 <p>Since Point plot is a categorical plot, we use &ldquo;catplot&rdquo; and set &ldquo;<code>kind</code>&rdquo; equal to &ldquo;<code>point</code>&rdquo;. To remove the lines connecting each point, set the &ldquo;<code>join</code>&rdquo; parameter equal to <code>False</code>. You can also add “caps” to the end of the confidence intervals, set the <code>“capsize”</code> parameter equal to the desired width of the caps. Finally, you can turn the confidence intervals off by setting the &ldquo;<code>ci</code>&rdquo; parameter equal to <code>None</code>.</p>
@@ -1178,8 +1178,8 @@
 	
 	
 ></p>
-<h2 id="4-customizing-seaborn-plots">4. Customizing Seaborn Plots</h2>
-<h3 id="41-changing-plot-style-and-color">4.1 Changing plot style and color</h3>
+<h2 id="customizing-seaborn-plots">Customizing Seaborn Plots</h2>
+<h3 id="changing-plot-style-and-color">Changing plot style and color</h3>
 <p>Seaborn has five preset figure styles which change the background and axes of the plot. You can refer to them by name: &ldquo;<code>white</code>&rdquo; (default), &ldquo;<code>dark</code>&rdquo;, &ldquo;<code>whitegrid</code>&rdquo;, &ldquo;<code>darkgrid</code>&rdquo;, and &ldquo;<code>ticks</code>&rdquo;. To set one of these as the global style for all of your plots, use the &ldquo;<code>sns.set_style()</code>&rdquo; method.</p>
 <p>You can change the color of the main elements of the plot with Seaborn&rsquo;s &ldquo;<code>sns.set_palette()</code>&rdquo; method. Seaborn has many preset color palettes that you can refer to by name, or you can create your own custom palette with list.</p>
 <p>Seaborn has a group of preset palettes called <strong>diverging palettes</strong> that are great to use if your visualization deals with a scale where the <strong>two ends</strong> of the scale are opposites and there is a neutral midpoint.</p>
@@ -1270,7 +1270,7 @@
 	
 ></p>
 <p>Finally, you can change the scale of your plot by using the &ldquo;<code>sns.set_context()</code>&rdquo; method. The scale options from smallest to largest are &ldquo;<code>paper</code>&rdquo; (default), &ldquo;<code>notebook</code>&rdquo;, &ldquo;<code>talk</code>&rdquo;, and &ldquo;<code>poster</code>&rdquo;.</p>
-<h3 id="42-adding-titles-and-labels">4.2 Adding titles and labels</h3>
+<h3 id="adding-titles-and-labels">Adding titles and labels</h3>
 <p>In this section, we will focus on the title, label and x axis tick label in the plot.</p>
 <p><img src="https://raw.githubusercontent.com/floating15/img/main/202203261238517.png"
 	
@@ -1776,30 +1776,30 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#1-introduction-to-seaborn">1. Introduction to Seaborn</a>
+    <li><a href="#introduction-to-seaborn">Introduction to Seaborn</a>
       <ol>
-        <li><a href="#11-using-pandas-with-seaborn">1.1 Using pandas with Seaborn</a></li>
-        <li><a href="#12-adding-a-third-variable-with-hue">1.2 Adding a third variable with <code>hue</code></a></li>
+        <li><a href="#using-pandas-with-seaborn">Using pandas with Seaborn</a></li>
+        <li><a href="#adding-a-third-variable-with-hue">Adding a third variable with <code>hue</code></a></li>
       </ol>
     </li>
-    <li><a href="#2-relational-plot">2. Relational Plot</a>
+    <li><a href="#relational-plot">Relational Plot</a>
       <ol>
-        <li><a href="#21-relational-plots-and-subplots">2.1 relational plots and subplots</a></li>
-        <li><a href="#22-customizing-scatter-plots">2.2 Customizing scatter plots</a></li>
-        <li><a href="#23-line-plots">2.3 Line plots</a></li>
+        <li><a href="#relational-plots-and-subplots">relational plots and subplots</a></li>
+        <li><a href="#customizing-scatter-plots">Customizing scatter plots</a></li>
+        <li><a href="#line-plots">Line plots</a></li>
       </ol>
     </li>
-    <li><a href="#3-categorical-plot">3. Categorical Plot</a>
+    <li><a href="#categorical-plot">Categorical Plot</a>
       <ol>
-        <li><a href="#31-count-plots-and-bar-plots">3.1 Count plots and bar plots</a></li>
-        <li><a href="#32-box-plot">3.2 Box plot</a></li>
-        <li><a href="#33-point-plots">3.3 Point plots</a></li>
+        <li><a href="#count-plots-and-bar-plots">Count plots and bar plots</a></li>
+        <li><a href="#box-plot">Box plot</a></li>
+        <li><a href="#point-plots">Point plots</a></li>
       </ol>
     </li>
-    <li><a href="#4-customizing-seaborn-plots">4. Customizing Seaborn Plots</a>
+    <li><a href="#customizing-seaborn-plots">Customizing Seaborn Plots</a>
       <ol>
-        <li><a href="#41-changing-plot-style-and-color">4.1 Changing plot style and color</a></li>
-        <li><a href="#42-adding-titles-and-labels">4.2 Adding titles and labels</a></li>
+        <li><a href="#changing-plot-style-and-color">Changing plot style and color</a></li>
+        <li><a href="#adding-titles-and-labels">Adding titles and labels</a></li>
       </ol>
     </li>
   </ol>

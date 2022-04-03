@@ -4024,8 +4024,8 @@ BrBG
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;1-introduction-to-seaborn&#34;&gt;1. Introduction to Seaborn&lt;/h2&gt;
-&lt;h3 id=&#34;11-using-pandas-with-seaborn&#34;&gt;1.1 Using pandas with Seaborn&lt;/h3&gt;
+&lt;h2 id=&#34;introduction-to-seaborn&#34;&gt;Introduction to Seaborn&lt;/h2&gt;
+&lt;h3 id=&#34;using-pandas-with-seaborn&#34;&gt;Using pandas with Seaborn&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4068,7 +4068,7 @@ BrBG
 &lt;blockquote&gt;
 &lt;p&gt;Notice that because we&amp;rsquo;re using a named column in the DataFrame, Seaborn automatically adds the name of the column as the x-axis label at the bottom.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;12-adding-a-third-variable-with-hue&#34;&gt;1.2 Adding a third variable with &lt;code&gt;hue&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;adding-a-third-variable-with-hue&#34;&gt;Adding a third variable with &lt;code&gt;hue&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;we&amp;rsquo;ll be using Seaborn&amp;rsquo;s built-in &lt;code&gt;tips&lt;/code&gt; dataset. You can access it by using the &amp;ldquo;&lt;code&gt;load_dataset&lt;/code&gt;&amp;rdquo; function in Seaborn and passing in the name of the dataset. These are the first five rows of the tips dataset.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4246,8 +4246,8 @@ BrBG
 &lt;blockquote&gt;
 &lt;p&gt;The other way to add the third variable into a plot is calling arguments &lt;code&gt;col&lt;/code&gt; or &lt;code&gt;row&lt;/code&gt; in &lt;code&gt;sns.relplot()&lt;/code&gt; or &lt;code&gt;sns.catplot()&lt;/code&gt; method.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;2-relational-plot&#34;&gt;2. Relational Plot&lt;/h2&gt;
-&lt;h3 id=&#34;21-relational-plots-and-subplots&#34;&gt;2.1 relational plots and subplots&lt;/h3&gt;
+&lt;h2 id=&#34;relational-plot&#34;&gt;Relational Plot&lt;/h2&gt;
+&lt;h3 id=&#34;relational-plots-and-subplots&#34;&gt;relational plots and subplots&lt;/h3&gt;
 &lt;p&gt;Sometimes we suspect that the relationship may be different within certain &lt;strong&gt;subgroups&lt;/strong&gt;. In the last chapter, we started to look at subgroups by using the &amp;ldquo;&lt;code&gt;hue&lt;/code&gt;&amp;rdquo; parameter to visualize each subgroup using a different color on the same plot.&lt;/p&gt;
 &lt;p&gt;Now we&amp;rsquo;ll try out a different method &lt;code&gt;relplot()&lt;/code&gt; (relationship plot) to creat a separate plot per subgroup. We call the &amp;ldquo;&lt;code&gt;relplot()&lt;/code&gt;&amp;rdquo; method and use the &amp;ldquo;&lt;code&gt;kind&lt;/code&gt;&amp;rdquo; parameter to specify what kind of relational plot to use - scatter plot or line plot.&lt;/p&gt;
 &lt;p&gt;By setting &amp;ldquo;&lt;code&gt;col&lt;/code&gt;&amp;rdquo; equal to &amp;ldquo;smoker&amp;rdquo;, we get a separate scatter plot groups by &amp;ldquo;smoker&amp;rdquo;, arranged horizontally in columns. You can use the &amp;ldquo;&lt;code&gt;col_wrap&lt;/code&gt;&amp;rdquo; parameter to specify how many subplots you want per row.  If you want to arrange these vertically in rows instead, you can use the &amp;ldquo;&lt;code&gt;row&lt;/code&gt;&amp;rdquo; parameter instead of &amp;ldquo;&lt;code&gt;col&lt;/code&gt;&amp;rdquo;. We can also change the order of the subplots by using the &amp;ldquo;&lt;code&gt;col_order&lt;/code&gt;&amp;rdquo; and &amp;ldquo;&lt;code&gt;row_order&lt;/code&gt;&amp;rdquo; parameters and giving it a list of ordered values.&lt;/p&gt;
@@ -4356,7 +4356,7 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;22-customizing-scatter-plots&#34;&gt;2.2 Customizing scatter plots&lt;/h3&gt;
+&lt;h3 id=&#34;customizing-scatter-plots&#34;&gt;Customizing scatter plots&lt;/h3&gt;
 &lt;p&gt;Seaborn allows you to add more information to scatter plots by varying &lt;strong&gt;the size, the style&lt;/strong&gt;, and &lt;strong&gt;the transparency&lt;/strong&gt; of the points.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;All of these options can be used in both the &amp;ldquo;&lt;code&gt;scatterplot()&lt;/code&gt;&amp;rdquo; and &amp;ldquo;&lt;code&gt;relplot()&lt;/code&gt;&amp;rdquo; functions, but we&amp;rsquo;ll continue to use &amp;ldquo;&lt;code&gt;relplot()&lt;/code&gt;&amp;rdquo; since it&amp;rsquo;s more flexible and allows us to create subplots.&lt;/p&gt;
@@ -4436,7 +4436,7 @@ BrBG
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Setting the &amp;ldquo;&lt;code&gt;alpha&lt;/code&gt;&amp;rdquo; parameter to a value between 0 and 1 will vary the transparency of the points in the plot, with 0 being completely transparent and 1 being completely non-transparent.&lt;/p&gt;
-&lt;h3 id=&#34;23-line-plots&#34;&gt;2.3 Line plots&lt;/h3&gt;
+&lt;h3 id=&#34;line-plots&#34;&gt;Line plots&lt;/h3&gt;
 &lt;p&gt;In Seaborn, we have two types of relational plots: scatter plots and line plots. Line plots are the visualization of choice when we need to track the same thing over &lt;strong&gt;time&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;By specifying &amp;ldquo;&lt;code&gt;kind&lt;/code&gt;&amp;rdquo; equals &amp;ldquo;&lt;code&gt;line&lt;/code&gt;&amp;rdquo;, we can create a line plot. We can also track &lt;strong&gt;subgroups&lt;/strong&gt; over time with line plots.  Setting the &amp;ldquo;&lt;code&gt;style&lt;/code&gt;&amp;rdquo; and &amp;ldquo;&lt;code&gt;hue&lt;/code&gt;&amp;rdquo; parameters equal to the variable name  creates different lines for each group that vary in both line style and color.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4652,8 +4652,8 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;3-categorical-plot&#34;&gt;3. Categorical Plot&lt;/h2&gt;
-&lt;h3 id=&#34;31-count-plots-and-bar-plots&#34;&gt;3.1 Count plots and bar plots&lt;/h3&gt;
+&lt;h2 id=&#34;categorical-plot&#34;&gt;Categorical Plot&lt;/h2&gt;
+&lt;h3 id=&#34;count-plots-and-bar-plots&#34;&gt;Count plots and bar plots&lt;/h3&gt;
 &lt;p&gt;Count plots and bar plots are two types of visualizations that Seaborn calls &amp;ldquo;categorical plots&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;We call &lt;code&gt;catplot()&lt;/code&gt; method and use the &amp;ldquo;&lt;code&gt;kind&lt;/code&gt;&amp;rdquo; parameter to specify what kind of categorical plot to use. &amp;ldquo;&lt;code&gt;catplot()&lt;/code&gt;&amp;rdquo; offers the same flexibility that &amp;ldquo;&lt;code&gt;relplot()&lt;/code&gt;&amp;rdquo; does, which means it will be easy to create subplots if we need to using the same &amp;ldquo;&lt;code&gt;col&lt;/code&gt;&amp;rdquo; and &amp;ldquo;&lt;code&gt;row&lt;/code&gt;&amp;rdquo; parameters.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4720,7 +4720,7 @@ BrBG
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Notice also that Seaborn automatically shows 95% confidence intervals for these means. we can turn off these confidence intervals by setting the &amp;ldquo;&lt;code&gt;ci&lt;/code&gt;&amp;rdquo; parameter equal to &amp;ldquo;&lt;code&gt;None&lt;/code&gt;&amp;rdquo;.&lt;/p&gt;
-&lt;h3 id=&#34;32-box-plot&#34;&gt;3.2 Box plot&lt;/h3&gt;
+&lt;h3 id=&#34;box-plot&#34;&gt;Box plot&lt;/h3&gt;
 &lt;p&gt;A box plot shows the distribution of quantitative data. The colored box represents the 25th to 75th percentile, and the line in the middle of the box represents the median. The whiskers give a sense of the spread of the distribution, and the floating points represent outliers.&lt;/p&gt;
 &lt;p&gt;We can use the &amp;ldquo;&lt;code&gt;catplot()&lt;/code&gt;&amp;rdquo; function to crate a box plot. We&amp;rsquo;ll put the categorical variable on the x-axis and the quantitative variable on the y-axis, and specify &lt;code&gt;kind=&amp;quot;box&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4802,7 +4802,7 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;33-point-plots&#34;&gt;3.3 Point plots&lt;/h3&gt;
+&lt;h3 id=&#34;point-plots&#34;&gt;Point plots&lt;/h3&gt;
 &lt;p&gt;Point plots show the mean of a quantitative variable for the observations in each category, plotted as a single point.&lt;/p&gt;
 &lt;p&gt;Both line plots and point plots show the mean of a quantitative variable and 95% confidence intervals for the mean. However, there is a &lt;strong&gt;key difference&lt;/strong&gt;. Line plots are relational plots, so both the x- and y-axis are quantitative variables. In a point plot, one axis - usually the x-axis - is a categorical variable, making it a categorical plot.&lt;/p&gt;
 &lt;p&gt;Since Point plot is a categorical plot, we use &amp;ldquo;catplot&amp;rdquo; and set &amp;ldquo;&lt;code&gt;kind&lt;/code&gt;&amp;rdquo; equal to &amp;ldquo;&lt;code&gt;point&lt;/code&gt;&amp;rdquo;. To remove the lines connecting each point, set the &amp;ldquo;&lt;code&gt;join&lt;/code&gt;&amp;rdquo; parameter equal to &lt;code&gt;False&lt;/code&gt;. You can also add “caps” to the end of the confidence intervals, set the &lt;code&gt;“capsize”&lt;/code&gt; parameter equal to the desired width of the caps. Finally, you can turn the confidence intervals off by setting the &amp;ldquo;&lt;code&gt;ci&lt;/code&gt;&amp;rdquo; parameter equal to &lt;code&gt;None&lt;/code&gt;.&lt;/p&gt;
@@ -4867,8 +4867,8 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;4-customizing-seaborn-plots&#34;&gt;4. Customizing Seaborn Plots&lt;/h2&gt;
-&lt;h3 id=&#34;41-changing-plot-style-and-color&#34;&gt;4.1 Changing plot style and color&lt;/h3&gt;
+&lt;h2 id=&#34;customizing-seaborn-plots&#34;&gt;Customizing Seaborn Plots&lt;/h2&gt;
+&lt;h3 id=&#34;changing-plot-style-and-color&#34;&gt;Changing plot style and color&lt;/h3&gt;
 &lt;p&gt;Seaborn has five preset figure styles which change the background and axes of the plot. You can refer to them by name: &amp;ldquo;&lt;code&gt;white&lt;/code&gt;&amp;rdquo; (default), &amp;ldquo;&lt;code&gt;dark&lt;/code&gt;&amp;rdquo;, &amp;ldquo;&lt;code&gt;whitegrid&lt;/code&gt;&amp;rdquo;, &amp;ldquo;&lt;code&gt;darkgrid&lt;/code&gt;&amp;rdquo;, and &amp;ldquo;&lt;code&gt;ticks&lt;/code&gt;&amp;rdquo;. To set one of these as the global style for all of your plots, use the &amp;ldquo;&lt;code&gt;sns.set_style()&lt;/code&gt;&amp;rdquo; method.&lt;/p&gt;
 &lt;p&gt;You can change the color of the main elements of the plot with Seaborn&amp;rsquo;s &amp;ldquo;&lt;code&gt;sns.set_palette()&lt;/code&gt;&amp;rdquo; method. Seaborn has many preset color palettes that you can refer to by name, or you can create your own custom palette with list.&lt;/p&gt;
 &lt;p&gt;Seaborn has a group of preset palettes called &lt;strong&gt;diverging palettes&lt;/strong&gt; that are great to use if your visualization deals with a scale where the &lt;strong&gt;two ends&lt;/strong&gt; of the scale are opposites and there is a neutral midpoint.&lt;/p&gt;
@@ -4959,7 +4959,7 @@ BrBG
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Finally, you can change the scale of your plot by using the &amp;ldquo;&lt;code&gt;sns.set_context()&lt;/code&gt;&amp;rdquo; method. The scale options from smallest to largest are &amp;ldquo;&lt;code&gt;paper&lt;/code&gt;&amp;rdquo; (default), &amp;ldquo;&lt;code&gt;notebook&lt;/code&gt;&amp;rdquo;, &amp;ldquo;&lt;code&gt;talk&lt;/code&gt;&amp;rdquo;, and &amp;ldquo;&lt;code&gt;poster&lt;/code&gt;&amp;rdquo;.&lt;/p&gt;
-&lt;h3 id=&#34;42-adding-titles-and-labels&#34;&gt;4.2 Adding titles and labels&lt;/h3&gt;
+&lt;h3 id=&#34;adding-titles-and-labels&#34;&gt;Adding titles and labels&lt;/h3&gt;
 &lt;p&gt;In this section, we will focus on the title, label and x axis tick label in the plot.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202203261238517.png&#34;
 	
@@ -5269,8 +5269,8 @@ BrBG
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&#34;introduction-to-matplotlib&#34;&gt;Introduction to Matplotlib&lt;/h1&gt;
-&lt;h2 id=&#34;intro-to-data-visualization-with-matplotlib&#34;&gt;Intro to data visualization with matplotlib&lt;/h2&gt;
+&lt;h2 id=&#34;introduction-to-matplotlib&#34;&gt;Introduction to Matplotlib&lt;/h2&gt;
+&lt;h3 id=&#34;intro-to-data-visualization-with-matplotlib&#34;&gt;Intro to data visualization with matplotlib&lt;/h3&gt;
 &lt;p&gt;we will use the main &lt;strong&gt;object-oriented interface&lt;/strong&gt;. This interface is provided through the pyplot submodule. The &lt;code&gt;plt.subplots()&lt;/code&gt; command, when called without any inputs, creates two different objects: a &lt;code&gt;Figure&lt;/code&gt; object and an &lt;code&gt;Axes&lt;/code&gt; object.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -5301,7 +5301,7 @@ BrBG
 
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;col1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;col2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# you can also add data to a figure from different tables.&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;col1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;col2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## you can also add data to a figure from different tables.&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -5312,7 +5312,7 @@ BrBG
 &lt;li&gt;We call the &lt;code&gt;Axes&lt;/code&gt; method &lt;code&gt;plot&lt;/code&gt; to add first the &lt;code&gt;df.col2&lt;/code&gt;, and then the &lt;code&gt;df.col3&lt;/code&gt; to the Axes.&lt;/li&gt;
 &lt;li&gt;Finally, we ask Matplotlib to show us the figure.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;customizing-plots&#34;&gt;Customizing Plots&lt;/h2&gt;
+&lt;h3 id=&#34;customizing-plots&#34;&gt;Customizing Plots&lt;/h3&gt;
 &lt;p&gt;The &lt;code&gt;plot&lt;/code&gt; method takes an optional keyword argument, &lt;code&gt;marker&lt;/code&gt;, which lets you indicate what kind of markers you&amp;rsquo;d like. To see all the possible marker styles, you can visit this &lt;a class=&#34;link&#34; href=&#34;https://matplotlib.org/stable/api/markers_api.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;page&lt;/a&gt; in the Matplotlib online documentation.&lt;/p&gt;
 &lt;p&gt;You can change the appearance of these connecting lines by adding the &lt;code&gt;linestyle&lt;/code&gt; keyword argument. Like marker shapes, there are a few linestyles you can choose from, listed in this &lt;a class=&#34;link&#34; href=&#34;https://matplotlib.org/3.0.3/gallery/lines_bars_and_markers/line_styles_reference.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -5341,7 +5341,7 @@ BrBG
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Plot Seattle data, setting data appearance&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## Plot Seattle data, setting data appearance&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;seattle_weather&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;MONTH&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; 
     &lt;span class=&#34;n&#34;&gt;seattle_weather&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;MLY-PRCP-NORMAL&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; 
@@ -5349,7 +5349,7 @@ BrBG
     &lt;span class=&#34;n&#34;&gt;marker&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;o&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
     &lt;span class=&#34;n&#34;&gt;linestyle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;--&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# Plot Austin data, setting data appearance&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## Plot Austin data, setting data appearance&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;austin_weather&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;MONTH&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; 
     &lt;span class=&#34;n&#34;&gt;austin_weather&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;MLY-PRCP-NORMAL&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; 
@@ -5403,7 +5403,7 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;small-multiples&#34;&gt;Small Multiples&lt;/h2&gt;
+&lt;h3 id=&#34;small-multiples&#34;&gt;Small Multiples&lt;/h3&gt;
 &lt;p&gt;In some cases, adding more data to a plot can make the plot too busy, obscuring patterns rather than revealing them. One way to overcome this kind of mess is to use what are called &lt;strong&gt;small multiples&lt;/strong&gt;. These are multiple small plots that show similar data across different conditions.&lt;/p&gt;
 &lt;p&gt;In Matplotlib, small multiples are called &lt;strong&gt;sub-plots&lt;/strong&gt;. That is also the reason that the function that creates these is called &lt;code&gt;subplots&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Previously, we called this function with no inputs. This creates &lt;strong&gt;one subplot&lt;/strong&gt;. Now, we&amp;rsquo;ll give it some inputs. &lt;strong&gt;Small multiples are typically arranged on the page as a grid with rows and columns&lt;/strong&gt;. Here, we are creating a Figure object with 2 rows of subplots, and 2 columns. This is what this would look like before we add any data to it.&lt;/p&gt;
@@ -5541,8 +5541,8 @@ BrBG
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;plotting-time-series&#34;&gt;Plotting time-series&lt;/h1&gt;
-&lt;h2 id=&#34;plotting-time-series-data&#34;&gt;Plotting time-series data&lt;/h2&gt;
+&lt;h2 id=&#34;plotting-time-series&#34;&gt;Plotting time-series&lt;/h2&gt;
+&lt;h3 id=&#34;plotting-time-series-data&#34;&gt;Plotting time-series data&lt;/h3&gt;
 &lt;p&gt;If we want pandas to recognize column with &lt;code&gt;YYYY-MM-DD&lt;/code&gt; format as time-series, we&amp;rsquo;ll need to tell it to parse the this column as a date by &lt;code&gt;parse_dates&lt;/code&gt; argument in &lt;code&gt;read_csv&lt;/code&gt; method. To use the full power of pandas indexing facilities, we&amp;rsquo;ll also designate the date column as our index by using the &lt;code&gt;index_col&lt;/code&gt; argument in &lt;code&gt;read_csv&lt;/code&gt; method.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -5643,7 +5643,7 @@ date,co2,relative_temp
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;plotting-time-series-with-different-variables&#34;&gt;Plotting time-series with different variables&lt;/h2&gt;
+&lt;h3 id=&#34;plotting-time-series-with-different-variables&#34;&gt;Plotting time-series with different variables&lt;/h3&gt;
 &lt;p&gt;You could plot two time-series in separate sub-plots. Here, we&amp;rsquo;re going to plot them in the same sub-plot, using &lt;strong&gt;two different y-axis scales&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;We start by adding the first variable to the Axes. Then, we use the &lt;code&gt;twinx&lt;/code&gt; method to create a twin of this Axes. This means that the two Axes share the &lt;strong&gt;same x-axis&lt;/strong&gt;, but the &lt;strong&gt;y-axes are separate&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;We add the other variable to this second Axes object and show the figure. There is one y-axis scale on the left, and another y-axis scale to the right.&lt;/p&gt;
@@ -5700,7 +5700,7 @@ date,co2,relative_temp
 
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;climate_change&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;climate_change&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;co2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;b&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_ylabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;CO2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;b&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tick_params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;y&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;colors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;b&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Notice &amp;#34;s&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tick_params&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;y&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;colors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;b&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Notice &amp;#34;s&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_xlabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Year&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;ax2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;twinx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -5792,7 +5792,7 @@ date,co2,relative_temp
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;annotating-time-series-data&#34;&gt;Annotating time-series data&lt;/h2&gt;
+&lt;h3 id=&#34;annotating-time-series-data&#34;&gt;Annotating time-series data&lt;/h3&gt;
 &lt;p&gt;Annotations are usually small pieces of text that refer to a particular part of the visualization, focusing our attention on some feature of the data and explaining this feature.&lt;/p&gt;
 &lt;p&gt;We call a method of the &lt;code&gt;Axes&lt;/code&gt; object called &lt;code&gt;annotate&lt;/code&gt;. This function takes the annotation text as &lt;code&gt;input&lt;/code&gt;, and the &lt;code&gt;xy&lt;/code&gt; coordinate that we would like to annotate. The &lt;code&gt;annotate&lt;/code&gt; method takes an optional &lt;code&gt;xy text&lt;/code&gt; argument that selects the xy position of the text.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -5910,8 +5910,8 @@ date,co2,relative_temp
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;quantitative-comparisons-and-statistical-visualizations&#34;&gt;Quantitative comparisons and statistical visualizations&lt;/h1&gt;
-&lt;h2 id=&#34;quantitative-comparisons-bar-charts&#34;&gt;Quantitative comparisons: bar-charts&lt;/h2&gt;
+&lt;h2 id=&#34;quantitative-comparisons-and-statistical-visualizations&#34;&gt;Quantitative comparisons and statistical visualizations&lt;/h2&gt;
+&lt;h3 id=&#34;quantitative-comparisons-bar-charts&#34;&gt;Quantitative comparisons: bar-charts&lt;/h3&gt;
 &lt;p&gt;We will use a dataset that contains information about the number of medals won by a few countries in the 2016 Olympic Games.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -5957,7 +5957,7 @@ China,35,44,30
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;fig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;subplots&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Gold&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_xticklabels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rotation&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Notice here&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_xticklabels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rotation&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Notice here&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_ylabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Number of medals&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -6007,7 +6007,7 @@ China,35,44,30
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
     &lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Bronze&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; 
-    &lt;span class=&#34;n&#34;&gt;bottom&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Gold&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Silver&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Notice here&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;bottom&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Gold&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;medals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Silver&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;## &amp;lt;-- Notice here&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;label&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Bronze&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
 
@@ -6023,7 +6023,7 @@ China,35,44,30
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;quantitative-comparisons-histograms&#34;&gt;Quantitative comparisons: histograms&lt;/h2&gt;
+&lt;h3 id=&#34;quantitative-comparisons-histograms&#34;&gt;Quantitative comparisons: histograms&lt;/h3&gt;
 &lt;p&gt;A histogram would show the full distribution of values within each variable. We call the Axes &lt;code&gt;hist&lt;/code&gt; method with the column of the DataFrame.&lt;/p&gt;
 &lt;p&gt;As before, we can label a variable by calling the &lt;code&gt;hist&lt;/code&gt; method with the &lt;code&gt;label&lt;/code&gt; key-word argument and then calling the &lt;code&gt;legend&lt;/code&gt; method before we call &lt;code&gt;plt.show&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -6046,7 +6046,7 @@ China,35,44,30
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hist&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mens_gymnastics&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Weight&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;label&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Gymnastics&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_xlabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Weight (kg)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_ylabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;# of observations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_ylabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;## of observations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;legend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -6103,7 +6103,7 @@ China,35,44,30
 &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_xlabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Weight (kg)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_ylabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;# of observations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_ylabel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;## of observations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;n&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;legend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;plt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -6117,7 +6117,7 @@ China,35,44,30
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;statistical-plotting&#34;&gt;Statistical plotting&lt;/h2&gt;
+&lt;h3 id=&#34;statistical-plotting&#34;&gt;Statistical plotting&lt;/h3&gt;
 &lt;p&gt;The first is the use of &lt;strong&gt;error bars&lt;/strong&gt; in plots. These are additional markers on a plot or bar chart that tell us something about the distribution of the data.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Histograms show the entire distribution. Error bars instead summarize the distribution of the data in one number, such as the standard deviation of the values.&lt;/p&gt;
@@ -6238,7 +6238,7 @@ China,35,44,30
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;quantitative-comparisons-scatter-plots&#34;&gt;Quantitative comparisons: scatter plots&lt;/h2&gt;
+&lt;h3 id=&#34;quantitative-comparisons-scatter-plots&#34;&gt;Quantitative comparisons: scatter plots&lt;/h3&gt;
 &lt;p&gt;A standard visualization for bi-variate comparisons is a scatter plot. To create this plot, we initialize a Figure and Axes objects and call the Axes &lt;code&gt;scatter&lt;/code&gt; method.&lt;/p&gt;
 &lt;p&gt;We can customize scatter plots in a manner that is similar to the customization that we introduced in other plots. For example,  we set the &lt;code&gt;color&lt;/code&gt; argument to set color on each group of points.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -6324,8 +6324,8 @@ China,35,44,30
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;sharing-visualizations-with-others&#34;&gt;Sharing visualizations with others&lt;/h1&gt;
-&lt;h2 id=&#34;plot-style&#34;&gt;Plot style&lt;/h2&gt;
+&lt;h2 id=&#34;sharing-visualizations-with-others&#34;&gt;Sharing visualizations with others&lt;/h2&gt;
+&lt;h3 id=&#34;plot-style&#34;&gt;Plot style&lt;/h3&gt;
 &lt;p&gt;we&amp;rsquo;ll change the overall style of the figure. we call &lt;code&gt;plt.style.use()&lt;/code&gt; method before the plotting code, the figure style will look completely different.&lt;/p&gt;
 &lt;p&gt;we can choose &amp;ldquo;ggplot&amp;rdquo; style, or &amp;ldquo;seaborn-colorblind&amp;rdquo;, click &lt;a class=&#34;link&#34; href=&#34;https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;here&lt;/a&gt; to find more style.&lt;/p&gt;
@@ -6371,7 +6371,7 @@ China,35,44,30
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;saving-visualizations&#34;&gt;Saving visualizations&lt;/h2&gt;
+&lt;h3 id=&#34;saving-visualizations&#34;&gt;Saving visualizations&lt;/h3&gt;
 &lt;p&gt;Now, we &lt;strong&gt;replace&lt;/strong&gt; the call to &lt;code&gt;plt.show()&lt;/code&gt; with a call to the Figure object&amp;rsquo;s &lt;code&gt;fig.savefig&lt;/code&gt; method. We provide a file-path as input to the function. If we do this, the figure will no longer appear on our screen, but instead appear as a file on our file-system.&lt;/p&gt;
 &lt;p&gt;Using &lt;code&gt;savefig&lt;/code&gt; method, we can saved the figure as a png, jpg, svg &amp;hellip; file.  You can control how small the resulting file will be, and the degree of loss of quality, by setting the &lt;code&gt;quality&lt;/code&gt; key-word argument. This will be a number between 1 and 100. you can also control the quality through setting the &lt;code&gt;dpi&lt;/code&gt; key-word argument.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -6393,7 +6393,7 @@ China,35,44,30
 &lt;span class=&#34;n&#34;&gt;fig&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;savefig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;~/Documents/figure_3_5.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;automating-figures-from-data&#34;&gt;Automating figures from data&lt;/h2&gt;
+&lt;/div&gt;&lt;h3 id=&#34;automating-figures-from-data&#34;&gt;Automating figures from data&lt;/h3&gt;
 &lt;p&gt;you can write functions and programs that automatically adjust what they are doing based on the input data.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
