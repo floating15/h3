@@ -12787,6 +12787,59 @@ END REPORT
 </description>
         </item>
         <item>
+        <title>Notes</title>
+        <link>https://wanghaoming177.netlify.app/notes/</link>
+        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/notes/</guid>
+        <description>&lt;h1 id=&#34;general-topology&#34;&gt;General Topology&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0102.pdf&#34; &gt;Lecture_01.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_02.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_03.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0102.pdf&#34; &gt;Lecture_04.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_05.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_06.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;operations-research-i&#34;&gt;Operations Research I&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/OR_i/01Introduction.pdf&#34; &gt;Introduction.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_02.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_03.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0102.pdf&#34; &gt;Lecture_04.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_05.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_06.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;game-theory-i&#34;&gt;Game Theory I&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/GT_i/01_Pure_Strategy_NE.pdf&#34; &gt;Pure Strategy Nash Equilibrium.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/GT_i/02_Mixed_Strategy_NE.pdf&#34; &gt;Mixed Strategy Nash Equilibrium.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/GT_i/03_Further_Solution_Concepts.pdf&#34; &gt;Further Solution Concepts.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;machine-learning-foundation-i-cn&#34;&gt;Machine Learning Foundation I (CN)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/0102Perceptron.pdf&#34; &gt;Perceptron.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/0304PAC_Learning_Frame.pdf&#34; &gt;PAC Learning Frame.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/0506Theory_of_Generalization.pdf&#34; &gt;Theory of Generalization.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/07VC_Dimension.pdf&#34; &gt;VC Dimension.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;calculus-cn&#34;&gt;Calculus (CN)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_01_limit.pdf&#34; &gt;Limit.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_02_conti.pdf&#34; &gt;Continuity.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_03_div.pdf&#34; &gt;Derivatives and differentials.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_04_divfunc.pdf&#34; &gt;Derivative and function properties.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_05_int1.pdf&#34; &gt;Indefinite integral.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_06_int2.pdf&#34; &gt;Definite integral I.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_07_int3.pdf&#34; &gt;Definite integral II.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_01.pdf&#34; &gt;Multivariable function calculus I.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_011.pdf&#34; &gt;Multivariable function calculus II.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_02.pdf&#34; &gt;Series.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_03.pdf&#34; &gt;Differential equations and difference equations.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Links</title>
         <link>https://wanghaoming177.netlify.app/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -12819,59 +12872,6 @@ END REPORT
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;code&gt;image&lt;/code&gt; field accepts both local and external images.&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>Notes</title>
-        <link>https://wanghaoming177.netlify.app/notes/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/notes/</guid>
-        <description>&lt;h2 id=&#34;general-topology&#34;&gt;General Topology&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0102.pdf&#34; &gt;Lecture_01.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_02.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_03.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0102.pdf&#34; &gt;Lecture_04.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_05.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_06.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;operations-research-i&#34;&gt;Operations Research I&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/OR_i/01Introduction.pdf&#34; &gt;Introduction.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_02.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_03.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0102.pdf&#34; &gt;Lecture_04.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0304.pdf&#34; &gt;Lecture_05.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0506.pdf&#34; &gt;Lecture_06.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;game-theory-i&#34;&gt;Game Theory I&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/GT_i/01_Pure_Strategy_NE.pdf&#34; &gt;Pure Strategy Nash Equilibrium.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/GT_i/02_Mixed_Strategy_NE.pdf&#34; &gt;Mixed Strategy Nash Equilibrium.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/GT_i/03_Further_Solution_Concepts.pdf&#34; &gt;Further Solution Concepts.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;machine-learning-foundation-i-cn&#34;&gt;Machine Learning Foundation I (CN)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/0102Perceptron.pdf&#34; &gt;Perceptron.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/0304PAC_Learning_Frame.pdf&#34; &gt;PAC Learning Frame.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/0506Theory_of_Generalization.pdf&#34; &gt;Theory of Generalization.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/MLF_i/07VC_Dimension.pdf&#34; &gt;VC Dimension.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;calculus-cn&#34;&gt;Calculus (CN)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_01_limit.pdf&#34; &gt;Limit.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_02_conti.pdf&#34; &gt;Continuity.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_03_div.pdf&#34; &gt;Derivatives and differentials.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_04_divfunc.pdf&#34; &gt;Derivative and function properties.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_05_int1.pdf&#34; &gt;Indefinite integral.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_06_int2.pdf&#34; &gt;Definite integral I.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_I_07_int3.pdf&#34; &gt;Definite integral II.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_01.pdf&#34; &gt;Multivariable function calculus I.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_011.pdf&#34; &gt;Multivariable function calculus II.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_02.pdf&#34; &gt;Series.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/calculus/calculus_II_03.pdf&#34; &gt;Differential equations and difference equations.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
         </item>
         <item>
