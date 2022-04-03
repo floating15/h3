@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Data Visualization on Haoming Wang</title>
-        <link>https://example.com/categories/data_visualization/</link>
+        <link>https://wanghaoming177.netlify.app/categories/data_visualization/</link>
         <description>Recent content in Data Visualization on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/data_visualization/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/data_visualization/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Data Visualization III (Seaborn)</title>
-        <link>https://example.com/p/data-visualization-iii-seaborn/</link>
+        <link>https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/</link>
         <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/data-visualization-iii-seaborn/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2000,10 +2000,10 @@ BrBG
         </item>
         <item>
         <title>Data Visualization II (Seaborn)</title>
-        <link>https://example.com/p/data-visualization-ii-seaborn/</link>
+        <link>https://wanghaoming177.netlify.app/p/data-visualization-ii-seaborn/</link>
         <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/data-visualization-ii-seaborn/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/data-visualization-ii-seaborn/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -3246,10 +3246,10 @@ BrBG
         </item>
         <item>
         <title>Data Visualization I (Matplotlib)</title>
-        <link>https://example.com/p/data-visualization-i-matplotlib/</link>
+        <link>https://wanghaoming177.netlify.app/p/data-visualization-i-matplotlib/</link>
         <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/data-visualization-i-matplotlib/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/data-visualization-i-matplotlib/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;

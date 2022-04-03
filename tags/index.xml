@@ -2,112 +2,112 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on Haoming Wang</title>
-        <link>https://example.com/tags/</link>
+        <link>https://wanghaoming177.netlify.app/tags/</link>
         <description>Recent content in Tags on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Kaggle</title>
-        <link>https://example.com/tags/kaggle/</link>
+        <link>https://wanghaoming177.netlify.app/tags/kaggle/</link>
         <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/kaggle/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/kaggle/</guid>
         <description></description>
         </item>
         <item>
         <title>Python</title>
-        <link>https://example.com/tags/python/</link>
+        <link>https://wanghaoming177.netlify.app/tags/python/</link>
         <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/python/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/python/</guid>
         <description></description>
         </item>
         <item>
         <title>Machine Learning</title>
-        <link>https://example.com/tags/machine-learning/</link>
+        <link>https://wanghaoming177.netlify.app/tags/machine-learning/</link>
         <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/machine-learning/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/machine-learning/</guid>
         <description></description>
         </item>
         <item>
         <title>High-Performance</title>
-        <link>https://example.com/tags/high-performance/</link>
+        <link>https://wanghaoming177.netlify.app/tags/high-performance/</link>
         <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/high-performance/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/high-performance/</guid>
         <description></description>
         </item>
         <item>
         <title>Object Oriented Programming</title>
-        <link>https://example.com/tags/object-oriented-programming/</link>
+        <link>https://wanghaoming177.netlify.app/tags/object-oriented-programming/</link>
         <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/object-oriented-programming/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/object-oriented-programming/</guid>
         <description></description>
         </item>
         <item>
         <title>css</title>
-        <link>https://example.com/tags/css/</link>
+        <link>https://wanghaoming177.netlify.app/tags/css/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/css/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/css/</guid>
         <description></description>
         </item>
         <item>
         <title>html</title>
-        <link>https://example.com/tags/html/</link>
+        <link>https://wanghaoming177.netlify.app/tags/html/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/html/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/html/</guid>
         <description></description>
         </item>
         <item>
         <title>markdown</title>
-        <link>https://example.com/tags/markdown/</link>
+        <link>https://wanghaoming177.netlify.app/tags/markdown/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/markdown/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/markdown/</guid>
         <description></description>
         </item>
         <item>
         <title>themes</title>
-        <link>https://example.com/tags/themes/</link>
+        <link>https://wanghaoming177.netlify.app/tags/themes/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/themes/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/themes/</guid>
         <description></description>
         </item>
         <item>
         <title>ماركداون</title>
-        <link>https://example.com/tags/%D9%85%D8%A7%D8%B1%D9%83%D8%AF%D8%A7%D9%88%D9%86/</link>
+        <link>https://wanghaoming177.netlify.app/tags/%D9%85%D8%A7%D8%B1%D9%83%D8%AF%D8%A7%D9%88%D9%86/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/%D9%85%D8%A7%D8%B1%D9%83%D8%AF%D8%A7%D9%88%D9%86/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/%D9%85%D8%A7%D8%B1%D9%83%D8%AF%D8%A7%D9%88%D9%86/</guid>
         <description></description>
         </item>
         <item>
         <title>نص</title>
-        <link>https://example.com/tags/%D9%86%D8%B5/</link>
+        <link>https://wanghaoming177.netlify.app/tags/%D9%86%D8%B5/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/%D9%86%D8%B5/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/%D9%86%D8%B5/</guid>
         <description></description>
         </item>
         <item>
         <title>وسم مع فراغات</title>
-        <link>https://example.com/tags/%D9%88%D8%B3%D9%85-%D9%85%D8%B9-%D9%81%D8%B1%D8%A7%D8%BA%D8%A7%D8%AA/</link>
+        <link>https://wanghaoming177.netlify.app/tags/%D9%88%D8%B3%D9%85-%D9%85%D8%B9-%D9%81%D8%B1%D8%A7%D8%BA%D8%A7%D8%AA/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/%D9%88%D8%B3%D9%85-%D9%85%D8%B9-%D9%81%D8%B1%D8%A7%D8%BA%D8%A7%D8%AA/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/%D9%88%D8%B3%D9%85-%D9%85%D8%B9-%D9%81%D8%B1%D8%A7%D8%BA%D8%A7%D8%AA/</guid>
         <description></description>
         </item>
         <item>
         <title>emoji</title>
-        <link>https://example.com/tags/emoji/</link>
+        <link>https://wanghaoming177.netlify.app/tags/emoji/</link>
         <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/emoji/</guid>
+        <guid>https://wanghaoming177.netlify.app/tags/emoji/</guid>
         <description></description>
         </item>
         

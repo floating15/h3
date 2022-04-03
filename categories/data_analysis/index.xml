@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Data Analysis on Haoming Wang</title>
-        <link>https://example.com/categories/data_analysis/</link>
+        <link>https://wanghaoming177.netlify.app/categories/data_analysis/</link>
         <description>Recent content in Data Analysis on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/data_analysis/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/data_analysis/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Importing Data in Python II</title>
-        <link>https://example.com/p/importing-data-in-python-ii/</link>
+        <link>https://wanghaoming177.netlify.app/p/importing-data-in-python-ii/</link>
         <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/importing-data-in-python-ii/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/importing-data-in-python-ii/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -20,10 +20,10 @@
         </item>
         <item>
         <title>Importing Data in Python I</title>
-        <link>https://example.com/p/importing-data-in-python-i/</link>
+        <link>https://wanghaoming177.netlify.app/p/importing-data-in-python-i/</link>
         <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/importing-data-in-python-i/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/importing-data-in-python-i/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;

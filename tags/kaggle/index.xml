@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Kaggle on Haoming Wang</title>
-        <link>https://example.com/tags/kaggle/</link>
+        <link>https://wanghaoming177.netlify.app/tags/kaggle/</link>
         <description>Recent content in Kaggle on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/kaggle/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/kaggle/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Kaggle - ASHRAE, Great Energy Predictor III</title>
-        <link>https://example.com/p/kaggle-ashrae-great-energy-predictor-iii/</link>
+        <link>https://wanghaoming177.netlify.app/p/kaggle-ashrae-great-energy-predictor-iii/</link>
         <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/kaggle-ashrae-great-energy-predictor-iii/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/kaggle-ashrae-great-energy-predictor-iii/</guid>
         <description>&lt;h1 id=&#34;预测建筑物的能源消耗&#34;&gt;预测建筑物的能源消耗&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.com/../../../../img/2022-03-03-10-01-41.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://wanghaoming177.netlify.app/../../../../img/2022-03-03-10-01-41.png&#34;
 	
 	
 	
@@ -289,7 +289,7 @@
 &lt;span class=&#34;n&#34;&gt;gc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;collect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.com/../../../../img/2022-03-05-18-59-30.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://wanghaoming177.netlify.app/../../../../img/2022-03-05-18-59-30.png&#34;
 	
 	
 	

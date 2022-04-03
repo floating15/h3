@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Haoming Wang</title>
-        <link>https://example.com/</link>
+        <link>https://wanghaoming177.netlify.app/</link>
         <description>Recent content on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Kaggle - ASHRAE, Great Energy Predictor III</title>
-        <link>https://example.com/p/kaggle-ashrae-great-energy-predictor-iii/</link>
+        <link>https://wanghaoming177.netlify.app/p/kaggle-ashrae-great-energy-predictor-iii/</link>
         <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/kaggle-ashrae-great-energy-predictor-iii/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/kaggle-ashrae-great-energy-predictor-iii/</guid>
         <description>&lt;h1 id=&#34;预测建筑物的能源消耗&#34;&gt;预测建筑物的能源消耗&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.com/../../../../img/2022-03-03-10-01-41.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://wanghaoming177.netlify.app/../../../../img/2022-03-03-10-01-41.png&#34;
 	
 	
 	
@@ -289,7 +289,7 @@
 &lt;span class=&#34;n&#34;&gt;gc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;collect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.com/../../../../img/2022-03-05-18-59-30.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://wanghaoming177.netlify.app/../../../../img/2022-03-05-18-59-30.png&#34;
 	
 	
 	
@@ -815,10 +815,10 @@
         </item>
         <item>
         <title>Importing Data in Python II</title>
-        <link>https://example.com/p/importing-data-in-python-ii/</link>
+        <link>https://wanghaoming177.netlify.app/p/importing-data-in-python-ii/</link>
         <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/importing-data-in-python-ii/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/importing-data-in-python-ii/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -827,10 +827,10 @@
         </item>
         <item>
         <title>Importing Data in Python I</title>
-        <link>https://example.com/p/importing-data-in-python-i/</link>
+        <link>https://wanghaoming177.netlify.app/p/importing-data-in-python-i/</link>
         <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/importing-data-in-python-i/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/importing-data-in-python-i/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2026,10 +2026,10 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
         </item>
         <item>
         <title>Data Visualization III (Seaborn)</title>
-        <link>https://example.com/p/data-visualization-iii-seaborn/</link>
+        <link>https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/</link>
         <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/data-visualization-iii-seaborn/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4018,10 +4018,10 @@ BrBG
         </item>
         <item>
         <title>Data Visualization II (Seaborn)</title>
-        <link>https://example.com/p/data-visualization-ii-seaborn/</link>
+        <link>https://wanghaoming177.netlify.app/p/data-visualization-ii-seaborn/</link>
         <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/data-visualization-ii-seaborn/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/data-visualization-ii-seaborn/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -5264,10 +5264,10 @@ BrBG
         </item>
         <item>
         <title>Data Visualization I (Matplotlib)</title>
-        <link>https://example.com/p/data-visualization-i-matplotlib/</link>
+        <link>https://wanghaoming177.netlify.app/p/data-visualization-i-matplotlib/</link>
         <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/data-visualization-i-matplotlib/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/data-visualization-i-matplotlib/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -6451,10 +6451,10 @@ China,35,44,30
         </item>
         <item>
         <title>Perceptron Learning Algorithm</title>
-        <link>https://example.com/p/perceptron-learning-algorithm/</link>
+        <link>https://wanghaoming177.netlify.app/p/perceptron-learning-algorithm/</link>
         <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/perceptron-learning-algorithm/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/perceptron-learning-algorithm/</guid>
         <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -6930,10 +6930,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>Object Oriented Programming III (Class)</title>
-        <link>https://example.com/p/object-oriented-programming-iii-class/</link>
+        <link>https://wanghaoming177.netlify.app/p/object-oriented-programming-iii-class/</link>
         <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/object-oriented-programming-iii-class/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-iii-class/</guid>
         <description>&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;1-oop-fundamental&#34;&gt;1. OOP Fundamental&lt;/h1&gt;
 &lt;h2 id=&#34;11-attributes-and-method&#34;&gt;1.1 Attributes and Method&lt;/h2&gt;
@@ -8102,10 +8102,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>Object Oriented Programming II (Iterators, Comprehensions &amp; Generators)</title>
-        <link>https://example.com/p/object-oriented-programming-ii-iterators-comprehensions-generators/</link>
+        <link>https://wanghaoming177.netlify.app/p/object-oriented-programming-ii-iterators-comprehensions-generators/</link>
         <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/object-oriented-programming-ii-iterators-comprehensions-generators/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-ii-iterators-comprehensions-generators/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -9619,10 +9619,10 @@ Using the method &lt;code&gt;append()&lt;/code&gt; of the DataFrame data, append
         </item>
         <item>
         <title>Feature Engineering (Cleaning)</title>
-        <link>https://example.com/p/feature-engineering-cleaning/</link>
+        <link>https://wanghaoming177.netlify.app/p/feature-engineering-cleaning/</link>
         <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/feature-engineering-cleaning/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/feature-engineering-cleaning/</guid>
         <description>&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -11190,10 +11190,10 @@ dtype: int64
         </item>
         <item>
         <title>Object Oriented Programming I (Function)</title>
-        <link>https://example.com/p/object-oriented-programming-i-function/</link>
+        <link>https://wanghaoming177.netlify.app/p/object-oriented-programming-i-function/</link>
         <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/object-oriented-programming-i-function/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-i-function/</guid>
         <description>&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;1-writing-functions&#34;&gt;1. Writing Functions&lt;/h1&gt;
 &lt;h2 id=&#34;11-define-function&#34;&gt;1.1 Define function&lt;/h2&gt;
@@ -12751,19 +12751,19 @@ END REPORT
         </item>
         <item>
         <title>Archives</title>
-        <link>https://example.com/archives/</link>
+        <link>https://wanghaoming177.netlify.app/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/archives/</guid>
+        <guid>https://wanghaoming177.netlify.app/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Markdown Syntax Guide</title>
-        <link>https://example.com/p/markdown-syntax-guide/</link>
+        <link>https://wanghaoming177.netlify.app/p/markdown-syntax-guide/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/markdown-syntax-guide/</guid>
-        <description>&lt;img src="https://example.com/p/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
+        <guid>https://wanghaoming177.netlify.app/p/markdown-syntax-guide/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/p/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
 &lt;h2 id=&#34;headings&#34;&gt;Headings&lt;/h2&gt;
 &lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;
 &lt;h1 id=&#34;h1&#34;&gt;H1&lt;/h1&gt;
@@ -12989,11 +12989,11 @@ rev = &amp;#34;11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13&amp;#34;
         </item>
         <item>
         <title>مثال نص</title>
-        <link>https://example.com/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/</link>
+        <link>https://wanghaoming177.netlify.app/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/</guid>
-        <description>&lt;img src="https://example.com/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post مثال نص" /&gt;&lt;h2 id=&#34;فقرة-1&#34;&gt;فقرة 1&lt;/h2&gt;
+        <guid>https://wanghaoming177.netlify.app/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post مثال نص" /&gt;&lt;h2 id=&#34;فقرة-1&#34;&gt;فقرة 1&lt;/h2&gt;
 &lt;p&gt;هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من &lt;a class=&#34;link&#34; href=&#34;https://colorslab.com/textgator/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;مولد النص العربى&lt;/a&gt;، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
 إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.
@@ -13011,10 +13011,10 @@ rev = &amp;#34;11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13&amp;#34;
         </item>
         <item>
         <title>Math Typesetting</title>
-        <link>https://example.com/p/math-typesetting/</link>
+        <link>https://wanghaoming177.netlify.app/p/math-typesetting/</link>
         <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/math-typesetting/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/math-typesetting/</guid>
         <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;
 &lt;p&gt;In this example we will be using &lt;a class=&#34;link&#34; href=&#34;https://katex.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KaTeX&lt;/a&gt;&lt;/p&gt;
@@ -13052,11 +13052,11 @@ $$&lt;/p&gt;</description>
         </item>
         <item>
         <title>Emoji Support</title>
-        <link>https://example.com/p/emoji-support/</link>
+        <link>https://wanghaoming177.netlify.app/p/emoji-support/</link>
         <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/emoji-support/</guid>
-        <description>&lt;img src="https://example.com/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
+        <guid>https://wanghaoming177.netlify.app/p/emoji-support/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
 &lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/emojify/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;code&gt;emojify&lt;/code&gt;&lt;/a&gt; function can be called directly in templates or &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/shortcode-templates/#inline-shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Inline Shortcodes&lt;/a&gt;.&lt;/p&gt;
@@ -13082,10 +13082,10 @@ $$&lt;/p&gt;</description>
         </item>
         <item>
         <title>About</title>
-        <link>https://example.com/about/</link>
+        <link>https://wanghaoming177.netlify.app/about/</link>
         <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/about/</guid>
+        <guid>https://wanghaoming177.netlify.app/about/</guid>
         <description>&lt;h2 id=&#34;about-me&#34;&gt;&lt;em&gt;About me&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;XMin&lt;/strong&gt; is a Hugo theme written by &lt;a class=&#34;link&#34; href=&#34;https://yihui.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Yihui Xie&lt;/a&gt; in about four hours:This XMin theme contains about 130 lines of code in total, including the code in HTML templates and CSS (also counting empty lines). download the &lt;a class=&#34;link&#34; href=&#34;../resume/resume.pdf&#34; &gt;resume&lt;/a&gt; here.&lt;/p&gt;
@@ -13109,15 +13109,15 @@ $$&lt;/p&gt;</description>
 &lt;li&gt;&lt;strong&gt;SQL&lt;/strong&gt; (MySQL, Hive, Spark SQL);&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Matlab&lt;/strong&gt;; &lt;strong&gt;Stata&lt;/strong&gt;; $\LaTeX$; &lt;strong&gt;Endnote&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;All pages not under the root directory of the website are listed below. You can also visit the list page of a single section, e.g., &lt;a class=&#34;link&#34; href=&#34;https://example.com/post/&#34; &gt;posts&lt;/a&gt;, or &lt;a class=&#34;link&#34; href=&#34;https://example.com/note/&#34; &gt;notes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;All pages not under the root directory of the website are listed below. You can also visit the list page of a single section, e.g., &lt;a class=&#34;link&#34; href=&#34;https://wanghaoming177.netlify.app/post/&#34; &gt;posts&lt;/a&gt;, or &lt;a class=&#34;link&#34; href=&#34;https://wanghaoming177.netlify.app/note/&#34; &gt;notes&lt;/a&gt;.&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>Links</title>
-        <link>https://example.com/links/</link>
+        <link>https://wanghaoming177.netlify.app/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/links/</guid>
+        <guid>https://wanghaoming177.netlify.app/links/</guid>
         <description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
 &lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -13149,10 +13149,10 @@ $$&lt;/p&gt;</description>
         </item>
         <item>
         <title>Notes</title>
-        <link>https://example.com/notes/</link>
+        <link>https://wanghaoming177.netlify.app/notes/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/notes/</guid>
+        <guid>https://wanghaoming177.netlify.app/notes/</guid>
         <description>&lt;h2 id=&#34;general-topology&#34;&gt;General Topology&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../MLF_i/MLF_i_0102.pdf&#34; &gt;Lecture_01.pdf&lt;/a&gt;&lt;/li&gt;
@@ -13202,10 +13202,10 @@ $$&lt;/p&gt;</description>
         </item>
         <item>
         <title>Search</title>
-        <link>https://example.com/search/</link>
+        <link>https://wanghaoming177.netlify.app/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/search/</guid>
+        <guid>https://wanghaoming177.netlify.app/search/</guid>
         <description></description>
         </item>
         

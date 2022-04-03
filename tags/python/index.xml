@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Python on Haoming Wang</title>
-        <link>https://example.com/tags/python/</link>
+        <link>https://wanghaoming177.netlify.app/tags/python/</link>
         <description>Recent content in Python on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Importing Data in Python II</title>
-        <link>https://example.com/p/importing-data-in-python-ii/</link>
+        <link>https://wanghaoming177.netlify.app/p/importing-data-in-python-ii/</link>
         <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/importing-data-in-python-ii/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/importing-data-in-python-ii/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -20,10 +20,10 @@
         </item>
         <item>
         <title>Importing Data in Python I</title>
-        <link>https://example.com/p/importing-data-in-python-i/</link>
+        <link>https://wanghaoming177.netlify.app/p/importing-data-in-python-i/</link>
         <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/importing-data-in-python-i/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/importing-data-in-python-i/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1219,10 +1219,10 @@ To close the connection, execute &lt;code&gt;close()&lt;/code&gt; method on conn
         </item>
         <item>
         <title>Perceptron Learning Algorithm</title>
-        <link>https://example.com/p/perceptron-learning-algorithm/</link>
+        <link>https://wanghaoming177.netlify.app/p/perceptron-learning-algorithm/</link>
         <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/perceptron-learning-algorithm/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/perceptron-learning-algorithm/</guid>
         <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1698,10 +1698,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>Object Oriented Programming III (Class)</title>
-        <link>https://example.com/p/object-oriented-programming-iii-class/</link>
+        <link>https://wanghaoming177.netlify.app/p/object-oriented-programming-iii-class/</link>
         <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/object-oriented-programming-iii-class/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-iii-class/</guid>
         <description>&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;1-oop-fundamental&#34;&gt;1. OOP Fundamental&lt;/h1&gt;
 &lt;h2 id=&#34;11-attributes-and-method&#34;&gt;1.1 Attributes and Method&lt;/h2&gt;
@@ -2870,10 +2870,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>Object Oriented Programming II (Iterators, Comprehensions &amp; Generators)</title>
-        <link>https://example.com/p/object-oriented-programming-ii-iterators-comprehensions-generators/</link>
+        <link>https://wanghaoming177.netlify.app/p/object-oriented-programming-ii-iterators-comprehensions-generators/</link>
         <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/object-oriented-programming-ii-iterators-comprehensions-generators/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-ii-iterators-comprehensions-generators/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4387,10 +4387,10 @@ Using the method &lt;code&gt;append()&lt;/code&gt; of the DataFrame data, append
         </item>
         <item>
         <title>Feature Engineering (Cleaning)</title>
-        <link>https://example.com/p/feature-engineering-cleaning/</link>
+        <link>https://wanghaoming177.netlify.app/p/feature-engineering-cleaning/</link>
         <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/feature-engineering-cleaning/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/feature-engineering-cleaning/</guid>
         <description>&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -5958,10 +5958,10 @@ dtype: int64
         </item>
         <item>
         <title>Object Oriented Programming I (Function)</title>
-        <link>https://example.com/p/object-oriented-programming-i-function/</link>
+        <link>https://wanghaoming177.netlify.app/p/object-oriented-programming-i-function/</link>
         <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/object-oriented-programming-i-function/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-i-function/</guid>
         <description>&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;1-writing-functions&#34;&gt;1. Writing Functions&lt;/h1&gt;
 &lt;h2 id=&#34;11-define-function&#34;&gt;1.1 Define function&lt;/h2&gt;
