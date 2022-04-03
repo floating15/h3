@@ -15,7 +15,6 @@
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h2 id=&#34;seaborn-introduction&#34;&gt;Seaborn Introduction&lt;/h2&gt;
 &lt;h3 id=&#34;distribution-plot&#34;&gt;Distribution plot&lt;/h3&gt;
 &lt;p&gt;The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.&lt;/p&gt;
@@ -2007,7 +2006,6 @@ BrBG
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;1-introduction-to-seaborn&#34;&gt;1. Introduction to Seaborn&lt;/h1&gt;
 &lt;h2 id=&#34;11-using-pandas-with-seaborn&#34;&gt;1.1 Using pandas with Seaborn&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -3253,7 +3251,6 @@ BrBG
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;1-introduction-to-matplotlib&#34;&gt;1. Introduction to Matplotlib&lt;/h1&gt;
 &lt;h2 id=&#34;11-intro-to-data-visualization-with-matplotlib&#34;&gt;1.1 Intro to data visualization with matplotlib&lt;/h2&gt;
 &lt;p&gt;we will use the main &lt;strong&gt;object-oriented interface&lt;/strong&gt;. This interface is provided through the pyplot submodule. The &lt;code&gt;plt.subplots()&lt;/code&gt; command, when called without any inputs, creates two different objects: a &lt;code&gt;Figure&lt;/code&gt; object and an &lt;code&gt;Axes&lt;/code&gt; object.&lt;/p&gt;
