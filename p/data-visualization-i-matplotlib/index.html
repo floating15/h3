@@ -2,21 +2,21 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- 1. Introduction to Matplotlib 1.1 Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
+ Introduction to Matplotlib Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
 1 2  import matplotlib.'><title>Data Visualization I (Matplotlib)</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/data-visualization-i-matplotlib/'>
 
 <link rel="stylesheet" href="/scss/style.min.a08bf74b6cebb61a5c44577cd7595f862dcdc6b756246725ee9ed8f96a43615b.css"><meta property='og:title' content='Data Visualization I (Matplotlib)'>
 <meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- 1. Introduction to Matplotlib 1.1 Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
+ Introduction to Matplotlib Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
 1 2  import matplotlib.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/data-visualization-i-matplotlib/'>
 <meta property='og:site_name' content='Haoming Wang'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-04-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-04-16T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Data Visualization I (Matplotlib)">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- 1. Introduction to Matplotlib 1.1 Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
+ Introduction to Matplotlib Intro to data visualization with matplotlib we will use the main object-oriented interface. This interface is provided through the pyplot submodule. The plt.subplots() command, when called without any inputs, creates two different objects: a Figure object and an Axes object.
 1 2  import matplotlib.">
     </head>
     <body class="
@@ -321,7 +321,7 @@
 
 
                 <time class="article-time--reading">
-                    15 minute read
+                    14 minute read
                 </time>
             </div>
         
@@ -338,8 +338,8 @@
     <blockquote>
 <p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
 </blockquote>
-<h1 id="1-introduction-to-matplotlib">1. Introduction to Matplotlib</h1>
-<h2 id="11-intro-to-data-visualization-with-matplotlib">1.1 Intro to data visualization with matplotlib</h2>
+<h1 id="introduction-to-matplotlib">Introduction to Matplotlib</h1>
+<h2 id="intro-to-data-visualization-with-matplotlib">Intro to data visualization with matplotlib</h2>
 <p>we will use the main <strong>object-oriented interface</strong>. This interface is provided through the pyplot submodule. The <code>plt.subplots()</code> command, when called without any inputs, creates two different objects: a <code>Figure</code> object and an <code>Axes</code> object.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -381,7 +381,7 @@
 <li>We call the <code>Axes</code> method <code>plot</code> to add first the <code>df.col2</code>, and then the <code>df.col3</code> to the Axes.</li>
 <li>Finally, we ask Matplotlib to show us the figure.</li>
 </ul>
-<h2 id="12-customizing-plots">1.2 Customizing Plots</h2>
+<h2 id="customizing-plots">Customizing Plots</h2>
 <p>The <code>plot</code> method takes an optional keyword argument, <code>marker</code>, which lets you indicate what kind of markers you&rsquo;d like. To see all the possible marker styles, you can visit this <a class="link" href="https://matplotlib.org/stable/api/markers_api.html"  target="_blank" rel="noopener"
     >page</a> in the Matplotlib online documentation.</p>
 <p>You can change the appearance of these connecting lines by adding the <code>linestyle</code> keyword argument. Like marker shapes, there are a few linestyles you can choose from, listed in this <a class="link" href="https://matplotlib.org/3.0.3/gallery/lines_bars_and_markers/line_styles_reference.html"  target="_blank" rel="noopener"
@@ -472,7 +472,7 @@
 	
 	
 ></p>
-<h2 id="13-small-multiples">1.3 Small Multiples</h2>
+<h2 id="small-multiples">Small Multiples</h2>
 <p>In some cases, adding more data to a plot can make the plot too busy, obscuring patterns rather than revealing them. One way to overcome this kind of mess is to use what are called <strong>small multiples</strong>. These are multiple small plots that show similar data across different conditions.</p>
 <p>In Matplotlib, small multiples are called <strong>sub-plots</strong>. That is also the reason that the function that creates these is called <code>subplots</code>.</p>
 <p>Previously, we called this function with no inputs. This creates <strong>one subplot</strong>. Now, we&rsquo;ll give it some inputs. <strong>Small multiples are typically arranged on the page as a grid with rows and columns</strong>. Here, we are creating a Figure object with 2 rows of subplots, and 2 columns. This is what this would look like before we add any data to it.</p>
@@ -610,8 +610,8 @@
 	
 	
 ></p>
-<h1 id="2-plotting-time-series">2. Plotting time-series</h1>
-<h2 id="21-plotting-time-series-data">2.1 Plotting time-series data</h2>
+<h1 id="plotting-time-series">Plotting time-series</h1>
+<h2 id="plotting-time-series-data">Plotting time-series data</h2>
 <p>If we want pandas to recognize column with <code>YYYY-MM-DD</code> format as time-series, we&rsquo;ll need to tell it to parse the this column as a date by <code>parse_dates</code> argument in <code>read_csv</code> method. To use the full power of pandas indexing facilities, we&rsquo;ll also designate the date column as our index by using the <code>index_col</code> argument in <code>read_csv</code> method.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -712,7 +712,7 @@ date,co2,relative_temp
 	
 	
 ></p>
-<h2 id="22-plotting-time-series-with-different-variables">2.2 Plotting time-series with different variables</h2>
+<h2 id="plotting-time-series-with-different-variables">Plotting time-series with different variables</h2>
 <p>You could plot two time-series in separate sub-plots. Here, we&rsquo;re going to plot them in the same sub-plot, using <strong>two different y-axis scales</strong>.</p>
 <p>We start by adding the first variable to the Axes. Then, we use the <code>twinx</code> method to create a twin of this Axes. This means that the two Axes share the <strong>same x-axis</strong>, but the <strong>y-axes are separate</strong>.</p>
 <p>We add the other variable to this second Axes object and show the figure. There is one y-axis scale on the left, and another y-axis scale to the right.</p>
@@ -861,7 +861,7 @@ date,co2,relative_temp
 	
 	
 ></p>
-<h2 id="23-annotating-time-series-data">2.3 Annotating time-series data</h2>
+<h2 id="annotating-time-series-data">Annotating time-series data</h2>
 <p>Annotations are usually small pieces of text that refer to a particular part of the visualization, focusing our attention on some feature of the data and explaining this feature.</p>
 <p>We call a method of the <code>Axes</code> object called <code>annotate</code>. This function takes the annotation text as <code>input</code>, and the <code>xy</code> coordinate that we would like to annotate. The <code>annotate</code> method takes an optional <code>xy text</code> argument that selects the xy position of the text.</p>
 <div class="highlight"><div class="chroma">
@@ -979,8 +979,8 @@ date,co2,relative_temp
 	
 	
 ></p>
-<h1 id="3-quantitative-comparisons-and-statistical-visualizations">3. Quantitative comparisons and statistical visualizations</h1>
-<h2 id="31-quantitative-comparisons-bar-charts">3.1 Quantitative comparisons: bar-charts</h2>
+<h1 id="quantitative-comparisons-and-statistical-visualizations">Quantitative comparisons and statistical visualizations</h1>
+<h2 id="quantitative-comparisons-bar-charts">Quantitative comparisons: bar-charts</h2>
 <p>We will use a dataset that contains information about the number of medals won by a few countries in the 2016 Olympic Games.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1092,7 +1092,7 @@ China,35,44,30
 	
 	
 ></p>
-<h2 id="32-quantitative-comparisons-histograms">3.2 Quantitative comparisons: histograms</h2>
+<h2 id="quantitative-comparisons-histograms">Quantitative comparisons: histograms</h2>
 <p>A histogram would show the full distribution of values within each variable. We call the Axes <code>hist</code> method with the column of the DataFrame.</p>
 <p>As before, we can label a variable by calling the <code>hist</code> method with the <code>label</code> key-word argument and then calling the <code>legend</code> method before we call <code>plt.show</code>.</p>
 <div class="highlight"><div class="chroma">
@@ -1186,7 +1186,7 @@ China,35,44,30
 	
 	
 ></p>
-<h2 id="33-statistical-plotting">3.3 Statistical plotting</h2>
+<h2 id="statistical-plotting">Statistical plotting</h2>
 <p>The first is the use of <strong>error bars</strong> in plots. These are additional markers on a plot or bar chart that tell us something about the distribution of the data.</p>
 <blockquote>
 <p>Histograms show the entire distribution. Error bars instead summarize the distribution of the data in one number, such as the standard deviation of the values.</p>
@@ -1307,7 +1307,7 @@ China,35,44,30
 	
 	
 ></p>
-<h2 id="34-quantitative-comparisons-scatter-plots">3.4 Quantitative comparisons: scatter plots</h2>
+<h2 id="quantitative-comparisons-scatter-plots">Quantitative comparisons: scatter plots</h2>
 <p>A standard visualization for bi-variate comparisons is a scatter plot. To create this plot, we initialize a Figure and Axes objects and call the Axes <code>scatter</code> method.</p>
 <p>We can customize scatter plots in a manner that is similar to the customization that we introduced in other plots. For example,  we set the <code>color</code> argument to set color on each group of points.</p>
 <div class="highlight"><div class="chroma">
@@ -1393,8 +1393,8 @@ China,35,44,30
 	
 	
 ></p>
-<h1 id="4-sharing-visualizations-with-others">4. Sharing visualizations with others</h1>
-<h2 id="41-plot-style">4.1 Plot style</h2>
+<h1 id="sharing-visualizations-with-others">Sharing visualizations with others</h1>
+<h2 id="plot-style">Plot style</h2>
 <p>we&rsquo;ll change the overall style of the figure. we call <code>plt.style.use()</code> method before the plotting code, the figure style will look completely different.</p>
 <p>we can choose &ldquo;ggplot&rdquo; style, or &ldquo;seaborn-colorblind&rdquo;, click <a class="link" href="https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html"  target="_blank" rel="noopener"
     >here</a> to find more style.</p>
@@ -1440,7 +1440,7 @@ China,35,44,30
 	
 	
 ></p>
-<h2 id="42-saving-visualizations">4.2 Saving visualizations</h2>
+<h2 id="saving-visualizations">Saving visualizations</h2>
 <p>Now, we <strong>replace</strong> the call to <code>plt.show()</code> with a call to the Figure object&rsquo;s <code>fig.savefig</code> method. We provide a file-path as input to the function. If we do this, the figure will no longer appear on our screen, but instead appear as a file on our file-system.</p>
 <p>Using <code>savefig</code> method, we can saved the figure as a png, jpg, svg &hellip; file.  You can control how small the resulting file will be, and the degree of loss of quality, by setting the <code>quality</code> key-word argument. This will be a number between 1 and 100. you can also control the quality through setting the <code>dpi</code> key-word argument.</p>
 <div class="highlight"><div class="chroma">
@@ -1462,7 +1462,7 @@ China,35,44,30
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;~/Documents/figure_3_5.png&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="43-automating-figures-from-data">4.3 Automating figures from data</h2>
+</div><h2 id="automating-figures-from-data">Automating figures from data</h2>
 <p>you can write functions and programs that automatically adjust what they are doing based on the input data.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1720,28 +1720,28 @@ China,35,44,30
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#11-intro-to-data-visualization-with-matplotlib">1.1 Intro to data visualization with matplotlib</a></li>
-    <li><a href="#12-customizing-plots">1.2 Customizing Plots</a></li>
-    <li><a href="#13-small-multiples">1.3 Small Multiples</a></li>
+    <li><a href="#intro-to-data-visualization-with-matplotlib">Intro to data visualization with matplotlib</a></li>
+    <li><a href="#customizing-plots">Customizing Plots</a></li>
+    <li><a href="#small-multiples">Small Multiples</a></li>
   </ol>
 
   <ol>
-    <li><a href="#21-plotting-time-series-data">2.1 Plotting time-series data</a></li>
-    <li><a href="#22-plotting-time-series-with-different-variables">2.2 Plotting time-series with different variables</a></li>
-    <li><a href="#23-annotating-time-series-data">2.3 Annotating time-series data</a></li>
+    <li><a href="#plotting-time-series-data">Plotting time-series data</a></li>
+    <li><a href="#plotting-time-series-with-different-variables">Plotting time-series with different variables</a></li>
+    <li><a href="#annotating-time-series-data">Annotating time-series data</a></li>
   </ol>
 
   <ol>
-    <li><a href="#31-quantitative-comparisons-bar-charts">3.1 Quantitative comparisons: bar-charts</a></li>
-    <li><a href="#32-quantitative-comparisons-histograms">3.2 Quantitative comparisons: histograms</a></li>
-    <li><a href="#33-statistical-plotting">3.3 Statistical plotting</a></li>
-    <li><a href="#34-quantitative-comparisons-scatter-plots">3.4 Quantitative comparisons: scatter plots</a></li>
+    <li><a href="#quantitative-comparisons-bar-charts">Quantitative comparisons: bar-charts</a></li>
+    <li><a href="#quantitative-comparisons-histograms">Quantitative comparisons: histograms</a></li>
+    <li><a href="#statistical-plotting">Statistical plotting</a></li>
+    <li><a href="#quantitative-comparisons-scatter-plots">Quantitative comparisons: scatter plots</a></li>
   </ol>
 
   <ol>
-    <li><a href="#41-plot-style">4.1 Plot style</a></li>
-    <li><a href="#42-saving-visualizations">4.2 Saving visualizations</a></li>
-    <li><a href="#43-automating-figures-from-data">4.3 Automating figures from data</a></li>
+    <li><a href="#plot-style">Plot style</a></li>
+    <li><a href="#saving-visualizations">Saving visualizations</a></li>
+    <li><a href="#automating-figures-from-data">Automating figures from data</a></li>
   </ol>
 </nav>
         </div>
