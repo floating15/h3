@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Financial Engineering on Haoming Wang</title>
+        <link>https://wanghaoming177.netlify.app/categories/financial_engineering/</link>
+        <description>Recent content in Financial Engineering on Haoming Wang</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language><atom:link href="https://wanghaoming177.netlify.app/categories/financial_engineering/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
+</rss>

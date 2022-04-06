@@ -47,6 +47,14 @@
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_science/002.jpg" alt="Featured image of post Data Science" /&gt;</description>
         </item>
         <item>
+        <title>Financial Engineering</title>
+        <link>https://wanghaoming177.netlify.app/categories/financial_engineering/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/financial_engineering/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/financial_engineering/doeblin.png" alt="Featured image of post Financial Engineering" /&gt;</description>
+        </item>
+        <item>
         <title>PyTorch &amp; Deep Learning</title>
         <link>https://wanghaoming177.netlify.app/categories/pytorch/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
