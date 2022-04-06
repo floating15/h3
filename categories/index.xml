@@ -15,6 +15,14 @@
         <description></description>
         </item>
         <item>
+        <title>Test</title>
+        <link>https://wanghaoming177.netlify.app/categories/test/</link>
+        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/test/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        </item>
+        <item>
         <title>Data Analysis</title>
         <link>https://wanghaoming177.netlify.app/categories/data_analysis/</link>
         <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
@@ -36,7 +44,7 @@
         <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/python/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/python/IMG_1315.JPG" alt="Featured image of post Python" /&gt;</description>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/python/3.webp" alt="Featured image of post Python" /&gt;</description>
         </item>
         <item>
         <title>Data Science</title>

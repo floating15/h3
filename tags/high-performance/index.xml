@@ -15,7 +15,6 @@
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;iterators-in-pythonland&#34;&gt;Iterators in PythonLand&lt;/h1&gt;
 &lt;h2 id=&#34;introduction-to-iterators&#34;&gt;Introduction to iterators&lt;/h2&gt;
 &lt;p&gt;When you use a for loop to print out each element of a &lt;strong&gt;list&lt;/strong&gt;, you&amp;rsquo;re iterating over the list. You can also use a for loop to iterate over characters in a &lt;strong&gt;string&lt;/strong&gt;. You can also use a for loop to iterate a over a sequence of numbers produced by a special &lt;strong&gt;range&lt;/strong&gt; object. The reason that we can loop over such objects is that they are special objects called &lt;strong&gt;iterables&lt;/strong&gt;: lists, strings and range objects are all iterables, as are many other Python objects, such as &lt;strong&gt;dictionaries&lt;/strong&gt; and &lt;strong&gt;file connections&lt;/strong&gt;.&lt;/p&gt;

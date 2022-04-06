@@ -1702,8 +1702,7 @@ $$&lt;/p&gt;
         <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-iii-class/</guid>
-        <description>&lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&#34;oop-fundamental&#34;&gt;OOP Fundamental&lt;/h1&gt;
+        <description>&lt;h1 id=&#34;oop-fundamental&#34;&gt;OOP Fundamental&lt;/h1&gt;
 &lt;h2 id=&#34;attributes-and-method&#34;&gt;Attributes and Method&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2877,7 +2876,6 @@ $$&lt;/p&gt;
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h1 id=&#34;iterators-in-pythonland&#34;&gt;Iterators in PythonLand&lt;/h1&gt;
 &lt;h2 id=&#34;introduction-to-iterators&#34;&gt;Introduction to iterators&lt;/h2&gt;
 &lt;p&gt;When you use a for loop to print out each element of a &lt;strong&gt;list&lt;/strong&gt;, you&amp;rsquo;re iterating over the list. You can also use a for loop to iterate over characters in a &lt;strong&gt;string&lt;/strong&gt;. You can also use a for loop to iterate a over a sequence of numbers produced by a special &lt;strong&gt;range&lt;/strong&gt; object. The reason that we can loop over such objects is that they are special objects called &lt;strong&gt;iterables&lt;/strong&gt;: lists, strings and range objects are all iterables, as are many other Python objects, such as &lt;strong&gt;dictionaries&lt;/strong&gt; and &lt;strong&gt;file connections&lt;/strong&gt;.&lt;/p&gt;
@@ -5962,8 +5960,7 @@ dtype: int64
         <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-i-function/</guid>
-        <description>&lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&#34;writing-functions&#34;&gt;Writing Functions&lt;/h1&gt;
+        <description>&lt;h1 id=&#34;writing-functions&#34;&gt;Writing Functions&lt;/h1&gt;
 &lt;h2 id=&#34;define-function&#34;&gt;Define function&lt;/h2&gt;
 &lt;p&gt;To define the function, We begin with the keyword &lt;code&gt;def&lt;/code&gt;, followed by the function name; this is then followed by a set of parentheses and a colon. This piece of code is called a function header. To complete the function definition, We write the function body inside the indentation.&lt;/p&gt;
 &lt;p&gt;There&amp;rsquo;s an essential aspect of writing functions in Python: &lt;strong&gt;docstrings&lt;/strong&gt;. Docstrings serve as documentation for your function so that anyone who reads your function&amp;rsquo;s docstring understands what your function does, without having to trace through all the code in the function definition. Function docstrings are placed in the immediate line after the function header and are placed in between triple quotation marks.&lt;/p&gt;
