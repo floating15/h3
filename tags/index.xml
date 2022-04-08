@@ -6,23 +6,7 @@
         <description>Recent content in Tags on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Kaggle</title>
-        <link>https://wanghaoming177.netlify.app/tags/kaggle/</link>
-        <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/tags/kaggle/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Python</title>
-        <link>https://wanghaoming177.netlify.app/tags/python/</link>
-        <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/tags/python/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Data Visualization</title>
         <link>https://wanghaoming177.netlify.app/tags/data-visualization/</link>
         <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
@@ -36,6 +20,14 @@
         <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/tags/machine-learning/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>python</title>
+        <link>https://wanghaoming177.netlify.app/tags/python/</link>
+        <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/tags/python/</guid>
         <description></description>
         </item>
         <item>

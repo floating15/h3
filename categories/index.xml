@@ -7,28 +7,20 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Example</title>
-        <link>https://wanghaoming177.netlify.app/categories/example/</link>
+        <title>Kaggle</title>
+        <link>https://wanghaoming177.netlify.app/categories/kaggle/</link>
         <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://wanghaoming177.netlify.app/categories/example/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Data Analysis</title>
-        <link>https://wanghaoming177.netlify.app/categories/data_analysis/</link>
-        <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/categories/data_analysis/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_analysis/IMG_1362.JPG" alt="Featured image of post Data Analysis" /&gt;</description>
+        <guid>https://wanghaoming177.netlify.app/categories/kaggle/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/kaggle/IMG_1610.JPG" alt="Featured image of post Kaggle" /&gt;</description>
         </item>
         <item>
         <title>Data Science</title>
         <link>https://wanghaoming177.netlify.app/categories/data_science/</link>
-        <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/data_science/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_science/002.jpg" alt="Featured image of post Data Science" /&gt;</description>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_science/IMG_1362.JPG" alt="Featured image of post Data Science" /&gt;</description>
         </item>
         <item>
         <title>Python</title>
@@ -36,15 +28,7 @@
         <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/python/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/python/py.jpeg" alt="Featured image of post Python" /&gt;</description>
-        </item>
-        <item>
-        <title>Data Visualization</title>
-        <link>https://wanghaoming177.netlify.app/categories/data_visualization/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/categories/data_visualization/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_visualization/IMG_1436.JPG" alt="Featured image of post Data Visualization" /&gt;</description>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/python/IMG_1463.JPG" alt="Featured image of post Python" /&gt;</description>
         </item>
         <item>
         <title>Financial Engineering</title>
