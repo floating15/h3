@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Data Science on Haoming Wang</title>
-        <link>https://wanghaoming177.netlify.app/categories/data_science/</link>
-        <description>Recent content in Data Science on Haoming Wang</description>
+        <title>Data Visualization on Haoming Wang</title>
+        <link>https://wanghaoming177.netlify.app/tags/data-visualization/</link>
+        <description>Recent content in Data Visualization on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/data_science/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Data Visualization III (Seaborn)</title>
         <link>https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/</link>
         <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>

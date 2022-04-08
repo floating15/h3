@@ -2,23 +2,25 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Seaborn Introduction Distribution plot The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.
+ [toc]
+Seaborn Introduction Distribution plot The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.
 1 2 3 4  df[&amp;#39;Award_Amount&amp;#39;].plot.hist() plt.show() plt.clf() # &amp;lt;-- Clear out the pandas histogram   Seaborn generally does more statistical analysis on data and can provide more sophisticated insight into the data.'><title>Data Visualization III (Seaborn)</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/'>
 
 <link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='Data Visualization III (Seaborn)'>
 <meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Seaborn Introduction Distribution plot The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.
+ [toc]
+Seaborn Introduction Distribution plot The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.
 1 2 3 4  df[&amp;#39;Award_Amount&amp;#39;].plot.hist() plt.show() plt.clf() # &amp;lt;-- Clear out the pandas histogram   Seaborn generally does more statistical analysis on data and can provide more sophisticated insight into the data.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/'>
 <meta property='og:site_name' content='Haoming Wang'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-04-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-04-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/plt.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Data Visualization' /><meta property='article:published_time' content='2020-04-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-04-23T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Data Visualization III (Seaborn)">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Seaborn Introduction Distribution plot The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.
-1 2 3 4  df[&amp;#39;Award_Amount&amp;#39;].plot.hist() plt.show() plt.clf() # &amp;lt;-- Clear out the pandas histogram   Seaborn generally does more statistical analysis on data and can provide more sophisticated insight into the data."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/plt.png' />
+ [toc]
+Seaborn Introduction Distribution plot The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.
+1 2 3 4  df[&amp;#39;Award_Amount&amp;#39;].plot.hist() plt.show() plt.clf() # &amp;lt;-- Clear out the pandas histogram   Seaborn generally does more statistical analysis on data and can provide more sophisticated insight into the data.">
     </head>
     <body class="
     article-page
@@ -288,31 +290,15 @@
     </ol>
 </aside>
 <main class="main full-width">
-    <article class="has-image main-article">
+    <article class="main-article">
     <header class="article-header">
-        <div class="article-image">
-            <a href="/p/data-visualization-iii-seaborn/">
-                <img src="/p/data-visualization-iii-seaborn/plt_hu140d485c67f4d5b7a5a0d0fc0f23c5fa_113131_800x0_resize_box_3.png"
-                        srcset="/p/data-visualization-iii-seaborn/plt_hu140d485c67f4d5b7a5a0d0fc0f23c5fa_113131_800x0_resize_box_3.png 800w, /p/data-visualization-iii-seaborn/plt_hu140d485c67f4d5b7a5a0d0fc0f23c5fa_113131_1600x0_resize_box_3.png 1600w"
-                        width="800" 
-                        height="800" 
-                        loading="lazy"
-                        alt="Featured image of post Data Visualization III (Seaborn)" />
-                
-            </a>
-        </div>
-    
 
     <div class="article-details">
     
     <header class="article-category">
         
-            <a href="/categories/python/" style="background-color: false; color: false;">
-                Python
-            </a>
-        
-            <a href="/categories/data_visualization/" style="background-color: false; color: false;">
-                Data Visualization
+            <a href="/categories/data_science/" style="background-color: false; color: false;">
+                Data Science
             </a>
         
     </header>
@@ -371,6 +357,7 @@
     <blockquote>
 <p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
 </blockquote>
+<p>[toc]</p>
 <h1 id="seaborn-introduction">Seaborn Introduction</h1>
 <h2 id="distribution-plot">Distribution plot</h2>
 <p>The pandas library supports simple plotting of data, which is very convenient when data is already likely to be in a pandas DataFrame.</p>
@@ -2343,13 +2330,13 @@ BrBG
 </table></div>
 <h2 id="union-frame">Union Frame</h2>
 <p>The final section of this blog will bring all of the concepts together and give a framework for deciding when to use each Seaborn plot.</p>
-<h2 id="univariate-distribution-analysis">Univariate Distribution Analysis</h2>
+<h3 id="univariate-distribution-analysis">Univariate Distribution Analysis</h3>
 <p>One of the first steps in analyzing numerical data is looking at its <strong>distribution</strong>. Seaborn&rsquo;s <code>distplot()</code> combines many of the features of the <code>rugplot()</code>, <code>kdeplot()</code>, and <code>plt.histplot()</code> into a single function. The <code>distplot()</code> function is the best place to start when trying to do distribution analysis with Seaborn.</p>
-<h2 id="regression-analysis">Regression Analysis</h2>
+<h3 id="regression-analysis">Regression Analysis</h3>
 <p>A regression plot is an example of a plot that shows the <strong>relationship</strong> between two variables. matplotlib&rsquo;s <code>scatter()</code> plot is a very simple method to compare the interaction of two variables on the x and y-axis. The <code>lmplot()</code> combines many of these features of the underlying <code>regplot()</code> and <code>residplot()</code> in addition to the ability to plot the data on a <code>FacetGrid()</code>. In many instances, <code>lmplot()</code> is the best function to use for determining linear relationships between data.</p>
-<h2 id="categorical-plots">Categorical Plots</h2>
+<h3 id="categorical-plots">Categorical Plots</h3>
 <p>Seaborn has many types of categorical plots as well. In most scenarios, it makes sense to use one of the categorical plots such as the <code>boxplot()</code> or <code>violinplot()</code> to examine the distribution of the variables. Then, follow up with the statistical estimation plots such as the point, bar, or countplot. If you need to facet the data across rows or columns, use a <code>factorplot()</code>.</p>
-<h2 id="relation">Relation</h2>
+<h3 id="relation">Relation</h3>
 <p>The <code>pairplot()</code> and <code>jointplot()</code> visualizations are going to be most useful after you have done some preliminary analysis of regressions or distributions of the data. Once you are familiar with the data, the <code>pairplot()</code> and <code>jointplot()</code> can be very useful in understanding how two or more variables interact with each other.</p>
 
 </section>
@@ -2357,6 +2344,12 @@ BrBG
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/data-visualization/">Data Visualization</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -2409,20 +2402,9 @@ BrBG
         <div class="flex article-list--tile">
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/data-visualization-ii-seaborn/">
         
-        
-            <div class="article-image">
-                <img src="/p/data-visualization-ii-seaborn/plt2.b331d3de173badb1f67b60eda5491275_hu140d485c67f4d5b7a5a0d0fc0f23c5fa_179637_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Data Visualization II (Seaborn)"
-                        
-                        data-hash="md5-szHT3hc7rbH2e2DtpUkSdQ==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -2432,20 +2414,9 @@ BrBG
 </article>
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/data-visualization-i-matplotlib/">
         
-        
-            <div class="article-image">
-                <img src="/p/data-visualization-i-matplotlib/plt1.f1cad71a43248674730f47ad23e344b6_hu5292675fd2347f17f18b74254344a122_66384_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Data Visualization I (Matplotlib)"
-                        
-                        data-hash="md5-8crXGkMkhnRzD0etI&#43;NEtg==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -2648,10 +2619,6 @@ BrBG
         <li><a href="#pairgrid-and-pairplot"><code>PairGrid</code> and <code>pairplot</code></a></li>
         <li><a href="#jointgrid-and-jointplot"><code>JointGrid</code> and <code>jointplot</code></a></li>
         <li><a href="#union-frame">Union Frame</a></li>
-        <li><a href="#univariate-distribution-analysis">Univariate Distribution Analysis</a></li>
-        <li><a href="#regression-analysis">Regression Analysis</a></li>
-        <li><a href="#categorical-plots">Categorical Plots</a></li>
-        <li><a href="#relation">Relation</a></li>
       </ol>
     </li>
   </ol>
