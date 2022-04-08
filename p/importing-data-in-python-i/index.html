@@ -379,27 +379,14 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">CHAPTER 1. Loomings.
+</div><pre tabindex="0"><code>CHAPTER 1. Loomings.
 
 Call me Ishmael. Some years ago--never mind how long precisely--having
 little or no money in my purse, and nothing particular to interest me on
 shore, I thought I would sail abou
 False
 True
-</code></pre></td></tr></table>
-</div>
-</div><blockquote>
+</code></pre><blockquote>
 <p>If you wanted to open a file in order to write to it, you would pass it the argument <code>mode=&quot;w&quot;</code>.</p>
 </blockquote>
 <p>using a <code>with</code> statement. This allows you to create a context in which you can execute commands with the file open. Once out of this context, the file will be closed, for this reason, it is called a <strong>Context Manager</strong>.</p>
@@ -421,20 +408,7 @@ True
     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">CHAPTER 1. Loomings.
+</div><pre tabindex="0"><code>CHAPTER 1. Loomings.
 
 
 
@@ -443,9 +417,7 @@ Call me Ishmael. Some years ago--never mind how long precisely--having
 little or no money in my purse, and nothing particular to interest me on
 
 shore, I thought I would sail about a little and see the watery part of
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="12-importing-flat-files-using-numpy">1.2 Importing flat files using <code>NumPy</code></h2>
+</code></pre><h2 id="12-importing-flat-files-using-numpy">1.2 Importing flat files using <code>NumPy</code></h2>
 <p>If all the data are numerical, you can use the package <code>numpy</code> to import the data as a numpy array with the NumPy functions <a class="link" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html"  target="_blank" rel="noopener"
     >loadtxt( )</a>. We call <code>loadtxt()</code> and pass it the filename as the first argument, along with the <code>delimiter</code> as the 2nd argument. Note that the default delimiter is any white space so we’ll usually need to specify it explicitly.</p>
 <div class="highlight"><div class="chroma">
@@ -488,15 +460,8 @@ shore, I thought I would sail about a little and see the watery part of
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;numpy.ndarray&#39;&gt; (100, 785)
-</code></pre></td></tr></table>
-</div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011031415.png"
+</div><pre tabindex="0"><code>&lt;class 'numpy.ndarray'&gt; (100, 785)
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011031415.png"
 	
 	
 	
@@ -521,23 +486,12 @@ shore, I thought I would sail about a little and see the watery part of
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[[1. 0.]
+</div><pre tabindex="0"><code>[[1. 0.]
  [0. 0.]
  [1. 0.]
  [4. 0.]
  [0. 0.]]
-</code></pre></td></tr></table>
-</div>
-</div><p>Notice that <code>loadtxt</code> tends to <strong>break down</strong> when we have <strong>mixed datatypes</strong>, for example, columns consisting of floats and columns consisting of strings. And you should import in different datatypes respectively.</p>
+</code></pre><p>Notice that <code>loadtxt</code> tends to <strong>break down</strong> when we have <strong>mixed datatypes</strong>, for example, columns consisting of floats and columns consisting of strings. And you should import in different datatypes respectively.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -566,17 +520,9 @@ shore, I thought I would sail about a little and see the watery part of
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Time&#39; &#39;Percent&#39;]
+</div><pre tabindex="0"><code>['Time' 'Percent']
 [0.    0.357]
-</code></pre></td></tr></table>
-</div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011040444.png"
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011040444.png"
 	
 	
 	
@@ -606,35 +552,18 @@ shore, I thought I would sail about a little and see the watery part of
 <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">array([( 1, 0, 3, b&#39;male&#39;, 22., 1, 0, b&#39;A/5 21171&#39;,  7.25  , b&#39;&#39;, b&#39;S&#39;),
-       ( 2, 1, 1, b&#39;female&#39;, 38., 1, 0, b&#39;PC 17599&#39;, 71.2833, b&#39;C85&#39;, b&#39;C&#39;),
-       ( 3, 1, 3, b&#39;female&#39;, 26., 0, 0, b&#39;STON/O2. 3101282&#39;,  7.925 , b&#39;&#39;, b&#39;S&#39;),
-       ( 4, 1, 1, b&#39;female&#39;, 35., 1, 0, b&#39;113803&#39;, 53.1   , b&#39;C123&#39;, b&#39;S&#39;),
-       ( 5, 0, 3, b&#39;male&#39;, 35., 0, 0, b&#39;373450&#39;,  8.05  , b&#39;&#39;, b&#39;S&#39;),
-       ( 6, 0, 3, b&#39;male&#39;, nan, 0, 0, b&#39;330877&#39;,  8.4583, b&#39;&#39;, b&#39;Q&#39;),
-       ( 7, 0, 1, b&#39;male&#39;, 54., 0, 0, b&#39;17463&#39;, 51.8625, b&#39;E46&#39;, b&#39;S&#39;),
-       ( 8, 0, 3, b&#39;male&#39;,  2., 3, 1, b&#39;349909&#39;, 21.075 , b&#39;&#39;, b&#39;S&#39;),
-       ( 9, 1, 3, b&#39;female&#39;, 27., 0, 2, b&#39;347742&#39;, 11.1333, b&#39;&#39;, b&#39;S&#39;),
-       (10, 1, 2, b&#39;female&#39;, 14., 1, 0, b&#39;237736&#39;, 30.0708, b&#39;&#39;, b&#39;C&#39;)],
-      dtype=[(&#39;PassengerId&#39;, &#39;&lt;i8&#39;), (&#39;Survived&#39;, &#39;&lt;i8&#39;), (&#39;Pclass&#39;, &#39;&lt;i8&#39;), (&#39;Sex&#39;, &#39;S6&#39;), (&#39;Age&#39;, &#39;&lt;f8&#39;), (&#39;SibSp&#39;, &#39;&lt;i8&#39;), (&#39;Parch&#39;, &#39;&lt;i8&#39;), (&#39;Ticket&#39;, &#39;S18&#39;), (&#39;Fare&#39;, &#39;&lt;f8&#39;), (&#39;Cabin&#39;, &#39;S15&#39;), (&#39;Embarked&#39;, &#39;S1&#39;)])
-</code></pre></td></tr></table>
-</div>
-</div><p>In addition to <code>genfromtxt</code>, the <code>numpy</code> module provides several convenience functions derived from <code>genfromtxt</code>. These functions work the same way as the original, but they have different default values.</p>
+</div><pre tabindex="0"><code>array([( 1, 0, 3, b'male', 22., 1, 0, b'A/5 21171',  7.25  , b'', b'S'),
+       ( 2, 1, 1, b'female', 38., 1, 0, b'PC 17599', 71.2833, b'C85', b'C'),
+       ( 3, 1, 3, b'female', 26., 0, 0, b'STON/O2. 3101282',  7.925 , b'', b'S'),
+       ( 4, 1, 1, b'female', 35., 1, 0, b'113803', 53.1   , b'C123', b'S'),
+       ( 5, 0, 3, b'male', 35., 0, 0, b'373450',  8.05  , b'', b'S'),
+       ( 6, 0, 3, b'male', nan, 0, 0, b'330877',  8.4583, b'', b'Q'),
+       ( 7, 0, 1, b'male', 54., 0, 0, b'17463', 51.8625, b'E46', b'S'),
+       ( 8, 0, 3, b'male',  2., 3, 1, b'349909', 21.075 , b'', b'S'),
+       ( 9, 1, 3, b'female', 27., 0, 2, b'347742', 11.1333, b'', b'S'),
+       (10, 1, 2, b'female', 14., 1, 0, b'237736', 30.0708, b'', b'C')],
+      dtype=[('PassengerId', '&lt;i8'), ('Survived', '&lt;i8'), ('Pclass', '&lt;i8'), ('Sex', 'S6'), ('Age', '&lt;f8'), ('SibSp', '&lt;i8'), ('Parch', '&lt;i8'), ('Ticket', 'S18'), ('Fare', '&lt;f8'), ('Cabin', 'S15'), ('Embarked', 'S1')])
+</code></pre><p>In addition to <code>genfromtxt</code>, the <code>numpy</code> module provides several convenience functions derived from <code>genfromtxt</code>. These functions work the same way as the original, but they have different default values.</p>
 <ul>
 <li>
 <p><code>recfromtxt</code>
@@ -657,19 +586,10 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[(1, 0, 3, b&#39;male&#39;, 22., 1, 0, b&#39;A/5 21171&#39;,  7.25  , b&#39;&#39;, b&#39;S&#39;)
-(2, 1, 1, b&#39;female&#39;, 38., 1, 0, b&#39;PC 17599&#39;, 71.2833, b&#39;C85&#39;, b&#39;C&#39;)
-(3, 1, 3, b&#39;female&#39;, 26., 0, 0, b&#39;STON/O2. 3101282&#39;,  7.925 , b&#39;&#39;, b&#39;S&#39;)]
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="13-importing-flat-files-using-pandas">1.3 Importing flat files using <code>Pandas</code></h2>
+</div><pre tabindex="0"><code>[(1, 0, 3, b'male', 22., 1, 0, b'A/5 21171',  7.25  , b'', b'S')
+(2, 1, 1, b'female', 38., 1, 0, b'PC 17599', 71.2833, b'C85', b'C')
+(3, 1, 3, b'female', 26., 0, 0, b'STON/O2. 3101282',  7.925 , b'', b'S')]
+</code></pre><h2 id="13-importing-flat-files-using-pandas">1.3 Importing flat files using <code>Pandas</code></h2>
 <p>If we wish to import a CSV in the most basic case all we need to do is to call the function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"  target="_blank" rel="noopener"
     >read_csv( )</a> and supply it with a single argument, the name of the file, it will return a DataFrame object of the file.</p>
 <blockquote>
@@ -691,15 +611,8 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data_array</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;numpy.ndarray&#39;&gt;
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</div><pre tabindex="0"><code>&lt;class 'numpy.ndarray'&gt;
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -739,24 +652,7 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">PassengerId  Survived  Pclass     Sex   Age  ...  Parch            Ticket    Fare  Cabin Embarked
+</div><pre tabindex="0"><code>PassengerId  Survived  Pclass     Sex   Age  ...  Parch            Ticket    Fare  Cabin Embarked
 0            1         0       3    male  22.0  ...      0         A/5 21171   7.250    NaN       S 
 1            2         1       1  female  38.0  ...      0          PC 17599     NaN    NaN      NaN   # &lt;-- Notice here
 2            3         1       3  female  26.0  ...      0  STON/O2. 3101282   7.925    NaN        S
@@ -765,13 +661,11 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 
   PassengerId\tSurvived\tPclass\tSex\tAge\tSibSp\tParch\tTicket\tFare\tCabin\tEmbarked
 0  1\t0\t3\tmale\t22.0\t1\t0\tA/5 21171\t7.25\tNo...                                  
-1  2\t1\t1\tfemale\t38.0\t1\t0\tPC 17599#to\t71.2... # &lt;-- Notice here &#34;#&#34;                                  
+1  2\t1\t1\tfemale\t38.0\t1\t0\tPC 17599#to\t71.2... # &lt;-- Notice here &quot;#&quot;                                  
 2  3\t1\t3\tfemale\t26.0\t0\t0\tSTON/O2. 3101282\...                                  
 3  4\t1\t1\tfemale\t35.0\t1\t0\t113803\t53.1\tC12...                                  
 4       5\t0\t3\tmale\t35.0\t0\t0\t373450\t8.05\t\tS    
-</code></pre></td></tr></table>
-</div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011127745.png"
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204011127745.png"
 	
 	
 	
@@ -811,17 +705,9 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;name&#39;: &#39;Bob&#39;, &#39;age&#39;: 20, &#39;score&#39;: 88}
-{&#39;name&#39;: &#39;Bob&#39;, &#39;age&#39;: 20, &#39;score&#39;: 88}
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</div><pre tabindex="0"><code>{'name': 'Bob', 'age': 20, 'score': 88}
+{'name': 'Bob', 'age': 20, 'score': 88}
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -829,21 +715,11 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">! hexdump -x ./dump.pkl
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0000000    0480    2495    0000    0000    0000    7d00    2894    048c
+</div><pre tabindex="0"><code>0000000    0480    2495    0000    0000    0000    7d00    2894    048c
 0000010    616e    656d    8c94    4203    626f    8c94    6103    6567
 0000020    4b94    8c14    7305    6f63    6572    4b94    7558    002e
 000002f
-</code></pre></td></tr></table>
-</div>
-</div><p>An Excel working book generally consists of a number of working sheets, and each working sheets has a mass of working cells. There are many ways (like <code>openpyxl</code> and <code>pyexcel</code> module) to import Excel files and we&rsquo;ll use <code>pandas</code> to do so because it produces dataframes natively.</p>
+</code></pre><p>An Excel working book generally consists of a number of working sheets, and each working sheets has a mass of working cells. There are many ways (like <code>openpyxl</code> and <code>pyexcel</code> module) to import Excel files and we&rsquo;ll use <code>pandas</code> to do so because it produces dataframes natively.</p>
 <p>We can use the function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.ExcelFile.parse.html?highlight=excelfile"  target="_blank" rel="noopener"
     >Excelfile</a> to assign an Excel file to a variable <code>data</code>. As an Excel file consists of sheets, the first thing to do is figure out what the sheets are. This is straightforward with the <code>data.sheet_names</code> attribute.</p>
 <div class="highlight"><div class="chroma">
@@ -856,15 +732,8 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <span class="n">data</span><span class="o">.</span><span class="n">sheet_names</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Sheet1&#39;, &#39;Sheet2&#39;, &#39;Sheet3&#39;, &#39;Sheet4&#39;, &#39;Sheet5&#39;, &#39;Sheet6&#39;]
-</code></pre></td></tr></table>
-</div>
-</div><p>To then load a particular sheet as a dataframe, we need only apply the method <code>parse()</code> to the object <code>data</code> with a single argument, which is either the name as a string or the index as a float of the sheet.</p>
+</div><pre tabindex="0"><code>['Sheet1', 'Sheet2', 'Sheet3', 'Sheet4', 'Sheet5', 'Sheet6']
+</code></pre><p>To then load a particular sheet as a dataframe, we need only apply the method <code>parse()</code> to the object <code>data</code> with a single argument, which is either the name as a string or the index as a float of the sheet.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -883,24 +752,7 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 <span class="nb">print</span><span class="p">(</span><span class="n">df6</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">       课程名称  学分  成绩    课程名称.1  学分.1  成绩.1
+</div><pre tabindex="0"><code>       课程名称  学分  成绩    课程名称.1  学分.1  成绩.1
 0     实变函数论   3  97  金融衍生品定价Ⅰ     4    93
 1       投资学   4  96     金融经济学     4    93
 2   概率论（理科）   4  96     高等数学Ⅱ     5    93
@@ -913,9 +765,7 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
 9     偏微分方程   3  94    金融风险管理     4    90
 10      财政学   4  94       会计学     4    90
 11    计量经济学   4  93      公司金融     4    80
-</code></pre></td></tr></table>
-</div>
-</div><blockquote>
+</code></pre><blockquote>
 <p><code>pd.ExcelFile.parse()</code> is equivalent to <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html"  target="_blank" rel="noopener"
     >pd.read_excel</a> method.</p>
 </blockquote>
@@ -1052,21 +902,11 @@ Like <code>recfromtxt</code>, but with a default <code>delimiter=&quot;,&quot;</
     <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;h5py._hl.files.File&#39;&gt;
+</div><pre tabindex="0"><code>&lt;class 'h5py._hl.files.File'&gt;
 meta
 quality
 strain
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1098,15 +938,8 @@ strain
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Strain
-</code></pre></td></tr></table>
-</div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021202367.png"
+</div><pre tabindex="0"><code>Strain
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021202367.png"
 	
 	
 	
@@ -1133,15 +966,8 @@ strain
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;class &#39;dict&#39;&gt;
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</div><pre tabindex="0"><code>&lt;class 'dict'&gt;
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1167,19 +993,10 @@ strain
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">dict_keys([&#39;__header__&#39;, &#39;__version__&#39;, &#39;__globals__&#39;, &#39;rfpCyt&#39;, &#39;rfpNuc&#39;, &#39;cfpNuc&#39;, &#39;cfpCyt&#39;, &#39;yfpNuc&#39;, &#39;yfpCyt&#39;, &#39;CYratioCyt&#39;])
-&lt;class &#39;numpy.ndarray&#39;&gt;
+</div><pre tabindex="0"><code>dict_keys(['__header__', '__version__', '__globals__', 'rfpCyt', 'rfpNuc', 'cfpNuc', 'cfpCyt', 'yfpNuc', 'yfpCyt', 'CYratioCyt'])
+&lt;class 'numpy.ndarray'&gt;
 (200, 137)
-</code></pre></td></tr></table>
-</div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021251238.png"
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204021251238.png"
 	
 	
 	
@@ -1227,15 +1044,8 @@ strain
 <span class="nb">print</span><span class="p">(</span><span class="n">table_names</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Album&#39;, &#39;Artist&#39;, &#39;Customer&#39;, &#39;Employee&#39;, &#39;Genre&#39;, &#39;Invoice&#39;, &#39;InvoiceLine&#39;, &#39;MediaType&#39;, &#39;Playlist&#39;, &#39;PlaylistTrack&#39;, &#39;Track&#39;]
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="32-querying-relational-databases-in-python">3.2 Querying relational databases in Python</h2>
+</div><pre tabindex="0"><code>['Album', 'Artist', 'Customer', 'Employee', 'Genre', 'Invoice', 'InvoiceLine', 'MediaType', 'Playlist', 'PlaylistTrack', 'Track']
+</code></pre><h2 id="32-querying-relational-databases-in-python">3.2 Querying relational databases in Python</h2>
 <p>The workflow of SQL querying will be as follows.</p>
 <ol>
 <li><strong>import the required packages and functions;</strong></li>
@@ -1280,25 +1090,13 @@ To close the connection, execute <code>close()</code> method on connection objec
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">   AlbumId                                  Title  ArtistId
+</div><pre tabindex="0"><code>   AlbumId                                  Title  ArtistId
 0        1  For Those About To Rock We Salute You         1
 1        2                      Balls to the Wall         2
 2        3                      Restless and Wild         2
 3        4                      Let There Be Rock         1
 4        5                               Big Ones         3
-</code></pre></td></tr></table>
-</div>
-</div><p>You can also leverage the <strong>context manager</strong> construct to open a connection, which will save you the trouble of closing the connection.</p>
+</code></pre><p>You can also leverage the <strong>context manager</strong> construct to open a connection, which will save you the trouble of closing the connection.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1321,23 +1119,12 @@ To close the connection, execute <code>close()</code> method on connection objec
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">3
+</div><pre tabindex="0"><code>3
     LastName                Title
 0    Adams      General Manager
 1  Edwards        Sales Manager
 2  Peacock  Sales Support Agent
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1369,23 +1156,12 @@ To close the connection, execute <code>close()</code> method on connection objec
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">FirstName                Title  ReportsTo  ... Country PostalCode              Phone                Fax                     Email
+</div><pre tabindex="0"><code>FirstName                Title  ReportsTo  ... Country PostalCode              Phone                Fax                     Email
 0           4     Park  Margaret  Sales Support Agent          2  ...  Canada    T2P 5G3  +1 (403) 263-4423  +1 (403) 263-4289  margaret@chinookcorp.com
 1           5  Johnson     Steve  Sales Support Agent          2  ...  Canada    T3B 1Y7   1 (780) 836-9987   1 (780) 836-9543     steve@chinookcorp.com
 2           3  Peacock      Jane  Sales Support Agent          2  ...  Canada    T2P 5M5  +1 (403) 262-3443  +1 (403) 262-6712      jane@chinookcorp.com
 
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="33-querying-relational-databases-directly-with-pandas">3.3 Querying relational databases directly with pandas</h2>
+</code></pre><h2 id="33-querying-relational-databases-directly-with-pandas">3.3 Querying relational databases directly with pandas</h2>
 <p>You can actually query datebase in 2 line, utilizing the pandas function <a class="link" href="https://pandas.pydata.org/docs/reference/api/pandas.read_sql_query.html"  target="_blank" rel="noopener"
     >read_sql_query</a> and passing it 2 arguments. The first argument will be the query you wish to make, the 2nd argument the engine you want to connect to.</p>
 <div class="highlight"><div class="chroma">
@@ -1406,25 +1182,13 @@ To close the connection, execute <code>close()</code> method on connection objec
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    AlbumId                                  Title  ArtistId
+</div><pre tabindex="0"><code>    AlbumId                                  Title  ArtistId
 0        1  For Those About To Rock We Salute You         1
 1        2                      Balls to the Wall         2
 2        3                      Restless and Wild         2
 3        4                      Let There Be Rock         1
 4        5                               Big Ones         3
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1446,21 +1210,11 @@ To close the connection, execute <code>close()</code> method on connection objec
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">EmployeeId  LastName FirstName       Title  ReportsTo  ... Country PostalCode              Phone                Fax                    Email
+</div><pre tabindex="0"><code>EmployeeId  LastName FirstName       Title  ReportsTo  ... Country PostalCode              Phone                Fax                    Email
 0           8  Callahan     Laura    IT Staff          6  ...  Canada    T1H 1Y8  +1 (403) 467-3351  +1 (403) 467-8772    laura@chinookcorp.com
 1           7      King    Robert    IT Staff          6  ...  Canada    T1K 5N8  +1 (403) 456-9986  +1 (403) 456-8485   robert@chinookcorp.com
 2           6  Mitchell   Michael  IT Manager          1  ...  Canada    T3B 0C5  +1 (403) 246-9887  +1 (403) 246-9899  michael@chinookcorp.com
-</code></pre></td></tr></table>
-</div>
-</div><p>Recall SQL inner join syntax:</p>
+</code></pre><p>Recall SQL inner join syntax:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1487,25 +1241,13 @@ To close the connection, execute <code>close()</code> method on connection objec
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">                                    Title       Name
+</div><pre tabindex="0"><code>                                    Title       Name
 0  For Those About To Rock We Salute You      AC/DC
 1                      Balls to the Wall     Accept
 2                      Restless and Wild     Accept
 3                      Let There Be Rock      AC/DC
 4                               Big Ones  Aerosmith
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1523,25 +1265,13 @@ To close the connection, execute <code>close()</code> method on connection objec
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    PlaylistId  TrackId  TrackId              Name  AlbumId  ...  GenreId  Composer Milliseconds    Bytes  UnitPrice
+</div><pre tabindex="0"><code>    PlaylistId  TrackId  TrackId              Name  AlbumId  ...  GenreId  Composer Milliseconds    Bytes  UnitPrice
 0           1     3390     3390  One and the Same      271  ...       23      None       217732  3559040       0.99
 1           1     3392     3392     Until We Fall      271  ...       23      None       230758  3766605       0.99
 2           1     3393     3393     Original Fire      271  ...       23      None       218916  3577821       0.99
 3           1     3394     3394       Broken City      271  ...       23      None       228366  3728955       0.99
 4           1     3395     3395          Somedays      271  ...       23      None       213831  3497176       0.99
-</code></pre></td></tr></table>
-</div>
-</div>
+</code></pre>
 </section>
 
 

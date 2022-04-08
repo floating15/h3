@@ -52,19 +52,7 @@
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;superhero&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;jay garrick
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jay garrick
 barry allen
 wally west
 bart allen
@@ -72,9 +60,7 @@ jay garrick
 barry allen
 wally west
 bart allen
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;You can also print all values of an iterator in one fell swoop using the &lt;code&gt;*&lt;/code&gt; operator. This &lt;code&gt;*&lt;/code&gt; operator unpacks all elements of an &lt;strong&gt;iterator or an iterable&lt;/strong&gt;. Be warned, however, once you do so, you cannot do it (the iterator instead of the iterable) again as there are no more values to iterate through. We would have to redefine our iterator to do so.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can also print all values of an iterator in one fell swoop using the &lt;code&gt;*&lt;/code&gt; operator. This &lt;code&gt;*&lt;/code&gt; operator unpacks all elements of an &lt;strong&gt;iterator or an iterable&lt;/strong&gt;. Be warned, however, once you do so, you cannot do it (the iterator instead of the iterable) again as there are no more values to iterate through. We would have to redefine our iterator to do so.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -105,43 +91,22 @@ bart allen
 &lt;span class=&#34;n&#34;&gt;pr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;word1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;ob:  dfghjhgfds
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ob:  dfghjhgfds
 *ob:  d f g h j h g f d s
-type:  &amp;lt;class &amp;#39;str&amp;#39;&amp;gt; 
+type:  &amp;lt;class &#39;str&#39;&amp;gt; 
 
 ob:  &amp;lt;str_iterator object at 0x7fc5787b2ac0&amp;gt;
 *ob:  d f g h j h g f d s
-type:  &amp;lt;class &amp;#39;str_iterator&amp;#39;&amp;gt; 
+type:  &amp;lt;class &#39;str_iterator&#39;&amp;gt; 
 
 ob:  dfghjhgfds
 *ob:  d f g h j h g f d s
-type:  &amp;lt;class &amp;#39;str&amp;#39;&amp;gt; 
+type:  &amp;lt;class &#39;str&#39;&amp;gt; 
 
 ob:  &amp;lt;str_iterator object at 0x7fc5787b2ac0&amp;gt;
 *ob: 
-type:  &amp;lt;class &amp;#39;str_iterator&amp;#39;&amp;gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;You can also assembles the elements, in the iterator, into a list with &lt;code&gt;list()&lt;/code&gt; method&lt;/p&gt;
+type:  &amp;lt;class &#39;str_iterator&#39;&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can also assembles the elements, in the iterator, into a list with &lt;code&gt;list()&lt;/code&gt; method&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -156,17 +121,9 @@ type:  &amp;lt;class &amp;#39;str_iterator&amp;#39;&amp;gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;word1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;lt;str_iterator object at 0x7fc5787b2df0&amp;gt;
-[&amp;#39;d&amp;#39;, &amp;#39;f&amp;#39;, &amp;#39;g&amp;#39;, &amp;#39;h&amp;#39;, &amp;#39;j&amp;#39;, &amp;#39;h&amp;#39;, &amp;#39;g&amp;#39;, &amp;#39;f&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;s&amp;#39;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;We mentioned before that dictionaries and file connections are iterables as well. To iterate over the key-value pairs of a Python dictionary, we need to unpack them by applying the &lt;code&gt;items()&lt;/code&gt; method to the dictionary.&lt;/p&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;str_iterator object at 0x7fc5787b2df0&amp;gt;
+[&#39;d&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;j&#39;, &#39;h&#39;, &#39;g&#39;, &#39;f&#39;, &#39;d&#39;, &#39;s&#39;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We mentioned before that dictionaries and file connections are iterables as well. To iterate over the key-value pairs of a Python dictionary, we need to unpack them by applying the &lt;code&gt;items()&lt;/code&gt; method to the dictionary.&lt;/p&gt;
 &lt;p&gt;w.r.t. file connections, here you can see how to use the &lt;code&gt;iter()&lt;/code&gt; and &lt;code&gt;next()&lt;/code&gt; methods to return the lines from a file.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -216,27 +173,14 @@ the third line
 &lt;span class=&#34;n&#34;&gt;pr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;it&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;ob:  &amp;lt;_io.TextIOWrapper name=&amp;#39;file.txt&amp;#39; mode=&amp;#39;r&amp;#39; encoding=&amp;#39;UTF-8&amp;#39;&amp;gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ob:  &amp;lt;_io.TextIOWrapper name=&#39;file.txt&#39; mode=&#39;r&#39; encoding=&#39;UTF-8&#39;&amp;gt;
 the first line
 
 *ob:  the second line  # &amp;lt;-- Notice here
  the third line
 
-type:  &amp;lt;class &amp;#39;_io.TextIOWrapper&amp;#39;&amp;gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;operating-iterator&#34;&gt;Operating iterator&lt;/h2&gt;
+type:  &amp;lt;class &#39;_io.TextIOWrapper&#39;&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;operating-iterator&#34;&gt;Operating iterator&lt;/h2&gt;
 &lt;p&gt;Now, we are going to introduce two useful functions. The first function, &lt;code&gt;enumerate&lt;/code&gt;, will allow us to add a counter to any iterable while the second function, &lt;code&gt;zip&lt;/code&gt;, will allow us to stitch together an arbitrary number of iterables.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;enumerate&lt;/code&gt; is a function that &lt;strong&gt;takes&lt;/strong&gt; any iterable as argument, such as a list, and &lt;strong&gt;returns&lt;/strong&gt; a special enumerate object, which consists of pairs containing the elements of the original iterable, along with their index within the iterable. The enumerate object itself is also an &lt;strong&gt;iterable&lt;/strong&gt; and we can loop over it while unpacking its elements using the clause for index, value in enumerate(avengers). The default behavior of enumerate to begin indexing at 0. However, you can alter this with &lt;code&gt;start&lt;/code&gt;argument, such as &lt;code&gt;start=10&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -261,21 +205,11 @@ type:  &amp;lt;class &amp;#39;_io.TextIOWrapper&amp;#39;&amp;gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;etx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;a s d f g h j k l l
-[&amp;#39;a&amp;#39;, &amp;#39;s&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;f&amp;#39;, &amp;#39;g&amp;#39;, &amp;#39;h&amp;#39;, &amp;#39;j&amp;#39;, &amp;#39;k&amp;#39;, &amp;#39;l&amp;#39;, &amp;#39;l&amp;#39;]
-(0, &amp;#39;a&amp;#39;) (1, &amp;#39;s&amp;#39;) (2, &amp;#39;d&amp;#39;) (3, &amp;#39;f&amp;#39;) (4, &amp;#39;g&amp;#39;) (5, &amp;#39;h&amp;#39;) (6, &amp;#39;j&amp;#39;) (7, &amp;#39;k&amp;#39;) (8, &amp;#39;l&amp;#39;) (9, &amp;#39;l&amp;#39;)
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;a s d f g h j k l l
+[&#39;a&#39;, &#39;s&#39;, &#39;d&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;l&#39;]
+(0, &#39;a&#39;) (1, &#39;s&#39;) (2, &#39;d&#39;) (3, &#39;f&#39;) (4, &#39;g&#39;) (5, &#39;h&#39;) (6, &#39;j&#39;) (7, &#39;k&#39;) (8, &#39;l&#39;) (9, &#39;l&#39;)
 [] # &amp;lt;-- lazy evaluation
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Notice that The enumerate object has the characteristics of &lt;strong&gt;lazy evaluation&lt;/strong&gt;. The elements that have been visited in the enumerate object cannot be accessed again, and the use of square brackets to index the elements is not supported. (Objects like zip, filter, map, etc. have similar characteristics.)&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notice that The enumerate object has the characteristics of &lt;strong&gt;lazy evaluation&lt;/strong&gt;. The elements that have been visited in the enumerate object cannot be accessed again, and the use of square brackets to index the elements is not supported. (Objects like zip, filter, map, etc. have similar characteristics.)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -298,19 +232,10 @@ type:  &amp;lt;class &amp;#39;_io.TextIOWrapper&amp;#39;&amp;gt;
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mtx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;lt;map object at 0x7fc5a95e7b20&amp;gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;map object at 0x7fc5a95e7b20&amp;gt;
 a! s! d! f! g! h! j! k! l! l!
 []
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Now let&amp;rsquo;s move on to &lt;code&gt;zip&lt;/code&gt;, which &lt;strong&gt;accepts&lt;/strong&gt; an arbitrary number of iterables and &lt;strong&gt;returns an iterator&lt;/strong&gt; of tuples. We could use a &lt;code&gt;for&lt;/code&gt; loop to iterate over the zip object and print the tuples. We could also have used the &lt;code&gt;*&lt;/code&gt; operator or &lt;code&gt;list&lt;/code&gt; method to print all the elements.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now let&amp;rsquo;s move on to &lt;code&gt;zip&lt;/code&gt;, which &lt;strong&gt;accepts&lt;/strong&gt; an arbitrary number of iterables and &lt;strong&gt;returns an iterator&lt;/strong&gt; of tuples. We could use a &lt;code&gt;for&lt;/code&gt; loop to iterate over the zip object and print the tuples. We could also have used the &lt;code&gt;*&lt;/code&gt; operator or &lt;code&gt;list&lt;/code&gt; method to print all the elements.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -333,35 +258,18 @@ a! s! d! f! g! h! j! k! l! l!
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;lt;zip object at 0x7fc5787fce40&amp;gt;
-(&amp;#39;a&amp;#39;, &amp;#39;q&amp;#39;) 
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;zip object at 0x7fc5787fce40&amp;gt;
+(&#39;a&#39;, &#39;q&#39;) 
 
-(&amp;#39;s&amp;#39;, &amp;#39;w&amp;#39;)
-(&amp;#39;d&amp;#39;, &amp;#39;e&amp;#39;)
-(&amp;#39;f&amp;#39;, &amp;#39;r&amp;#39;)
-(&amp;#39;g&amp;#39;, &amp;#39;t&amp;#39;)
-(&amp;#39;h&amp;#39;, &amp;#39;y&amp;#39;)
-(&amp;#39;j&amp;#39;, &amp;#39;u&amp;#39;)
-(&amp;#39;k&amp;#39;, &amp;#39;i&amp;#39;)
-(&amp;#39;l&amp;#39;, &amp;#39;o&amp;#39;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Notice the difference between &lt;code&gt;zip()&lt;/code&gt;, &lt;code&gt;*zip()&lt;/code&gt;, and &lt;code&gt;zip(*)&lt;/code&gt;.&lt;/p&gt;
+(&#39;s&#39;, &#39;w&#39;)
+(&#39;d&#39;, &#39;e&#39;)
+(&#39;f&#39;, &#39;r&#39;)
+(&#39;g&#39;, &#39;t&#39;)
+(&#39;h&#39;, &#39;y&#39;)
+(&#39;j&#39;, &#39;u&#39;)
+(&#39;k&#39;, &#39;i&#39;)
+(&#39;l&#39;, &#39;o&#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notice the difference between &lt;code&gt;zip()&lt;/code&gt;, &lt;code&gt;*zip()&lt;/code&gt;, and &lt;code&gt;zip(*)&lt;/code&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;zip(it1, it2)&lt;/code&gt; can assemble two iterable object &lt;code&gt;it1&lt;/code&gt;, &lt;code&gt;it2&lt;/code&gt; to a zip object; &lt;code&gt;zip(it1)&lt;/code&gt; assemble a iterable object &lt;code&gt;it&lt;/code&gt; with an empty iterable object.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;*z&lt;/code&gt; can show a zip object;&lt;/li&gt;
@@ -391,21 +299,11 @@ a! s! d! f! g! h! j! k! l! l!
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;zip: &amp;lt;zip object at 0x7fc5a95b2ec0&amp;gt;
-*zip: (&amp;#39;a&amp;#39;, &amp;#39;q&amp;#39;) (&amp;#39;s&amp;#39;, &amp;#39;w&amp;#39;) (&amp;#39;d&amp;#39;, &amp;#39;e&amp;#39;) (&amp;#39;f&amp;#39;, &amp;#39;r&amp;#39;) (&amp;#39;g&amp;#39;, &amp;#39;t&amp;#39;) (&amp;#39;h&amp;#39;, &amp;#39;y&amp;#39;) (&amp;#39;j&amp;#39;, &amp;#39;u&amp;#39;) (&amp;#39;k&amp;#39;, &amp;#39;i&amp;#39;) (&amp;#39;l&amp;#39;, &amp;#39;o&amp;#39;)
-zip(*): (&amp;#39;a&amp;#39;, &amp;#39;s&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;f&amp;#39;, &amp;#39;g&amp;#39;, &amp;#39;h&amp;#39;, &amp;#39;j&amp;#39;, &amp;#39;k&amp;#39;, &amp;#39;l&amp;#39;) (&amp;#39;q&amp;#39;, &amp;#39;w&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;r&amp;#39;, &amp;#39;t&amp;#39;, &amp;#39;y&amp;#39;, &amp;#39;u&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;)
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;zip: &amp;lt;zip object at 0x7fc5a95b2ec0&amp;gt;
+*zip: (&#39;a&#39;, &#39;q&#39;) (&#39;s&#39;, &#39;w&#39;) (&#39;d&#39;, &#39;e&#39;) (&#39;f&#39;, &#39;r&#39;) (&#39;g&#39;, &#39;t&#39;) (&#39;h&#39;, &#39;y&#39;) (&#39;j&#39;, &#39;u&#39;) (&#39;k&#39;, &#39;i&#39;) (&#39;l&#39;, &#39;o&#39;)
+zip(*): (&#39;a&#39;, &#39;s&#39;, &#39;d&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;) (&#39;q&#39;, &#39;w&#39;, &#39;e&#39;, &#39;r&#39;, &#39;t&#39;, &#39;y&#39;, &#39;u&#39;, &#39;i&#39;, &#39;o&#39;)
 True
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -425,19 +323,10 @@ True
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;powers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;(&amp;#39;charles xavier&amp;#39;, &amp;#39;telepathy&amp;#39;) (&amp;#39;bobby drake&amp;#39;, &amp;#39;thermokinesis&amp;#39;) (&amp;#39;kurt wagner&amp;#39;, &amp;#39;teleportation&amp;#39;) (&amp;#39;max eisenhardt&amp;#39;, &amp;#39;magnetokinesis&amp;#39;) (&amp;#39;kitty pryde&amp;#39;, &amp;#39;intangibility&amp;#39;)
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(&#39;charles xavier&#39;, &#39;telepathy&#39;) (&#39;bobby drake&#39;, &#39;thermokinesis&#39;) (&#39;kurt wagner&#39;, &#39;teleportation&#39;) (&#39;max eisenhardt&#39;, &#39;magnetokinesis&#39;) (&#39;kitty pryde&#39;, &#39;intangibility&#39;)
 True
 True
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;using-iterators-to-load-large-files-into-memory&#34;&gt;Using iterators to load large files into memory&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;using-iterators-to-load-large-files-into-memory&#34;&gt;Using iterators to load large files into memory&lt;/h2&gt;
 &lt;p&gt;If you are pulling data that you can&amp;rsquo;t hold it in memory. One solution is to load the data in chunks, perform the desired operation or operations on each chuck, store the result, discard the chunk and then load the next chunk. To surmount this challenge, we can use the pandas function &lt;code&gt;pd.read_csv()&lt;/code&gt;and specify the argument &lt;code&gt;chunksize&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The object created by the &lt;code&gt;read_csv()&lt;/code&gt; call is an &lt;strong&gt;iterable&lt;/strong&gt; so you can can iterate over it, using a &lt;code&gt;for&lt;/code&gt; loop, in which each chunk will be a DataFrame.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -478,15 +367,8 @@ True
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result_counts&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;en&amp;#39;: 97, &amp;#39;et&amp;#39;: 1, &amp;#39;und&amp;#39;: 2}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;list-comprehensions-and-generators&#34;&gt;List comprehensions and generators&lt;/h1&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#39;en&#39;: 97, &#39;et&#39;: 1, &#39;und&#39;: 2}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;list-comprehensions-and-generators&#34;&gt;List comprehensions and generators&lt;/h1&gt;
 &lt;h2 id=&#34;list-comprehensions&#34;&gt;List comprehensions&lt;/h2&gt;
 &lt;p&gt;You can finish a &lt;code&gt;for&lt;/code&gt; loop in one line of code by comprehensions. The syntax is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -516,23 +398,12 @@ True
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;row&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[0, 1, 2, 3, 4, 5]
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -548,27 +419,14 @@ True
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tweet_clock_time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;0    Tue Mar 29 23:40:17 +0000 2016
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0    Tue Mar 29 23:40:17 +0000 2016
 1    Tue Mar 29 23:40:17 +0000 2016
 2    Tue Mar 29 23:40:17 +0000 2016
 3    Tue Mar 29 23:40:17 +0000 2016
 4    Tue Mar 29 23:40:17 +0000 2016
 Name: created_at, dtype: object
-[&amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:17&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:18&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;We can also use list comprehensions to create nested loop. The syntax is as follows:&lt;/p&gt;
+[&#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can also use list comprehensions to create nested loop. The syntax is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -587,15 +445,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ls&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[(0, 3), (0, 4), (0, 5), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;advanced-comprehensions&#34;&gt;Advanced comprehensions&lt;/h2&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[(0, 3), (0, 4), (0, 5), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)]
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;advanced-comprehensions&#34;&gt;Advanced comprehensions&lt;/h2&gt;
 &lt;p&gt;We can filter the output of a list comprehension using a conditional on the iterable, the syntax is as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -665,15 +516,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new_fellowship&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[&amp;#39;samwise&amp;#39;, &amp;#39;aragorn&amp;#39;, &amp;#39;legolas&amp;#39;, &amp;#39;boromir&amp;#39;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[&#39;samwise&#39;, &#39;aragorn&#39;, &#39;legolas&#39;, &#39;boromir&#39;]
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -689,15 +533,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new_fellowship&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[&amp;#39;&amp;#39;, &amp;#39;samwise&amp;#39;, &amp;#39;&amp;#39;, &amp;#39;aragorn&amp;#39;, &amp;#39;legolas&amp;#39;, &amp;#39;boromir&amp;#39;, &amp;#39;&amp;#39;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[&#39;&#39;, &#39;samwise&#39;, &#39;&#39;, &#39;aragorn&#39;, &#39;legolas&#39;, &#39;boromir&#39;, &#39;&#39;]
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -713,15 +550,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tweet_clock_time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[&amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;, &amp;#39;23:40:19&amp;#39;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;dictionary-comprehensions&#34;&gt;Dictionary comprehensions&lt;/h2&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[&#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;]
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;dictionary-comprehensions&#34;&gt;Dictionary comprehensions&lt;/h2&gt;
 &lt;p&gt;Now we can also write dictionary comprehensions to create new dictionaries from iterables. The syntax is almost the same as in list comprehensions and there are 2 differences.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;One, we use curly braces instead of square brackets.&lt;/li&gt;
@@ -746,15 +576,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;a&amp;#39;: &amp;#39;1&amp;#39;, &amp;#39;b&amp;#39;: &amp;#39;2&amp;#39;, &amp;#39;c&amp;#39;: &amp;#39;3&amp;#39;, &amp;#39;d&amp;#39;: &amp;#39;4&amp;#39;, &amp;#39;e&amp;#39;: &amp;#39;5&amp;#39;, &amp;#39;f&amp;#39;: &amp;#39;6&amp;#39;, &amp;#39;g&amp;#39;: &amp;#39;7&amp;#39;}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#39;a&#39;: &#39;1&#39;, &#39;b&#39;: &#39;2&#39;, &#39;c&#39;: &#39;3&#39;, &#39;d&#39;: &#39;4&#39;, &#39;e&#39;: &#39;5&#39;, &#39;f&#39;: &#39;6&#39;, &#39;g&#39;: &#39;7&#39;}
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -772,22 +595,7 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;          a         b         c         d         e
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;          a         b         c         d         e
 0  0.108696  0.405694  0.018458  0.529013  0.284126
 1  0.645469  0.937125 -0.420953  0.210035  0.151663
 2  1.414896  1.298583  1.485383 -0.096663  0.036326
@@ -798,9 +606,7 @@ Name: created_at, dtype: object
 7  0.509977 -0.424521  0.657196 -0.913793  0.131405
 8 -0.049865 -0.816738 -0.975876  0.170173 -0.569519
 9 -0.269802  0.755459  0.021207  0.102335  0.119438
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -828,22 +634,7 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;          a         b         c         d  e
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;          a         b         c         d  e
 0  0.797270  0.079468  5.167152  5.205353  7
 1  0.036326  0.752136  5.421250  5.275327  4
 2  0.698624  0.703501  5.322341  5.295758  8
@@ -854,9 +645,7 @@ Name: created_at, dtype: object
 7  0.080858  0.226505  5.724067  5.976189  7
 8  0.366588  0.884782  5.561158  5.070010  6
 9  0.694882  0.928411  5.180124  5.449207  2
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -876,15 +665,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new_fellowship&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;frodo&amp;#39;: 5, &amp;#39;samwise&amp;#39;: 7, &amp;#39;merry&amp;#39;: 5, &amp;#39;aragorn&amp;#39;: 7, &amp;#39;legolas&amp;#39;: 7, &amp;#39;boromir&amp;#39;: 7, &amp;#39;gimli&amp;#39;: 5}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;generator-expressions&#34;&gt;Generator expressions&lt;/h2&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#39;frodo&#39;: 5, &#39;samwise&#39;: 7, &#39;merry&#39;: 5, &#39;aragorn&#39;: 7, &#39;legolas&#39;: 7, &#39;boromir&#39;: 7, &#39;gimli&#39;: 5}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;generator-expressions&#34;&gt;Generator expressions&lt;/h2&gt;
 &lt;p&gt;Recall that this list comprehension will create a list. Now lets replace the square brackets with round &lt;strong&gt;parentheses&lt;/strong&gt;. Something called a &lt;strong&gt;generator object&lt;/strong&gt; has been created.&lt;/p&gt;
 &lt;p&gt;A generator is like a list comprehension except &lt;strong&gt;it does not store the list in memory&lt;/strong&gt;: it does not construct the list, but is an object we can iterate over to produce elements of the list as required. Like any other &lt;strong&gt;iterator&lt;/strong&gt;, we can pass a generator to the function &lt;code&gt;next()&lt;/code&gt; in order to iterate through its elements.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -915,22 +697,7 @@ Name: created_at, dtype: object
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;0
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0
 1
 2
 3
@@ -941,9 +708,7 @@ Name: created_at, dtype: object
 7
 8
 9
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Generator is an example of something called &lt;strong&gt;lazy evaluation, whereby the evaluation of the expression is delayed until its value is needed&lt;/strong&gt;. (This means that you can&amp;rsquo;t index values by square brackets.) This can help a great deal when working with &lt;strong&gt;extremely large sequences&lt;/strong&gt; as you don&amp;rsquo;t want to store the entire list in memory, which is what comprehensions would do; you can generate elements of the sequence on the fly. Let&amp;rsquo;s say that we wanted to iterate over a very large sequence of numbers, such as from 0 up to 10 to the power of a million.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Generator is an example of something called &lt;strong&gt;lazy evaluation, whereby the evaluation of the expression is delayed until its value is needed&lt;/strong&gt;. (This means that you can&amp;rsquo;t index values by square brackets.) This can help a great deal when working with &lt;strong&gt;extremely large sequences&lt;/strong&gt; as you don&amp;rsquo;t want to store the entire list in memory, which is what comprehensions would do; you can generate elements of the sequence on the fly. Let&amp;rsquo;s say that we wanted to iterate over a very large sequence of numbers, such as from 0 up to 10 to the power of a million.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -966,15 +731,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;0
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The thing we can do in a list comprehension such as filtering and applying conditionals, can also be done in a generator expression.&lt;/p&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The thing we can do in a list comprehension such as filtering and applying conditionals, can also be done in a generator expression.&lt;/p&gt;
 &lt;p&gt;Generator functions are functions that, when called, produce generator objects. Generator functions are written with the syntax of any other user-defined function, however instead of returning values using the keyword &lt;code&gt;return&lt;/code&gt;, they yield sequences of values using the keyword &lt;code&gt;yield&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1004,23 +762,12 @@ Name: created_at, dtype: object
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;6
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;6
 5
 5
 6
 7
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;world-bank-data-analysis-case&#34;&gt;World Bank Data Analysis Case&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;world-bank-data-analysis-case&#34;&gt;World Bank Data Analysis Case&lt;/h1&gt;
 &lt;p&gt;Here, we will use the skills of writing user-defined functions, iterators, list comprehensions and generators to wrangle and extract meaningful information from a real-world dataset, the World Bank World Development Indicators dataset.&lt;/p&gt;
 &lt;p&gt;This dataset contains data on 217 world economies for over half a century, from 1960 up until 2015. The data contains hundreds of indicators from population, electricity consumption and CO2 emissions to literacy rates, unemployment and mortality rates.&lt;/p&gt;
 &lt;hr&gt;
@@ -1037,15 +784,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rs_dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;CountryName&amp;#39;: &amp;#39;Arab World&amp;#39;, &amp;#39;CountryCode&amp;#39;: &amp;#39;ARB&amp;#39;, &amp;#39;IndicatorName&amp;#39;: &amp;#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&amp;#39;, &amp;#39;IndicatorCode&amp;#39;: &amp;#39;SP.ADO.TFRT&amp;#39;, &amp;#39;Year&amp;#39;: &amp;#39;1960&amp;#39;, &amp;#39;Value&amp;#39;: &amp;#39;133.56090740552298&amp;#39;}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Define the function &lt;code&gt;lists2dict()&lt;/code&gt; with two parameters: first is &lt;code&gt;list1&lt;/code&gt; and second is &lt;code&gt;list2&lt;/code&gt;. Return the resulting dictionary &lt;code&gt;rs_dict&lt;/code&gt; in &lt;code&gt;lists2dict()&lt;/code&gt;. Call the &lt;code&gt;lists2dict()&lt;/code&gt; function with the arguments &lt;code&gt;feature_names&lt;/code&gt; and &lt;code&gt;row_vals&lt;/code&gt;. Assign the result of the function call to &lt;code&gt;rs_fxn&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;IndicatorCode&#39;: &#39;SP.ADO.TFRT&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;133.56090740552298&#39;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Define the function &lt;code&gt;lists2dict()&lt;/code&gt; with two parameters: first is &lt;code&gt;list1&lt;/code&gt; and second is &lt;code&gt;list2&lt;/code&gt;. Return the resulting dictionary &lt;code&gt;rs_dict&lt;/code&gt; in &lt;code&gt;lists2dict()&lt;/code&gt;. Call the &lt;code&gt;lists2dict()&lt;/code&gt; function with the arguments &lt;code&gt;feature_names&lt;/code&gt; and &lt;code&gt;row_vals&lt;/code&gt;. Assign the result of the function call to &lt;code&gt;rs_fxn&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1070,15 +810,8 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rs_fxn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;CountryName&amp;#39;: &amp;#39;Arab World&amp;#39;, &amp;#39;CountryCode&amp;#39;: &amp;#39;ARB&amp;#39;, &amp;#39;IndicatorName&amp;#39;: &amp;#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&amp;#39;, &amp;#39;IndicatorCode&amp;#39;: &amp;#39;SP.ADO.TFRT&amp;#39;, &amp;#39;Year&amp;#39;: &amp;#39;1960&amp;#39;, &amp;#39;Value&amp;#39;: &amp;#39;133.56090740552298&amp;#39;}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;row_lists&lt;/code&gt; is a list of lists, where each sublist is a list of actual values of a row from the dataset. Inspect the contents of &lt;code&gt;row_lists&lt;/code&gt; by printing the first two lists in &lt;code&gt;row_lists&lt;/code&gt;. Create a list comprehension that generates a dictionary using &lt;code&gt;lists2dict()&lt;/code&gt; for each sublist in &lt;code&gt;row_lists&lt;/code&gt;. The keys are from the &lt;code&gt;feature_names&lt;/code&gt; list and the values are the row entries in &lt;code&gt;row_lists&lt;/code&gt;. Use &lt;code&gt;sublist&lt;/code&gt; as your iterator variable and assign the resulting list of dictionaries to &lt;code&gt;list_of_dicts&lt;/code&gt;. Look at the first two dictionaries in &lt;code&gt;list_of_dicts&lt;/code&gt; by printing them out.&lt;/p&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;IndicatorCode&#39;: &#39;SP.ADO.TFRT&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;133.56090740552298&#39;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;row_lists&lt;/code&gt; is a list of lists, where each sublist is a list of actual values of a row from the dataset. Inspect the contents of &lt;code&gt;row_lists&lt;/code&gt; by printing the first two lists in &lt;code&gt;row_lists&lt;/code&gt;. Create a list comprehension that generates a dictionary using &lt;code&gt;lists2dict()&lt;/code&gt; for each sublist in &lt;code&gt;row_lists&lt;/code&gt;. The keys are from the &lt;code&gt;feature_names&lt;/code&gt; list and the values are the row entries in &lt;code&gt;row_lists&lt;/code&gt;. Use &lt;code&gt;sublist&lt;/code&gt; as your iterator variable and assign the resulting list of dictionaries to &lt;code&gt;list_of_dicts&lt;/code&gt;. Look at the first two dictionaries in &lt;code&gt;list_of_dicts&lt;/code&gt; by printing them out.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1099,21 +832,11 @@ Name: created_at, dtype: object
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;list_of_dicts&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[&amp;#39;Arab World&amp;#39;, &amp;#39;ARB&amp;#39;, &amp;#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&amp;#39;, &amp;#39;SP.ADO.TFRT&amp;#39;, &amp;#39;1960&amp;#39;, &amp;#39;133.56090740552298&amp;#39;]
-[&amp;#39;Arab World&amp;#39;, &amp;#39;ARB&amp;#39;, &amp;#39;Age dependency ratio (% of working-age population)&amp;#39;, &amp;#39;SP.POP.DPND&amp;#39;, &amp;#39;1960&amp;#39;, &amp;#39;87.7976011532547&amp;#39;]
-{&amp;#39;CountryName&amp;#39;: &amp;#39;Arab World&amp;#39;, &amp;#39;CountryCode&amp;#39;: &amp;#39;ARB&amp;#39;, &amp;#39;IndicatorName&amp;#39;: &amp;#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&amp;#39;, &amp;#39;IndicatorCode&amp;#39;: &amp;#39;SP.ADO.TFRT&amp;#39;, &amp;#39;Year&amp;#39;: &amp;#39;1960&amp;#39;, &amp;#39;Value&amp;#39;: &amp;#39;133.56090740552298&amp;#39;}
-{&amp;#39;CountryName&amp;#39;: &amp;#39;Arab World&amp;#39;, &amp;#39;CountryCode&amp;#39;: &amp;#39;ARB&amp;#39;, &amp;#39;IndicatorName&amp;#39;: &amp;#39;Age dependency ratio (% of working-age population)&amp;#39;, &amp;#39;IndicatorCode&amp;#39;: &amp;#39;SP.POP.DPND&amp;#39;, &amp;#39;Year&amp;#39;: &amp;#39;1960&amp;#39;, &amp;#39;Value&amp;#39;: &amp;#39;87.7976011532547&amp;#39;}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;To use the &lt;code&gt;DataFrame()&lt;/code&gt; function, first import the &lt;code&gt;pandas&lt;/code&gt; package with the alias &lt;code&gt;pd&lt;/code&gt;. Create a DataFrame from the list of dictionaries in &lt;code&gt;list_of_dicts&lt;/code&gt; by calling &lt;code&gt;pd.DataFrame()&lt;/code&gt;. Assign the resulting DataFrame to &lt;code&gt;df&lt;/code&gt;. Inspect the contents of df printing the head of the DataFrame. Head of the DataFrame df can be accessed by calling &lt;code&gt;df.head()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[&#39;Arab World&#39;, &#39;ARB&#39;, &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;SP.ADO.TFRT&#39;, &#39;1960&#39;, &#39;133.56090740552298&#39;]
+[&#39;Arab World&#39;, &#39;ARB&#39;, &#39;Age dependency ratio (% of working-age population)&#39;, &#39;SP.POP.DPND&#39;, &#39;1960&#39;, &#39;87.7976011532547&#39;]
+{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;IndicatorCode&#39;: &#39;SP.ADO.TFRT&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;133.56090740552298&#39;}
+{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Age dependency ratio (% of working-age population)&#39;, &#39;IndicatorCode&#39;: &#39;SP.POP.DPND&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;87.7976011532547&#39;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To use the &lt;code&gt;DataFrame()&lt;/code&gt; function, first import the &lt;code&gt;pandas&lt;/code&gt; package with the alias &lt;code&gt;pd&lt;/code&gt;. Create a DataFrame from the list of dictionaries in &lt;code&gt;list_of_dicts&lt;/code&gt; by calling &lt;code&gt;pd.DataFrame()&lt;/code&gt;. Assign the resulting DataFrame to &lt;code&gt;df&lt;/code&gt;. Inspect the contents of df printing the head of the DataFrame. Head of the DataFrame df can be accessed by calling &lt;code&gt;df.head()&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1130,25 +853,13 @@ Name: created_at, dtype: object
 &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;  CountryName CountryCode                                      IndicatorName   IndicatorCode  Year               Value
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  CountryName CountryCode                                      IndicatorName   IndicatorCode  Year               Value
 0  Arab World         ARB  Adolescent fertility rate (births per 1,000 wo...     SP.ADO.TFRT  1960  133.56090740552298
 1  Arab World         ARB  Age dependency ratio (% of working-age populat...     SP.POP.DPND  1960    87.7976011532547
 2  Arab World         ARB  Age dependency ratio, old (% of working-age po...  SP.POP.DPND.OL  1960   6.634579191565161
 3  Arab World         ARB  Age dependency ratio, young (% of working-age ...  SP.POP.DPND.YG  1960   81.02332950839141
 4  Arab World         ARB        Arms exports (SIPRI trend indicator values)  MS.MIL.XPRT.KD  1960           3000000.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;In the function &lt;code&gt;read_large_file()&lt;/code&gt;, read a line from &lt;code&gt;file_object&lt;/code&gt; by using the method &lt;code&gt;readline()&lt;/code&gt;. Assign the result to &lt;code&gt;data&lt;/code&gt;. In the function &lt;code&gt;read_large_file()&lt;/code&gt;, &lt;code&gt;yield&lt;/code&gt; the line read from the file data. In the context manager, create a generator object &lt;code&gt;gen_file&lt;/code&gt; by calling your generator function &lt;code&gt;read_large_file()&lt;/code&gt; and passing file to it. Print the first three lines produced by the generator object gen_file using &lt;code&gt;next()&lt;/code&gt;.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In the function &lt;code&gt;read_large_file()&lt;/code&gt;, read a line from &lt;code&gt;file_object&lt;/code&gt; by using the method &lt;code&gt;readline()&lt;/code&gt;. Assign the result to &lt;code&gt;data&lt;/code&gt;. In the function &lt;code&gt;read_large_file()&lt;/code&gt;, &lt;code&gt;yield&lt;/code&gt; the line read from the file data. In the context manager, create a generator object &lt;code&gt;gen_file&lt;/code&gt; by calling your generator function &lt;code&gt;read_large_file()&lt;/code&gt; and passing file to it. Print the first three lines produced by the generator object gen_file using &lt;code&gt;next()&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1185,23 +896,12 @@ Name: created_at, dtype: object
     &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gen_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;CountryName,CountryCode,IndicatorName,IndicatorCode,Year,Value
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;CountryName,CountryCode,IndicatorName,IndicatorCode,Year,Value
 
-Arab World,ARB,&amp;#34;Adolescent fertility rate (births per 1,000 women ages 15-19)&amp;#34;,SP.ADO.TFRT,1960,133.56090740552298
+Arab World,ARB,&amp;quot;Adolescent fertility rate (births per 1,000 women ages 15-19)&amp;quot;,SP.ADO.TFRT,1960,133.56090740552298
 
 Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,1960,87.7976011532547
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Bind the file &amp;lsquo;world_dev_ind.csv&amp;rsquo; to file in the context manager with &lt;code&gt;open()&lt;/code&gt;. Complete the &lt;code&gt;for&lt;/code&gt; loop so that it iterates over the generator from the call to &lt;code&gt;read_large_file()&lt;/code&gt; to process all the rows of the file.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Bind the file &amp;lsquo;world_dev_ind.csv&amp;rsquo; to file in the context manager with &lt;code&gt;open()&lt;/code&gt;. Complete the &lt;code&gt;for&lt;/code&gt; loop so that it iterates over the generator from the call to &lt;code&gt;read_large_file()&lt;/code&gt; to process all the rows of the file.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1234,15 +934,8 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;counts_dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{&amp;#39;CountryName&amp;#39;: 1, &amp;#39;Arab World&amp;#39;: 80, &amp;#39;Caribbean small states&amp;#39;: 77, &amp;#39;Central Europe and the Baltics&amp;#39;: 71, &amp;#39;East Asia &amp;amp; Pacific (all income levels)&amp;#39;: 122, &amp;#39;East Asia &amp;amp; Pacific (developing only)&amp;#39;: 123, &amp;#39;Euro area&amp;#39;: 119, &amp;#39;Europe &amp;amp; Central Asia (all income levels)&amp;#39;: 109, &amp;#39;Europe &amp;amp; Central Asia (developing only)&amp;#39;: 89, &amp;#39;European Union&amp;#39;: 116, &amp;#39;Fragile and conflict affected situations&amp;#39;: 76, &amp;#39;Heavily indebted poor countries (HIPC)&amp;#39;: 99, &amp;#39;High income&amp;#39;: 131, &amp;#39;High income: nonOECD&amp;#39;: 68, &amp;#39;High income: OECD&amp;#39;: 127, &amp;#39;Latin America &amp;amp; Caribbean (all income levels)&amp;#39;: 130, &amp;#39;Latin America &amp;amp; Caribbean (developing only)&amp;#39;: 133, &amp;#39;Least developed countries: UN classification&amp;#39;: 78, &amp;#39;Low &amp;amp; middle income&amp;#39;: 138, &amp;#39;Low income&amp;#39;: 80, &amp;#39;Lower middle income&amp;#39;: 126, &amp;#39;Middle East &amp;amp; North Africa (all income levels)&amp;#39;: 89, &amp;#39;Middle East &amp;amp; North Africa (developing only)&amp;#39;: 94, &amp;#39;Middle income&amp;#39;: 138, &amp;#39;North America&amp;#39;: 123, &amp;#39;OECD members&amp;#39;: 130, &amp;#39;Other small states&amp;#39;: 63, &amp;#39;Pacific island small states&amp;#39;: 66, &amp;#39;Small states&amp;#39;: 69, &amp;#39;South Asia&amp;#39;: 36}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Use &lt;code&gt;pd.read_csv()&lt;/code&gt; to read in &amp;lsquo;ind_pop.csv&amp;rsquo; in chunks of size 10. Assign the result to &lt;code&gt;df_reader&lt;/code&gt;. Print the first two chunks from &lt;code&gt;df_reader&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{&#39;CountryName&#39;: 1, &#39;Arab World&#39;: 80, &#39;Caribbean small states&#39;: 77, &#39;Central Europe and the Baltics&#39;: 71, &#39;East Asia &amp;amp; Pacific (all income levels)&#39;: 122, &#39;East Asia &amp;amp; Pacific (developing only)&#39;: 123, &#39;Euro area&#39;: 119, &#39;Europe &amp;amp; Central Asia (all income levels)&#39;: 109, &#39;Europe &amp;amp; Central Asia (developing only)&#39;: 89, &#39;European Union&#39;: 116, &#39;Fragile and conflict affected situations&#39;: 76, &#39;Heavily indebted poor countries (HIPC)&#39;: 99, &#39;High income&#39;: 131, &#39;High income: nonOECD&#39;: 68, &#39;High income: OECD&#39;: 127, &#39;Latin America &amp;amp; Caribbean (all income levels)&#39;: 130, &#39;Latin America &amp;amp; Caribbean (developing only)&#39;: 133, &#39;Least developed countries: UN classification&#39;: 78, &#39;Low &amp;amp; middle income&#39;: 138, &#39;Low income&#39;: 80, &#39;Lower middle income&#39;: 126, &#39;Middle East &amp;amp; North Africa (all income levels)&#39;: 89, &#39;Middle East &amp;amp; North Africa (developing only)&#39;: 94, &#39;Middle income&#39;: 138, &#39;North America&#39;: 123, &#39;OECD members&#39;: 130, &#39;Other small states&#39;: 63, &#39;Pacific island small states&#39;: 66, &#39;Small states&#39;: 69, &#39;South Asia&#39;: 36}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Use &lt;code&gt;pd.read_csv()&lt;/code&gt; to read in &amp;lsquo;ind_pop.csv&amp;rsquo; in chunks of size 10. Assign the result to &lt;code&gt;df_reader&lt;/code&gt;. Print the first two chunks from &lt;code&gt;df_reader&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1277,33 +970,7 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 &lt;span class=&#34;c1&#34;&gt;#         break&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;                                 CountryName CountryCode                  IndicatorName      IndicatorCode  Year   Value
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;                                 CountryName CountryCode                  IndicatorName      IndicatorCode  Year   Value
 0                                 Arab World         ARB  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  31.285
 1                     Caribbean small states         CSS  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  31.597
 2             Central Europe and the Baltics         CEB  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  44.508
@@ -1325,9 +992,7 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 17                            Low &amp;amp; middle income         LMY  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  21.273
 18                                     Low income         LIC  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  11.498
 19                            Lower middle income         LMC  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  19.811
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Use &lt;code&gt;pd.read_csv()&lt;/code&gt; to read in the file in &amp;lsquo;ind_pop_data.csv&amp;rsquo; in chunks of size 1000. Assign the result to &lt;code&gt;urb_pop_reader&lt;/code&gt;. Get the first DataFrame chunk from the iterable &lt;code&gt;urb_pop_reader&lt;/code&gt; and assign this to &lt;code&gt;df_urb_pop&lt;/code&gt;.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Use &lt;code&gt;pd.read_csv()&lt;/code&gt; to read in the file in &amp;lsquo;ind_pop_data.csv&amp;rsquo; in chunks of size 1000. Assign the result to &lt;code&gt;urb_pop_reader&lt;/code&gt;. Get the first DataFrame chunk from the iterable &lt;code&gt;urb_pop_reader&lt;/code&gt; and assign this to &lt;code&gt;df_urb_pop&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Select only the rows of &lt;code&gt;df_urb_pop&lt;/code&gt; that have a &amp;lsquo;&lt;code&gt;CountryCode&lt;/code&gt;&amp;rsquo; of &amp;lsquo;&lt;code&gt;CEB&lt;/code&gt;&amp;rsquo;. Using &lt;code&gt;zip()&lt;/code&gt;, zip together the &amp;lsquo;Total Population&amp;rsquo; and &amp;lsquo;Urban population (% of total)&amp;rsquo; columns of &lt;code&gt;df_pop_ceb&lt;/code&gt;. Assign the resulting zip object to &lt;code&gt;pops&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1341,25 +1006,13 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df_urb_pop&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;                               CountryName CountryCode  Year  Total Population  Urban population (% of total)
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;                               CountryName CountryCode  Year  Total Population  Urban population (% of total)
 0                               Arab World         ARB  1960         9.250e+07                         31.285
 1                   Caribbean small states         CSS  1960         4.191e+06                         31.597
 2           Central Europe and the Baltics         CEB  1960         9.140e+07                         44.508
 3  East Asia &amp;amp; Pacific (all income levels)         EAS  1960         1.042e+09                         22.471
 4    East Asia &amp;amp; Pacific (developing only)         EAP  1960         8.965e+08                         16.918
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1373,15 +1026,8 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pops_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[(91401583.0, 44.5079211390026), (92237118.0, 45.206665319194), (93014890.0, 45.866564696018), (93845749.0, 46.5340927663649), (94722599.0, 47.2087429803526)]
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Write a list comprehension to generate a list of values from &lt;code&gt;pops_list&lt;/code&gt; for the new column &amp;lsquo;&lt;code&gt;Total Urban Population&lt;/code&gt;&amp;rsquo;. The output expression should be the product of the first and second element in each tuple in pops_list. Because the 2nd element is a percentage, you also need to either multiply the result by 0.01 or divide it by 100. In addition, note that the column &amp;lsquo;&lt;code&gt;Total Urban Population&lt;/code&gt;&amp;rsquo; should only be able to take on integer values. To ensure this, make sure you cast the output expression to an integer with &lt;code&gt;int()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[(91401583.0, 44.5079211390026), (92237118.0, 45.206665319194), (93014890.0, 45.866564696018), (93845749.0, 46.5340927663649), (94722599.0, 47.2087429803526)]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Write a list comprehension to generate a list of values from &lt;code&gt;pops_list&lt;/code&gt; for the new column &amp;lsquo;&lt;code&gt;Total Urban Population&lt;/code&gt;&amp;rsquo;. The output expression should be the product of the first and second element in each tuple in pops_list. Because the 2nd element is a percentage, you also need to either multiply the result by 0.01 or divide it by 100. In addition, note that the column &amp;lsquo;&lt;code&gt;Total Urban Population&lt;/code&gt;&amp;rsquo; should only be able to take on integer values. To ensure this, make sure you cast the output expression to an integer with &lt;code&gt;int()&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Create a scatter plot where the x-axis are values from the &amp;lsquo;&lt;code&gt;Year&lt;/code&gt;&amp;rsquo; column and the y-axis are values from the &amp;lsquo;&lt;code&gt;Total Urban Population&lt;/code&gt;&amp;rsquo; column.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

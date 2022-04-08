@@ -521,17 +521,9 @@
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ax</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(2, 2)
-&lt;class &#39;numpy.ndarray&#39;&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>To add data, we would now have to index into this object and call the <code>plot</code> method on an element of the array.</p>
+</div><pre tabindex="0"><code>(2, 2)
+&lt;class 'numpy.ndarray'&gt;
+</code></pre><p>To add data, we would now have to index into this object and call the <code>plot</code> method on an element of the array.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -573,15 +565,8 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">shape</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(3,)
-</code></pre></td></tr></table>
-</div>
-</div><p>To make sure that all the subplots have the <strong>same range</strong> of y-axis values, we initialize the figure and its <code>subplots</code> with the key-word argument <code>sharey</code> set to <code>True</code>. This means that both subplots will have the <strong>same range</strong> of y-axis values.</p>
+</div><pre tabindex="0"><code>(3,)
+</code></pre><p>To make sure that all the subplots have the <strong>same range</strong> of y-axis values, we initialize the figure and its <code>subplots</code> with the key-word argument <code>sharey</code> set to <code>True</code>. This means that both subplots will have the <strong>same range</strong> of y-axis values.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1

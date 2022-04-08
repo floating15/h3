@@ -334,7 +334,7 @@
 
 
                 <time class="article-time--reading">
-                    23 minute read
+                    22 minute read
                 </time>
             </div>
         
@@ -388,19 +388,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">superhero</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">jay garrick
+</div><pre tabindex="0"><code>jay garrick
 barry allen
 wally west
 bart allen
@@ -408,9 +396,7 @@ jay garrick
 barry allen
 wally west
 bart allen
-</code></pre></td></tr></table>
-</div>
-</div><p>You can also print all values of an iterator in one fell swoop using the <code>*</code> operator. This <code>*</code> operator unpacks all elements of an <strong>iterator or an iterable</strong>. Be warned, however, once you do so, you cannot do it (the iterator instead of the iterable) again as there are no more values to iterate through. We would have to redefine our iterator to do so.</p>
+</code></pre><p>You can also print all values of an iterator in one fell swoop using the <code>*</code> operator. This <code>*</code> operator unpacks all elements of an <strong>iterator or an iterable</strong>. Be warned, however, once you do so, you cannot do it (the iterator instead of the iterable) again as there are no more values to iterate through. We would have to redefine our iterator to do so.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -441,43 +427,22 @@ bart allen
 <span class="n">pr</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ob:  dfghjhgfds
+</div><pre tabindex="0"><code>ob:  dfghjhgfds
 *ob:  d f g h j h g f d s
-type:  &lt;class &#39;str&#39;&gt; 
+type:  &lt;class 'str'&gt; 
 
 ob:  &lt;str_iterator object at 0x7fc5787b2ac0&gt;
 *ob:  d f g h j h g f d s
-type:  &lt;class &#39;str_iterator&#39;&gt; 
+type:  &lt;class 'str_iterator'&gt; 
 
 ob:  dfghjhgfds
 *ob:  d f g h j h g f d s
-type:  &lt;class &#39;str&#39;&gt; 
+type:  &lt;class 'str'&gt; 
 
 ob:  &lt;str_iterator object at 0x7fc5787b2ac0&gt;
 *ob: 
-type:  &lt;class &#39;str_iterator&#39;&gt; 
-</code></pre></td></tr></table>
-</div>
-</div><p>You can also assembles the elements, in the iterator, into a list with <code>list()</code> method</p>
+type:  &lt;class 'str_iterator'&gt; 
+</code></pre><p>You can also assembles the elements, in the iterator, into a list with <code>list()</code> method</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -492,17 +457,9 @@ type:  &lt;class &#39;str_iterator&#39;&gt;
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">word1</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;str_iterator object at 0x7fc5787b2df0&gt;
-[&#39;d&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;j&#39;, &#39;h&#39;, &#39;g&#39;, &#39;f&#39;, &#39;d&#39;, &#39;s&#39;]
-</code></pre></td></tr></table>
-</div>
-</div><p>We mentioned before that dictionaries and file connections are iterables as well. To iterate over the key-value pairs of a Python dictionary, we need to unpack them by applying the <code>items()</code> method to the dictionary.</p>
+</div><pre tabindex="0"><code>&lt;str_iterator object at 0x7fc5787b2df0&gt;
+['d', 'f', 'g', 'h', 'j', 'h', 'g', 'f', 'd', 's']
+</code></pre><p>We mentioned before that dictionaries and file connections are iterables as well. To iterate over the key-value pairs of a Python dictionary, we need to unpack them by applying the <code>items()</code> method to the dictionary.</p>
 <p>w.r.t. file connections, here you can see how to use the <code>iter()</code> and <code>next()</code> methods to return the lines from a file.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -552,27 +509,14 @@ the third line
 <span class="n">pr</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ob:  &lt;_io.TextIOWrapper name=&#39;file.txt&#39; mode=&#39;r&#39; encoding=&#39;UTF-8&#39;&gt;
+</div><pre tabindex="0"><code>ob:  &lt;_io.TextIOWrapper name='file.txt' mode='r' encoding='UTF-8'&gt;
 the first line
 
 *ob:  the second line  # &lt;-- Notice here
  the third line
 
-type:  &lt;class &#39;_io.TextIOWrapper&#39;&gt; 
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="operating-iterator">Operating iterator</h2>
+type:  &lt;class '_io.TextIOWrapper'&gt; 
+</code></pre><h2 id="operating-iterator">Operating iterator</h2>
 <p>Now, we are going to introduce two useful functions. The first function, <code>enumerate</code>, will allow us to add a counter to any iterable while the second function, <code>zip</code>, will allow us to stitch together an arbitrary number of iterables.</p>
 <p><code>enumerate</code> is a function that <strong>takes</strong> any iterable as argument, such as a list, and <strong>returns</strong> a special enumerate object, which consists of pairs containing the elements of the original iterable, along with their index within the iterable. The enumerate object itself is also an <strong>iterable</strong> and we can loop over it while unpacking its elements using the clause for index, value in enumerate(avengers). The default behavior of enumerate to begin indexing at 0. However, you can alter this with <code>start</code>argument, such as <code>start=10</code></p>
 <div class="highlight"><div class="chroma">
@@ -597,21 +541,11 @@ type:  &lt;class &#39;_io.TextIOWrapper&#39;&gt;
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">etx</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">a s d f g h j k l l
-[&#39;a&#39;, &#39;s&#39;, &#39;d&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;l&#39;]
-(0, &#39;a&#39;) (1, &#39;s&#39;) (2, &#39;d&#39;) (3, &#39;f&#39;) (4, &#39;g&#39;) (5, &#39;h&#39;) (6, &#39;j&#39;) (7, &#39;k&#39;) (8, &#39;l&#39;) (9, &#39;l&#39;)
+</div><pre tabindex="0"><code>a s d f g h j k l l
+['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'l']
+(0, 'a') (1, 's') (2, 'd') (3, 'f') (4, 'g') (5, 'h') (6, 'j') (7, 'k') (8, 'l') (9, 'l')
 [] # &lt;-- lazy evaluation
-</code></pre></td></tr></table>
-</div>
-</div><p>Notice that The enumerate object has the characteristics of <strong>lazy evaluation</strong>. The elements that have been visited in the enumerate object cannot be accessed again, and the use of square brackets to index the elements is not supported. (Objects like zip, filter, map, etc. have similar characteristics.)</p>
+</code></pre><p>Notice that The enumerate object has the characteristics of <strong>lazy evaluation</strong>. The elements that have been visited in the enumerate object cannot be accessed again, and the use of square brackets to index the elements is not supported. (Objects like zip, filter, map, etc. have similar characteristics.)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -634,19 +568,10 @@ type:  &lt;class &#39;_io.TextIOWrapper&#39;&gt;
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">mtx</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;map object at 0x7fc5a95e7b20&gt;
+</div><pre tabindex="0"><code>&lt;map object at 0x7fc5a95e7b20&gt;
 a! s! d! f! g! h! j! k! l! l!
 []
-</code></pre></td></tr></table>
-</div>
-</div><p>Now let&rsquo;s move on to <code>zip</code>, which <strong>accepts</strong> an arbitrary number of iterables and <strong>returns an iterator</strong> of tuples. We could use a <code>for</code> loop to iterate over the zip object and print the tuples. We could also have used the <code>*</code> operator or <code>list</code> method to print all the elements.</p>
+</code></pre><p>Now let&rsquo;s move on to <code>zip</code>, which <strong>accepts</strong> an arbitrary number of iterables and <strong>returns an iterator</strong> of tuples. We could use a <code>for</code> loop to iterate over the zip object and print the tuples. We could also have used the <code>*</code> operator or <code>list</code> method to print all the elements.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -669,35 +594,18 @@ a! s! d! f! g! h! j! k! l! l!
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;zip object at 0x7fc5787fce40&gt;
-(&#39;a&#39;, &#39;q&#39;) 
+</div><pre tabindex="0"><code>&lt;zip object at 0x7fc5787fce40&gt;
+('a', 'q') 
 
-(&#39;s&#39;, &#39;w&#39;)
-(&#39;d&#39;, &#39;e&#39;)
-(&#39;f&#39;, &#39;r&#39;)
-(&#39;g&#39;, &#39;t&#39;)
-(&#39;h&#39;, &#39;y&#39;)
-(&#39;j&#39;, &#39;u&#39;)
-(&#39;k&#39;, &#39;i&#39;)
-(&#39;l&#39;, &#39;o&#39;)
-</code></pre></td></tr></table>
-</div>
-</div><p>Notice the difference between <code>zip()</code>, <code>*zip()</code>, and <code>zip(*)</code>.</p>
+('s', 'w')
+('d', 'e')
+('f', 'r')
+('g', 't')
+('h', 'y')
+('j', 'u')
+('k', 'i')
+('l', 'o')
+</code></pre><p>Notice the difference between <code>zip()</code>, <code>*zip()</code>, and <code>zip(*)</code>.</p>
 <ul>
 <li><code>zip(it1, it2)</code> can assemble two iterable object <code>it1</code>, <code>it2</code> to a zip object; <code>zip(it1)</code> assemble a iterable object <code>it</code> with an empty iterable object.</li>
 <li><code>*z</code> can show a zip object;</li>
@@ -727,21 +635,11 @@ a! s! d! f! g! h! j! k! l! l!
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">==</span> <span class="n">s</span> <span class="ow">and</span> <span class="nb">list</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span> <span class="o">==</span> <span class="n">t</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">zip: &lt;zip object at 0x7fc5a95b2ec0&gt;
-*zip: (&#39;a&#39;, &#39;q&#39;) (&#39;s&#39;, &#39;w&#39;) (&#39;d&#39;, &#39;e&#39;) (&#39;f&#39;, &#39;r&#39;) (&#39;g&#39;, &#39;t&#39;) (&#39;h&#39;, &#39;y&#39;) (&#39;j&#39;, &#39;u&#39;) (&#39;k&#39;, &#39;i&#39;) (&#39;l&#39;, &#39;o&#39;)
-zip(*): (&#39;a&#39;, &#39;s&#39;, &#39;d&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;) (&#39;q&#39;, &#39;w&#39;, &#39;e&#39;, &#39;r&#39;, &#39;t&#39;, &#39;y&#39;, &#39;u&#39;, &#39;i&#39;, &#39;o&#39;)
+</div><pre tabindex="0"><code>zip: &lt;zip object at 0x7fc5a95b2ec0&gt;
+*zip: ('a', 'q') ('s', 'w') ('d', 'e') ('f', 'r') ('g', 't') ('h', 'y') ('j', 'u') ('k', 'i') ('l', 'o')
+zip(*): ('a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l') ('q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o')
 True
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -761,19 +659,10 @@ True
 <span class="nb">print</span><span class="p">(</span><span class="n">result2</span> <span class="o">==</span> <span class="n">powers</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(&#39;charles xavier&#39;, &#39;telepathy&#39;) (&#39;bobby drake&#39;, &#39;thermokinesis&#39;) (&#39;kurt wagner&#39;, &#39;teleportation&#39;) (&#39;max eisenhardt&#39;, &#39;magnetokinesis&#39;) (&#39;kitty pryde&#39;, &#39;intangibility&#39;)
+</div><pre tabindex="0"><code>('charles xavier', 'telepathy') ('bobby drake', 'thermokinesis') ('kurt wagner', 'teleportation') ('max eisenhardt', 'magnetokinesis') ('kitty pryde', 'intangibility')
 True
 True
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="using-iterators-to-load-large-files-into-memory">Using iterators to load large files into memory</h2>
+</code></pre><h2 id="using-iterators-to-load-large-files-into-memory">Using iterators to load large files into memory</h2>
 <p>If you are pulling data that you can&rsquo;t hold it in memory. One solution is to load the data in chunks, perform the desired operation or operations on each chuck, store the result, discard the chunk and then load the next chunk. To surmount this challenge, we can use the pandas function <code>pd.read_csv()</code>and specify the argument <code>chunksize</code>.</p>
 <p>The object created by the <code>read_csv()</code> call is an <strong>iterable</strong> so you can can iterate over it, using a <code>for</code> loop, in which each chunk will be a DataFrame.</p>
 <div class="highlight"><div class="chroma">
@@ -814,15 +703,8 @@ True
 <span class="nb">print</span><span class="p">(</span><span class="n">result_counts</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;en&#39;: 97, &#39;et&#39;: 1, &#39;und&#39;: 2}
-</code></pre></td></tr></table>
-</div>
-</div><h1 id="list-comprehensions-and-generators">List comprehensions and generators</h1>
+</div><pre tabindex="0"><code>{'en': 97, 'et': 1, 'und': 2}
+</code></pre><h1 id="list-comprehensions-and-generators">List comprehensions and generators</h1>
 <h2 id="list-comprehensions">List comprehensions</h2>
 <p>You can finish a <code>for</code> loop in one line of code by comprehensions. The syntax is as follows:</p>
 <div class="highlight"><div class="chroma">
@@ -852,23 +734,12 @@ True
     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[0, 1, 2, 3, 4, 5]
+</div><pre tabindex="0"><code>[0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
 [0, 1, 2, 3, 4, 5]
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -884,27 +755,14 @@ True
 <span class="nb">print</span><span class="p">(</span><span class="n">tweet_clock_time</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0    Tue Mar 29 23:40:17 +0000 2016
+</div><pre tabindex="0"><code>0    Tue Mar 29 23:40:17 +0000 2016
 1    Tue Mar 29 23:40:17 +0000 2016
 2    Tue Mar 29 23:40:17 +0000 2016
 3    Tue Mar 29 23:40:17 +0000 2016
 4    Tue Mar 29 23:40:17 +0000 2016
 Name: created_at, dtype: object
-[&#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:17&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:18&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;]
-</code></pre></td></tr></table>
-</div>
-</div><p>We can also use list comprehensions to create nested loop. The syntax is as follows:</p>
+['23:40:17', '23:40:17', '23:40:17', '23:40:17', '23:40:17', '23:40:17', '23:40:18', '23:40:17', '23:40:18', '23:40:18', '23:40:18', '23:40:17', '23:40:18', '23:40:18', '23:40:17', '23:40:18', '23:40:18', '23:40:17', '23:40:18', '23:40:17', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:17', '23:40:18', '23:40:18', '23:40:17', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:18', '23:40:19', '23:40:18', '23:40:18', '23:40:18', '23:40:19', '23:40:19', '23:40:19', '23:40:18', '23:40:19', '23:40:19', '23:40:19', '23:40:18', '23:40:19', '23:40:19', '23:40:19', '23:40:18', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19']
+</code></pre><p>We can also use list comprehensions to create nested loop. The syntax is as follows:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -923,15 +781,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">ls</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[(0, 3), (0, 4), (0, 5), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)]
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="advanced-comprehensions">Advanced comprehensions</h2>
+</div><pre tabindex="0"><code>[(0, 3), (0, 4), (0, 5), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)]
+</code></pre><h2 id="advanced-comprehensions">Advanced comprehensions</h2>
 <p>We can filter the output of a list comprehension using a conditional on the iterable, the syntax is as follows:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1001,15 +852,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">new_fellowship</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;samwise&#39;, &#39;aragorn&#39;, &#39;legolas&#39;, &#39;boromir&#39;]
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</div><pre tabindex="0"><code>['samwise', 'aragorn', 'legolas', 'boromir']
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1025,15 +869,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">new_fellowship</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;&#39;, &#39;samwise&#39;, &#39;&#39;, &#39;aragorn&#39;, &#39;legolas&#39;, &#39;boromir&#39;, &#39;&#39;]
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</div><pre tabindex="0"><code>['', 'samwise', '', 'aragorn', 'legolas', 'boromir', '']
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1049,15 +886,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">tweet_clock_time</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;, &#39;23:40:19&#39;]
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="dictionary-comprehensions">Dictionary comprehensions</h2>
+</div><pre tabindex="0"><code>['23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19', '23:40:19']
+</code></pre><h2 id="dictionary-comprehensions">Dictionary comprehensions</h2>
 <p>Now we can also write dictionary comprehensions to create new dictionaries from iterables. The syntax is almost the same as in list comprehensions and there are 2 differences.</p>
 <ul>
 <li>One, we use curly braces instead of square brackets.</li>
@@ -1082,15 +912,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;a&#39;: &#39;1&#39;, &#39;b&#39;: &#39;2&#39;, &#39;c&#39;: &#39;3&#39;, &#39;d&#39;: &#39;4&#39;, &#39;e&#39;: &#39;5&#39;, &#39;f&#39;: &#39;6&#39;, &#39;g&#39;: &#39;7&#39;}
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</div><pre tabindex="0"><code>{'a': '1', 'b': '2', 'c': '3', 'd': '4', 'e': '5', 'f': '6', 'g': '7'}
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1108,22 +931,7 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">          a         b         c         d         e
+</div><pre tabindex="0"><code>          a         b         c         d         e
 0  0.108696  0.405694  0.018458  0.529013  0.284126
 1  0.645469  0.937125 -0.420953  0.210035  0.151663
 2  1.414896  1.298583  1.485383 -0.096663  0.036326
@@ -1134,9 +942,7 @@ Name: created_at, dtype: object
 7  0.509977 -0.424521  0.657196 -0.913793  0.131405
 8 -0.049865 -0.816738 -0.975876  0.170173 -0.569519
 9 -0.269802  0.755459  0.021207  0.102335  0.119438
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1164,22 +970,7 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">          a         b         c         d  e
+</div><pre tabindex="0"><code>          a         b         c         d  e
 0  0.797270  0.079468  5.167152  5.205353  7
 1  0.036326  0.752136  5.421250  5.275327  4
 2  0.698624  0.703501  5.322341  5.295758  8
@@ -1190,9 +981,7 @@ Name: created_at, dtype: object
 7  0.080858  0.226505  5.724067  5.976189  7
 8  0.366588  0.884782  5.561158  5.070010  6
 9  0.694882  0.928411  5.180124  5.449207  2
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1212,15 +1001,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">new_fellowship</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;frodo&#39;: 5, &#39;samwise&#39;: 7, &#39;merry&#39;: 5, &#39;aragorn&#39;: 7, &#39;legolas&#39;: 7, &#39;boromir&#39;: 7, &#39;gimli&#39;: 5}
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="generator-expressions">Generator expressions</h2>
+</div><pre tabindex="0"><code>{'frodo': 5, 'samwise': 7, 'merry': 5, 'aragorn': 7, 'legolas': 7, 'boromir': 7, 'gimli': 5}
+</code></pre><h2 id="generator-expressions">Generator expressions</h2>
 <p>Recall that this list comprehension will create a list. Now lets replace the square brackets with round <strong>parentheses</strong>. Something called a <strong>generator object</strong> has been created.</p>
 <p>A generator is like a list comprehension except <strong>it does not store the list in memory</strong>: it does not construct the list, but is an object we can iterate over to produce elements of the list as required. Like any other <strong>iterator</strong>, we can pass a generator to the function <code>next()</code> in order to iterate through its elements.</p>
 <div class="highlight"><div class="chroma">
@@ -1251,22 +1033,7 @@ Name: created_at, dtype: object
     <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0
+</div><pre tabindex="0"><code>0
 1
 2
 3
@@ -1277,9 +1044,7 @@ Name: created_at, dtype: object
 7
 8
 9
-</code></pre></td></tr></table>
-</div>
-</div><p>Generator is an example of something called <strong>lazy evaluation, whereby the evaluation of the expression is delayed until its value is needed</strong>. (This means that you can&rsquo;t index values by square brackets.) This can help a great deal when working with <strong>extremely large sequences</strong> as you don&rsquo;t want to store the entire list in memory, which is what comprehensions would do; you can generate elements of the sequence on the fly. Let&rsquo;s say that we wanted to iterate over a very large sequence of numbers, such as from 0 up to 10 to the power of a million.</p>
+</code></pre><p>Generator is an example of something called <strong>lazy evaluation, whereby the evaluation of the expression is delayed until its value is needed</strong>. (This means that you can&rsquo;t index values by square brackets.) This can help a great deal when working with <strong>extremely large sequences</strong> as you don&rsquo;t want to store the entire list in memory, which is what comprehensions would do; you can generate elements of the sequence on the fly. Let&rsquo;s say that we wanted to iterate over a very large sequence of numbers, such as from 0 up to 10 to the power of a million.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1302,15 +1067,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0
-</code></pre></td></tr></table>
-</div>
-</div><p>The thing we can do in a list comprehension such as filtering and applying conditionals, can also be done in a generator expression.</p>
+</div><pre tabindex="0"><code>0
+</code></pre><p>The thing we can do in a list comprehension such as filtering and applying conditionals, can also be done in a generator expression.</p>
 <p>Generator functions are functions that, when called, produce generator objects. Generator functions are written with the syntax of any other user-defined function, however instead of returning values using the keyword <code>return</code>, they yield sequences of values using the keyword <code>yield</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1340,23 +1098,12 @@ Name: created_at, dtype: object
     <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">6
+</div><pre tabindex="0"><code>6
 5
 5
 6
 7
-</code></pre></td></tr></table>
-</div>
-</div><h1 id="world-bank-data-analysis-case">World Bank Data Analysis Case</h1>
+</code></pre><h1 id="world-bank-data-analysis-case">World Bank Data Analysis Case</h1>
 <p>Here, we will use the skills of writing user-defined functions, iterators, list comprehensions and generators to wrangle and extract meaningful information from a real-world dataset, the World Bank World Development Indicators dataset.</p>
 <p>This dataset contains data on 217 world economies for over half a century, from 1960 up until 2015. The data contains hundreds of indicators from population, electricity consumption and CO2 emissions to literacy rates, unemployment and mortality rates.</p>
 <hr>
@@ -1373,15 +1120,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">rs_dict</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;IndicatorCode&#39;: &#39;SP.ADO.TFRT&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;133.56090740552298&#39;}
-</code></pre></td></tr></table>
-</div>
-</div><p>Define the function <code>lists2dict()</code> with two parameters: first is <code>list1</code> and second is <code>list2</code>. Return the resulting dictionary <code>rs_dict</code> in <code>lists2dict()</code>. Call the <code>lists2dict()</code> function with the arguments <code>feature_names</code> and <code>row_vals</code>. Assign the result of the function call to <code>rs_fxn</code>.</p>
+</div><pre tabindex="0"><code>{'CountryName': 'Arab World', 'CountryCode': 'ARB', 'IndicatorName': 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'IndicatorCode': 'SP.ADO.TFRT', 'Year': '1960', 'Value': '133.56090740552298'}
+</code></pre><p>Define the function <code>lists2dict()</code> with two parameters: first is <code>list1</code> and second is <code>list2</code>. Return the resulting dictionary <code>rs_dict</code> in <code>lists2dict()</code>. Call the <code>lists2dict()</code> function with the arguments <code>feature_names</code> and <code>row_vals</code>. Assign the result of the function call to <code>rs_fxn</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1406,15 +1146,8 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">rs_fxn</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;IndicatorCode&#39;: &#39;SP.ADO.TFRT&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;133.56090740552298&#39;}
-</code></pre></td></tr></table>
-</div>
-</div><p><code>row_lists</code> is a list of lists, where each sublist is a list of actual values of a row from the dataset. Inspect the contents of <code>row_lists</code> by printing the first two lists in <code>row_lists</code>. Create a list comprehension that generates a dictionary using <code>lists2dict()</code> for each sublist in <code>row_lists</code>. The keys are from the <code>feature_names</code> list and the values are the row entries in <code>row_lists</code>. Use <code>sublist</code> as your iterator variable and assign the resulting list of dictionaries to <code>list_of_dicts</code>. Look at the first two dictionaries in <code>list_of_dicts</code> by printing them out.</p>
+</div><pre tabindex="0"><code>{'CountryName': 'Arab World', 'CountryCode': 'ARB', 'IndicatorName': 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'IndicatorCode': 'SP.ADO.TFRT', 'Year': '1960', 'Value': '133.56090740552298'}
+</code></pre><p><code>row_lists</code> is a list of lists, where each sublist is a list of actual values of a row from the dataset. Inspect the contents of <code>row_lists</code> by printing the first two lists in <code>row_lists</code>. Create a list comprehension that generates a dictionary using <code>lists2dict()</code> for each sublist in <code>row_lists</code>. The keys are from the <code>feature_names</code> list and the values are the row entries in <code>row_lists</code>. Use <code>sublist</code> as your iterator variable and assign the resulting list of dictionaries to <code>list_of_dicts</code>. Look at the first two dictionaries in <code>list_of_dicts</code> by printing them out.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1435,21 +1168,11 @@ Name: created_at, dtype: object
 <span class="nb">print</span><span class="p">(</span><span class="n">list_of_dicts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;Arab World&#39;, &#39;ARB&#39;, &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;SP.ADO.TFRT&#39;, &#39;1960&#39;, &#39;133.56090740552298&#39;]
-[&#39;Arab World&#39;, &#39;ARB&#39;, &#39;Age dependency ratio (% of working-age population)&#39;, &#39;SP.POP.DPND&#39;, &#39;1960&#39;, &#39;87.7976011532547&#39;]
-{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Adolescent fertility rate (births per 1,000 women ages 15-19)&#39;, &#39;IndicatorCode&#39;: &#39;SP.ADO.TFRT&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;133.56090740552298&#39;}
-{&#39;CountryName&#39;: &#39;Arab World&#39;, &#39;CountryCode&#39;: &#39;ARB&#39;, &#39;IndicatorName&#39;: &#39;Age dependency ratio (% of working-age population)&#39;, &#39;IndicatorCode&#39;: &#39;SP.POP.DPND&#39;, &#39;Year&#39;: &#39;1960&#39;, &#39;Value&#39;: &#39;87.7976011532547&#39;}
-</code></pre></td></tr></table>
-</div>
-</div><p>To use the <code>DataFrame()</code> function, first import the <code>pandas</code> package with the alias <code>pd</code>. Create a DataFrame from the list of dictionaries in <code>list_of_dicts</code> by calling <code>pd.DataFrame()</code>. Assign the resulting DataFrame to <code>df</code>. Inspect the contents of df printing the head of the DataFrame. Head of the DataFrame df can be accessed by calling <code>df.head()</code>.</p>
+</div><pre tabindex="0"><code>['Arab World', 'ARB', 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'SP.ADO.TFRT', '1960', '133.56090740552298']
+['Arab World', 'ARB', 'Age dependency ratio (% of working-age population)', 'SP.POP.DPND', '1960', '87.7976011532547']
+{'CountryName': 'Arab World', 'CountryCode': 'ARB', 'IndicatorName': 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'IndicatorCode': 'SP.ADO.TFRT', 'Year': '1960', 'Value': '133.56090740552298'}
+{'CountryName': 'Arab World', 'CountryCode': 'ARB', 'IndicatorName': 'Age dependency ratio (% of working-age population)', 'IndicatorCode': 'SP.POP.DPND', 'Year': '1960', 'Value': '87.7976011532547'}
+</code></pre><p>To use the <code>DataFrame()</code> function, first import the <code>pandas</code> package with the alias <code>pd</code>. Create a DataFrame from the list of dictionaries in <code>list_of_dicts</code> by calling <code>pd.DataFrame()</code>. Assign the resulting DataFrame to <code>df</code>. Inspect the contents of df printing the head of the DataFrame. Head of the DataFrame df can be accessed by calling <code>df.head()</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1466,25 +1189,13 @@ Name: created_at, dtype: object
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  CountryName CountryCode                                      IndicatorName   IndicatorCode  Year               Value
+</div><pre tabindex="0"><code>  CountryName CountryCode                                      IndicatorName   IndicatorCode  Year               Value
 0  Arab World         ARB  Adolescent fertility rate (births per 1,000 wo...     SP.ADO.TFRT  1960  133.56090740552298
 1  Arab World         ARB  Age dependency ratio (% of working-age populat...     SP.POP.DPND  1960    87.7976011532547
 2  Arab World         ARB  Age dependency ratio, old (% of working-age po...  SP.POP.DPND.OL  1960   6.634579191565161
 3  Arab World         ARB  Age dependency ratio, young (% of working-age ...  SP.POP.DPND.YG  1960   81.02332950839141
 4  Arab World         ARB        Arms exports (SIPRI trend indicator values)  MS.MIL.XPRT.KD  1960           3000000.0
-</code></pre></td></tr></table>
-</div>
-</div><p>In the function <code>read_large_file()</code>, read a line from <code>file_object</code> by using the method <code>readline()</code>. Assign the result to <code>data</code>. In the function <code>read_large_file()</code>, <code>yield</code> the line read from the file data. In the context manager, create a generator object <code>gen_file</code> by calling your generator function <code>read_large_file()</code> and passing file to it. Print the first three lines produced by the generator object gen_file using <code>next()</code>.</p>
+</code></pre><p>In the function <code>read_large_file()</code>, read a line from <code>file_object</code> by using the method <code>readline()</code>. Assign the result to <code>data</code>. In the function <code>read_large_file()</code>, <code>yield</code> the line read from the file data. In the context manager, create a generator object <code>gen_file</code> by calling your generator function <code>read_large_file()</code> and passing file to it. Print the first three lines produced by the generator object gen_file using <code>next()</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1521,23 +1232,12 @@ Name: created_at, dtype: object
     <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">gen_file</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">CountryName,CountryCode,IndicatorName,IndicatorCode,Year,Value
+</div><pre tabindex="0"><code>CountryName,CountryCode,IndicatorName,IndicatorCode,Year,Value
 
-Arab World,ARB,&#34;Adolescent fertility rate (births per 1,000 women ages 15-19)&#34;,SP.ADO.TFRT,1960,133.56090740552298
+Arab World,ARB,&quot;Adolescent fertility rate (births per 1,000 women ages 15-19)&quot;,SP.ADO.TFRT,1960,133.56090740552298
 
 Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,1960,87.7976011532547
-</code></pre></td></tr></table>
-</div>
-</div><p>Bind the file &lsquo;world_dev_ind.csv&rsquo; to file in the context manager with <code>open()</code>. Complete the <code>for</code> loop so that it iterates over the generator from the call to <code>read_large_file()</code> to process all the rows of the file.</p>
+</code></pre><p>Bind the file &lsquo;world_dev_ind.csv&rsquo; to file in the context manager with <code>open()</code>. Complete the <code>for</code> loop so that it iterates over the generator from the call to <code>read_large_file()</code> to process all the rows of the file.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1570,15 +1270,8 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 <span class="nb">print</span><span class="p">(</span><span class="n">counts_dict</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{&#39;CountryName&#39;: 1, &#39;Arab World&#39;: 80, &#39;Caribbean small states&#39;: 77, &#39;Central Europe and the Baltics&#39;: 71, &#39;East Asia &amp; Pacific (all income levels)&#39;: 122, &#39;East Asia &amp; Pacific (developing only)&#39;: 123, &#39;Euro area&#39;: 119, &#39;Europe &amp; Central Asia (all income levels)&#39;: 109, &#39;Europe &amp; Central Asia (developing only)&#39;: 89, &#39;European Union&#39;: 116, &#39;Fragile and conflict affected situations&#39;: 76, &#39;Heavily indebted poor countries (HIPC)&#39;: 99, &#39;High income&#39;: 131, &#39;High income: nonOECD&#39;: 68, &#39;High income: OECD&#39;: 127, &#39;Latin America &amp; Caribbean (all income levels)&#39;: 130, &#39;Latin America &amp; Caribbean (developing only)&#39;: 133, &#39;Least developed countries: UN classification&#39;: 78, &#39;Low &amp; middle income&#39;: 138, &#39;Low income&#39;: 80, &#39;Lower middle income&#39;: 126, &#39;Middle East &amp; North Africa (all income levels)&#39;: 89, &#39;Middle East &amp; North Africa (developing only)&#39;: 94, &#39;Middle income&#39;: 138, &#39;North America&#39;: 123, &#39;OECD members&#39;: 130, &#39;Other small states&#39;: 63, &#39;Pacific island small states&#39;: 66, &#39;Small states&#39;: 69, &#39;South Asia&#39;: 36}
-</code></pre></td></tr></table>
-</div>
-</div><p>Use <code>pd.read_csv()</code> to read in &lsquo;ind_pop.csv&rsquo; in chunks of size 10. Assign the result to <code>df_reader</code>. Print the first two chunks from <code>df_reader</code>.</p>
+</div><pre tabindex="0"><code>{'CountryName': 1, 'Arab World': 80, 'Caribbean small states': 77, 'Central Europe and the Baltics': 71, 'East Asia &amp; Pacific (all income levels)': 122, 'East Asia &amp; Pacific (developing only)': 123, 'Euro area': 119, 'Europe &amp; Central Asia (all income levels)': 109, 'Europe &amp; Central Asia (developing only)': 89, 'European Union': 116, 'Fragile and conflict affected situations': 76, 'Heavily indebted poor countries (HIPC)': 99, 'High income': 131, 'High income: nonOECD': 68, 'High income: OECD': 127, 'Latin America &amp; Caribbean (all income levels)': 130, 'Latin America &amp; Caribbean (developing only)': 133, 'Least developed countries: UN classification': 78, 'Low &amp; middle income': 138, 'Low income': 80, 'Lower middle income': 126, 'Middle East &amp; North Africa (all income levels)': 89, 'Middle East &amp; North Africa (developing only)': 94, 'Middle income': 138, 'North America': 123, 'OECD members': 130, 'Other small states': 63, 'Pacific island small states': 66, 'Small states': 69, 'South Asia': 36}
+</code></pre><p>Use <code>pd.read_csv()</code> to read in &lsquo;ind_pop.csv&rsquo; in chunks of size 10. Assign the result to <code>df_reader</code>. Print the first two chunks from <code>df_reader</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1613,33 +1306,7 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 <span class="c1">#         break</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">                                 CountryName CountryCode                  IndicatorName      IndicatorCode  Year   Value
+</div><pre tabindex="0"><code>                                 CountryName CountryCode                  IndicatorName      IndicatorCode  Year   Value
 0                                 Arab World         ARB  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  31.285
 1                     Caribbean small states         CSS  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  31.597
 2             Central Europe and the Baltics         CEB  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  44.508
@@ -1661,9 +1328,7 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 17                            Low &amp; middle income         LMY  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  21.273
 18                                     Low income         LIC  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  11.498
 19                            Lower middle income         LMC  Urban population (% of total)  SP.URB.TOTL.IN.ZS  1960  19.811
-</code></pre></td></tr></table>
-</div>
-</div><p>Use <code>pd.read_csv()</code> to read in the file in &lsquo;ind_pop_data.csv&rsquo; in chunks of size 1000. Assign the result to <code>urb_pop_reader</code>. Get the first DataFrame chunk from the iterable <code>urb_pop_reader</code> and assign this to <code>df_urb_pop</code>.</p>
+</code></pre><p>Use <code>pd.read_csv()</code> to read in the file in &lsquo;ind_pop_data.csv&rsquo; in chunks of size 1000. Assign the result to <code>urb_pop_reader</code>. Get the first DataFrame chunk from the iterable <code>urb_pop_reader</code> and assign this to <code>df_urb_pop</code>.</p>
 <p>Select only the rows of <code>df_urb_pop</code> that have a &lsquo;<code>CountryCode</code>&rsquo; of &lsquo;<code>CEB</code>&rsquo;. Using <code>zip()</code>, zip together the &lsquo;Total Population&rsquo; and &lsquo;Urban population (% of total)&rsquo; columns of <code>df_pop_ceb</code>. Assign the resulting zip object to <code>pops</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1677,25 +1342,13 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 <span class="nb">print</span><span class="p">(</span><span class="n">df_urb_pop</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">                               CountryName CountryCode  Year  Total Population  Urban population (% of total)
+</div><pre tabindex="0"><code>                               CountryName CountryCode  Year  Total Population  Urban population (% of total)
 0                               Arab World         ARB  1960         9.250e+07                         31.285
 1                   Caribbean small states         CSS  1960         4.191e+06                         31.597
 2           Central Europe and the Baltics         CEB  1960         9.140e+07                         44.508
 3  East Asia &amp; Pacific (all income levels)         EAS  1960         1.042e+09                         22.471
 4    East Asia &amp; Pacific (developing only)         EAP  1960         8.965e+08                         16.918
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
+</code></pre><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1709,15 +1362,8 @@ Arab World,ARB,Age dependency ratio (% of working-age population),SP.POP.DPND,19
 <span class="nb">print</span><span class="p">(</span><span class="n">pops_list</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[(91401583.0, 44.5079211390026), (92237118.0, 45.206665319194), (93014890.0, 45.866564696018), (93845749.0, 46.5340927663649), (94722599.0, 47.2087429803526)]
-</code></pre></td></tr></table>
-</div>
-</div><p>Write a list comprehension to generate a list of values from <code>pops_list</code> for the new column &lsquo;<code>Total Urban Population</code>&rsquo;. The output expression should be the product of the first and second element in each tuple in pops_list. Because the 2nd element is a percentage, you also need to either multiply the result by 0.01 or divide it by 100. In addition, note that the column &lsquo;<code>Total Urban Population</code>&rsquo; should only be able to take on integer values. To ensure this, make sure you cast the output expression to an integer with <code>int()</code>.</p>
+</div><pre tabindex="0"><code>[(91401583.0, 44.5079211390026), (92237118.0, 45.206665319194), (93014890.0, 45.866564696018), (93845749.0, 46.5340927663649), (94722599.0, 47.2087429803526)]
+</code></pre><p>Write a list comprehension to generate a list of values from <code>pops_list</code> for the new column &lsquo;<code>Total Urban Population</code>&rsquo;. The output expression should be the product of the first and second element in each tuple in pops_list. Because the 2nd element is a percentage, you also need to either multiply the result by 0.01 or divide it by 100. In addition, note that the column &lsquo;<code>Total Urban Population</code>&rsquo; should only be able to take on integer values. To ensure this, make sure you cast the output expression to an integer with <code>int()</code>.</p>
 <p>Create a scatter plot where the x-axis are values from the &lsquo;<code>Year</code>&rsquo; column and the y-axis are values from the &lsquo;<code>Total Urban Population</code>&rsquo; column.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
