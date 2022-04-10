@@ -6,7 +6,15 @@
         <description>Recent content in Tags on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 14 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>python</title>
+        <link>https://wanghaoming177.netlify.app/tags/python/</link>
+        <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/tags/python/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Data Visualization</title>
         <link>https://wanghaoming177.netlify.app/tags/data-visualization/</link>
         <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
@@ -15,19 +23,19 @@
         <description></description>
         </item>
         <item>
+        <title>High-Performance Python</title>
+        <link>https://wanghaoming177.netlify.app/tags/high-performance-python/</link>
+        <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/tags/high-performance-python/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Machine Learning</title>
         <link>https://wanghaoming177.netlify.app/tags/machine-learning/</link>
         <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/tags/machine-learning/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>python</title>
-        <link>https://wanghaoming177.netlify.app/tags/python/</link>
-        <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/tags/python/</guid>
         <description></description>
         </item>
         <item>

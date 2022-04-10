@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wanghaoming177.netlify.app/</loc>
-    <lastmod>2022-04-03T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/categories/</loc>
     <lastmod>2021-07-23T00:00:00+00:00</lastmod>
@@ -16,6 +16,15 @@
   </url><url>
     <loc>https://wanghaoming177.netlify.app/post/</loc>
     <lastmod>2021-07-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/feature-engineering-cleaning/</loc>
+    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/tags/python/</loc>
+    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/tags/</loc>
+    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/categories/data_science/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
@@ -32,14 +41,17 @@
     <loc>https://wanghaoming177.netlify.app/p/data-visualization-iii-seaborn/</loc>
     <lastmod>2020-04-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://wanghaoming177.netlify.app/tags/</loc>
-    <lastmod>2020-04-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://wanghaoming177.netlify.app/p/data-visualization-ii-seaborn/</loc>
     <lastmod>2020-04-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/p/data-visualization-i-matplotlib/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/tags/high-performance-python/</loc>
+    <lastmod>2020-03-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/high-performance-python-v-big-data/</loc>
+    <lastmod>2020-03-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/tags/machine-learning/</loc>
     <lastmod>2020-03-04T00:00:00+00:00</lastmod>
@@ -47,20 +59,29 @@
     <loc>https://wanghaoming177.netlify.app/p/perceptron-learning-algorithm/</loc>
     <lastmod>2020-03-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://wanghaoming177.netlify.app/tags/python/</loc>
+    <loc>https://wanghaoming177.netlify.app/categories/python/</loc>
     <lastmod>2020-03-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/high-performance-python-iv-distribute-computing-pyspark/</loc>
+    <lastmod>2020-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/high-performance-python-iii-multi-process/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/high-performance-python-ii-multi-threading/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/high-performance-python-i-asyncio-coroutine/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/tags/object-oriented-programming/</loc>
     <lastmod>2019-09-10T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/object-oriented-programming-iv-class/</loc>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://wanghaoming177.netlify.app/p/object-oriented-programming-v-special-attributes-magic-methods/</loc>
     <lastmod>2019-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/categories/python/</loc>
-    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/p/object-oriented-programming-iv-class/</loc>
-    <lastmod>2019-09-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/p/object-oriented-programming-iii-context-managers-decorators/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
@@ -71,9 +92,6 @@
     <loc>https://wanghaoming177.netlify.app/p/object-oriented-programming-ii-iterators-comprehensions-generators/</loc>
     <lastmod>2019-08-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://wanghaoming177.netlify.app/p/feature-engineering-cleaning/</loc>
-    <lastmod>2019-08-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://wanghaoming177.netlify.app/p/object-oriented-programming-i-function/</loc>
     <lastmod>2019-08-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -81,13 +99,13 @@
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/page/</loc>
-    <lastmod>2022-04-03T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/notes/</loc>
-    <lastmod>2022-04-03T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/categories/financial_engineering/</loc>
   </url><url>
