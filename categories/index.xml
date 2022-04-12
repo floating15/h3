@@ -6,7 +6,15 @@
         <description>Recent content in Categories on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux</title>
+        <link>https://wanghaoming177.netlify.app/categories/linux/</link>
+        <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/linux/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/linux/images2.jpeg" alt="Featured image of post Linux" /&gt;</description>
+        </item>
+        <item>
         <title>Kaggle</title>
         <link>https://wanghaoming177.netlify.app/categories/kaggle/</link>
         <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
@@ -20,7 +28,7 @@
         <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/data_science/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_science/ddd2.jpeg" alt="Featured image of post Data Science" /&gt;</description>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_science/ttt2.jpeg" alt="Featured image of post Data Science" /&gt;</description>
         </item>
         <item>
         <title>Python</title>
@@ -36,7 +44,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/aws/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/aws/aaa5.png" alt="Featured image of post AWS &amp; Cloud Computing" /&gt;</description>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/aws/aa3.png" alt="Featured image of post AWS &amp; Cloud Computing" /&gt;</description>
         </item>
         <item>
         <title>Financial Engineering</title>
@@ -47,20 +55,20 @@
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/financial_engineering/doeblin.png" alt="Featured image of post Financial Engineering" /&gt;</description>
         </item>
         <item>
-        <title>Linux</title>
-        <link>https://wanghaoming177.netlify.app/categories/linux/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/categories/linux/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/linux/images2.jpeg" alt="Featured image of post Linux" /&gt;</description>
-        </item>
-        <item>
         <title>PyTorch &amp; Deep Learning</title>
         <link>https://wanghaoming177.netlify.app/categories/pytorch/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/pytorch/</guid>
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/pytorch/ttt1.png" alt="Featured image of post PyTorch &amp; Deep Learning" /&gt;</description>
+        </item>
+        <item>
+        <title>Thesis Reproduction</title>
+        <link>https://wanghaoming177.netlify.app/categories/thesis/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/thesis/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/thesis/ttt10.png" alt="Featured image of post Thesis Reproduction" /&gt;</description>
         </item>
         
     </channel>
