@@ -368,7 +368,10 @@
     <section class="article-content">
     
     
-    <h1 id="oop-fundamental">OOP Fundamental</h1>
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<h1 id="oop-fundamental">OOP Fundamental</h1>
 <p>The fundamental concepts of OOP are objects and classes. <strong>An object is a data structure incorporating information about state and behavior.</strong> For example, an object representing a customer can have a certain phone number and email associated with them, and behaviors like placeOrder or cancelOrder. The distinctive feature of OOP is that state and behavior are bundled together: instead of thinking of customer data separately from customer actions, we think of them as one unit representing a customer. This is called <strong>encapsulation</strong>, and it&rsquo;s one of the core tenets of object-oriented programming.</p>
 <p>Classes are like blueprints for objects. <strong>They describe the possible states and behaviors that every object of a certain type could have</strong>. For example, if you say &ldquo;every customer will have a phone number and an email, and will be able to place and cancel orders&rdquo;, you just defined a class. This way, you can talk about customers in a unified way. In Python, <strong>everything is an object. In particular, everything you deal with in Python has a class</strong>, a blueprint associated with it under the hood. The existence of these unified interfaces, is why you can use one kind of object in the same way.</p>
 <p>Classes incorporate information about state and behavior. State information in Python is contained in <strong>attributes</strong>, and behavior information &ndash; in <strong>methods</strong>.  For example, every numpy array has an attribute &ldquo;<code>shape</code>&rdquo; and a method &ldquo;<code>reshape()</code>&rdquo;. Attributes (or states) in Python objects are represented by <strong>variables</strong> &ndash; like numbers, or strings, or tuples. Methods, or behaviors, are represented by <strong>functions</strong>. Both are accessible from an object using the dot <code>.</code> syntax.</p>
@@ -389,7 +392,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">pass</span>
+	<span class="k">pass</span>
 
 <span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">()</span>
 <span class="n">c2</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">()</span>
@@ -413,8 +416,8 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">identify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is &#34;</span><span class="o">+</span><span class="n">name</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">identify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is &#34;</span><span class="o">+</span><span class="n">name</span><span class="p">)</span>
 
 <span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">()</span>
 <span class="n">c1</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">)</span>
@@ -439,10 +442,10 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">set_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="k">def</span> <span class="nf">identify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is &#34;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">set_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+	<span class="k">def</span> <span class="nf">identify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is &#34;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 <span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -714,13 +717,13 @@ month salary:  5416.666666666667
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
-    <span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span> <span class="c1"># &lt;-- assign Class-level attr, directly without `self`</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="c1"># &lt;-- assign Instance-level attr, bounded with instance by `self`</span>
-        <span class="k">if</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span> <span class="c1"># &lt;-- refer Class-level attr inside the class</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span>
+	<span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span> <span class="c1"># &lt;-- assign Class-level attr, directly without `self`</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="c1"># &lt;-- assign Instance-level attr, bounded with instance by `self`</span>
+		<span class="k">if</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span> <span class="c1"># &lt;-- refer Class-level attr inside the class</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span>
 
 <span class="n">emp1</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&#34;Haoming&#34;</span><span class="p">,</span> <span class="mi">37000</span><span class="p">)</span>
 <span class="n">emp2</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&#34;Yachong&#34;</span><span class="p">,</span> <span class="mi">36999</span><span class="p">)</span>
@@ -850,21 +853,21 @@ month salary:  5416.666666666667
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
-    <span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span> 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> 
-        <span class="k">if</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span> 
-            <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span>
-    
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">minsalary</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">min_salary</span><span class="p">):</span>
-        <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="n">min_salary</span>
+	<span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span> 
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> 
+		<span class="k">if</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span> 
+			<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span>
+	
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span> <span class="nf">minsalary</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">min_salary</span><span class="p">):</span>
+		<span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="n">min_salary</span>
 
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">delta_minsalary</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
-        <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span> <span class="o">+=</span> <span class="n">delta</span>
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span> <span class="nf">delta_minsalary</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+		<span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span> <span class="o">+=</span> <span class="n">delta</span>
 
 <span class="n">emp1</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&#34;Haoming&#34;</span><span class="p">,</span> <span class="mi">37000</span><span class="p">)</span>
 <span class="n">emp2</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&#34;Yachong&#34;</span><span class="p">,</span> <span class="mi">36999</span><span class="p">)</span>
@@ -929,25 +932,25 @@ month salary:  5416.666666666667
 <span class="err">!</span><span class="n">echo</span> <span class="n">shaonan</span> <span class="o">&gt;&gt;</span> <span class="o">~/</span><span class="n">Documents</span><span class="o">/</span><span class="n">names</span><span class="o">.</span><span class="n">txt</span>
 
 <span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
-    <span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span> 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> 
-        <span class="k">if</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span> 
-            <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span>
-    
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">names</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+	<span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span> 
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> 
+		<span class="k">if</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span> 
+			<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span>
+	
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+		<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+			<span class="n">names</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+		<span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;/Users/wanghaoming/Documents/names.txt&#34;</span>
 
 <span class="n">objs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Employee</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+	<span class="n">Employee</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="p">]</span>
 <span class="n">info</span> <span class="o">=</span> <span class="p">[(</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">salary</span><span class="p">)</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
@@ -1032,14 +1035,14 @@ month salary:  5416.666666666667
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">BankAccount</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
-    
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	
+	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
 
 <span class="k">class</span> <span class="nc">SavingsAccount</span><span class="p">(</span><span class="n">BankAccount</span><span class="p">):</span>
-    <span class="k">pass</span>
+	<span class="k">pass</span>
 
 <span class="n">sa1</span> <span class="o">=</span> <span class="n">SavingsAccount</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 <span class="n">sa1</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
@@ -1101,7 +1104,7 @@ False
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Player</span><span class="p">:</span>
     <span class="n">MAX_POSITION</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">MAX_SPEED</span> <span class="o">=</span> <span class="mi">3</span>
+	<span class="n">MAX_SPEED</span> <span class="o">=</span> <span class="mi">3</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1152,16 +1155,16 @@ r.MAX_POSITION =  10
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">BankAccount</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
-    
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	
+	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
 
 <span class="k">class</span> <span class="nc">SavingsAccount</span><span class="p">(</span><span class="n">BankAccount</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">interest_rate</span><span class="p">):</span>
-        <span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interest_rate</span> <span class="o">=</span> <span class="n">interest_rate</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">interest_rate</span><span class="p">):</span>
+		<span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">interest_rate</span> <span class="o">=</span> <span class="n">interest_rate</span>
 
 <span class="n">sa</span> <span class="o">=</span> <span class="n">SavingsAccount</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sa</span><span class="o">.</span><span class="n">balance</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">interest_rate</span><span class="p">)</span>
@@ -1197,19 +1200,19 @@ r.MAX_POSITION =  10
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">BankAccount</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
-    
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	
+	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
 
 <span class="k">class</span> <span class="nc">SavingsAccount</span><span class="p">(</span><span class="n">BankAccount</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">interest_rate</span><span class="p">):</span>
-        <span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interest_rate</span> <span class="o">=</span> <span class="n">interest_rate</span>
-    
-    <span class="k">def</span> <span class="nf">compute_interest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">interest_rate</span><span class="p">)</span> <span class="o">**</span> <span class="n">n_periods</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">interest_rate</span><span class="p">):</span>
+		<span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">interest_rate</span> <span class="o">=</span> <span class="n">interest_rate</span>
+	
+	<span class="k">def</span> <span class="nf">compute_interest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">interest_rate</span><span class="p">)</span> <span class="o">**</span> <span class="n">n_periods</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="n">sa</span> <span class="o">=</span> <span class="n">SavingsAccount</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mf">.05</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sa</span><span class="o">.</span><span class="n">compute_interest</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
@@ -1259,25 +1262,25 @@ r.MAX_POSITION =  10
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">BankAccount</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
-    
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	
+	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
 
 <span class="k">class</span> <span class="nc">CheckingAccount</span><span class="p">(</span><span class="n">BankAccount</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
-        <span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
-    
-    <span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
-    
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">fee</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">fee</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">:</span>
-            <span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="n">fee</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">)</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+		<span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
+	
+	<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
+	
+	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">fee</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">fee</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">:</span>
+			<span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="n">fee</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">)</span>
 
 
 <span class="n">ca</span> <span class="o">=</span> <span class="n">CheckingAccount</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -1401,14 +1404,14 @@ TypeError: withdraw() takes 2 positional arguments but 3 were given
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="k">class</span> <span class="nc">LoggedDF</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
   
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+		<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
     
-    <span class="k">def</span> <span class="nf">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># &lt;-- `self` refers the object that method follows. </span>
-        <span class="n">temp</span><span class="p">[</span><span class="s2">&#34;created_at&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span>
-        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># &lt;-- `self` refers the object that method follows. </span>
+		<span class="n">temp</span><span class="p">[</span><span class="s2">&#34;created_at&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span>
+		<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="n">LDF</span> <span class="o">=</span> <span class="n">LoggedDF</span><span class="p">(</span>
   <span class="p">{</span>
@@ -1429,6 +1432,106 @@ TypeError: withdraw() takes 2 positional arguments but 3 were given
 3,4,5,6,2019-09-09 20:05:50.471649
 4,5,6,7,2019-09-09 20:05:50.471649
 </code></pre><h1 id="integrating-with-standard-python">Integrating with Standard Python</h1>
+<h2 id="object-and-type"><code>object</code> and <code>type</code>*</h2>
+<p>This is a deep-level knowledge, which indeed bothers me for a long time. But reader could just skip it. When we say inheritance previously, It generally follows the rule: <code>class C2(C1):</code>. But if we do not specify what class does class inherits from, it inherits from <code>object</code> class. There are two rules in Python:</p>
+<ul>
+<li>every class (except <code>object</code>) inherits from class <code>object</code>.</li>
+<li>every class is an instance of the class <code>type</code>.</li>
+</ul>
+<p>Furthermore, <code>type</code> is an instance of itself, and inherits from <code>object</code>, thus <strong><code>type</code> is an instance of <code>object</code></strong>. <code>object</code> is an instance of <code>type</code>, and <code>type</code> is inherits from <code>object</code>, thus <strong><code>object</code> is an instance of <code>object</code></strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">type</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="nb">object</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="nb">object</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">type</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>True
+True
+True
+True
+
+True
+False
+</code></pre><p>Every class (except <code>object</code>) inherits from <code>object</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="si">:</span><span class="s1">6</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="vm">__bases__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>object: ()
+type  : (&lt;class 'object'&gt;,)
+int   : (&lt;class 'object'&gt;,)
+float : (&lt;class 'object'&gt;,)
+str   : (&lt;class 'object'&gt;,)
+list  : (&lt;class 'object'&gt;,)
+dict  : (&lt;class 'object'&gt;,)
+</code></pre><p>Every class is an instance of the class <code>type</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="si">:</span><span class="s1">6</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>object: &lt;class 'type'&gt;
+type  : &lt;class 'type'&gt;
+int   : &lt;class 'type'&gt;
+float : &lt;class 'type'&gt;
+str   : &lt;class 'type'&gt;
+list  : &lt;class 'type'&gt;
+dict  : &lt;class 'type'&gt;
+</code></pre><p>Since <code>type</code> inherits from <code>object</code>, every class is an instance of the class <code>object</code> too.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="si">:</span><span class="s1">6</span><span class="si">}</span><span class="s1"> is an instance of object : </span><span class="si">{</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">object</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>object is an instance of object : True
+type   is an instance of object : True
+int    is an instance of object : True
+float  is an instance of object : True
+str    is an instance of object : True
+list   is an instance of object : True
+dict   is an instance of object : True
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204121843476.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Thus you should know <em>&ldquo;Everything in Python is an object&rdquo;</em> better. Any classes that we define are objects (inherits), and of course, instances of those classes are objects (&rsquo;s instance) as well.</p>
+<blockquote>
+<p>Tips: <code>print(f&quot;{'aaa':5}bbb&quot;)</code> prints out <code>aaa  bbb</code>.</p>
+</blockquote>
 <h2 id="comparison">Comparison</h2>
 <p>Here are two objects of the <code>Customer</code> class that have the same data. If we ask Python if these objects are equal, the answer is &ldquo;<code>False</code>&rdquo;. When an object is created, Python allocates a chunk of memory to that object, and the variable that the object is assigned to actually contains just the reference to the memory chunk.</p>
 <div class="highlight"><div class="chroma">
@@ -1445,9 +1548,9 @@ TypeError: withdraw() takes 2 positional arguments but 3 were given
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
 
 <span class="n">customer1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
 <span class="n">customer2</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
@@ -1489,14 +1592,14 @@ TypeError: withdraw() takes 2 positional arguments but 3 were given
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__eq__() is called&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
-        
+	<span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__eq__() is called&#34;</span><span class="p">)</span>
+		<span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
+		
 <span class="n">customer1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
 <span class="n">customer2</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
 
@@ -1531,14 +1634,14 @@ True
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Phone</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">number</span>
+	<span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">number</span>
 
 <span class="k">class</span> <span class="nc">BankAccount</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">number</span><span class="p">,</span> <span class="n">balance</span>
       
     <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
@@ -1582,12 +1685,12 @@ True
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Phone</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Phone class&#39;s __eq__&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">number</span>
+	<span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Phone class&#39;s __eq__&#34;</span><span class="p">)</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">number</span>
 
 <span class="k">class</span> <span class="nc">BankAccount</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -1595,7 +1698,7 @@ True
       
     <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span> 
-        
+		
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BankAccount class&#39;s __eq__&#34;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">number</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
@@ -1762,16 +1865,16 @@ True
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
-    
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__eq__() is called&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	
+	<span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__eq__() is called&#34;</span><span class="p">)</span>
+		<span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&#34;Customer(&#39;</span><span class="si">{name}</span><span class="s2">&#39;, </span><span class="si">{balance}</span><span class="s2">)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
+	<span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="s2">&#34;Customer(&#39;</span><span class="si">{name}</span><span class="s2">&#39;, </span><span class="si">{balance}</span><span class="s2">)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
 
 <span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">142857</span><span class="p">)</span>
 <span class="n">cc1</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">c1</span><span class="p">))</span>
@@ -1801,12 +1904,12 @@ True
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&#34;Customer(&#39;</span><span class="si">{name}</span><span class="s2">&#39;, </span><span class="si">{balance}</span><span class="s2">)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
+	<span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="s2">&#34;Customer(&#39;</span><span class="si">{name}</span><span class="s2">&#39;, </span><span class="si">{balance}</span><span class="s2">)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
 
 <span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">142857</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -1904,13 +2007,13 @@ Employee('Carolyn Ramirez', 35000)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
-    <span class="c1"># Try running some code</span>
+	<span class="c1"># Try running some code</span>
 <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-    <span class="c1"># Run this code if ZeroDivisionError happens</span>
+	<span class="c1"># Run this code if ZeroDivisionError happens</span>
 <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-    <span class="c1"># Run this code if TypeError happens</span>
+	<span class="c1"># Run this code if TypeError happens</span>
 <span class="k">finally</span><span class="p">:</span> <span class="c1"># &lt;-- optional</span>
-    <span class="c1"># Run this code no matter what</span>
+	<span class="c1"># Run this code no matter what</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Sometimes, you want to raise exceptions yourself, for example when some conditions aren&rsquo;t satisfied. You can use the <code>raise</code> keyword, <strong>optionally</strong> followed by a specific error message in <strong>parentheses</strong>. The user of the code can then decide to handle the error using <code>try/except</code>.</p>
@@ -1933,17 +2036,17 @@ Employee('Carolyn Ramirez', 35000)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">make_list_of_ones</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span><span class="mi">0</span> <span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Invalid length!&#34;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">length</span>
+	<span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span><span class="mi">0</span> <span class="p">:</span>
+		<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Invalid length!&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">length</span>
 
 <span class="k">def</span> <span class="nf">tef</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">func</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;length should be positive!&#34;</span><span class="p">)</span>
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;program is over.&#34;</span><span class="p">)</span>
+	<span class="k">try</span><span class="p">:</span>
+		<span class="n">func</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+	<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;length should be positive!&#34;</span><span class="p">)</span>
+	<span class="k">finally</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;program is over.&#34;</span><span class="p">)</span>
 
 <span class="n">tef</span><span class="p">(</span><span class="n">make_list_of_ones</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -1974,21 +2077,21 @@ program is over.
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">BalanceError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="k">pass</span>
+	<span class="k">pass</span>
 
 <span class="k">class</span> <span class="nc">Customer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">balance</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">BalanceError</span><span class="p">(</span><span class="s2">&#34;balance must be positive&#34;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">balance</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">BalanceError</span><span class="p">(</span><span class="s2">&#34;balance must be positive&#34;</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>
+	<span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">BalanceError</span><span class="p">:</span>
-    <span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;balance must be positive, the account with 0 balance value has been created.&#34;</span><span class="p">)</span>
+	<span class="n">c1</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;balance must be positive, the account with 0 balance value has been created.&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong><code>except</code> block for a parent exception will catch child exceptions, but the opposite is not true</strong>:</p>
@@ -2024,24 +2127,24 @@ program is over.
 <span class="k">class</span> <span class="nc">BonusError</span><span class="p">(</span><span class="n">SalaryError</span><span class="p">):</span> <span class="k">pass</span>
 
 <span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
-    <span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span>
-    <span class="n">MAX_BONUS</span> <span class="o">=</span> <span class="mi">5000</span>
+	<span class="n">MIN_SALARY</span> <span class="o">=</span> <span class="mi">30000</span>
+	<span class="n">MAX_BONUS</span> <span class="o">=</span> <span class="mi">5000</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>    
-        <span class="k">if</span> <span class="n">salary</span> <span class="o">&lt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">SalaryError</span><span class="p">(</span><span class="s2">&#34;Salary is too low!&#34;</span><span class="p">)</span>      
-        <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>    
+		<span class="k">if</span> <span class="n">salary</span> <span class="o">&lt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">SalaryError</span><span class="p">(</span><span class="s2">&#34;Salary is too low!&#34;</span><span class="p">)</span>      
+		<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
      
-    <span class="k">def</span> <span class="nf">give_bonus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MAX_BONUS</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">BonusError</span><span class="p">(</span><span class="s2">&#34;The bonus amount is too high!&#34;</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">give_bonus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="n">Employee</span><span class="o">.</span><span class="n">MAX_BONUS</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">BonusError</span><span class="p">(</span><span class="s2">&#34;The bonus amount is too high!&#34;</span><span class="p">)</span>
         
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">+</span> <span class="n">amount</span> <span class="o">&lt;</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">SalaryError</span><span class="p">(</span><span class="s2">&#34;The salary after bonus is too low!&#34;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">+</span> <span class="n">amount</span> <span class="o">&lt;</span>  <span class="n">Employee</span><span class="o">.</span><span class="n">MIN_SALARY</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">SalaryError</span><span class="p">(</span><span class="s2">&#34;The salary after bonus is too low!&#34;</span><span class="p">)</span>
       
-        <span class="k">else</span><span class="p">:</span>  
-            <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">+=</span> <span class="n">amount</span>
+		<span class="k">else</span><span class="p">:</span>  
+			<span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">+=</span> <span class="n">amount</span>
 
 <span class="n">emp</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&#34;Katze Rik&#34;</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -2055,9 +2158,9 @@ program is over.
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
-    <span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># bonus &gt; MAX_BONUS --&gt; BonusError Caught</span>
+	<span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># bonus &gt; MAX_BONUS --&gt; BonusError Caught</span>
 <span class="k">except</span> <span class="n">SalaryError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught!&#34;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught!&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>SalaryError caught!
@@ -2070,9 +2173,9 @@ program is over.
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
-    <span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># bonus &gt; MAX_BONUS --&gt; BonusError Caught</span>
+	<span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># bonus &gt; MAX_BONUS --&gt; BonusError Caught</span>
 <span class="k">except</span> <span class="n">BonusError</span><span class="p">:</span>     
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught!&#34;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught!&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>BonusError caught!
@@ -2085,9 +2188,9 @@ program is over.
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
-    <span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">)</span> <span class="c1"># salary + amount &lt; MIN_SALARY --&gt; SalaryError Caught</span>
+	<span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">)</span> <span class="c1"># salary + amount &lt; MIN_SALARY --&gt; SalaryError Caught</span>
 <span class="k">except</span> <span class="n">SalaryError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught again!&#34;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught again!&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>SalaryError caught again!
@@ -2100,9 +2203,9 @@ program is over.
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
-    <span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">)</span>  <span class="c1"># salary + amount &lt; MIN_SALARY --&gt; SalaryError Caught</span>
+	<span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">)</span>  <span class="c1"># salary + amount &lt; MIN_SALARY --&gt; SalaryError Caught</span>
 <span class="k">except</span> <span class="n">BonusError</span><span class="p">:</span>  
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught again!&#34;</span><span class="p">)</span> 
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught again!&#34;</span><span class="p">)</span> 
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>---------------------------------------------------------------------------
@@ -2131,9 +2234,9 @@ SalaryError: The salary after bonus is too low!
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
-    <span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">)</span>
+	<span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span> <span class="c1"># or just `except:` </span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught again!&#34;</span><span class="p">)</span>  
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught again!&#34;</span><span class="p">)</span>  
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>BonusError caught again!
@@ -2153,11 +2256,11 @@ SalaryError: The salary after bonus is too low!
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">emp</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&#34;Katze Rik&#34;</span><span class="p">,</span>\
                     <span class="mi">50000</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># sub error</span>
+	<span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># sub error</span>
 <span class="k">except</span> <span class="n">BonusError</span><span class="p">:</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught&#34;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught&#34;</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">SalaryError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught&#34;</span><span class="p">)</span> 
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught&#34;</span><span class="p">)</span> 
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>BonusError caught
@@ -2176,11 +2279,11 @@ SalaryError: The salary after bonus is too low!
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">emp</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&#34;Katze Rik&#34;</span><span class="p">,</span>\
                     <span class="mi">50000</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># sub error</span>
+	<span class="n">emp</span><span class="o">.</span><span class="n">give_bonus</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span> <span class="c1"># sub error</span>
 <span class="k">except</span> <span class="n">SalaryError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught&#34;</span><span class="p">)</span> 
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SalaryError caught&#34;</span><span class="p">)</span> 
 <span class="k">except</span> <span class="n">BonusError</span><span class="p">:</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught&#34;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;BonusError caught&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>SalaryError caught
@@ -2229,32 +2332,32 @@ SalaryError: The salary after bonus is too low!
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">BankAccount</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
-    
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+	
+	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
 
 <span class="k">class</span> <span class="nc">SavingsAccount</span><span class="p">(</span><span class="n">BankAccount</span><span class="p">):</span>
-    <span class="k">pass</span>
+	<span class="k">pass</span>
 
 <span class="k">class</span> <span class="nc">CheckingAccount</span><span class="p">(</span><span class="n">BankAccount</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
-        <span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
-    
-    <span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
-    
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">fee</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">fee</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">:</span>
-            <span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="n">fee</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">)</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+		<span class="n">BankAccount</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
+	
+	<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
+	
+	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">fee</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">fee</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">:</span>
+			<span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="n">fee</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">BankAccount</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">batch_withdraw</span><span class="p">(</span><span class="n">list_of_accounts</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">acct</span> <span class="ow">in</span> <span class="n">list_of_accounts</span><span class="p">:</span>
-        <span class="n">acct</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">acct</span> <span class="ow">in</span> <span class="n">list_of_accounts</span><span class="p">:</span>
+		<span class="n">acct</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
 
 <span class="n">a1</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">a2</span> <span class="o">=</span> <span class="n">SavingsAccount</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
@@ -2391,15 +2494,15 @@ Python&rsquo;s classes are objects, so Python has &ldquo;classmethods&rdquo; whi
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I Love Python.&#34;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">at1</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_at2</span> <span class="o">=</span> <span class="mi">2</span>
-    
-    <span class="k">def</span> <span class="nf">_my_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I Love Python too.&#34;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">at3</span> <span class="o">=</span> <span class="mi">3</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_at4</span> <span class="o">=</span> <span class="mi">4</span>
+	<span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I Love Python.&#34;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">at1</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_at2</span> <span class="o">=</span> <span class="mi">2</span>
+	
+	<span class="k">def</span> <span class="nf">_my_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I Love Python too.&#34;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">at3</span> <span class="o">=</span> <span class="mi">3</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_at4</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="n">mc</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
 <span class="n">mc</span><span class="o">.</span><span class="n">my_func</span><span class="p">()</span>
@@ -2441,12 +2544,12 @@ I Love Python too.
         <span class="bp">self</span><span class="o">.</span><span class="n">_at4</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="k">def</span> <span class="nf">my_func3</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">_my_func4</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_my_func4</span>
+	<span class="k">def</span> <span class="nf">_my_func4</span><span class="p">():</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">_my_func4</span>
 
 <span class="k">def</span> <span class="nf">_my_func2</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>import the module with wildcard:</p>
@@ -2516,12 +2619,12 @@ NameError: name '_my_func2' is not defined
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Test</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="mi">11</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_bar</span> <span class="o">=</span> <span class="mi">23</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__baz</span> <span class="o">=</span> <span class="mi">23</span>
-    <span class="k">def</span> <span class="nf">__func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="mi">11</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_bar</span> <span class="o">=</span> <span class="mi">23</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">__baz</span> <span class="o">=</span> <span class="mi">23</span>
+	<span class="k">def</span> <span class="nf">__func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
 
 <span class="n">t</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
 <span class="nb">dir</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -2552,13 +2655,13 @@ NameError: name '_my_func2' is not defined
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">ExtendedTest</span><span class="p">(</span><span class="n">Test</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="s1">&#39;overridden&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__baz</span> <span class="o">=</span> <span class="s1">&#39;overridden&#39;</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="s1">&#39;overridden&#39;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">__baz</span> <span class="o">=</span> <span class="s1">&#39;overridden&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test1&#34;</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">__func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;test1&#34;</span><span class="p">)</span>
 
 <span class="n">t2</span> <span class="o">=</span> <span class="n">ExtendedTest</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">t2</span><span class="o">.</span><span class="n">foo</span><span class="p">)</span>
@@ -2694,18 +2797,18 @@ The method itself is again named exactly the same as the property &ndash; salary
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Employer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">new_salary</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_salary</span> <span class="o">=</span> <span class="n">new_salary</span>
-    
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">salary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_salary</span>
-    
-    <span class="nd">@salary</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">salary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_salary</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">new_salary</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Invalid salary&#34;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_salary</span> <span class="o">=</span> <span class="n">new_salary</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">new_salary</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_salary</span> <span class="o">=</span> <span class="n">new_salary</span>
+	
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">salary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_salary</span>
+	
+	<span class="nd">@salary</span><span class="o">.</span><span class="n">setter</span>
+	<span class="k">def</span> <span class="nf">salary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_salary</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">new_salary</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Invalid salary&#34;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_salary</span> <span class="o">=</span> <span class="n">new_salary</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>So there are two methods called <code>salary</code> &ndash; the name of the property &ndash; that have different decorators. <strong>The method with <code>property</code> decorator returns the data, and the method with <code>salary.setter</code> decorator implements validation and sets the attribute</strong>.</p>
@@ -3119,6 +3222,7 @@ property called
     </li>
     <li><a href="#integrating-with-standard-python">Integrating with Standard Python</a>
       <ol>
+        <li><a href="#object-and-type"><code>object</code> and <code>type</code>*</a></li>
         <li><a href="#comparison">Comparison</a></li>
         <li><a href="#string-representation">String representation</a></li>
         <li><a href="#exceptions">Exceptions</a></li>

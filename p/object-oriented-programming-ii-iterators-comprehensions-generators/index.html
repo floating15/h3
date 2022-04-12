@@ -354,7 +354,7 @@
 
 
                 <time class="article-time--reading">
-                    22 minute read
+                    23 minute read
                 </time>
             </div>
         
@@ -379,7 +379,41 @@
 <li><code>iter(iterable)</code> &mdash;-&gt; iterator</li>
 <li><code>next(iterator)</code> &mdash;-&gt; iterate the elements in iterator</li>
 </ul>
-<blockquote>
+<p>For example, a <code>list</code> object is an iterable, which means you can transform a list to a iterator calling <code>iter()</code> on it. But you can not call <code>next()</code> on it directly.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">ls</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">itls</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">ls</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">itls</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">itls</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">itls</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>1
+2
+3
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">next</span><span class="p">(</span><span class="n">ls</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+/Users/wanghaoming/Documents/doc1/oop/test2.ipynb Cell 35' in &lt;module&gt;
+----&gt; 1 next(ls)
+
+TypeError: 'list' object is not an iterator
+</code></pre><blockquote>
 <p>Under the hood, this is actually what a <strong>for</strong> loop is doing: it <strong>takes an iterable, creates the associated iterator object, and iterates over it</strong>.</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
