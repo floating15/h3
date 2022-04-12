@@ -386,9 +386,9 @@ Magic Method __init__() Constructor constructor will be called automatically whe
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;this is a cat, named </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;this is a cat, named </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
 
 <span class="n">cat</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">(</span><span class="s2">&#34;yaochong&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -413,12 +413,12 @@ Magic Method __init__() Constructor constructor will be called automatically whe
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;this is a cat, named </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
-	
-	<span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;cat </span><span class="si">{}</span><span class="s2"> is collected by system.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;this is a cat, named </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;cat </span><span class="si">{}</span><span class="s2"> is collected by system.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
 
 <span class="n">cat</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">(</span><span class="s2">&#34;yaochong&#34;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
@@ -483,14 +483,14 @@ True
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">mapls</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">ls</span> <span class="o">=</span> <span class="n">ls</span>
-	
-	<span class="k">def</span> <span class="nf">maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">func</span><span class="p">):</span>
-		<span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="p">]</span>
-	
-	<span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
-		<span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="p">]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ls</span> <span class="o">=</span> <span class="n">ls</span>
+    
+    <span class="k">def</span> <span class="nf">maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="p">]</span>
 
 <span class="n">ls</span> <span class="o">=</span> <span class="n">mapls</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 
@@ -524,15 +524,15 @@ True
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
-	
-	<span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
+    
+    <span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
 
-	<span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">**</span> <span class="mi">2</span>
 
 <span class="n">cat</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
 
@@ -573,16 +573,16 @@ True
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
-	
-	<span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
+    
+    <span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
 
-	<span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__iter__() method has been called&#34;</span><span class="p">)</span>
-		<span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attr2</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__iter__() method has been called&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attr2</span><span class="p">)</span>
 
 <span class="n">cat</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">,</span> <span class="s2">&#34;abcdefg&#34;</span><span class="p">)</span>
 <span class="n">itcat1</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
@@ -635,16 +635,16 @@ c
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
-	
-	<span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
+    
+    <span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
 
-	<span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__iter__() method has been called&#34;</span><span class="p">)</span>
-		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__iter__() method has been called&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
 
 <span class="n">dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">&#34;yaochong&#34;</span><span class="p">,</span> <span class="s2">&#34;abcdefg&#34;</span><span class="p">)</span>
 <span class="n">itcat1</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">dog</span><span class="p">)</span>
@@ -690,10 +690,10 @@ c
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">dct</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
-		<span class="nb">list</span><span class="p">(</span><span class="s2">&#34;abcd&#34;</span><span class="p">),</span>
-		<span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-	<span class="p">)</span>
+    <span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;abcd&#34;</span><span class="p">),</span>
+        <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1"># refer</span>
@@ -744,25 +744,25 @@ c
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">,</span> <span class="n">attr3</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr3</span> <span class="o">=</span> <span class="n">attr3</span>
-	
-	<span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__getitem__ is called&#34;</span><span class="p">)</span>
-		<span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
-			<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-		<span class="k">else</span><span class="p">:</span>
-			<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;No such attr&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">,</span> <span class="n">attr3</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr3</span> <span class="o">=</span> <span class="n">attr3</span>
+    
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__getitem__ is called&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;No such attr&#34;</span><span class="p">)</span>
 
-	<span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__setitem__ is called&#34;</span><span class="p">)</span>
-		<span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-	
-	<span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__delitem__ is called&#34;</span><span class="p">)</span>
-		<span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__setitem__ is called&#34;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;__delitem__ is called&#34;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
 <span class="n">dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dog</span><span class="p">[</span><span class="s2">&#34;attr1&#34;</span><span class="p">])</span>
@@ -891,20 +891,20 @@ TypeError: unsupported operand type(s) for -: 'list' and 'list'
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">vlist</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>	
-	<span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span>
-		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">vlist</span><span class="p">):</span>
-			<span class="n">lses</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))]</span>
-			<span class="k">return</span> <span class="n">lses</span>
-		<span class="k">else</span><span class="p">:</span>
-			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Must be vlist obejct&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">vlist</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>    
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">vlist</span><span class="p">):</span>
+            <span class="n">lses</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))]</span>
+            <span class="k">return</span> <span class="n">lses</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Must be vlist obejct&#34;</span><span class="p">)</span>
 
-	<span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span>
-		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">vlist</span><span class="p">):</span>
-			<span class="n">lses</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))]</span>
-			<span class="k">return</span> <span class="n">lses</span>
-		<span class="k">else</span><span class="p">:</span>
-			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Must be vlist obejct&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">vlist</span><span class="p">):</span>
+            <span class="n">lses</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))]</span>
+            <span class="k">return</span> <span class="n">lses</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Must be vlist obejct&#34;</span><span class="p">)</span>
 
 <span class="n">ls1</span> <span class="o">=</span> <span class="n">vlist</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
 <span class="n">ls2</span> <span class="o">=</span> <span class="n">vlist</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
@@ -953,17 +953,17 @@ TypeError: unsupported operand type(s) for -: 'list' and 'list'
 
 <span class="n">tm</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">class Cat:
-</span><span class="s2">	def __init__(self, name):
-</span><span class="s2">		self.name = name
-</span><span class="s2">	def cat_func(self):
-</span><span class="s2">		print(&#34;cat_func is called&#34;)
+</span><span class="s2">    def __init__(self, name):
+</span><span class="s2">        self.name = name
+</span><span class="s2">    def cat_func(self):
+</span><span class="s2">        print(&#34;cat_func is called&#34;)
 </span><span class="s2">&#34;&#34;&#34;</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;test_module.py&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">test_module</span> <span class="k">as</span> <span class="nn">tm</span>
 <span class="kn">import</span> <span class="nn">test_pkg.test_pkg_module</span> <span class="k">as</span> <span class="nn">tpm</span>
@@ -1059,25 +1059,25 @@ __main__
 </span><span class="s2">print(__name__)
 </span><span class="s2">
 </span><span class="s2">if __name__ == &#39;__main__&#39;:
-</span><span class="s2">	print(&#34;__name__ = &#39;__main__&#39;&#34;)
+</span><span class="s2">    print(&#34;__name__ = &#39;__main__&#39;&#34;)
 </span><span class="s2">&#34;&#34;&#34;</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;test_module.py&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">codes</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">codes</span><span class="p">)</span>
 
 <span class="err">!</span><span class="n">cat</span> <span class="n">test_module</span><span class="o">.</span><span class="n">py</span>
 </code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code>class Cat:
-	def __init__(self, name):
-		self.name = name
-	def cat_func(self):
-		print(&quot;cat_func is called&quot;)
+    def __init__(self, name):
+        self.name = name
+    def cat_func(self):
+        print(&quot;cat_func is called&quot;)
 
 
 print(__name__)
 
 if __name__ == '__main__':
-	print(&quot;__name__ = '__main__'&quot;)
+    print(&quot;__name__ = '__main__'&quot;)
 </code></pre><p>and execute it, the outcome is desired:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1159,18 +1159,18 @@ test_module
 
 <span class="n">tm</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">class Cat:
-</span><span class="s2">	&#39;&#39;&#39; this is a Cat class in pkg.module.
-</span><span class="s2">	
-</span><span class="s2">	Args:
-</span><span class="s2">		name(str): name of the cat.
-</span><span class="s2">	&#39;&#39;&#39;
-</span><span class="s2">	def __init__(self, name):
-</span><span class="s2">		&#39;&#39;&#39; this is a constructor in pkg.module.
-</span><span class="s2">		&#39;&#39;&#39;
-</span><span class="s2">		self.name = name
-</span><span class="s2">		print(&#39;Cat in pkg.module has been called.&#39;)
-</span><span class="s2">	def cat_func(self):
-</span><span class="s2">		print(&#34;cat_func in pkg.module is called&#34;)
+</span><span class="s2">    &#39;&#39;&#39; this is a Cat class in pkg.module.
+</span><span class="s2">    
+</span><span class="s2">    Args:
+</span><span class="s2">        name(str): name of the cat.
+</span><span class="s2">    &#39;&#39;&#39;
+</span><span class="s2">    def __init__(self, name):
+</span><span class="s2">        &#39;&#39;&#39; this is a constructor in pkg.module.
+</span><span class="s2">        &#39;&#39;&#39;
+</span><span class="s2">        self.name = name
+</span><span class="s2">        print(&#39;Cat in pkg.module has been called.&#39;)
+</span><span class="s2">    def cat_func(self):
+</span><span class="s2">        print(&#34;cat_func in pkg.module is called&#34;)
 </span><span class="s2">
 </span><span class="s2">print(&#39;pkg.module has been initialized&#39;)
 </span><span class="s2">&#34;&#34;&#34;</span>
@@ -1183,10 +1183,10 @@ test_module
 </span><span class="s2">&#34;&#34;&#34;</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dir_name</span><span class="o">+</span><span class="s2">&#34;test_pkg_module.py&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dir_name</span><span class="o">+</span><span class="s2">&#34;__main__.py&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm1</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm1</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>Then you can simply name the directory or zipfile on the command line, and it executes the <code>__main__.py</code> automatically</strong>.</p>
@@ -1261,41 +1261,41 @@ cat_func in pkg.module is called
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
-	<span class="s2">&#34;&#34;&#34; this is a Cat class in main.
-</span><span class="s2">	
-</span><span class="s2">	Args:
-</span><span class="s2">		name(str): name of the cat.
-</span><span class="s2">	&#34;&#34;&#34;</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-		<span class="s2">&#34;&#34;&#34; this is a constructor in main.
-</span><span class="s2">		&#34;&#34;&#34;</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cat in main has been called.&#39;</span><span class="p">)</span>
-	
-	<span class="k">def</span> <span class="nf">cat_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;cat_func in main is called&#34;</span><span class="p">)</span>
+    <span class="s2">&#34;&#34;&#34; this is a Cat class in main.
+</span><span class="s2">    
+</span><span class="s2">    Args:
+</span><span class="s2">        name(str): name of the cat.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34; this is a constructor in main.
+</span><span class="s2">        &#34;&#34;&#34;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cat in main has been called.&#39;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">cat_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;cat_func in main is called&#34;</span><span class="p">)</span>
 
 
 <span class="n">tm</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">class Cat:
-</span><span class="s2">	&#39;&#39;&#39; this is a Cat class in module.
-</span><span class="s2">	
-</span><span class="s2">	Args:
-</span><span class="s2">		name(str): name of the cat.
-</span><span class="s2">	&#39;&#39;&#39;
-</span><span class="s2">	def __init__(self, name):
-</span><span class="s2">		&#39;&#39;&#39; this is a constructor in module.
-</span><span class="s2">		&#39;&#39;&#39;
-</span><span class="s2">		self.name = name
-</span><span class="s2">		print(&#39;Cat in module has been called.&#39;)
-</span><span class="s2">	def cat_func(self):
-</span><span class="s2">		print(&#34;cat_func in module is called&#34;)
+</span><span class="s2">    &#39;&#39;&#39; this is a Cat class in module.
+</span><span class="s2">    
+</span><span class="s2">    Args:
+</span><span class="s2">        name(str): name of the cat.
+</span><span class="s2">    &#39;&#39;&#39;
+</span><span class="s2">    def __init__(self, name):
+</span><span class="s2">        &#39;&#39;&#39; this is a constructor in module.
+</span><span class="s2">        &#39;&#39;&#39;
+</span><span class="s2">        self.name = name
+</span><span class="s2">        print(&#39;Cat in module has been called.&#39;)
+</span><span class="s2">    def cat_func(self):
+</span><span class="s2">        print(&#34;cat_func in module is called&#34;)
 </span><span class="s2">
 </span><span class="s2">print(&#39;module has been initialized&#39;)
 </span><span class="s2">&#34;&#34;&#34;</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;test_module.py&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">__main__</span> <span class="k">as</span> <span class="nn">mm</span>
 <span class="kn">import</span> <span class="nn">test_module</span> <span class="k">as</span> <span class="nn">tm</span>
@@ -1310,9 +1310,9 @@ cat_func in pkg.module is called
 <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;------------------&#34;</span><span class="p">)</span>
 <span class="bp">cls</span> <span class="o">=</span> <span class="p">[</span><span class="n">cat</span><span class="o">.</span><span class="vm">__class__</span> <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">cats</span><span class="p">]</span>
 <span class="p">[</span>
-	<span class="p">[</span>
-		<span class="kc">True</span> <span class="k">if</span> <span class="n">clsa</span><span class="o">==</span><span class="n">clsb</span> <span class="k">else</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">clsa</span> <span class="ow">in</span> <span class="bp">cls</span>
-	<span class="p">]</span> <span class="k">for</span> <span class="n">clsb</span> <span class="ow">in</span> <span class="bp">cls</span>
+    <span class="p">[</span>
+        <span class="kc">True</span> <span class="k">if</span> <span class="n">clsa</span><span class="o">==</span><span class="n">clsb</span> <span class="k">else</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">clsa</span> <span class="ow">in</span> <span class="bp">cls</span>
+    <span class="p">]</span> <span class="k">for</span> <span class="n">clsb</span> <span class="ow">in</span> <span class="bp">cls</span>
 <span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
@@ -1391,19 +1391,19 @@ Cat in module has been called.
 </div>
 </div><pre tabindex="0"><code>1.--------docstring of class and method---------
  this is a Cat class in main.
-	
-	Args:
-		name(str): name of the cat.
-	
+    
+    Args:
+        name(str): name of the cat.
+    
  this is a constructor in main.
-		
+        
  this is a Cat class in module.
-	
-	Args:
-		name(str): name of the cat.
-	
+    
+    Args:
+        name(str): name of the cat.
+    
  this is a constructor in module.
-		 
+         
 
 2.-------class &amp; module of class--------
 
@@ -1449,19 +1449,19 @@ test_module
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
-	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">_attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">__attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-	
-	<span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+    
+    <span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
 
-	<span class="k">def</span> <span class="nf">_func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
 
-	<span class="k">def</span> <span class="nf">__func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__func1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;func1&#34;</span><span class="p">)</span>
 
 <span class="n">cat</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">(</span><span class="s2">&#34;haoming&#34;</span><span class="p">)</span>
 
