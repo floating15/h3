@@ -6,7 +6,1795 @@
         <description>Recent content on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux Command Line &amp; Shell Script I</title>
+        <link>https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-i/</link>
+        <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-i/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;manipulating-files-and-directories&#34;&gt;Manipulating files and directories&lt;/h1&gt;
+&lt;h2 id=&#34;interface&#34;&gt;Interface&lt;/h2&gt;
+&lt;p&gt;An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.&lt;/p&gt;
+&lt;p&gt;Human beings need an interface to interact with the operating system. The most common one these days is a &lt;strong&gt;graphical file explorer&lt;/strong&gt;, which translates clicks and double-clicks into commands to open files and run programs. Before computers had graphical displays, though, people typed instructions into a program called a &lt;strong&gt;command-line shell&lt;/strong&gt;. Each time a command is entered, the shell runs some other programs, prints their output in human-readable form, and then displays a prompt to signal that it&amp;rsquo;s ready to accept the next command. (Its name comes from the notion that it&amp;rsquo;s the &amp;ldquo;outer shell&amp;rdquo; of the computer.)&lt;/p&gt;
+&lt;h2 id=&#34;pwd&#34;&gt;&lt;code&gt;pwd&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The filesystem manages files and directories (or folders). Each is identified by an &lt;strong&gt;absolute path&lt;/strong&gt; that shows how to reach it from the filesystem&amp;rsquo;s &lt;strong&gt;root directory&lt;/strong&gt;: &lt;code&gt;/home/repl&lt;/code&gt; is the directory &lt;code&gt;repl&lt;/code&gt; in the directory &lt;code&gt;home&lt;/code&gt;, while &lt;code&gt;/home/repl/course.txt&lt;/code&gt; is a file &lt;code&gt;course.txt&lt;/code&gt; in that directory, and &lt;code&gt;/&lt;/code&gt; on its own is the root directory.&lt;/p&gt;
+&lt;p&gt;To find out where you are in the filesystem, run the command &lt;code&gt;pwd&lt;/code&gt; (short for &amp;ldquo;&lt;strong&gt;print working directory&lt;/strong&gt;&amp;quot;). This prints the &lt;strong&gt;absolute path&lt;/strong&gt; of your current working directory, which is where the shell runs commands and looks for files by default.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
+/home/repl
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;ls&#34;&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;pwd&lt;/code&gt; tells you where you are. To find out what&amp;rsquo;s there, type &lt;code&gt;ls&lt;/code&gt; (which is short for &amp;ldquo;&lt;strong&gt;listing&lt;/strong&gt;&amp;quot;) and press the enter key. On its own, &lt;code&gt;ls&lt;/code&gt; lists the contents of your current directory. If you add the names of some files, &lt;code&gt;ls&lt;/code&gt; will list them, and if you add the names of directories, it will list their contents. For example, &lt;code&gt;ls /home/repl&lt;/code&gt; shows you what&amp;rsquo;s in your starting directory (usually called your home directory).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ ls /home/repl/seasonal/
+autumn.csv  spring.csv  summer.csv  winter.csv
+$
+$ ls /home/repl/seasonal/autumn.csv
+/home/repl/seasonal/autumn.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;An &lt;strong&gt;absolute path&lt;/strong&gt; is like a latitude and longitude: it has the same value no matter where you are. A &lt;strong&gt;relative path&lt;/strong&gt;, on the other hand, specifies a location starting from where you are. The shell decides if a path is absolute or relative by looking at its first character: If it begins with &lt;code&gt;/&lt;/code&gt;, it is absolute. If it does not begin with &lt;code&gt;/&lt;/code&gt;, it is relative.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;$ ls
+backup  bin  course.txt  people  seasonal
+$ ls course.txt
+course.txt
+$ ls seasonal/summer.csv
+seasonal/summer.csv
+$ ls people/
+agarwal.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;cd&#34;&gt;&lt;code&gt;cd&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;You can move around in the filesystem using the command &lt;code&gt;cd&lt;/code&gt; (which stands for &amp;ldquo;&lt;strong&gt;change directory&lt;/strong&gt;&amp;quot;). If you type &lt;code&gt;cd seasonal&lt;/code&gt; and then type &lt;code&gt;pwd&lt;/code&gt;, the shell will tell you that you are now in &lt;code&gt;/home/repl/seasonal&lt;/code&gt;. If you want to get back to your home directory &lt;code&gt;/home/repl&lt;/code&gt;, you can use the command &lt;code&gt;cd /home/repl&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /home/repl/seasonal/
+$ &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
+/home/repl/seasonal
+$ ls
+autumn.csv  spring.csv  summer.csv  winter.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;special-path&#34;&gt;special path&lt;/h2&gt;
+&lt;p&gt;The parent of a directory is the directory above it. For example, &lt;code&gt;/home&lt;/code&gt; is the parent of &lt;code&gt;/home/repl&lt;/code&gt;, and &lt;code&gt;/home/repl&lt;/code&gt; is the parent of &lt;code&gt;/home/repl/seasonal&lt;/code&gt;. You can always give the absolute path of your parent directory to commands like &lt;code&gt;cd&lt;/code&gt; and &lt;code&gt;ls&lt;/code&gt;. More often, though, you will take advantage of the fact that the special path &lt;code&gt;..&lt;/code&gt; means &amp;ldquo;&lt;strong&gt;the directory above the currently one&lt;/strong&gt;&amp;rdquo;. If you are in &lt;code&gt;/home/repl/seasonal&lt;/code&gt;, then &lt;code&gt;cd ..&lt;/code&gt; moves you up to &lt;code&gt;/home/repl&lt;/code&gt;. If you use &lt;code&gt;cd ../..&lt;/code&gt;, it puts you in the root directory &lt;code&gt;/&lt;/code&gt;, which is the very top of the filesystem.&lt;/p&gt;
+&lt;p&gt;A single dot on its own, &lt;code&gt;.&lt;/code&gt;, always means &amp;ldquo;&lt;strong&gt;the current directory&lt;/strong&gt;&amp;rdquo;, so &lt;code&gt;ls .&lt;/code&gt; do the same thing with &lt;code&gt;ls&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;One final special path is &lt;code&gt;~&lt;/code&gt; (the tilde character), which means &amp;ldquo;&lt;strong&gt;your home directory&lt;/strong&gt;&amp;rdquo;, such as &lt;code&gt;/home/repl&lt;/code&gt;. No matter where you are, ls &lt;code&gt;~&lt;/code&gt; will always list the contents of your home directory, and &lt;code&gt;cd ~&lt;/code&gt; will always take you home.&lt;/p&gt;
+&lt;h2 id=&#34;cp&#34;&gt;&lt;code&gt;cp&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;You will often want to copy files, move them into other directories to organize them, or rename them. One command to do this is &lt;code&gt;cp&lt;/code&gt;, which is short for &amp;ldquo;&lt;strong&gt;copy&lt;/strong&gt;&amp;rdquo;. If &lt;code&gt;original.txt&lt;/code&gt; is an existing file, then:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cp original.txt duplicate.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;creates a copy of &lt;code&gt;original.txt&lt;/code&gt; called &lt;code&gt;duplicate.txt&lt;/code&gt;. If there already was a file called &lt;code&gt;duplicate.txt&lt;/code&gt;, it is &lt;strong&gt;overwritten&lt;/strong&gt;. If the last parameter to &lt;code&gt;cp&lt;/code&gt; is an existing directory &lt;code&gt;backup&lt;/code&gt;, then a command like:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cp seasonal/autumn.csv seasonal/winter.csv backup
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;copies all of the files into that directory.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cp seasonal/summer.csv  backup/summer.bck
+$ ls backup/
+summer.bck
+$
+$ cp seasonal/spring.csv  seasonal/summer.csv backup/
+$ ls backup/
+spring.csv  summer.bck  summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;mv&#34;&gt;&lt;code&gt;mv&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;While &lt;code&gt;cp&lt;/code&gt; copies a file, &lt;code&gt;mv&lt;/code&gt; moves it from one directory to another, i.e. cut. It handles its parameters the same way as &lt;code&gt;cp&lt;/code&gt;, so the command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mv autumn.csv winter.csv ..
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;moves the files &lt;code&gt;autumn.csv&lt;/code&gt; and &lt;code&gt;winter.csv&lt;/code&gt; from the current working directory up one level to its &lt;strong&gt;parent directory&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ mv ./seasonal/spring.csv  ./seasonal/summer.csv  ./backup/
+$
+$ ls ./seasonal/
+autumn.csv  winter.csv
+$ ls ./backup/
+spring.csv  summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;mv&lt;/code&gt; can also be used to &lt;strong&gt;rename&lt;/strong&gt; files. If you run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mv course.txt old-course.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;then the file &lt;code&gt;course.txt&lt;/code&gt; in the current working directory is &amp;ldquo;moved&amp;rdquo; to the file &lt;code&gt;old-course.txt&lt;/code&gt;. This is different from the way file browsers work, but is often handy.&lt;/p&gt;
+&lt;p&gt;One warning: just like &lt;code&gt;cp&lt;/code&gt;, &lt;code&gt;mv&lt;/code&gt; will &lt;strong&gt;overwrite&lt;/strong&gt; existing files. If, for example, you already have a file called &lt;code&gt;old-course.txt&lt;/code&gt;, then the command shown above will replace it with whatever is in &lt;code&gt;course.txt&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ./seasonal/
+$ ls
+autumn.csv  spring.csv  summer.csv  winter.csv
+$ mv winter.csv winter.csv.bck
+$ ls
+autumn.csv  spring.csv  summer.csv  winter.csv.bck
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;rm&#34;&gt;&lt;code&gt;rm&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;We can copy files and move them around; to delete them, we use &lt;code&gt;rm&lt;/code&gt;, which stands for &amp;ldquo;&lt;strong&gt;remove&lt;/strong&gt;&amp;rdquo;. As with &lt;code&gt;cp&lt;/code&gt; and &lt;code&gt;mv&lt;/code&gt;, you can give &lt;code&gt;rm&lt;/code&gt; the names of as many files as you&amp;rsquo;d like, so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;rm thesis.txt backup/thesis-2017-08.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;removes both &lt;code&gt;thesis.txt&lt;/code&gt; and &lt;code&gt;backup/thesis-2017-08.txt&lt;/code&gt;. Unlike graphical file browsers, the shell doesn&amp;rsquo;t have a trash can, so when you type the command above, your thesis is gone for good.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ./seasonal/
+$ ls
+autumn.csv  spring.csv  summer.csv  winter.csv
+$ rm autumn.csv
+$ ls
+spring.csv  summer.csv  winter.csv
+$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..
+$ rm seasonal/summer.csv
+$ ls ./seasonal/
+spring.csv  winter.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;mv&lt;/code&gt; treats directories the same way it treats files: if you are in your home directory and run &lt;code&gt;mv seasonal by-season&lt;/code&gt;, for example, &lt;code&gt;mv&lt;/code&gt; changes the name of the &lt;code&gt;seasonal&lt;/code&gt; directory to &lt;code&gt;by-season&lt;/code&gt;. However, &lt;code&gt;rm&lt;/code&gt; works differently.&lt;/p&gt;
+&lt;p&gt;If you try to &lt;code&gt;rm&lt;/code&gt; a directory, the shell prints an error message telling you it can&amp;rsquo;t do that, primarily to stop you from accidentally deleting an entire directory full of work. Instead, you can use a separate command called &lt;code&gt;rmdir&lt;/code&gt;. For added safety, it only works when the directory is &lt;strong&gt;empty&lt;/strong&gt;, so you must delete the files in a directory before you delete the directory. Correspondingly, you can use the command &lt;code&gt;mkdir directory_name&lt;/code&gt; to create a new (empty) directory.&lt;/p&gt;
+&lt;p&gt;Experienced users can use the &lt;code&gt;-r&lt;/code&gt; &lt;strong&gt;option&lt;/strong&gt; to &lt;code&gt;rm&lt;/code&gt; to get the same effect; we will discuss command options in the next chapter.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ rm ./people/agarwal.txt
+$ rmdir ./people/
+$
+$ mkdir yearly
+$ mkdir yearly/2017
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You will often create intermediate files when analyzing data. Rather than storing them in your home directory, you can put them in &lt;code&gt;/tmp&lt;/code&gt;, which is where people and programs often keep files they only need briefly. (Note that &lt;code&gt;/tmp&lt;/code&gt; is immediately below the root directory &lt;code&gt;/&lt;/code&gt;.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp
+$ ls
+tmp4k14q4ue  tmp81oflvp9  tmpkihr78do  tmpkoqewt2k
+$ mkdir scratch
+$ ls
+scratch  tmp4k14q4ue  tmp81oflvp9  tmpkihr78do  tmpkoqewt2k
+$ mv ~/people/agarwal.txt  /tmp/scratch/
+$ ls scratch/
+agarwal.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;manipulating-data&#34;&gt;Manipulating Data&lt;/h1&gt;
+&lt;h2 id=&#34;cat-less&#34;&gt;&lt;code&gt;cat&lt;/code&gt;, &lt;code&gt;less&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Before you rename or delete files, you may want to have a look at their contents. The simplest way to do this is with &lt;code&gt;cat&lt;/code&gt;, which just prints the contents of files onto the screen. (Its name is short for &amp;ldquo;&lt;strong&gt;concatenate&lt;/strong&gt;&amp;rdquo;, meaning &amp;ldquo;to link things together&amp;rdquo;, since it will print all the files whose names you give it, one after the other.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat ./seasonal/autumn.csv ./seasonal/spring.csv
+Date,Tooth
+2017-01-05,canine
+2017-01-17,wisdom
+2017-01-18,canine
+2017-02-01,molar
+Date,Tooth
+2017-01-25,wisdom
+2017-02-19,canine
+2017-02-24,canine
+2017-02-28,wisdom
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can use &lt;code&gt;cat&lt;/code&gt; to print large files and then scroll through the output. But there is a more powerful command called &lt;code&gt;less&lt;/code&gt;. When you &lt;code&gt;less&lt;/code&gt; a file, one page is displayed at a time; you can press spacebar to page down or type &lt;code&gt;q&lt;/code&gt; to quit.&lt;/p&gt;
+&lt;p&gt;If you give &lt;code&gt;less&lt;/code&gt; the names of several files, you can type &lt;code&gt;:n&lt;/code&gt; (&lt;code&gt;shift&lt;/code&gt;+&lt;code&gt;;&lt;/code&gt;+&lt;code&gt;n&lt;/code&gt;)to move to the next file, &lt;code&gt;:p&lt;/code&gt; to go back to the previous one, or &lt;code&gt;:q&lt;/code&gt; to quit.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ less seasonal/spring.csv seasonal/summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;head&#34;&gt;&lt;code&gt;head&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;A quick way to figure out what a dataset contains is to look at the first few rows. We can do this in the shell using a command called &lt;code&gt;head&lt;/code&gt;. As its name suggests, it prints the first 10 lines of a file, and if there aren&amp;rsquo;t 10 lines in the file, &lt;code&gt;head&lt;/code&gt; will display as many lines as there are. so the command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ head seasonal/summer.csv
+Date,Tooth
+2017-01-11,canine
+2017-01-18,wisdom
+2017-01-21,bicuspid
+2017-02-02,molar
+2017-02-27,wisdom
+2017-02-27,wisdom
+2017-03-07,bicuspid
+2017-03-15,wisdom
+2017-03-20,canine
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;One of the shell&amp;rsquo;s power tools is &lt;strong&gt;tab completion&lt;/strong&gt;. If you start typing the name of a file and then press the &lt;code&gt;tab&lt;/code&gt; key, the shell will do its best to auto-complete the path. For example, if you type &lt;code&gt;sea&lt;/code&gt; and press &lt;code&gt;tab&lt;/code&gt;, it will fill in the directory name &lt;code&gt;seasonal/&lt;/code&gt; (with a trailing slash). If you then type &lt;code&gt;a&lt;/code&gt; and tab, it will complete the path as &lt;code&gt;seasonal/autumn.csv&lt;/code&gt;. If the path is ambiguous, such as &lt;code&gt;seasonal/s&lt;/code&gt;, pressing &lt;code&gt;tab&lt;/code&gt; a &lt;strong&gt;second time&lt;/strong&gt; will display a list of possibilities. Typing another character to make your path more specific and then pressing &lt;code&gt;tab&lt;/code&gt; will fill in the rest of the name.&lt;/p&gt;
+&lt;p&gt;Shell lets you change head&amp;rsquo;s behavior by giving it a command-line flag. If you run the command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;head -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; seasonal/summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;head will only display the first 3 lines of the file. If you run head &lt;code&gt;-n 100&lt;/code&gt;, it will display the first 100 (assuming there are that many), and so on.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; seasonal/winter.csv
+Date,Tooth
+2017-01-03,bicuspid
+2017-01-05,incisor
+2017-01-21,wisdom
+2017-02-05,molar
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;A flag&amp;rsquo;s name usually indicates its purpose (for example, &lt;code&gt;-n&lt;/code&gt; is meant to signal &amp;ldquo;number of lines&amp;rdquo;). Command flags don&amp;rsquo;t have to be a &lt;code&gt;- &amp;lt;a-single-letter&amp;gt;&lt;/code&gt;, but it&amp;rsquo;s a widely-used convention. It&amp;rsquo;s considered good style to put all flags before any filenames.&lt;/p&gt;
+&lt;h2 id=&#34;ls-again&#34;&gt;&lt;code&gt;ls&lt;/code&gt; again&lt;/h2&gt;
+&lt;p&gt;In order to see everything underneath a directory, no matter how deeply nested it is, you can give &lt;code&gt;ls&lt;/code&gt; the flag &lt;code&gt;-R&lt;/code&gt; (which means &amp;ldquo;recursive&amp;rdquo;). Thus if you use &lt;code&gt;ls -R&lt;/code&gt; in your home directory, it shows every file and directory in the current level, then everything in each sub-directory, and so on.&lt;/p&gt;
+&lt;p&gt;ls has another flag &lt;code&gt;-F&lt;/code&gt; that prints a &lt;code&gt;/&lt;/code&gt; after the name of every directory and a &lt;code&gt;*&lt;/code&gt; after the name of every runnable program. You can run &lt;code&gt;ls&lt;/code&gt; with the two flags at the same time, like &lt;code&gt;ls -R -F &amp;lt;dir-name&amp;gt;&lt;/code&gt; (The order of the flags doesn&amp;rsquo;t matter, but the directory name must come last.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ls -R -F /home/repl
+/home/repl:
+backup/  bin/  course.txt  people/  seasonal/
+
+/home/repl/backup:
+
+/home/repl/bin:
+
+/home/repl/people:
+agarwal.txt
+
+/home/repl/seasonal:
+autumn.csv  spring.csv  summer.csv  winter.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;man&#34;&gt;&lt;code&gt;man&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;To find out what commands do, people used to use the &lt;code&gt;man&lt;/code&gt; command (short for &amp;ldquo;&lt;strong&gt;manual&lt;/strong&gt;&amp;quot;). For example, the command &lt;code&gt;man head&lt;/code&gt; brings up this information:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;HEAD&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;               BSD General Commands Manual              HEAD&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+
+NAME
+     head -- display first lines of a file
+
+SYNOPSIS
+     head &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-n count &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; -c bytes&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file ...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+
+DESCRIPTION
+     This filter displays the first count lines or bytes of each of
+     the specified files, or of the standard input &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; no files are
+     specified.  If count is omitted it defaults to 10.
+
+     If more than a single file is specified, each file is preceded by
+     a header consisting of the string &lt;span class=&#34;sb&#34;&gt;``&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&amp;gt; XXX &amp;lt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt; where &lt;span class=&#34;sb&#34;&gt;``&lt;/span&gt;XXX&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+     is the name of the file.
+
+SEE ALSO
+     tail&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;man&lt;/code&gt; automatically invokes &lt;code&gt;less&lt;/code&gt;, so you may need to press spacebar to page through the information and &lt;code&gt;:q&lt;/code&gt; to quit.&lt;/p&gt;
+&lt;p&gt;The one-line description under &lt;code&gt;NAME&lt;/code&gt; tells you briefly what the command does, and the summary under &lt;code&gt;SYNOPSIS&lt;/code&gt; lists all the &lt;strong&gt;flags&lt;/strong&gt; it understands. Anything that is &lt;strong&gt;optional&lt;/strong&gt; is shown in square brackets &lt;code&gt;[...]&lt;/code&gt;, &lt;strong&gt;either/or alternatives&lt;/strong&gt; are separated by &lt;code&gt;|&lt;/code&gt;, and things that can be &lt;strong&gt;repeated&lt;/strong&gt; are shown by &lt;code&gt;...,&lt;/code&gt; so &lt;code&gt;head&lt;/code&gt;&amp;rsquo;s manual page is telling you that you can either give a line count with &lt;code&gt;-n&lt;/code&gt; or a byte count with &lt;code&gt;-c&lt;/code&gt;, and that you can give it any number of filenames.&lt;/p&gt;
+&lt;p&gt;For example, when you tap &lt;code&gt;man tail&lt;/code&gt;, shell returns the page:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;TAIL&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;                      General Commands Manual                     TAIL&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+
+NAME
+     tail – display the last part of a file
+
+SYNOPSIS
+     tail &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-F &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; -f &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; -r&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-q&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-b number &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; -c number &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; -n number&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file ...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+
+DESCRIPTION
+     The tail utility displays the contents of file or, by default, its standard
+     input, to the standard output.
+
+     The display begins at a byte, line or 512-byte block location in the input.
+     Numbers having a leading plus &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;‘+’&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; sign are relative to the beginning of
+     the input, &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; example, “-c +2” starts the display at the second byte of
+     the input.  Numbers having a leading minus &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;‘-’&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; sign or no explicit sign
+     are relative to the end of the input, &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; example, “-n 2” displays the last
+     two lines of the input.  The default starting location is “-n 10”, or the
+     last &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; lines of the input.
+
+     The options are as follows:
+
+     -b number
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can see that numbers having a leading plus (‘&lt;code&gt;+&lt;/code&gt;’) sign are relative to the beginning of the input.&lt;/p&gt;
+&lt;h2 id=&#34;cut&#34;&gt;&lt;code&gt;cut&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;head&lt;/code&gt; and &lt;code&gt;tail&lt;/code&gt; let you select rows from a text file. If you want to select columns, you can use the command &lt;code&gt;cut&lt;/code&gt;. It has several options (you can use &lt;code&gt;man cut&lt;/code&gt; to explore them), but the most common is something like:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cut -f 2-5,8 -d , values.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;which means &amp;ldquo;select columns 2 through 5 and columns 8, using comma as the separator&amp;rdquo;. &lt;code&gt;cut&lt;/code&gt; uses &lt;code&gt;-f&lt;/code&gt; (meaning &amp;ldquo;fields&amp;rdquo;) to specify columns and &lt;code&gt;-d&lt;/code&gt; (meaning &amp;ldquo;delimiter&amp;rdquo;) to specify the separator. You need to specify the latter because some files may use spaces, tabs, or colons to separate columns.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat seasonal/spring.csv
+Date,Tooth
+2017-01-25,wisdom
+2017-02-19,canine
+2017-02-24,canine
+2017-02-28,wisdom
+2017-03-04,incisor
+$
+$ cut -f &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; -d , seasonal/spring.csv
+Date
+2017-01-25
+2017-02-19
+2017-02-24
+2017-02-28
+2017-03-04
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can just omit the space between flag and the number/delimiter, like &lt;code&gt;cut -d, -f1 seasonal/spring.csv&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Notice that &lt;code&gt;cut&lt;/code&gt; is a simple-minded command. In particular, it doesn&amp;rsquo;t understand quoted strings. If, for example, your file is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat everyone.csv
+Name,Age
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Johel,Ranjit&amp;#34;&lt;/span&gt;,28
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Sharma,Rupinder&amp;#34;&lt;/span&gt;,26
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;then you will get&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cut -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; -d , everyone.csv
+Age
+Ranjit&lt;span class=&#34;s2&#34;&gt;&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;Rupinder&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;rather than everyone&amp;rsquo;s age, because it will think the comma between last and first names is a column separator.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;paste&lt;/code&gt; can be used to combine data files instead of cutting them up. you can set delimiter by flag &lt;code&gt;-d&lt;/code&gt;, like &lt;code&gt;cut&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;re-run-commands&#34;&gt;Re-run commands&lt;/h2&gt;
+&lt;p&gt;One of the biggest advantages of using the shell is that it makes it easy for you to do things over again. If you run some commands, you can then press the &lt;code&gt;up-arrow&lt;/code&gt; key to cycle back through them. You can also use the &lt;code&gt;left-arrow&lt;/code&gt; and &lt;code&gt;right-arrow&lt;/code&gt; keys and the &lt;code&gt;delete&lt;/code&gt; key to edit them. Pressing &lt;code&gt;enter&lt;/code&gt; will then run the modified command.&lt;/p&gt;
+&lt;p&gt;Even better, &lt;code&gt;history&lt;/code&gt; will print a list of commands you have run recently. Each one is preceded by a serial number to make it easy to re-run particular commands: just type &lt;code&gt;!55&lt;/code&gt; to re-run the 55th command in your history (if you have that many). You can also re-run a command by typing an exclamation mark followed by the command&amp;rsquo;s name, such as &lt;code&gt;!head&lt;/code&gt; or &lt;code&gt;!cut&lt;/code&gt;, which will re-run the most recent use of that command.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ head summer.csv
+head: cannot open &lt;span class=&#34;s1&#34;&gt;&amp;#39;summer.csv&amp;#39;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; reading: No such file or directory
+$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; seasonal/
+$ !head
+head summer.csv
+Date,Tooth
+2017-01-11,canine
+2017-01-18,wisdom
+2017-01-21,bicuspid
+2017-02-02,molar
+2017-02-27,wisdom
+2017-02-27,wisdom
+2017-03-07,bicuspid
+2017-03-15,wisdom
+2017-03-20,canine
+$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
+    &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  head summer.csv
+    &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; seasonal/
+    &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;  head summer.csv
+    &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
+$ !1
+head summer.csv
+Date,Tooth
+2017-01-11,canine
+2017-01-18,wisdom
+2017-01-21,bicuspid
+2017-02-02,molar
+2017-02-27,wisdom
+2017-02-27,wisdom
+2017-03-07,bicuspid
+2017-03-15,wisdom
+2017-03-20,canine
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;grep&#34;&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;head&lt;/code&gt; and &lt;code&gt;tail&lt;/code&gt; select rows, &lt;code&gt;cut&lt;/code&gt; selects columns, and &lt;code&gt;grep&lt;/code&gt; selects lines according to what they contain. In its simplest form, &lt;code&gt;grep&lt;/code&gt; takes a piece of text followed by one or more filenames and prints all of the lines in those files that contain that text. For example, &lt;code&gt;grep bicuspid seasonal/winter.csv&lt;/code&gt; prints lines from &lt;code&gt;winter.csv&lt;/code&gt; that contain &amp;ldquo;&lt;code&gt;bicuspid&lt;/code&gt;&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;There are some of &lt;code&gt;grep&lt;/code&gt;&amp;rsquo;s common flags:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-c&lt;/code&gt;: print a count of matching lines rather than the lines themselves
+&lt;code&gt;-h&lt;/code&gt;: do not print the names of files when searching multiple files
+&lt;code&gt;-i&lt;/code&gt;: ignore case (e.g., treat &amp;ldquo;Regression&amp;rdquo; and &amp;ldquo;regression&amp;rdquo; as matches)
+&lt;code&gt;-l&lt;/code&gt;: print the names of files that contain matches, not the matches
+&lt;code&gt;-n&lt;/code&gt;: print line numbers for matching lines
+&lt;code&gt;-v&lt;/code&gt;: invert the match, i.e., only show lines that don&amp;rsquo;t match.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ grep molar seasonal/autumn.csv
+2017-02-01,molar
+2017-05-25,molar
+$
+$ &lt;span class=&#34;c1&#34;&gt;# Invert the match to find all of the lines that don&amp;#39;t contain the word molar in seasonal/spring.csv, and show their line numbers.&lt;/span&gt;
+$ grep -v -n molar seasonal/spring.csv
+1:Date,Tooth
+2:2017-01-25,wisdom
+3:2017-02-19,canine
+4:2017-02-24,canine
+5:2017-02-28,wisdom
+6:2017-03-04,incisor
+7:2017-03-12,wisdom
+8:2017-03-14,incisor
+10:2017-04-29,wisdom
+11:2017-05-08,canine
+12:2017-05-20,canine
+13:2017-05-21,canine
+14:2017-05-25,canine
+16:2017-06-13,bicuspid
+17:2017-06-14,canine
+18:2017-07-10,incisor
+19:2017-07-16,bicuspid
+20:2017-07-23,bicuspid
+21:2017-08-13,bicuspid
+22:2017-08-13,incisor
+23:2017-08-13,wisdom
+$
+$ &lt;span class=&#34;c1&#34;&gt;# Count how many lines contain the word incisor in autumn.csv and winter.csv combined. &lt;/span&gt;
+$ grep -c incisor seasonal/autumn.csv seasonal/winter.csv
+seasonal/autumn.csv:3
+seasonal/winter.csv:6
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;combining-tools&#34;&gt;Combining Tools&lt;/h1&gt;
+&lt;h2 id=&#34;redirection&#34;&gt;Redirection&lt;/h2&gt;
+&lt;p&gt;You can use &lt;strong&gt;redirection&lt;/strong&gt; to save any command&amp;rsquo;s output anywhere you want. If you run this command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; seasonal/summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;it prints the first 5 lines of the summer data on the screen. If you run this command instead:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; seasonal/summer.csv &amp;gt; top.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;nothing appears on the screen. Instead, head&amp;rsquo;s output is put in a new file called &lt;code&gt;top.csv&lt;/code&gt;. (It won&amp;rsquo;t change the content of the original file &lt;code&gt;seasonal/summer.csv&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;The greater-than sign &lt;code&gt;&amp;gt;&lt;/code&gt; tells the shell to redirect head&amp;rsquo;s output to a file. It isn&amp;rsquo;t part of the head command; instead, it works with every shell command that produces output.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ tail -n5 seasonal/winter.csv
+2017-07-17,canine
+2017-08-10,incisor
+2017-08-11,bicuspid
+2017-08-11,wisdom
+2017-08-13,canine
+$ tail -n5 seasonal/winter.csv &amp;gt; last.csv
+$ tail -n5 seasonal/winter.csv
+2017-07-17,canine
+2017-08-10,incisor
+2017-08-11,bicuspid
+2017-08-11,wisdom
+2017-08-13,canine
+$ cat last.csv
+2017-07-17,canine
+2017-08-10,incisor
+2017-08-11,bicuspid
+2017-08-11,wisdom
+2017-08-13,canine
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Suppose you want to get lines from the middle of a file. More specifically, suppose you want to get &lt;strong&gt;lines 3-5&lt;/strong&gt; from one of our data files. You can start by using &lt;code&gt;head&lt;/code&gt; to get the first 5 lines and &lt;strong&gt;redirect&lt;/strong&gt; that to a file, and then use &lt;code&gt;tail&lt;/code&gt; to select the last 3:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; seasonal/winter.csv &amp;gt; top.csv
+$ tail -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; top.csv
+2017-01-05,incisor
+2017-01-21,wisdom
+2017-02-05,molar
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;pipe&#34;&gt;Pipe&lt;/h2&gt;
+&lt;p&gt;Using redirection to combine commands has two drawbacks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It leaves a lot of intermediate files lying around (like top.csv).&lt;/li&gt;
+&lt;li&gt;The commands to produce your final result are scattered across several lines of history.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The shell provides another tool that solves both of these problems at once called a &lt;strong&gt;pipe&lt;/strong&gt;. For the previous example, instead of sending &lt;code&gt;head&lt;/code&gt;&amp;rsquo;s output to a file, add a vertical bar &lt;code&gt;|&lt;/code&gt; and the &lt;code&gt;tail&lt;/code&gt; command without a filename:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; seasonal/summer.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+2017-01-18,wisdom
+2017-01-21,bicuspid
+2017-02-02,molar
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The pipe symbol tells the shell to &lt;strong&gt;use the output of the command on the left as the input to the command on the right&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Now, use &lt;code&gt;cut&lt;/code&gt; to select all of the tooth names from column 2 of the comma delimited file &lt;code&gt;seasonal/summer.csv&lt;/code&gt;, then pipe the result to &lt;code&gt;grep&lt;/code&gt;, with an inverted match, to exclude the header line containing the word &amp;ldquo;Tooth&amp;rdquo;. This completes the &lt;strong&gt;slicing&lt;/strong&gt; of the table in Shell.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cut -f2 -d, seasonal/summer.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth
+canine
+wisdom
+bicuspid
+molar
+wisdom
+wisdom
+bicuspid
+wisdom
+canine
+molar
+bicuspid
+wisdom
+canine
+canine
+incisor
+incisor
+canine
+incisor
+incisor
+incisor
+canine
+canine
+bicuspid
+canine
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can chain any number of commands together. For example :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cut -d , -f &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; seasonal/spring.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Date &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;
+2017-01-25
+2017-02-19
+2017-02-24
+2017-02-28
+2017-03-04
+2017-03-12
+2017-03-14
+2017-03-21
+2017-04-29
+2017-05-08
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;wc&#34;&gt;&lt;code&gt;wc&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The command &lt;code&gt;wc&lt;/code&gt; (short for &amp;ldquo;&lt;strong&gt;word count&lt;/strong&gt;&amp;quot;) prints the number of characters (&lt;code&gt;-c&lt;/code&gt;), words (&lt;code&gt;-w&lt;/code&gt;), and lines (&lt;code&gt;-l&lt;/code&gt;) in a file, you can make it print only one of these at one time.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ grep 2017-07 seasonal/spring.csv
+2017-07-10,incisor
+2017-07-16,bicuspid
+2017-07-23,bicuspid
+$ grep 2017-07 seasonal/spring.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; wc -l
+&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+$ &lt;span class=&#34;c1&#34;&gt;# You can also make this by grep&amp;#39;s option -c&lt;/span&gt;
+$ grep -c 2017-07 seasonal/spring.csv
+&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;wildcards&#34;&gt;Wildcards&lt;/h2&gt;
+&lt;p&gt;Most shell commands will work on multiple files if you give them multiple filenames. For example, you can get the first column from all of the seasonal data files at once like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cut -d , -f &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; seasonal/winter.csv seasonal/spring.csv seasonal/summer.csv seasonal/autumn.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;But typing the names of many files over and over is a bad idea: it wastes time, and sooner or later you will either leave a file out or repeat a file&amp;rsquo;s name. To make your life better, the shell allows you to use &lt;strong&gt;wildcards&lt;/strong&gt; to specify a list of files with a single expression. The most common wildcard is &lt;code&gt;*&lt;/code&gt;, which means &amp;ldquo;&lt;strong&gt;match zero or more characters&lt;/strong&gt;&amp;rdquo;. Using it, we can shorten the cut command above to this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cut -d , -f &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; seasonal/*
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;If you only want to select the CSV file, then&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cut -d , -f &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; seasonal/*.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Using head to get the first three lines from both &lt;code&gt;seasonal/spring.csv&lt;/code&gt; and &lt;code&gt;seasonal/summer.csv&lt;/code&gt;, a total of six lines of data:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;c1&#34;&gt;# ------- Example ------- #&lt;/span&gt;
+$ head -n3 seasonal/s*
+&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&amp;gt; seasonal/spring.csv &amp;lt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;
+Date,Tooth
+2017-01-25,wisdom
+2017-02-19,canine
+
+&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&amp;gt; seasonal/summer.csv &amp;lt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;
+Date,Tooth
+2017-01-11,canine
+2017-01-18,wisdom
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The shell has other wildcards as well:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; matches a single character, so &lt;code&gt;201?.txt&lt;/code&gt; will match &lt;code&gt;2017.txt&lt;/code&gt; or &lt;code&gt;2018.txt&lt;/code&gt;, but not &lt;code&gt;2017-01.txt&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[...]&lt;/code&gt; matches any one of the characters inside the square brackets, so &lt;code&gt;201[78].txt&lt;/code&gt; matches &lt;code&gt;2017.txt&lt;/code&gt; or &lt;code&gt;2018.txt&lt;/code&gt;, but not &lt;code&gt;2016.txt&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{...}&lt;/code&gt; matches any of the comma-separated patterns inside the curly brackets, so &lt;code&gt;{*.txt, *.csv}&lt;/code&gt; matches any file whose name ends with &lt;code&gt;.txt&lt;/code&gt; or &lt;code&gt;.csv&lt;/code&gt;, but not files whose names end with &lt;code&gt;.pdf&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;sort&#34;&gt;&lt;code&gt;sort&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;sort&lt;/code&gt; puts data in order. By default it does this in &lt;strong&gt;ascending alphabetical order&lt;/strong&gt;, but the flags&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-n&lt;/code&gt; can sort &lt;strong&gt;numerically&lt;/strong&gt;,
+&lt;code&gt;-r&lt;/code&gt; can &lt;strong&gt;reverse&lt;/strong&gt; the order of its output,
+&lt;code&gt;-b&lt;/code&gt; tells it to &lt;strong&gt;ignore leading blanks&lt;/strong&gt;
+&lt;code&gt;-f&lt;/code&gt; tells it to &lt;strong&gt;fold case&lt;/strong&gt; (i.e., be case-insensitive).&lt;/p&gt;
+&lt;p&gt;Pipelines often use &lt;code&gt;grep&lt;/code&gt; to get rid of unwanted records and then &lt;code&gt;sort&lt;/code&gt; to put the remaining records in order.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/winter.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -r
+wisdom
+wisdom
+wisdom
+wisdom
+molar
+molar
+molar
+molar
+incisor
+incisor
+incisor
+incisor
+incisor
+incisor
+canine
+canine
+canine
+canine
+canine
+canine
+canine
+bicuspid
+bicuspid
+bicuspid
+bicuspid
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;uniq&#34;&gt;&lt;code&gt;uniq&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Another command that is often used with &lt;code&gt;sort&lt;/code&gt; is &lt;code&gt;uniq&lt;/code&gt;, whose job is to &lt;strong&gt;remove adjacent duplicated lines&lt;/strong&gt;. If a file contains:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat test.txt
+2017-07-07
+2017-07-08
+2017-07-09
+2017-07-07
+2017-07-07
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;then&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ uniq test.txt
+2017-07-07
+2017-07-08
+2017-07-09
+2017-07-07
+$
+$ sort test.txt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq
+2017-07-07
+2017-07-08
+2017-07-09
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;uniq&lt;/code&gt; is built to work with &lt;strong&gt;very large&lt;/strong&gt; files. In order to remove non-adjacent lines from a file, it would have to keep the whole file in memory. By only removing adjacent duplicates, it only has to keep the most recent unique line in memory.&lt;/p&gt;
+&lt;p&gt;You can use &lt;code&gt;uniq -c&lt;/code&gt; to display unique lines with a count of how often each occurs rather than using &lt;code&gt;uniq&lt;/code&gt; and &lt;code&gt;wc&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/winter.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq -c
+	&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; bicuspid
+	&lt;span class=&#34;m&#34;&gt;7&lt;/span&gt; canine
+	&lt;span class=&#34;m&#34;&gt;6&lt;/span&gt; incisor
+	&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; molar
+	&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; wisdom
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;save&#34;&gt;Save&lt;/h2&gt;
+&lt;p&gt;The shell lets us redirect the output of a sequence of piped commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/*.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth &amp;gt; teeth-only.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;However, &lt;code&gt;&amp;gt;&lt;/code&gt; must appear at the end of the pipeline: if we try to use it in the middle, like following commands, then all of the output from &lt;code&gt;cut&lt;/code&gt; is written to &lt;code&gt;teeth-only.txt&lt;/code&gt;, so there is nothing left for &lt;code&gt;grep&lt;/code&gt; and it waits forever for some input.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/*.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq -c &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth &amp;gt; save1.txt
+$ cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/*.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq -c &amp;gt; save2.txt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth
+$ cat save1.txt
+     &lt;span class=&#34;m&#34;&gt;15&lt;/span&gt; bicuspid
+     &lt;span class=&#34;m&#34;&gt;31&lt;/span&gt; canine
+     &lt;span class=&#34;m&#34;&gt;18&lt;/span&gt; incisor
+     &lt;span class=&#34;m&#34;&gt;11&lt;/span&gt; molar
+     &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; wisdom
+$ cat save2.txt
+      &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; Tooth
+     &lt;span class=&#34;m&#34;&gt;15&lt;/span&gt; bicuspid
+     &lt;span class=&#34;m&#34;&gt;31&lt;/span&gt; canine
+     &lt;span class=&#34;m&#34;&gt;18&lt;/span&gt; incisor
+     &lt;span class=&#34;m&#34;&gt;11&lt;/span&gt; molar
+     &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; wisdom
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Furthermore, if we put redirection at the front of a pipeline or just behind the first command, the command&amp;rsquo;s output is redirected to the file and all other commands will be ignored.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/*.csv &amp;gt; save3.txt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq -c &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth
+$ &amp;gt; save4.txt cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/*.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq -c &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Tooth
+$ &amp;gt; save5.txt cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/*.csv
+$ cut -d , -f &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; seasonal/*.csv &amp;gt; save6.txt
+$ wc -c save&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;3456&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;*
+ &lt;span class=&#34;m&#34;&gt;705&lt;/span&gt; save3.txt
+ &lt;span class=&#34;m&#34;&gt;705&lt;/span&gt; save4.txt
+ &lt;span class=&#34;m&#34;&gt;705&lt;/span&gt; save5.txt
+ &lt;span class=&#34;m&#34;&gt;705&lt;/span&gt; save6.txt
+&lt;span class=&#34;m&#34;&gt;2820&lt;/span&gt; total
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Some tasks will take minutes, hours, or even days to complete. You may also make some mistakes causing it to hang up. If you decide to kill the program, you can type &lt;code&gt;Ctrl + c&lt;/code&gt; (&lt;code&gt;^c&lt;/code&gt;) to end it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;batch-processing&#34;&gt;Batch processing&lt;/h1&gt;
+&lt;h2 id=&#34;information-storage---variables&#34;&gt;Information storage - variables&lt;/h2&gt;
+&lt;h3 id=&#34;environment-variables&#34;&gt;Environment variables&lt;/h3&gt;
+&lt;p&gt;Like other programs, the shell stores information in variables. Some of these, called &lt;strong&gt;environment variables, are available all the time&lt;/strong&gt;. Environment variables&#39; names are conventionally written in &lt;strong&gt;upper-case&lt;/strong&gt;. There are some commonly-used ones:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204131338646.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;To get a complete list (which is quite long), you can type &lt;code&gt;set&lt;/code&gt; in the shell.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep HISTFILESIZE
+&lt;span class=&#34;nv&#34;&gt;HISTFILESIZE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;A simpler way to find a variable&amp;rsquo;s value is to use a command called &lt;code&gt;echo&lt;/code&gt;, which prints its arguments.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; abc
+abc
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;If you try to use it to print a variable&amp;rsquo;s value like following command, it will print the variable&amp;rsquo;s &lt;strong&gt;name&lt;/strong&gt; (instead of value), USER.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; USER
+USER
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;To get the variable&amp;rsquo;s &lt;strong&gt;value&lt;/strong&gt;, you must put a dollar sign &lt;code&gt;$&lt;/code&gt; in front of it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$USER&lt;/span&gt;
+repl
+$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTFILESIZE&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;2000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This is true everywhere: to get the value of a variable called &lt;code&gt;X&lt;/code&gt;, you must write &lt;code&gt;$X&lt;/code&gt;. (This is so that the shell can tell whether you mean &amp;ldquo;a file named &lt;code&gt;X&lt;/code&gt;&amp;rdquo; or &amp;ldquo;the value of a variable named &lt;code&gt;X&lt;/code&gt;&amp;rdquo;.)&lt;/p&gt;
+&lt;h3 id=&#34;shell-variable&#34;&gt;Shell variable&lt;/h3&gt;
+&lt;p&gt;The other kind of variable is called a &lt;strong&gt;shell variable&lt;/strong&gt;, which is like a local variable in a programming language. To create a shell variable, you simply assign a value to a name:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nv&#34;&gt;training&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;seasonal/summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;without any spaces before or after the &lt;code&gt;=&lt;/code&gt; sign. Once you have done this, you can check the variable&amp;rsquo;s value with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$training&lt;/span&gt;
+seasonal/summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;By defining shell variables, we can access frequently used files more efficiently:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nv&#34;&gt;testing&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;seasonal/winter.csv
+$ head -n1 &lt;span class=&#34;nv&#34;&gt;$testing&lt;/span&gt;
+Date,Tooth
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;loop-commands&#34;&gt;Loop commands&lt;/h2&gt;
+&lt;h3 id=&#34;intro&#34;&gt;intro&lt;/h3&gt;
+&lt;p&gt;Shell variables are also used in loops, which repeat commands many times. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; filetype in gif jpg png&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$filetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+gif
+jpg
+png
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The structure of loop is:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for&lt;/code&gt; …variable… &lt;code&gt;in&lt;/code&gt; …list… &lt;code&gt;; do&lt;/code&gt; …body… &lt;code&gt;; done&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Notice that the body uses &lt;code&gt;$filetype&lt;/code&gt; to get the variable&amp;rsquo;s value instead of just filetype, just like it does with any other shell variable. Also notice where the semi-colons &lt;code&gt;;&lt;/code&gt; go: the first one comes between the list and the keyword &lt;code&gt;do&lt;/code&gt;, and the second comes between the body and the keyword &lt;code&gt;done&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can always type in the names of the files you want to process when writing the loop, but it&amp;rsquo;s usually better to use wildcards.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; filename in seasonal/*.csv&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+seasonal/autumn.csv
+seasonal/spring.csv
+seasonal/summer.csv
+seasonal/winter.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The shell expands &lt;code&gt;seasonal/*.csv&lt;/code&gt; to be a list of four filenames before it runs the loop.&lt;/p&gt;
+&lt;p&gt;You can also add pipe behind the keyword &lt;code&gt;done&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; filename in seasonal/*.csv&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -r
+seasonal/winter.csv
+seasonal/summer.csv
+seasonal/spring.csv
+seasonal/autumn.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can &lt;strong&gt;set a variable using a wildcard expression to record a list of filenames&lt;/strong&gt;. For example, if you define a variable &lt;code&gt;datasets&lt;/code&gt;, you can display the files&#39; names:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nv&#34;&gt;datasets&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;seasonal/*.csv
+$ &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; filename in &lt;span class=&#34;nv&#34;&gt;$datasets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+seasonal/autumn.csv
+seasonal/spring.csv
+seasonal/summer.csv
+seasonal/winter.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;DO NOT forget the &lt;code&gt;$&lt;/code&gt; before the variable!!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;pipeline-in-loop&#34;&gt;pipeline in loop&lt;/h3&gt;
+&lt;p&gt;Printing filenames is useful for debugging, but the real &lt;strong&gt;purpose of loops is to do things with multiple files&lt;/strong&gt;. This loop prints the second line of each data file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; file in seasonal/*.csv&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$file&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+2017-01-05,canine
+2017-01-25,wisdom
+2017-01-11,canine
+2017-01-03,bicuspid
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;In this case, the body is a pipeline of two commands instead of a single command.&lt;/p&gt;
+&lt;p&gt;Write a loop that prints the last entry from July 2017 (2017-07) in every seasonal file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; file in seasonal/*.csv&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; grep 2017-07 &lt;span class=&#34;nv&#34;&gt;$file&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+2017-07-21,bicuspid
+2017-07-23,bicuspid
+2017-07-25,canine
+2017-07-17,canine
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;multi-command-in-loop&#34;&gt;multi-command in loop&lt;/h3&gt;
+&lt;p&gt;The loops you have seen so far all have a single command or pipeline in their body, but a loop can contain any number of commands. To tell the shell where one ends and the next begins, you must separate them with semi-colons, that is
+the structure of loop should be:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for&lt;/code&gt; …variable… &lt;code&gt;in&lt;/code&gt; …list… &lt;code&gt;; do&lt;/code&gt; …body1… &lt;code&gt;;&lt;/code&gt; …body2… &lt;code&gt;; done&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; f in seasonal/*.csv&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$f&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+seasonal/autumn.csv
+2017-01-05,canine
+seasonal/spring.csv
+2017-01-25,wisdom
+seasonal/summer.csv
+2017-01-11,canine
+seasonal/winter.csv
+2017-01-03,bicuspid
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;tips&#34;&gt;Tips&lt;/h2&gt;
+&lt;p&gt;You should not use &lt;code&gt;space&lt;/code&gt; in filename. It&amp;rsquo;s easy and sensible to give files multi-word names like &lt;code&gt;July 2017.csv&lt;/code&gt; when you are using a graphical file explorer. However, this causes problems when you are working in the shell. For example, suppose you wanted to rename &lt;code&gt;July 2017.csv&lt;/code&gt; to be &lt;code&gt;2017 July data.csv&lt;/code&gt;. You cannot type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mv July 2017.csv &lt;span class=&#34;m&#34;&gt;2017&lt;/span&gt; July data.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;because it looks to the shell as though you are trying to move four files called &lt;code&gt;July&lt;/code&gt;, &lt;code&gt;2017.csv&lt;/code&gt;, &lt;code&gt;2017&lt;/code&gt;, and &lt;code&gt;July&lt;/code&gt; (again) into a directory called &lt;code&gt;data.csv&lt;/code&gt;. Instead, you have to quote the files&#39; names so that the shell treats each one as a single parameter:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mv &lt;span class=&#34;s1&#34;&gt;&amp;#39;July 2017.csv&amp;#39;&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;2017 July data.csv&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;creating-new-tools&#34;&gt;Creating New Tools&lt;/h1&gt;
+&lt;h2 id=&#34;edit-a-file&#34;&gt;Edit a file&lt;/h2&gt;
+&lt;p&gt;Unix has a bewildering variety of text editors. We will use a simple one called &lt;code&gt;nano&lt;/code&gt;. If you type &lt;code&gt;nano filename&lt;/code&gt;, it will open &lt;code&gt;filename&lt;/code&gt; for editing (or create it if it doesn&amp;rsquo;t already exist). You can move around with the &lt;code&gt;arrow-keys&lt;/code&gt;, delete characters using &lt;code&gt;backspace&lt;/code&gt;, and do other operations with &lt;code&gt;control-key&lt;/code&gt; combinations:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;K&lt;/code&gt;: delete a line.
+&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;U&lt;/code&gt;: un-delete a line.
+&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;O&lt;/code&gt;: save the file (&amp;lsquo;O&amp;rsquo; stands for &amp;lsquo;output&amp;rsquo;). You will also need to press Enter to confirm the filename!
+&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;X&lt;/code&gt;: exit the editor.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As a reminder, to save what you have written in &lt;code&gt;nano&lt;/code&gt;, type &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;O&lt;/code&gt; to write the file out, then &lt;code&gt;Enter&lt;/code&gt; to confirm the filename, then &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;X&lt;/code&gt; to exit the editor.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Actually, We can also edit a file roughly by &lt;strong&gt;redirecting&lt;/strong&gt; the output of &lt;strong&gt;&lt;code&gt;echo&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;head -n 1 seasonal/*.csv&amp;#39;&lt;/span&gt; &amp;gt; header.sh  
+$ cat header.sh  
+head -n &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; seasonal/*.csv
+$ bash header.sh
+&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&amp;gt; seasonal/autumn.csv &amp;lt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;
+Date,Tooth
+
+&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&amp;gt; seasonal/spring.csv &amp;lt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;
+Date,Tooth
+
+&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&amp;gt; seasonal/summer.csv &amp;lt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;
+Date,Tooth
+
+&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&amp;gt; seasonal/winter.csv &amp;lt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;
+Date,Tooth
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;store-and-bash-commands&#34;&gt;Store and &lt;code&gt;bash&lt;/code&gt; commands&lt;/h2&gt;
+&lt;p&gt;When you are doing a complex analysis, you will often want to keep a record of by following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run &lt;code&gt;history&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Pipe its output to &lt;code&gt;tail&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Redirect that to a file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt; &amp;gt; ~/Documents/history_command.txt
+$
+$ head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; ~/Documents/history_command.txt
+ &lt;span class=&#34;m&#34;&gt;1018&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; 2017-07-07 &amp;gt; test.txt
+ &lt;span class=&#34;m&#34;&gt;1019&lt;/span&gt;  2017-07-08 &amp;gt;&amp;gt; test.txt
+ &lt;span class=&#34;m&#34;&gt;1020&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; 2017-07-08 &amp;gt;&amp;gt; test.txt&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;echo 2017-07-09 &amp;gt;&amp;gt; test.txt&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;echo 2017-07-07 &amp;gt;&amp;gt; test.txt&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;echo 2017-07-07 &amp;gt;&amp;gt; test.txt
+ &lt;span class=&#34;m&#34;&gt;1021&lt;/span&gt;  cat test.txt
+ &lt;span class=&#34;m&#34;&gt;1022&lt;/span&gt;  uniq test.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Since the commands you type in are just text, you can store them in files for the shell to run over and over again. To start exploring this powerful capability, &lt;strong&gt;Use &lt;code&gt;nano header.sh&lt;/code&gt; to create a file called &lt;code&gt;header.sh&lt;/code&gt; that contains this command&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;head -n &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; seasonal/*.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This command selects the first row from each of the CSV files in the seasonal directory. &lt;strong&gt;Once you want to run this command, you can call it by &lt;code&gt;bash&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash header.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;shell-script&#34;&gt;Shell script&lt;/h2&gt;
+&lt;p&gt;A file full of shell commands is called a &lt;strong&gt;shell script&lt;/strong&gt;, or sometimes just a &amp;ldquo;script&amp;rdquo; for short. Scripts don&amp;rsquo;t have to have names ending in &lt;code&gt;.sh&lt;/code&gt;, but we will will use that convention to keep track of which files are scripts.&lt;/p&gt;
+&lt;p&gt;Scripts can also contain pipes. For example, if &lt;code&gt;all-dates.sh&lt;/code&gt; contains this line:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cut -d , -f &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; seasonal/*.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Date &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;then:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash all-dates.sh &amp;gt; dates.out
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;will extract the unique dates from the seasonal data files and save them in &lt;code&gt;dates.out&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;pass-parameters&#34;&gt;pass parameters&lt;/h3&gt;
+&lt;p&gt;A script that processes &lt;strong&gt;specific&lt;/strong&gt; files is useful as a record of what you did, but one that allows you to process any files you want is more useful. To support this, you can use the special expression &lt;code&gt;$@&lt;/code&gt; to mean &amp;ldquo;&lt;strong&gt;all of the command-line parameters given to the script&lt;/strong&gt;&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;For example, if &lt;code&gt;unique-lines.sh&lt;/code&gt; contains &lt;code&gt;sort $@ | uniq&lt;/code&gt;, when you run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash unique-lines.sh seasonal/summer.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;the shell &lt;strong&gt;replaces &lt;code&gt;$@&lt;/code&gt; with &lt;code&gt;seasonal/summer.csv&lt;/code&gt;&lt;/strong&gt; and processes one file. If you run this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash unique-lines.sh seasonal/summer.csv seasonal/autumn.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;it processes two data files, and so on.&lt;/p&gt;
+&lt;p&gt;As well as &lt;code&gt;$@&lt;/code&gt;, the shell lets you use &lt;code&gt;$1&lt;/code&gt;, &lt;code&gt;$2&lt;/code&gt;, and so on to refer to specific command-line parameters. You can use this to write commands that feel simpler or more natural than the shell&amp;rsquo;s.&lt;/p&gt;
+&lt;p&gt;For example, you can create a script called &lt;code&gt;column.sh&lt;/code&gt; that selects a single column from a CSV file when the user provides the &lt;strong&gt;filename as the first parameter and the column as the second&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cut -d , -f &lt;span class=&#34;nv&#34;&gt;$2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;and then run it using:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash column.sh seasonal/autumn.csv &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Notice how the script uses the two parameters in reverse order.&lt;/p&gt;
+&lt;p&gt;The script &lt;code&gt;get-field.sh&lt;/code&gt; contains:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;head -n &lt;span class=&#34;nv&#34;&gt;$2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; cut -d , -f &lt;span class=&#34;nv&#34;&gt;$3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;thus&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash get-field.sh seasonal/summer.csv &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;select the second field from line 4 of &lt;code&gt;seasonal/summer.csv&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;multi-line-script&#34;&gt;multi-line script&lt;/h3&gt;
+&lt;p&gt;Our shells scripts so far have had a single command or pipe, but a script can contain many lines of commands. For example, you can create one that tells you how many records are in the shortest and longest of your data files, i.e., the range of your datasets&#39; lengths. Write the following commands in to &lt;code&gt;range.sh&lt;/code&gt; by &lt;code&gt;nano&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wc -l &lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v total &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -n &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+wc -l &lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v total &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -n -r &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;then&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ bash range.sh seasonal/*.csv &amp;gt; range.out
+$ cat range.out
+  &lt;span class=&#34;m&#34;&gt;21&lt;/span&gt; seasonal/autumn.csv
+  &lt;span class=&#34;m&#34;&gt;26&lt;/span&gt; seasonal/winter.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Shell scripts can also contain &lt;strong&gt;loops&lt;/strong&gt;. You can &lt;strong&gt;write them using semi-colons, or split them across lines without semi-colons&lt;/strong&gt; to make them more readable. Define script &lt;code&gt;date-range.sh&lt;/code&gt; containing the following commands, by &lt;code&gt;nano&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Print the first and last data records of each file.&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; filename in &lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+    cut -d, -f1 &lt;span class=&#34;nv&#34;&gt;$filename&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Date &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n1
+    cut -d, -f1 &lt;span class=&#34;nv&#34;&gt;$filename&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v Date &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n1
+&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;(You don&amp;rsquo;t have to indent the commands inside the loop, but doing so makes things clearer.)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Comments in shell start with the &lt;code&gt;#&lt;/code&gt; character and run to the end of the line.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Call the script:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ bash date-range.sh seasonal/*.csv
+2017-01-05
+2017-08-16
+2017-01-25
+2017-09-07
+2017-01-11
+2017-08-04
+2017-01-03
+2017-08-13
+$ bash date-range.sh seasonal/*.csv &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort
+2017-01-03
+2017-01-05
+2017-01-11
+2017-01-25
+2017-08-04
+2017-08-13
+2017-08-16
+2017-09-07
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;A common mistake in shell scripts (and interactive commands) is to put filenames in the wrong place. If you type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;tail -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;then since &lt;code&gt;tail&lt;/code&gt; hasn&amp;rsquo;t been given any filenames, it waits to read input from your keyboard. This means that if you type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; somefile.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;then &lt;code&gt;tail&lt;/code&gt; &lt;strong&gt;goes ahead&lt;/strong&gt; and prints the last three lines of &lt;code&gt;somefile.txt&lt;/code&gt;, but &lt;code&gt;head&lt;/code&gt; waits &lt;strong&gt;forever&lt;/strong&gt; for keyboard input, since it wasn&amp;rsquo;t given a filename and there isn&amp;rsquo;t anything ahead of it in the pipeline.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;下面是隐藏内容:&lt;/p&gt;
+&lt;p&gt;我大概花费了 4~5 个小时完成了这篇博客, 但是令人崩溃的是即使我已经点击保存, 但是在我打算上传该博客的时候突然发现本文 95% 的内容都没有保存! 如果不是我心态好可能直接抽过去. 在谷歌搜了半天也没有有效的解决方案, 但是经过不断摸索, 我发现了 &lt;code&gt;/Users/wanghaoming/Library/Application Support/Code/User/History&lt;/code&gt; 这个名称带有曙光的目录, 点击进去, 按修改时间排序, 逐个排查, 找到这篇博客的项目目录 &lt;code&gt;History/-39560499&lt;/code&gt;. 点击进去, 按文件大小排序, 第一个就是这个文档, 这是此轮吉林新冠疫情封城 40 天中唯一令我激动的好消息! 最后大合影:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204132246717.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;By the way, 勤备份真的是个好习惯. 经过这件事, 我把尘封多年的希捷硬盘翻出来连上 Time Machine 了.&lt;/p&gt;
+&lt;p&gt;王浩铭
+2022 年 4 月 13 日 22 时 48 分
+吉林省, 吉林市&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Linux Command Line &amp; Shell Script III</title>
         <link>https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-iii/</link>
         <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
@@ -96,90 +1884,6 @@ autumn.csv  spring.csv  summer.csv  winter.csv
         <pubDate>Sun, 22 Aug 2021 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-ii/</guid>
-        <description>&lt;blockquote&gt;
-&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;manipulating-files-and-directories&#34;&gt;Manipulating files and directories&lt;/h1&gt;
-&lt;h2 id=&#34;basic-operation-on-filesystem&#34;&gt;Basic operation on filesystem&lt;/h2&gt;
-&lt;p&gt;An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.&lt;/p&gt;
-&lt;p&gt;Human beings need an interface to interact with the operating system. The most common one these days is a &lt;strong&gt;graphical file explorer&lt;/strong&gt;, which translates clicks and double-clicks into commands to open files and run programs. Before computers had graphical displays, though, people typed instructions into a program called a &lt;strong&gt;command-line shell&lt;/strong&gt;. Each time a command is entered, the shell runs some other programs, prints their output in human-readable form, and then displays a prompt to signal that it&amp;rsquo;s ready to accept the next command. (Its name comes from the notion that it&amp;rsquo;s the &amp;ldquo;outer shell&amp;rdquo; of the computer.)&lt;/p&gt;
-&lt;p&gt;The filesystem manages files and directories (or folders). Each is identified by an &lt;strong&gt;absolute path&lt;/strong&gt; that shows how to reach it from the filesystem&amp;rsquo;s &lt;strong&gt;root directory&lt;/strong&gt;: &lt;code&gt;/home/repl&lt;/code&gt; is the directory &lt;code&gt;repl&lt;/code&gt; in the directory &lt;code&gt;home&lt;/code&gt;, while &lt;code&gt;/home/repl/course.txt&lt;/code&gt; is a file &lt;code&gt;course.txt&lt;/code&gt; in that directory, and &lt;code&gt;/&lt;/code&gt; on its own is the root directory.&lt;/p&gt;
-&lt;p&gt;To find out where you are in the filesystem, run the command &lt;code&gt;pwd&lt;/code&gt; (short for &amp;ldquo;&lt;strong&gt;print working directory&lt;/strong&gt;&amp;quot;). This prints the &lt;strong&gt;absolute path&lt;/strong&gt; of your current working directory, which is where the shell runs commands and looks for files by default.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
-/home/repl
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;pwd&lt;/code&gt; tells you where you are. To find out what&amp;rsquo;s there, type &lt;code&gt;ls&lt;/code&gt; (which is short for &amp;ldquo;&lt;strong&gt;listing&lt;/strong&gt;&amp;quot;) and press the enter key. On its own, &lt;code&gt;ls&lt;/code&gt; lists the contents of your current directory. If you add the names of some files, &lt;code&gt;ls&lt;/code&gt; will list them, and if you add the names of directories, it will list their contents. For example, &lt;code&gt;ls /home/repl&lt;/code&gt; shows you what&amp;rsquo;s in your starting directory (usually called your home directory).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ ls /home/repl/seasonal/
-autumn.csv  spring.csv  summer.csv  winter.csv
-$
-$ ls /home/repl/seasonal/autumn.csv
-/home/repl/seasonal/autumn.csv
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;An &lt;strong&gt;absolute path&lt;/strong&gt; is like a latitude and longitude: it has the same value no matter where you are. A &lt;strong&gt;relative path&lt;/strong&gt;, on the other hand, specifies a location starting from where you are. The shell decides if a path is absolute or relative by looking at its first character: If it begins with &lt;code&gt;/&lt;/code&gt;, it is absolute. If it does not begin with &lt;code&gt;/&lt;/code&gt;, it is relative.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ls
-backup  bin  course.txt  people  seasonal
-$ ls course.txt
-course.txt
-$ ls seasonal/summer.csv
-seasonal/summer.csv
-$ ls people/
-agarwal.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;You can move around in the filesystem using the command &lt;code&gt;cd&lt;/code&gt; (which stands for &amp;ldquo;&lt;strong&gt;change directory&lt;/strong&gt;&amp;quot;). If you type &lt;code&gt;cd seasonal&lt;/code&gt; and then type &lt;code&gt;pwd&lt;/code&gt;, the shell will tell you that you are now in &lt;code&gt;/home/repl/seasonal&lt;/code&gt;. If you want to get back to your home directory &lt;code&gt;/home/repl&lt;/code&gt;, you can use the command &lt;code&gt;cd /home/repl&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /home/repl/seasonal/
-$ &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
-/home/repl/seasonal
-$ ls
-autumn.csv  spring.csv  summer.csv  winter.csv
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-        </item>
-        <item>
-        <title>Linux Command Line &amp; Shell Script I</title>
-        <link>https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-i/</link>
-        <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-i/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
