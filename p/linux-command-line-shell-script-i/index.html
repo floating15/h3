@@ -2,21 +2,21 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Manipulating files and directories Interface An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.
+ Manipulating files and directories Basic operation on filesystem An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.
 Human beings need an interface to interact with the operating system.'><title>Linux Command Line &amp; Shell Script I</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-i/'>
 
 <link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='Linux Command Line &amp; Shell Script I'>
 <meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Manipulating files and directories Interface An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.
+ Manipulating files and directories Basic operation on filesystem An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.
 Human beings need an interface to interact with the operating system.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/linux-command-line-shell-script-i/'>
 <meta property='og:site_name' content='Haoming Wang'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Shell' /><meta property='article:published_time' content='2021-08-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-08-16T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Linux Command Line &amp; Shell Script I">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Manipulating files and directories Interface An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.
+ Manipulating files and directories Basic operation on filesystem An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&amp;rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.
 Human beings need an interface to interact with the operating system.">
     </head>
     <body class="
@@ -357,7 +357,7 @@ Human beings need an interface to interact with the operating system.">
 
 
                 <time class="article-time--reading">
-                    7 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -375,10 +375,9 @@ Human beings need an interface to interact with the operating system.">
 <p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
 </blockquote>
 <h1 id="manipulating-files-and-directories">Manipulating files and directories</h1>
-<h2 id="interface">Interface</h2>
+<h2 id="basic-operation-on-filesystem">Basic operation on filesystem</h2>
 <p>An operating system like Windows, Linux, or Mac OS is a special kind of program. It controls the computer&rsquo;s processor, hard drive, and network connection, but its most important job is to run other programs.</p>
 <p>Human beings need an interface to interact with the operating system. The most common one these days is a <strong>graphical file explorer</strong>, which translates clicks and double-clicks into commands to open files and run programs. Before computers had graphical displays, though, people typed instructions into a program called a <strong>command-line shell</strong>. Each time a command is entered, the shell runs some other programs, prints their output in human-readable form, and then displays a prompt to signal that it&rsquo;s ready to accept the next command. (Its name comes from the notion that it&rsquo;s the &ldquo;outer shell&rdquo; of the computer.)</p>
-<h2 id="pwd"><code>pwd</code></h2>
 <p>The filesystem manages files and directories (or folders). Each is identified by an <strong>absolute path</strong> that shows how to reach it from the filesystem&rsquo;s <strong>root directory</strong>: <code>/home/repl</code> is the directory <code>repl</code> in the directory <code>home</code>, while <code>/home/repl/course.txt</code> is a file <code>course.txt</code> in that directory, and <code>/</code> on its own is the root directory.</p>
 <p>To find out where you are in the filesystem, run the command <code>pwd</code> (short for &ldquo;<strong>print working directory</strong>&quot;). This prints the <strong>absolute path</strong> of your current working directory, which is where the shell runs commands and looks for files by default.</p>
 <div class="highlight"><div class="chroma">
@@ -391,8 +390,7 @@ Human beings need an interface to interact with the operating system.">
 /home/repl
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="ls"><code>ls</code></h2>
-<p><code>pwd</code> tells you where you are. To find out what&rsquo;s there, type <code>ls</code> (which is short for &ldquo;<strong>listing</strong>&quot;) and press the enter key. On its own, <code>ls</code> lists the contents of your current directory. If you add the names of some files, <code>ls</code> will list them, and if you add the names of directories, it will list their contents. For example, <code>ls /home/repl</code> shows you what&rsquo;s in your starting directory (usually called your home directory).</p>
+</div><p><code>pwd</code> tells you where you are. To find out what&rsquo;s there, type <code>ls</code> (which is short for &ldquo;<strong>listing</strong>&quot;) and press the enter key. On its own, <code>ls</code> lists the contents of your current directory. If you add the names of some files, <code>ls</code> will list them, and if you add the names of directories, it will list their contents. For example, <code>ls /home/repl</code> shows you what&rsquo;s in your starting directory (usually called your home directory).</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -422,7 +420,7 @@ $ ls /home/repl/seasonal/autumn.csv
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">$ ls
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ls
 backup  bin  course.txt  people  seasonal
 $ ls course.txt
 course.txt
@@ -432,8 +430,7 @@ $ ls people/
 agarwal.txt
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="cd"><code>cd</code></h2>
-<p>You can move around in the filesystem using the command <code>cd</code> (which stands for &ldquo;<strong>change directory</strong>&quot;). If you type <code>cd seasonal</code> and then type <code>pwd</code>, the shell will tell you that you are now in <code>/home/repl/seasonal</code>. If you want to get back to your home directory <code>/home/repl</code>, you can use the command <code>cd /home/repl</code>.</p>
+</div><p>You can move around in the filesystem using the command <code>cd</code> (which stands for &ldquo;<strong>change directory</strong>&quot;). If you type <code>cd seasonal</code> and then type <code>pwd</code>, the shell will tell you that you are now in <code>/home/repl/seasonal</code>. If you want to get back to your home directory <code>/home/repl</code>, you can use the command <code>cd /home/repl</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -450,191 +447,7 @@ $ ls
 autumn.csv  spring.csv  summer.csv  winter.csv
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="special-path">special path</h2>
-<p>The parent of a directory is the directory above it. For example, <code>/home</code> is the parent of <code>/home/repl</code>, and <code>/home/repl</code> is the parent of <code>/home/repl/seasonal</code>. You can always give the absolute path of your parent directory to commands like <code>cd</code> and <code>ls</code>. More often, though, you will take advantage of the fact that the special path <code>..</code> means &ldquo;<strong>the directory above the currently one</strong>&rdquo;. If you are in <code>/home/repl/seasonal</code>, then <code>cd ..</code> moves you up to <code>/home/repl</code>. If you use <code>cd ../..</code>, it puts you in the root directory <code>/</code>, which is the very top of the filesystem.</p>
-<p>A single dot on its own, <code>.</code>, always means &ldquo;<strong>the current directory</strong>&rdquo;, so <code>ls .</code> do the same thing with <code>ls</code>.</p>
-<p>One final special path is <code>~</code> (the tilde character), which means &ldquo;<strong>your home directory</strong>&rdquo;, such as <code>/home/repl</code>. No matter where you are, ls <code>~</code> will always list the contents of your home directory, and <code>cd ~</code> will always take you home.</p>
-<h2 id="cp"><code>cp</code></h2>
-<p>You will often want to copy files, move them into other directories to organize them, or rename them. One command to do this is <code>cp</code>, which is short for &ldquo;<strong>copy</strong>&rdquo;. If <code>original.txt</code> is an existing file, then:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cp original.txt duplicate.txt
-</code></pre></td></tr></table>
 </div>
-</div><p>creates a copy of <code>original.txt</code> called <code>duplicate.txt</code>. If there already was a file called <code>duplicate.txt</code>, it is <strong>overwritten</strong>. If the last parameter to <code>cp</code> is an existing directory <code>backup</code>, then a command like:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cp seasonal/autumn.csv seasonal/winter.csv backup
-</code></pre></td></tr></table>
-</div>
-</div><p>copies all of the files into that directory.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cp seasonal/summer.csv  backup/summer.bck
-$ ls backup/
-summer.bck
-$
-$ cp seasonal/spring.csv  seasonal/summer.csv backup/
-$ ls backup/
-spring.csv  summer.bck  summer.csv
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="mv"><code>mv</code></h2>
-<p>While <code>cp</code> copies a file, <code>mv</code> moves it from one directory to another, i.e. cut. It handles its parameters the same way as <code>cp</code>, so the command:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mv autumn.csv winter.csv ..
-</code></pre></td></tr></table>
-</div>
-</div><p>moves the files <code>autumn.csv</code> and <code>winter.csv</code> from the current working directory up one level to its <strong>parent directory</strong>.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mv ./seasonal/spring.csv  ./seasonal/summer.csv  ./backup/
-$
-$ ls ./seasonal/
-autumn.csv  winter.csv
-$ ls ./backup/
-spring.csv  summer.csv
-</code></pre></td></tr></table>
-</div>
-</div><p><code>mv</code> can also be used to <strong>rename</strong> files. If you run:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mv course.txt old-course.txt
-</code></pre></td></tr></table>
-</div>
-</div><p>then the file <code>course.txt</code> in the current working directory is &ldquo;moved&rdquo; to the file <code>old-course.txt</code>. This is different from the way file browsers work, but is often handy.</p>
-<p>One warning: just like <code>cp</code>, <code>mv</code> will <strong>overwrite</strong> existing files. If, for example, you already have a file called <code>old-course.txt</code>, then the command shown above will replace it with whatever is in <code>course.txt</code>.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ./seasonal/
-$ ls
-autumn.csv  spring.csv  summer.csv  winter.csv
-$ mv winter.csv winter.csv.bck
-$ ls
-autumn.csv  spring.csv  summer.csv  winter.csv.bck
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="rm"><code>rm</code></h2>
-<p>We can copy files and move them around; to delete them, we use <code>rm</code>, which stands for &ldquo;<strong>remove</strong>&rdquo;. As with <code>cp</code> and <code>mv</code>, you can give <code>rm</code> the names of as many files as you&rsquo;d like, so:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rm thesis.txt backup/thesis-2017-08.txt
-</code></pre></td></tr></table>
-</div>
-</div><p>removes both <code>thesis.txt</code> and <code>backup/thesis-2017-08.txt</code>. Unlike graphical file browsers, the shell doesn&rsquo;t have a trash can, so when you type the command above, your thesis is gone for good.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ./seasonal/
-$ ls
-autumn.csv  spring.csv  summer.csv  winter.csv
-$ rm autumn.csv
-$ ls
-spring.csv  summer.csv  winter.csv
-$ <span class="nb">cd</span> ..
-$ rm seasonal/summer.csv
-$ ls ./seasonal/
-spring.csv  winter.csv
-</code></pre></td></tr></table>
-</div>
-</div><p><code>mv</code> treats directories the same way it treats files: if you are in your home directory and run <code>mv seasonal by-season</code>, for example, <code>mv</code> changes the name of the <code>seasonal</code> directory to <code>by-season</code>. However, <code>rm</code> works differently.</p>
-<p>If you try to <code>rm</code> a directory, the shell prints an error message telling you it can&rsquo;t do that, primarily to stop you from accidentally deleting an entire directory full of work. Instead, you can use a separate command called <code>rmdir</code>. For added safety, it only works when the directory is <strong>empty</strong>, so you must delete the files in a directory before you delete the directory. Correspondingly, you can use the command <code>mkdir directory_name</code> to create a new (empty) directory.</p>
-<p>Experienced users can use the <code>-r</code> <strong>option</strong> to <code>rm</code> to get the same effect; we will discuss command options in the next chapter.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ rm ./people/agarwal.txt
-$ rmdir ./people/
-$
-$ mkdir yearly
-$ mkdir yearly/2017
-</code></pre></td></tr></table>
-</div>
-</div><p>You will often create intermediate files when analyzing data. Rather than storing them in your home directory, you can put them in <code>/tmp</code>, which is where people and programs often keep files they only need briefly. (Note that <code>/tmp</code> is immediately below the root directory <code>/</code>.)</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /tmp
-$ ls
-tmp4k14q4ue  tmp81oflvp9  tmpkihr78do  tmpkoqewt2k
-$ mkdir scratch
-$ ls
-scratch  tmp4k14q4ue  tmp81oflvp9  tmpkihr78do  tmpkoqewt2k
-$ mv ~/people/agarwal.txt  /tmp/scratch/
-$ ls scratch/
-agarwal.txt
-</code></pre></td></tr></table>
-</div>
-</div><h1 id="manipulating-data">Manipulating data</h1>
-
 </section>
 
 
@@ -817,17 +630,9 @@ agarwal.txt
   <ol>
     <li><a href="#manipulating-files-and-directories">Manipulating files and directories</a>
       <ol>
-        <li><a href="#interface">Interface</a></li>
-        <li><a href="#pwd"><code>pwd</code></a></li>
-        <li><a href="#ls"><code>ls</code></a></li>
-        <li><a href="#cd"><code>cd</code></a></li>
-        <li><a href="#special-path">special path</a></li>
-        <li><a href="#cp"><code>cp</code></a></li>
-        <li><a href="#mv"><code>mv</code></a></li>
-        <li><a href="#rm"><code>rm</code></a></li>
+        <li><a href="#basic-operation-on-filesystem">Basic operation on filesystem</a></li>
       </ol>
     </li>
-    <li><a href="#manipulating-data">Manipulating data</a></li>
   </ol>
 </nav>
         </div>
