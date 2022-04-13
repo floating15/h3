@@ -12,7 +12,7 @@
         <pubDate>Sun, 22 Sep 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-vi-package-module/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/head_img/oop_hi/oo6.png" alt="Featured image of post Object Oriented Programming VI (Package &amp; Module)" /&gt;&lt;p&gt;We have discussed many special objects in Python, like &lt;code&gt;__doc__&lt;/code&gt;, &lt;code&gt;__closure__&lt;/code&gt;, &lt;code&gt;__name__&lt;/code&gt;, &lt;code&gt;__defaults__&lt;/code&gt; and &lt;code&gt;__init()__&lt;/code&gt;, &lt;code&gt;__eq__()&lt;/code&gt;, &lt;code&gt;__str__()&lt;/code&gt;, &lt;code&gt;__repr__&lt;/code&gt;, the former names (without parentheses) are called Special Attributes; the later names are called Magic Method. We will elaborate others spacial attribute and magic method detailedly in this blog.&lt;/p&gt;
+        <description>&lt;p&gt;We have discussed many special objects in Python, like &lt;code&gt;__doc__&lt;/code&gt;, &lt;code&gt;__closure__&lt;/code&gt;, &lt;code&gt;__name__&lt;/code&gt;, &lt;code&gt;__defaults__&lt;/code&gt; and &lt;code&gt;__init()__&lt;/code&gt;, &lt;code&gt;__eq__()&lt;/code&gt;, &lt;code&gt;__str__()&lt;/code&gt;, &lt;code&gt;__repr__&lt;/code&gt;, the former names (without parentheses) are called Special Attributes; the later names are called Magic Method. We will elaborate others spacial attribute and magic method detailedly in this blog.&lt;/p&gt;
 &lt;h1 id=&#34;magic-method&#34;&gt;Magic Method&lt;/h1&gt;
 &lt;h2 id=&#34;__init__-constructor&#34;&gt;&lt;code&gt;__init__()&lt;/code&gt; Constructor&lt;/h2&gt;
 &lt;p&gt;constructor will be called automatically when class is called:&lt;/p&gt;
@@ -1151,7 +1151,7 @@ test_module
         <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-v-special-attributes-magic-methods/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/head_img/oop_hi/oo4.png" alt="Featured image of post Object Oriented Programming V (Special Attributes &amp; Magic Methods)" /&gt;&lt;p&gt;We have discussed many special objects in Python, like &lt;code&gt;__doc__&lt;/code&gt;, &lt;code&gt;__closure__&lt;/code&gt;, &lt;code&gt;__name__&lt;/code&gt;, &lt;code&gt;__defaults__&lt;/code&gt; and &lt;code&gt;__init()__&lt;/code&gt;, &lt;code&gt;__eq__()&lt;/code&gt;, &lt;code&gt;__str__()&lt;/code&gt;, &lt;code&gt;__repr__&lt;/code&gt;, the former names (without parentheses) are called Special Attributes; the later names are called Magic Method. We will elaborate others spacial attribute and magic method detailedly in this blog.&lt;/p&gt;
+        <description>&lt;p&gt;We have discussed many special objects in Python, like &lt;code&gt;__doc__&lt;/code&gt;, &lt;code&gt;__closure__&lt;/code&gt;, &lt;code&gt;__name__&lt;/code&gt;, &lt;code&gt;__defaults__&lt;/code&gt; and &lt;code&gt;__init()__&lt;/code&gt;, &lt;code&gt;__eq__()&lt;/code&gt;, &lt;code&gt;__str__()&lt;/code&gt;, &lt;code&gt;__repr__&lt;/code&gt;, the former names (without parentheses) are called Special Attributes; the later names are called Magic Method. We will elaborate others spacial attribute and magic method detailedly in this blog.&lt;/p&gt;
 &lt;h1 id=&#34;magic-method&#34;&gt;Magic Method&lt;/h1&gt;
 &lt;h2 id=&#34;__init__-constructor&#34;&gt;&lt;code&gt;__init__()&lt;/code&gt; Constructor&lt;/h2&gt;
 &lt;p&gt;constructor will be called automatically when class is called:&lt;/p&gt;
@@ -2290,7 +2290,7 @@ test_module
         <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-iv-class/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/head_img/oop_hi/oo5.png" alt="Featured image of post Object Oriented Programming IV (Class)" /&gt;&lt;blockquote&gt;
+        <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;oop-fundamental&#34;&gt;OOP Fundamental&lt;/h1&gt;
@@ -4887,7 +4887,7 @@ property called
         <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-iii-context-managers-decorators/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/head_img/oop_hi/oo3.png" alt="Featured image of post Object Oriented Programming III (Context Managers &amp; Decorators)" /&gt;&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
+        <description>&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
 &lt;h2 id=&#34;docstrings&#34;&gt;Docstrings&lt;/h2&gt;
 &lt;p&gt;Docstrings, which describes what the arguments are supposed to be, and what it returns, makes code much easier to use, read, and maintain. A docstring is a string enclosed in triple quotes and written as the first line of a function.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -7633,7 +7633,7 @@ TimeoutError: you timeout
         <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-ii-iterators-comprehensions-generators/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/head_img/oop_hi/oo2.png" alt="Featured image of post Object Oriented Programming II (Iterators, Comprehensions &amp; Generators)" /&gt;&lt;blockquote&gt;
+        <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;iterators-in-pythonland&#34;&gt;Iterators in PythonLand&lt;/h1&gt;
@@ -8829,7 +8829,7 @@ Using the method &lt;code&gt;append()&lt;/code&gt; of the DataFrame data, append
         <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/p/object-oriented-programming-i-function/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/head_img/oop_hi/oo1.png" alt="Featured image of post Object Oriented Programming I (Function)" /&gt;&lt;h1 id=&#34;writing-functions1&#34;&gt;Writing Functions1&lt;/h1&gt;
+        <description>&lt;h1 id=&#34;writing-functions1&#34;&gt;Writing Functions1&lt;/h1&gt;
 &lt;h2 id=&#34;define-function&#34;&gt;Define function&lt;/h2&gt;
 &lt;p&gt;To define the function, We begin with the keyword &lt;code&gt;def&lt;/code&gt;, followed by the function name; this is then followed by a set of parentheses and a colon. This piece of code is called a function header. To complete the function definition, We write the function body inside the indentation.&lt;/p&gt;
 &lt;p&gt;There&amp;rsquo;s an essential aspect of writing functions in Python: &lt;strong&gt;docstrings&lt;/strong&gt;. Docstrings serve as documentation for your function so that anyone who reads your function&amp;rsquo;s docstring understands what your function does, without having to trace through all the code in the function definition. Function docstrings are placed in the immediate line after the function header and are placed in between triple quotation marks.&lt;/p&gt;
