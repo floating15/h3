@@ -15,6 +15,14 @@
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/linux/images2.jpeg" alt="Featured image of post Linux" /&gt;</description>
         </item>
         <item>
+        <title>PyTorch &amp; Deep Learning</title>
+        <link>https://wanghaoming177.netlify.app/categories/pytorch/</link>
+        <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/pytorch/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/pytorch/ttt1.png" alt="Featured image of post PyTorch &amp; Deep Learning" /&gt;</description>
+        </item>
+        <item>
         <title>Kaggle</title>
         <link>https://wanghaoming177.netlify.app/categories/kaggle/</link>
         <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
@@ -53,14 +61,6 @@
         
         <guid>https://wanghaoming177.netlify.app/categories/financial_engineering/</guid>
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/financial_engineering/doeblin.png" alt="Featured image of post Financial Engineering" /&gt;</description>
-        </item>
-        <item>
-        <title>PyTorch &amp; Deep Learning</title>
-        <link>https://wanghaoming177.netlify.app/categories/pytorch/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/categories/pytorch/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/pytorch/ttt1.png" alt="Featured image of post PyTorch &amp; Deep Learning" /&gt;</description>
         </item>
         <item>
         <title>Thesis Reproduction</title>
