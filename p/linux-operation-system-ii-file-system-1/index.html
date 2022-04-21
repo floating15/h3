@@ -2730,17 +2730,8 @@ multi on
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tail -n <span class="m">5</span> -f /var/log/auth.log
 </code></pre></td></tr></table>
 </div>
-</div><p>in one of the terminal, the window would be:</p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211638123.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>and then run <code>sudo su</code> in the other terminal to switch to the root user, this exectuation will be record in the <code>/var/log/auth.log</code> file, and the <code>tail</code> window will update the contents automatically.</p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211640278.png"
+</div><p>in one of the terminal, and then run <code>sudo su</code> in the other terminal to switch to the root user, this exectuation will be record in the <code>/var/log/auth.log</code> file, and the <code>tail</code> window will update the contents automatically.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204212107132.gif"
 	
 	
 	
@@ -2760,10 +2751,11 @@ multi on
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">watch tail -n /var/log/auth.log
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">watch -n <span class="m">1</span> tail -n <span class="m">5</span> /var/log/auth.log
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211655209.png"
+</div><p>Here the first <code>-n 1</code> is the option of <code>watch</code> command, it control the update time interval; the second <code>-n 5</code> is <code>tail</code> command&rsquo;s.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204212113065.gif"
 	
 	
 	
@@ -2771,15 +2763,7 @@ multi on
 	
 	
 ></p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211657578.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>Two interesting options are <code>-d</code> to highlight the differences between successive updates; and <code>-n</code> and a number to specify the update time interval. For example, I want to see how packets are sent and received by executing the ifconfig repeatedly. So run</p>
+<p>Another interesting option is <code>-d</code> to highlight the differences between successive updates. For example, I want to see how packets are sent and received by executing the ifconfig repeatedly. So run</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4139,8 +4123,26 @@ shred -vu -n <span class="m">100</span> file1
     <li><a href="#file-system">File System</a>
       <ol>
         <li><a href="#intro">Intro</a></li>
-        <li><a href="#fhs">FHS</a></li>
-        <li><a href="#path">Path</a></li>
+        <li><a href="#fhs">FHS</a>
+          <ol>
+            <li><a href="#bin-sbin"><code>/bin</code>, <code>/sbin</code></a></li>
+            <li><a href="#boot-home-and-root"><code>/boot</code>, <code>/home</code> and <code>/root</code></a></li>
+            <li><a href="#usr"><code>/usr</code></a></li>
+            <li><a href="#dev"><code>/dev</code></a></li>
+            <li><a href="#media-mnt"><code>/media</code>, <code>/mnt</code></a></li>
+            <li><a href="#etc"><code>/etc</code></a></li>
+            <li><a href="#lib-tmp"><code>/lib</code>, <code>/tmp</code></a></li>
+            <li><a href="#proc"><code>/proc</code></a></li>
+            <li><a href="#sys-srv-run-var"><code>/sys</code>, <code>/srv</code>, <code>/run</code>, <code>/var</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#path">Path</a>
+          <ol>
+            <li><a href="#absolute-path">Absolute path</a></li>
+            <li><a href="#relative-path">Relative path</a></li>
+            <li><a href="#tree">Tree</a></li>
+          </ol>
+        </li>
         <li><a href="#compendium">Compendium</a></li>
       </ol>
     </li>
@@ -4157,8 +4159,25 @@ shred -vu -n <span class="m">100</span> file1
     <li><a href="#timestamps">Timestamps</a>
       <ol>
         <li><a href="#stat-command"><code>stat</code> command</a></li>
-        <li><a href="#ls-with-options"><code>ls</code> with options</a></li>
-        <li><a href="#touch-command"><code>touch</code> command</a></li>
+        <li><a href="#ls-with-options"><code>ls</code> with options</a>
+          <ol>
+            <li><a href="#-u"><code>-u</code></a></li>
+            <li><a href="#-t"><code>-t</code></a></li>
+            <li><a href="#-c"><code>-c</code></a></li>
+            <li><a href="#--full-time"><code>--full-time</code></a></li>
+            <li><a href="#-t--u"><code>-t</code>, <code>-u</code></a></li>
+            <li><a href="#-r---reverse"><code>-r</code>, <code>--reverse</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#touch-command"><code>touch</code> command</a>
+          <ol>
+            <li><a href="#-a"><code>-a</code></a></li>
+            <li><a href="#-m"><code>-m</code></a></li>
+            <li><a href="#-t-1"><code>-t</code></a></li>
+            <li><a href="#-d"><code>-d</code></a></li>
+            <li><a href="#-r"><code>-r</code></a></li>
+          </ol>
+        </li>
         <li><a href="#compendium-2">Compendium</a></li>
       </ol>
     </li>
@@ -4173,16 +4192,42 @@ shred -vu -n <span class="m">100</span> file1
       <ol>
         <li><a href="#cat-command"><code>cat</code> command</a></li>
         <li><a href="#less-command"><code>less</code> command</a></li>
-        <li><a href="#tail-head-watch"><code>tail</code>, <code>head</code>, <code>watch</code></a></li>
+        <li><a href="#tail-head-watch"><code>tail</code>, <code>head</code>, <code>watch</code></a>
+          <ol>
+            <li><a href="#tail--n"><code>tail -n</code></a></li>
+            <li><a href="#tail--f"><code>tail -f</code></a></li>
+            <li><a href="#watch-command"><code>watch</code> command</a></li>
+          </ol>
+        </li>
         <li><a href="#compendium-3">Compendium</a></li>
       </ol>
     </li>
     <li><a href="#create-copy-and-move-remove">Create, Copy and Move (Remove)</a>
       <ol>
         <li><a href="#touch-mkdir-command"><code>touch</code>, <code>mkdir</code> command</a></li>
-        <li><a href="#cp-command"><code>cp</code> command</a></li>
-        <li><a href="#mv-command"><code>mv</code> command</a></li>
-        <li><a href="#rm-shred-command"><code>rm</code>, <code>shred</code> command</a></li>
+        <li><a href="#cp-command"><code>cp</code> command</a>
+          <ol>
+            <li><a href="#cp-file-file"><code>cp &lt;file&gt; &lt;file&gt;</code></a></li>
+            <li><a href="#cp-file-dir"><code>cp &lt;file&gt;... &lt;dir&gt;</code></a></li>
+            <li><a href="#cp--r-dir"><code>cp -r &lt;dir&gt;...</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#mv-command"><code>mv</code> command</a>
+          <ol>
+            <li><a href="#move">move</a></li>
+            <li><a href="#-i"><code>-i</code></a></li>
+            <li><a href="#-n"><code>-n</code></a></li>
+            <li><a href="#-u-1"><code>-u</code></a></li>
+            <li><a href="#rename">rename</a></li>
+          </ol>
+        </li>
+        <li><a href="#rm-shred-command"><code>rm</code>, <code>shred</code> command</a>
+          <ol>
+            <li><a href="#protect">protect</a></li>
+            <li><a href="#-f-wildcards"><code>-f</code>, wildcards</a></li>
+            <li><a href="#shred-command"><code>shred</code> command</a></li>
+          </ol>
+        </li>
         <li><a href="#compendium-4">Compendium</a></li>
       </ol>
     </li>
