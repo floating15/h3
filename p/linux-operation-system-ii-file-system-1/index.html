@@ -2730,17 +2730,8 @@ multi on
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tail -n <span class="m">5</span> -f /var/log/auth.log
 </code></pre></td></tr></table>
 </div>
-</div><p>in one of the terminal, the window would be:</p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211638123.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>and then run <code>sudo su</code> in the other terminal to switch to the root user, this exectuation will be record in the <code>/var/log/auth.log</code> file, and the <code>tail</code> window will update the contents automatically.</p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211640278.png"
+</div><p>in one of the terminal, and then run <code>sudo su</code> in the other terminal to switch to the root user, this exectuation will be record in the <code>/var/log/auth.log</code> file, and the <code>tail</code> window will update the contents automatically.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204212107132.gif"
 	
 	
 	
@@ -2760,10 +2751,11 @@ multi on
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">watch tail -n /var/log/auth.log
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">watch -n <span class="m">1</span> tail -n <span class="m">5</span> /var/log/auth.log
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211655209.png"
+</div><p>Here the first <code>-n 1</code> is the option of <code>watch</code> command, it control the update time interval; the second <code>-n 5</code> is <code>tail</code> command&rsquo;s.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204212113065.gif"
 	
 	
 	
@@ -2771,15 +2763,7 @@ multi on
 	
 	
 ></p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211657578.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>Two interesting options are <code>-d</code> to highlight the differences between successive updates; and <code>-n</code> and a number to specify the update time interval. For example, I want to see how packets are sent and received by executing the ifconfig repeatedly. So run</p>
+<p>Another interesting option is <code>-d</code> to highlight the differences between successive updates. For example, I want to see how packets are sent and received by executing the ifconfig repeatedly. So run</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
