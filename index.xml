@@ -6,1113 +6,7 @@
         <description>Recent content on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Linux Operation System I (System Access &amp; File System)</title>
-        <link>https://wanghaoming177.netlify.app/p/linux-operation-system-i-system-access-file-system/</link>
-        <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/p/linux-operation-system-i-system-access-file-system/</guid>
-        <description>&lt;blockquote&gt;
-&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
-&lt;p&gt;All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;getting-help&#34;&gt;Getting Help&lt;/h1&gt;
-&lt;p&gt;There are two common kinds of  commands&#39; kind in Linux, the executable file, or build-in command. You can use &lt;code&gt;type&lt;/code&gt; command to check out. For example, &lt;code&gt;cp&lt;/code&gt; is an executable file:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; cp
-cp is /usr/bin/cp
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;while &lt;code&gt;cd&lt;/code&gt; is a build-in command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; is a shell &lt;span class=&#34;nb&#34;&gt;builtin&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;For executable file, You can use &lt;code&gt;man&lt;/code&gt; command to fetch ones documentation.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;by the way, &lt;code&gt;man&lt;/code&gt; is also an executable file, which means you can use &lt;code&gt;man man&lt;/code&gt; command to get its documentation.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;executable-file&#34;&gt;Executable file&lt;/h2&gt;
-&lt;h3 id=&#34;structure-of-man-page&#34;&gt;Structure of &lt;code&gt;man&lt;/code&gt; page&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;man&lt;/code&gt; is short for a manual and a &lt;code&gt;man&lt;/code&gt; page is simply the documentation of a program or command. You can use the &lt;code&gt;man&lt;/code&gt; command to read the documentation of a specific command. To open the &lt;code&gt;man&lt;/code&gt; page of the &lt;code&gt;ls&lt;/code&gt; command. use&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ man ls
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;By default, &lt;code&gt;man&lt;/code&gt; uses a program called &amp;ldquo;&lt;code&gt;less&lt;/code&gt;&amp;rdquo; to display the output. While you are in the man page, you can get additional help by typing the letter &lt;code&gt;h&lt;/code&gt;. Then the page will return to &amp;ldquo;summary of less commands&amp;rdquo;. You can get back to man page by typing the letter &lt;code&gt;q&lt;/code&gt;. You can also quit the man page by &lt;code&gt;q&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;You&amp;rsquo;ll find the same structure for all &lt;code&gt;man&lt;/code&gt; pages.&lt;/p&gt;
-&lt;p&gt;The first line contains the &lt;strong&gt;name&lt;/strong&gt; of the command you are reading about, along with a very &lt;strong&gt;short description&lt;/strong&gt;. Then comes the &lt;strong&gt;synopsis&lt;/strong&gt; of the command, and a &lt;strong&gt;formal description&lt;/strong&gt; with all its available options. At the end of the man page, there are the author, the copyright and see also sections. For example:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204161850958.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;In a &lt;code&gt;man&lt;/code&gt; page everything that appears directly before &lt;code&gt;...&lt;/code&gt;, which are also called ellipsis, can be repeated, and everything with in a square of bracket &lt;code&gt;[]&lt;/code&gt; is optional. This means that you can specify more than one option or file to &lt;code&gt;ls&lt;/code&gt;, or you can can run it without options and arguments.&lt;/p&gt;
-&lt;p&gt;When you see an option in short format with single minus &lt;code&gt;-&lt;/code&gt;, a comma and an option in long format with double minus &lt;code&gt;--&lt;/code&gt;, it means that you can use any form you wish.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls
-d1  d2  d3  d4  f1  f2  f3  f4
-ubuntu@ip-172-31-87-26:~$ ls -a
-.   .bash_history  .bashrc  .lesshst  .ssh                       d1  d3  f1  f3
-..  .bash_logout   .cache   .profile  .sudo_as_admin_successful  d2  d4  f2  f4
-ubuntu@ip-172-31-87-26:~$ ls --all
-.   .bash_history  .bashrc  .lesshst  .ssh                       d1  d3  f1  f3
-..  .bash_logout   .cache   .profile  .sudo_as_admin_successful  d2  d4  f2  f4
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;navigation-of-man-page&#34;&gt;Navigation of &lt;code&gt;man&lt;/code&gt; page&lt;/h3&gt;
-&lt;p&gt;Use the arrow keys to move a line up or down. To forward a screen, press on &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;F&lt;/code&gt; or on the &lt;code&gt;space&lt;/code&gt; key. To move backwards a screen, you press &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;To go to the very beginning of the &lt;code&gt;man&lt;/code&gt; page type lower case &lt;code&gt;g&lt;/code&gt;, and to go to the very end type upper case &lt;code&gt;G&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Sometimes you want to &lt;strong&gt;search&lt;/strong&gt; in the current man page for a specific option; To search in the below pages, you could type:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;se&#34;&gt;\&amp;lt;&lt;/span&gt;string&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;and then press &lt;code&gt;enter&lt;/code&gt;. Any matches in the current man page will be highlighted. And then you can go to the next match by typing &lt;code&gt;n&lt;/code&gt;  or go to the prior match by typing &lt;code&gt;N&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204161917548.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;To search in the above pages, you could type:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;?&amp;lt;string&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;and press &lt;code&gt;enter&lt;/code&gt;. Also, you can use &lt;code&gt;n&lt;/code&gt; or &lt;code&gt;N&lt;/code&gt; to navigate.&lt;/p&gt;
-&lt;h2 id=&#34;build-in-command&#34;&gt;Build-in command&lt;/h2&gt;
-&lt;p&gt;Most of the time shell built in commands don&amp;rsquo;t have a dedicated man page. To see the help of such a command you can use &lt;code&gt;help&lt;/code&gt; command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-cd: &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-L&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-P &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-e&lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-@&lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dir&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-    Change the shell working directory.
-    
-    Change the current directory to DIR.  The default DIR is the value of the
-    HOME shell variable.
-    ...
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Note that you can use the &lt;code&gt;help&lt;/code&gt; command &lt;strong&gt;only for a shell built in commands&lt;/strong&gt; and not for commands that are executable files on the disk. But another way to get some help is the option &lt;code&gt;--help&lt;/code&gt;, this is &lt;strong&gt;available for both shell builtin and executable files commands&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;To search for a &lt;strong&gt;command&lt;/strong&gt;, &lt;strong&gt;feature keyword&lt;/strong&gt; in all man pages, you can use &lt;code&gt;man -k&lt;/code&gt; and the keyword you are searching for. For example:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ man -k ifconfig
-ifcfg &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;            - simplistic script which replaces ifconfig IP management
-ifconfig &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;         - configure a network interface
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;You can also pass a &lt;strong&gt;string&lt;/strong&gt; enclosed in double quotes as argument:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ man -k &lt;span class=&#34;s2&#34;&gt;&amp;#34;copy files&amp;#34;&lt;/span&gt;.
-cp &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;               - copy files and directories
-cpio &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;             - copy files to and from archives
-git-checkout-index &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; - Copy files from the index to the working tree
-install &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;          - copy files and &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; attributes
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;It will search for the string copy files in all man pages. Note that &lt;code&gt;man -k&lt;/code&gt; is similar to the &lt;code&gt;apropos&lt;/code&gt; command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ apropos ifconfig
-ifcfg &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;            - simplistic script which replaces ifconfig IP management
-ifconfig &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;         - configure a network interface
-ubuntu@ip-172-31-87-26:~$ apropos &lt;span class=&#34;s1&#34;&gt;&amp;#39;copy files&amp;#39;&lt;/span&gt;
-cp &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;               - copy files and directories
-cpio &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;             - copy files to and from archives
-git-checkout-index &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; - Copy files from the index to the working tree
-install &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;          - copy files and &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; attributes
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;compendium&#34;&gt;Compendium&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Getting Help in Linux&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# MAN Pages&lt;/span&gt;
-man &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt;     &lt;span class=&#34;c1&#34;&gt;# For executable file =&amp;gt; Ex: man ls&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# The man page is displayed with the less command&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# SHORTCUTS:&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# h         =&amp;gt; getting help&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# q         =&amp;gt; quit&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# enter     =&amp;gt; show next line&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# space     =&amp;gt; show next screen&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# control + f =&amp;gt; show next screen&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# control + b =&amp;gt; show last screen&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# /string   =&amp;gt; search forward for a string&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# ?string   =&amp;gt; search backwards for a string&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# n / N     =&amp;gt; next/previous appearance&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# checking if a command is shell built-in or executable file&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; rm        &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; rm is /usr/bin/rm&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;        &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; cd is a shell builtin&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# getting help for shell built-in commands&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;# For build-in command =&amp;gt; Ex: help cd&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; --help  &lt;span class=&#34;c1&#34;&gt;# For both executable file and build-in command =&amp;gt; Ex: rm --help&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# searching for a command, feature or keyword in all man Pages&lt;/span&gt;
-man -k uname
-man -k &lt;span class=&#34;s2&#34;&gt;&amp;#34;copy files&amp;#34;&lt;/span&gt;
-apropos passwd
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;keyboard-shoutcuts&#34;&gt;Keyboard Shoutcuts&lt;/h1&gt;
-&lt;h2 id=&#34;autocomplete&#34;&gt;Autocomplete&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;TAB&lt;/code&gt; key for auto-completion will not only save you much time at the Linux command line, but it will keep you from making mistakes as well.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;TAB&lt;/code&gt; is a feature supported by Bash and other shells as well. When typing at the Linux command line, just use &lt;code&gt;TAB&lt;/code&gt; to &lt;strong&gt;autocomplete commands, filenames or folder names&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;If a single match is found, Bash will automatically complete the filename; if multiple matches are found, you have to press the &lt;code&gt;TAB&lt;/code&gt; key &lt;strong&gt;twice&lt;/strong&gt; and it will show you all results and you should continue typing until there is only one match.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls f
-f1  f2  f3  f4 
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;If &lt;code&gt;TAB&lt;/code&gt; does not complete automatically a command or a filename when it should, then there is a mistake&lt;/strong&gt;. Do not continue writing the command or the file name, but stop and analyze what you have done up to that point.&lt;/p&gt;
-&lt;p&gt;For example, let&amp;rsquo;s suppose that by mistake we write a whitespace before the file path.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ rm /home/ubuntu/ f
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Then when you press &lt;code&gt;TAB&lt;/code&gt;, there is nothing happens, and you should notice it. Otherwise &lt;code&gt;rm&lt;/code&gt; command will delete your home directory and leads to the system corrupt. Such a mistake is avoided if you always use tab completion.&lt;/p&gt;
-&lt;h2 id=&#34;compendium-1&#34;&gt;Compendium&lt;/h2&gt;
-&lt;p&gt;There are also some important shortcuts:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Keyboard Shortcuts&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
-TAB  &lt;span class=&#34;c1&#34;&gt;# autocompletes the command or the filename if its unique&lt;/span&gt;
-TAB TAB &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;press twice&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;# displays all commands or filenames that start with those letters&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# clearing the terminal&lt;/span&gt;
-CTRL + L
- 
-&lt;span class=&#34;c1&#34;&gt;# closing the shell (you can do this by command `exit`)&lt;/span&gt;
-CTRL + D
- 
-&lt;span class=&#34;c1&#34;&gt;# cutting (removing) the current line &lt;/span&gt;
-CTRL + U
- 
-&lt;span class=&#34;c1&#34;&gt;# moving the cursor to the start of the line&lt;/span&gt;
-CTRL + A
- 
-&lt;span class=&#34;c1&#34;&gt;# moving the cursor to the end of the line&lt;/span&gt;
-Ctrl + E
- 
-&lt;span class=&#34;c1&#34;&gt;# stopping the current command&lt;/span&gt;
-CTRL + C
- 
-&lt;span class=&#34;c1&#34;&gt;# sleeping a the running program&lt;/span&gt;
-CTRL + Z
- 
-&lt;span class=&#34;c1&#34;&gt;# opening a terminal &lt;/span&gt;
-CTRL + ALT + T
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;history&#34;&gt;History&lt;/h1&gt;
-&lt;h2 id=&#34;command-history&#34;&gt;command &lt;code&gt;history&lt;/code&gt;&lt;/h2&gt;
-&lt;h3 id=&#34;histfilesize-and-histsize&#34;&gt;&lt;code&gt;$HISTFILESIZE&lt;/code&gt; and &lt;code&gt;$HISTSIZE&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;The bash shell stores historical commands in the &lt;strong&gt;&lt;code&gt;~/.bash_history&lt;/code&gt;&lt;/strong&gt; by default.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls -a ~/
-.   .bash_history  .bashrc  .lesshst  .ssh                       d1  d3  f1  f3
-..  .bash_logout   .cache   .profile  .sudo_as_admin_successful  d2  d4  f2  f4
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Every user has his history file in his home directory.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The number of commands that will be stored in the this file is controlled by an environment variable called &lt;code&gt;HISTFILESIZE&lt;/code&gt; . To print the value of a variable run:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTFILESIZE&lt;/span&gt; 
-&lt;span class=&#34;m&#34;&gt;2000&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ cat .bash_history &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-locate &lt;span class=&#34;s1&#34;&gt;&amp;#39;f2&amp;#39;&lt;/span&gt;
-find / &lt;span class=&#34;s1&#34;&gt;&amp;#39;f2&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
-ls
-&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;We can see that Linux system saves 2000 commands into the history file. Remember that these commands are stored in disk, which means these commands will not update until you log out. So to recall the commands you just used, you can use &lt;code&gt;history&lt;/code&gt; command, it will return the commands that stored in the memory:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;149&lt;/span&gt;  ls ~/ -a
-  &lt;span class=&#34;m&#34;&gt;150&lt;/span&gt;  cat .bash_history &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;151&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..
-  &lt;span class=&#34;m&#34;&gt;152&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
-  &lt;span class=&#34;m&#34;&gt;153&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Note that these running the history commands doesn’t mean listing the entire contents of the history file. There is another variable called &lt;code&gt;HISTSIZE&lt;/code&gt; that controls how many commands from your bash history will be stored in the memory:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Thus bash will save maximum 2000 commands in the &lt;code&gt;~/.bash_history&lt;/code&gt; file, and maximum 1000 commands in the memory.&lt;/p&gt;
-&lt;h3 id=&#34;heading&#34;&gt;&lt;code&gt;!&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;To run a specific command from the history, you can use an exclamation mark &lt;code&gt;!&lt;/code&gt; and the command number, &lt;strong&gt;without any space&lt;/strong&gt;. For example:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;154&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;155&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;156&lt;/span&gt;  ! &lt;span class=&#34;m&#34;&gt;154&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;157&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;158&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ !154
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;heading-1&#34;&gt;&lt;code&gt;!!&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;And to rerun the last command type two exclamation marks. It has the same effect as pressing the Up arrow once to view the previous command and then pressing Enter.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ !!
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;-&#34;&gt;&lt;code&gt;!-&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;You can also refer to a command from a certain number of lines, back in the bash history. For example, &lt;code&gt;!-7&lt;/code&gt; would run the last 7th command.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-  &lt;span class=&#34;m&#34;&gt;156&lt;/span&gt;  ! &lt;span class=&#34;m&#34;&gt;154&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;157&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;158&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;159&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;160&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-ubuntu@ip-172-31-87-26:~$ !-2
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;command_namep&#34;&gt;&lt;code&gt;!&amp;lt;command_name&amp;gt;:p&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;To search for a command in your history and run it, type &lt;code&gt;!command_name&lt;/code&gt;. For example, if I want to run the last &lt;code&gt;echo&lt;/code&gt; command and to do that:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;159&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;160&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-  &lt;span class=&#34;m&#34;&gt;161&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;162&lt;/span&gt;  ls ~/ -a
-  &lt;span class=&#34;m&#34;&gt;163&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ !echo
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Note that this can be also dangerous because you don&amp;rsquo;t know exactly what command was executed and there&amp;rsquo;s the risk of executing another command. What you can do is append &lt;code&gt;:p&lt;/code&gt; behind the &lt;code&gt;&amp;lt;command_name&amp;gt;&lt;/code&gt; and bash will print out the command to the terminal instead of running it.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ !echo:p
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;It&amp;rsquo;s just printing the command, it&amp;rsquo;s not running it. And if the command is correct, You can call it by just pressing &lt;code&gt;up-arrow&lt;/code&gt;, because Linux has written the matched command into the history:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:/$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
-ubuntu@ip-172-31-87-26:/home$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
-ubuntu@ip-172-31-87-26:~$ !echo:p
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;174&lt;/span&gt;  ls
-  &lt;span class=&#34;m&#34;&gt;175&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
-  &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
-  &lt;span class=&#34;m&#34;&gt;177&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;178&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;reverse-i-search-mode&#34;&gt;&lt;code&gt;reverse-i-search&lt;/code&gt; mode&lt;/h3&gt;
-&lt;p&gt;Bash also has a recall mode you can use to search for commands you&amp;rsquo;ve previously run; press &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;r&lt;/code&gt; and then start typing a command to search your Bash history for it. If you do not want to run the matched command, you can press &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;g&lt;/code&gt; to leave the history searching mode and clear the line.&lt;/p&gt;
-&lt;h3 id=&#34;remove-history&#34;&gt;remove history&lt;/h3&gt;
-&lt;p&gt;If you want to delete a particular command you can add a &lt;code&gt;-d&lt;/code&gt; option with the line number of that command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;174&lt;/span&gt;  ls
-  &lt;span class=&#34;m&#34;&gt;175&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
-  &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
-  &lt;span class=&#34;m&#34;&gt;177&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;178&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;175&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
-  &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;177&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;178&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;179&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;To clear the entire content of the history file, execute &lt;code&gt;history -c&lt;/code&gt;. The entire history will be removed:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -c
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; 
-    &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;histcontrol&#34;&gt;&lt;code&gt;$HISTCONTROL&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;As we introduced last section, you can use option &lt;code&gt;-d&lt;/code&gt; or &lt;code&gt;-c&lt;/code&gt; to remove the commands histiory. But a deficiency of that is the removing trace will be stored by &lt;code&gt;history&lt;/code&gt; at the same time.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-  &lt;span class=&#34;m&#34;&gt;110&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;111&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;112&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;  ls
-  &lt;span class=&#34;m&#34;&gt;114&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-  &lt;span class=&#34;m&#34;&gt;111&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;112&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-  &lt;span class=&#34;m&#34;&gt;114&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;115&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The variable &lt;code&gt;HISTCONTROL&lt;/code&gt; will help to solve this problem. This variable has three statuses : &lt;code&gt;ignorespace&lt;/code&gt;, &lt;code&gt;ignoredups&lt;/code&gt; and &lt;code&gt;ignoreboth&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;ignorespace&#34;&gt;&lt;code&gt;ignorespace&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;If &lt;code&gt;$HISTCONTROL=ignorespace&lt;/code&gt;, shell will ignore the command that begins with a space. The command will be executed normally, except being stored by &lt;code&gt;history&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignorespace  &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Assign value to variable without symbol `$`&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Print value of variable with symbol `$`&lt;/span&gt;
-ignorespace
-ubuntu@ip-172-31-87-26:~$ ls
-d1  d2  d3  d4  f1  f2  f3  f4
-ubuntu@ip-172-31-87-26:~$  ls -a
-.              .bash_logout  .lesshst  .sudo_as_admin_successful  d3  f2
-..             .bashrc       .profile  d1                         d4  f3
-.bash_history  .cache        .ssh      d2                         f1  f4
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;117&lt;/span&gt;  &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignorespace &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Yield error&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;118&lt;/span&gt;  &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignorespace
-  &lt;span class=&#34;m&#34;&gt;119&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;120&lt;/span&gt;  ls
-  &lt;span class=&#34;m&#34;&gt;121&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;You can see that the command &lt;code&gt;ls -a&lt;/code&gt; is not stored by &lt;code&gt;history&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;ignoredups&#34;&gt;&lt;code&gt;ignoredups&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;If &lt;code&gt;$HISTCONTROL=ignoredups&lt;/code&gt;, then shell will only save the repeated same commands as one command. For example&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignoredups
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt; 
-ignoredups
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;122&lt;/span&gt;  &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignoredups
-  &lt;span class=&#34;m&#34;&gt;123&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt; 
-  &lt;span class=&#34;m&#34;&gt;124&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;125&lt;/span&gt;   &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;126&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Notice that if you set &lt;code&gt;$HISTCONTROL=ignoredups&lt;/code&gt;, then shell will store the commands beginning with a space. Also Notice in shell&amp;rsquo;s perspective, &lt;code&gt;cd&lt;/code&gt; is distinct with &lt;code&gt;cd&lt;/code&gt; with a space in front.&lt;/p&gt;
-&lt;h3 id=&#34;ignoreboth&#34;&gt;&lt;code&gt;ignoreboth&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;If you want incorporate the features on &lt;code&gt;ignorespace&lt;/code&gt; and &lt;code&gt;ignoredups&lt;/code&gt;, you can use &lt;code&gt;ignoreboth&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;bashrc-file&#34;&gt;&lt;code&gt;.bashrc&lt;/code&gt; file&lt;/h3&gt;
-&lt;p&gt;Note that bash variables you set will only persist for the current session. After you log out or restart your system the settings will be lost. To save the settings after the system reboots, you have to add the settings to &lt;strong&gt;&lt;code&gt;~/.bashrc&lt;/code&gt;&lt;/strong&gt; file in the user&amp;rsquo;s home directory.&lt;/p&gt;
-&lt;p&gt;The easiest way to do that is by running &lt;code&gt;echo&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;HISTCONTROL=ignoreboth&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; .bashrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Then this string will be appended to the end of the file.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Every user has his &lt;code&gt;.bashrc&lt;/code&gt; file in his home directory, and everytime bash shell is opened, &lt;code&gt;.bashrc&lt;/code&gt; file will be loaded.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;histtimeformat&#34;&gt;&lt;code&gt;$HISTTIMEFORMAT&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;history&lt;/code&gt; command will persist the command order index defaultly, but you can store the timestamp of the command when it was executed by setting the &lt;code&gt;HISTTIMEFORMAT&lt;/code&gt; variable:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nv&#34;&gt;HISTTIMEFORMAT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;%y/%m/%d %T  &amp;#34;&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;132&lt;/span&gt;  20/04/18 07:09:00  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;133&lt;/span&gt;  20/04/18 07:09:27  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;134&lt;/span&gt;  20/04/18 07:10:18  &lt;span class=&#34;nv&#34;&gt;HISTTIMEFORMAT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;%y/%m/%d %T  &amp;#34;&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;135&lt;/span&gt;  20/04/18 07:10:21  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
-  &lt;span class=&#34;m&#34;&gt;136&lt;/span&gt;  20/04/18 07:10:34  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Similarly, the variable setting will be eliminated after the log out. Thus you can append this setting into &lt;code&gt;.bashrc&lt;/code&gt; file by &lt;code&gt;echo&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;HISTTIMEFORMAT=&amp;#34;%y/%m/%d %T &amp;#34;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; .bashrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;compendium-2&#34;&gt;Compendium&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Bash History&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# showing the history&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# removing a line (ex: 100) from the history&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# removing the entire history&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -c
- 
-&lt;span class=&#34;c1&#34;&gt;# printing the no. of commands saved in the history file (~/.bash_history)&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTFILESIZE&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# printing the no. of history commands saved in the memory&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# rerunning the last command from the history&lt;/span&gt;
-!!
- 
-&lt;span class=&#34;c1&#34;&gt;# running  a specific command from the history (ex: the 20th command)&lt;/span&gt;
-!20
- 
-&lt;span class=&#34;c1&#34;&gt;# running the last nth (10th) command from the history&lt;/span&gt;
-!-10
- 
-&lt;span class=&#34;c1&#34;&gt;# running the last command starting with abc &lt;/span&gt;
-!abc
- 
-&lt;span class=&#34;c1&#34;&gt;# printing the last command starting with abc &lt;/span&gt;
-!abc:p
- 
-&lt;span class=&#34;c1&#34;&gt;# reverse searching into the history&lt;/span&gt;
-CTRL + R
- 
-&lt;span class=&#34;c1&#34;&gt;# recording the date and time of each command in the history&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;HISTTIMEFORMAT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;%d/%m/%y %T&amp;#34;&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# making it persistent after reboot&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;HISTTIMEFORMAT=\&amp;#34;%d/%m/%y %T\&amp;#34;&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc
-&lt;span class=&#34;c1&#34;&gt;# or&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;HISTTIMEFORMAT=&amp;#34;%d/%m/%y %T&amp;#34;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;root-user&#34;&gt;Root user&lt;/h1&gt;
-&lt;p&gt;There are two main categories of Linux users:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;non-privileged users&lt;/em&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;root&lt;/em&gt;. It is also referred to as the superuser or the administrator.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The root account has absolute power on Linux system. It can do anything on a Linux system, such as installing a new software or updating the existing ones, setting up the network, changing the ownership of files, managing other users accounts, or administering any service that&amp;rsquo;s running.&lt;/p&gt;
-&lt;p&gt;On the other hand, all other users, which are called non privileged or normal users, have no special rights on the system. They can only work in the user home directory (which is located in the &lt;code&gt;/home/&lt;/code&gt;) and cannot perform any administrative tasks like installing new software, creating other users or running administrative commands. For example:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ apt install tree
-E: Could not open lock file /var/lib/dpkg/lock-frontend - open &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;13: Permission denied&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-E: Unable to acquire the dpkg frontend lock &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;/var/lib/dpkg/lock-frontend&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, are you root?
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Because the root is so powerful, it&amp;rsquo;s not recommended to use it for ordinary tasks such as browsing the web, writing e-mails or documents. Even a simple mistake can cause problems to the entire system. So for ordinary tasks, it&amp;rsquo;s highly recommended to use a normal user account. And when root permissions are needed, you simply become root only to perform that particular administrative task. There are more approaches to to gain root access in the terminal.&lt;/p&gt;
-&lt;h2 id=&#34;sudo-su-command&#34;&gt;&lt;code&gt;sudo su&lt;/code&gt; command&lt;/h2&gt;
-&lt;p&gt;The first way to temporarily become root in a terminal is to run: &lt;code&gt;sudo su&lt;/code&gt;. By the way &lt;code&gt;sudo&lt;/code&gt; stands for “super user do” and &lt;code&gt;su&lt;/code&gt; stands for “substitute user”. It will ask for the &lt;strong&gt;user&amp;rsquo;s password (instead of the root password)&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;If the password is right and &lt;strong&gt;the user is part of a specific group which is called sudo on Ubuntu and wheel on CentOs&lt;/strong&gt;, then a new shell with root privileges starts and the user can run there administrative commands as root. To see the user you are currently logged in run the &lt;code&gt;id&lt;/code&gt; command. This command prints out the logged in user and the groups it belongs to. To log out, you type &lt;code&gt;exit&lt;/code&gt; or press &lt;code&gt;Ctrl + D&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo su
-password:
-root@ip-172-31-87-26:/home/ubuntu# id
-&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ id
-&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,4&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;adm&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,20&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dialout&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,24&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;cdrom&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,25&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;floppy&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,29&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;audio&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,30&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dip&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,44&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;video&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,46&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;plugdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,117&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;netdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,118&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lxd&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Note that when becoming root, if you add a white space and a hyphen after &lt;code&gt;su&lt;/code&gt; like &lt;code&gt;sudo su -&lt;/code&gt;, then the working environment is activated. The current working directory was changed to the root home directory, i.e. &lt;code&gt;/root/&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo su
-root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
-/home/ubuntu
-root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-ubuntu@ip-172-31-87-26:~$ sudo su -
-root@ip-172-31-87-26:~# &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
-/root
-root@ip-172-31-87-26:~# &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;logout&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;This executed all of the root users shall initialization scripts and set all environmental variables as if the root user was logged into a fresh shell session.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;By convention on Linux, all users prompt ends in a dollar sign &lt;code&gt;$&lt;/code&gt;, but root prompt ends in a hash &lt;code&gt;#&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;sudo-command&#34;&gt;&lt;code&gt;sudo &amp;lt;command&amp;gt;&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;A second way to run commands as root is without logging into the root account, but by using the &lt;code&gt;sudo&lt;/code&gt; command and the command you want to run as root.&lt;/p&gt;
-&lt;p&gt;If you prefix a command with sudo, you are prompted for &lt;strong&gt;your password (not the root password)&lt;/strong&gt;, and if your &lt;strong&gt;user belongs to a specific group (sudo on Ubuntu and wheel on CentOS)&lt;/strong&gt; the command will run with root privileges. For example:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ mkdir /root/dir
-mkdir: cannot create directory ‘/root/dir’: Permission denied
-ubuntu@ip-172-31-87-26:~$ sudo mkdir /root/dir
-Password:
-ubuntu@ip-172-31-87-26:~$ ls /root
-ls: cannot open directory &lt;span class=&#34;s1&#34;&gt;&amp;#39;/root&amp;#39;&lt;/span&gt;: Permission denied
-ubuntu@ip-172-31-87-26:~$ sudo ls /root
-dir  snap  t0
-ubuntu@ip-172-31-87-26:~$ id
-&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,4&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;adm&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,20&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dialout&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,24&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;cdrom&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,25&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;floppy&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,29&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;audio&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,30&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dip&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,44&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;video&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,46&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;plugdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,117&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;netdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,118&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lxd&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Notice that &lt;strong&gt;&lt;code&gt;sudo&lt;/code&gt; policy caches for 5 minutes&lt;/strong&gt;, the credentials I&amp;rsquo;ve entered in the first place, and any time I ran the &lt;code&gt;sudo&lt;/code&gt; command the timestamp is updated to five minutes. In this example, after I ran the &lt;code&gt;sudo mkdir&lt;/code&gt; command, I could run other commands (like &lt;code&gt;sudo ls&lt;/code&gt;) as root without being asked for any password for exactly 5 minutes.&lt;/p&gt;
-&lt;p&gt;By running &lt;code&gt;sudo&lt;/code&gt; with the &lt;code&gt;-v&lt;/code&gt; option a user can update the cached credentials without running a command. And you can invalidate the user&amp;rsquo;s cached credentials running &lt;code&gt;sudo-k&lt;/code&gt;, and the next time &lt;code&gt;sudo&lt;/code&gt; is run, a passport will be required.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo -k
-ubuntu@ip-172-31-87-26:~$ sudo ls /
-Password:
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;su&#34;&gt;&lt;code&gt;su&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;The last method of running commands as root is to temporarily become root in that terminal by running the &lt;code&gt;su&lt;/code&gt; command and entering the root password.&lt;/p&gt;
-&lt;p&gt;Note that on some distributions like Ubuntu based, this method is by default disabled because direct access to root is locked. Remember that you have installed Ubuntu in the first place without setting a password for the root account.&lt;/p&gt;
-&lt;p&gt;To unlock the account on such a distribution, you simply have to set its password. Note that not having a password doesn&amp;rsquo;t mean that without it you can login as root. The command used to change a password in Linux is &lt;code&gt;passwd &amp;lt;user name&amp;gt;&lt;/code&gt;, you will be prompted for password so that the command will run as root.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo passwd root
-New password: 
-Retype new password: 
-passwd: password updated successfully
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;A user can change its own password by running the &lt;code&gt;passwd&lt;/code&gt; command and root can change the password of any user by running the &lt;code&gt;passwd&lt;/code&gt; command and the &lt;code&gt;username&lt;/code&gt; whose password will be changed.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;And then you can temporarily login as root by running su and entering the &lt;strong&gt;root password( you just setted )&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ su
-Password: 
-root@ip-172-31-87-26:/home/ubuntu# id
-&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;At the end of this section, we will briefly discuss 3 &amp;ldquo;root&amp;rdquo; in Linux: root directory, root&amp;rsquo;s home directory and root user:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;root directory: &lt;code&gt;/&lt;/code&gt; directory&lt;/li&gt;
-&lt;li&gt;root&amp;rsquo;s home directory: &lt;code&gt;/root/&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo su
-root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; ~
-/root
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;root user: privilege user on Linux&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;compendium-3&#34;&gt;Compendium&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Running commands as root (sudo, su)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# running a command as root (only users that belong to sudo group [Ubuntu] or wheel [CentOS])&lt;/span&gt;
-sudo &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; enter the user&amp;#39;s password&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# becoming root temporarily in the terminal&lt;/span&gt;
-sudo su      &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; enter the user&amp;#39;s password&lt;/span&gt;
- 
-&lt;span class=&#34;c1&#34;&gt;# setting the root password&lt;/span&gt;
-sudo passwd root
- 
-&lt;span class=&#34;c1&#34;&gt;# changing a user&amp;#39;s password&lt;/span&gt;
-passwd username
- 
-&lt;span class=&#34;c1&#34;&gt;# becoming root temporarily in the terminal&lt;/span&gt;
-su     &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; enter the root password&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;code&gt;sudo su&lt;/code&gt;&lt;/th&gt;
-&lt;th&gt;&lt;code&gt;sudo &amp;lt;command&amp;gt;&lt;/code&gt;&lt;/th&gt;
-&lt;th&gt;&lt;code&gt;su&lt;/code&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;password&lt;/td&gt;
-&lt;td&gt;user&amp;rsquo;s password&lt;/td&gt;
-&lt;td&gt;user&amp;rsquo;s password&lt;/td&gt;
-&lt;td&gt;root&amp;rsquo;s password&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;user&lt;/td&gt;
-&lt;td&gt;only users that belong to sudo group [Ubuntu] or wheel [CentOS]&lt;/td&gt;
-&lt;td&gt;only users that belong to sudo group [Ubuntu] or wheel [CentOS]&lt;/td&gt;
-&lt;td&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</description>
-        </item>
-        <item>
+        <lastBuildDate>Tue, 01 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PySpark and Large Dataset I</title>
         <link>https://wanghaoming177.netlify.app/p/pyspark-and-large-dataset-i/</link>
         <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
@@ -8141,6 +7035,1112 @@ shred -vu -n &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; file1
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>Linux Operation System I (Terminal)</title>
+        <link>https://wanghaoming177.netlify.app/p/linux-operation-system-i-terminal/</link>
+        <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/p/linux-operation-system-i-terminal/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
+&lt;p&gt;All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;getting-help&#34;&gt;Getting Help&lt;/h1&gt;
+&lt;p&gt;There are two common kinds of  commands&#39; kind in Linux, the executable file, or build-in command. You can use &lt;code&gt;type&lt;/code&gt; command to check out. For example, &lt;code&gt;cp&lt;/code&gt; is an executable file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; cp
+cp is /usr/bin/cp
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;while &lt;code&gt;cd&lt;/code&gt; is a build-in command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; is a shell &lt;span class=&#34;nb&#34;&gt;builtin&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;For executable file, You can use &lt;code&gt;man&lt;/code&gt; command to fetch ones documentation.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;by the way, &lt;code&gt;man&lt;/code&gt; is also an executable file, which means you can use &lt;code&gt;man man&lt;/code&gt; command to get its documentation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;executable-file&#34;&gt;Executable file&lt;/h2&gt;
+&lt;h3 id=&#34;structure-of-man-page&#34;&gt;Structure of &lt;code&gt;man&lt;/code&gt; page&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;man&lt;/code&gt; is short for a manual and a &lt;code&gt;man&lt;/code&gt; page is simply the documentation of a program or command. You can use the &lt;code&gt;man&lt;/code&gt; command to read the documentation of a specific command. To open the &lt;code&gt;man&lt;/code&gt; page of the &lt;code&gt;ls&lt;/code&gt; command. use&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ man ls
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;By default, &lt;code&gt;man&lt;/code&gt; uses a program called &amp;ldquo;&lt;code&gt;less&lt;/code&gt;&amp;rdquo; to display the output. While you are in the man page, you can get additional help by typing the letter &lt;code&gt;h&lt;/code&gt;. Then the page will return to &amp;ldquo;summary of less commands&amp;rdquo;. You can get back to man page by typing the letter &lt;code&gt;q&lt;/code&gt;. You can also quit the man page by &lt;code&gt;q&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll find the same structure for all &lt;code&gt;man&lt;/code&gt; pages.&lt;/p&gt;
+&lt;p&gt;The first line contains the &lt;strong&gt;name&lt;/strong&gt; of the command you are reading about, along with a very &lt;strong&gt;short description&lt;/strong&gt;. Then comes the &lt;strong&gt;synopsis&lt;/strong&gt; of the command, and a &lt;strong&gt;formal description&lt;/strong&gt; with all its available options. At the end of the man page, there are the author, the copyright and see also sections. For example:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204161850958.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;In a &lt;code&gt;man&lt;/code&gt; page everything that appears directly before &lt;code&gt;...&lt;/code&gt;, which are also called ellipsis, can be repeated, and everything with in a square of bracket &lt;code&gt;[]&lt;/code&gt; is optional. This means that you can specify more than one option or file to &lt;code&gt;ls&lt;/code&gt;, or you can can run it without options and arguments.&lt;/p&gt;
+&lt;p&gt;When you see an option in short format with single minus &lt;code&gt;-&lt;/code&gt;, a comma and an option in long format with double minus &lt;code&gt;--&lt;/code&gt;, it means that you can use any form you wish.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls
+d1  d2  d3  d4  f1  f2  f3  f4
+ubuntu@ip-172-31-87-26:~$ ls -a
+.   .bash_history  .bashrc  .lesshst  .ssh                       d1  d3  f1  f3
+..  .bash_logout   .cache   .profile  .sudo_as_admin_successful  d2  d4  f2  f4
+ubuntu@ip-172-31-87-26:~$ ls --all
+.   .bash_history  .bashrc  .lesshst  .ssh                       d1  d3  f1  f3
+..  .bash_logout   .cache   .profile  .sudo_as_admin_successful  d2  d4  f2  f4
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;navigation-of-man-page&#34;&gt;Navigation of &lt;code&gt;man&lt;/code&gt; page&lt;/h3&gt;
+&lt;p&gt;Use the arrow keys to move a line up or down. To forward a screen, press on &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;F&lt;/code&gt; or on the &lt;code&gt;space&lt;/code&gt; key. To move backwards a screen, you press &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To go to the very beginning of the &lt;code&gt;man&lt;/code&gt; page type lower case &lt;code&gt;g&lt;/code&gt;, and to go to the very end type upper case &lt;code&gt;G&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Sometimes you want to &lt;strong&gt;search&lt;/strong&gt; in the current man page for a specific option; To search in the below pages, you could type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;se&#34;&gt;\&amp;lt;&lt;/span&gt;string&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;and then press &lt;code&gt;enter&lt;/code&gt;. Any matches in the current man page will be highlighted. And then you can go to the next match by typing &lt;code&gt;n&lt;/code&gt;  or go to the prior match by typing &lt;code&gt;N&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204161917548.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;To search in the above pages, you could type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;?&amp;lt;string&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;and press &lt;code&gt;enter&lt;/code&gt;. Also, you can use &lt;code&gt;n&lt;/code&gt; or &lt;code&gt;N&lt;/code&gt; to navigate.&lt;/p&gt;
+&lt;h2 id=&#34;build-in-command&#34;&gt;Build-in command&lt;/h2&gt;
+&lt;p&gt;Most of the time shell built in commands don&amp;rsquo;t have a dedicated man page. To see the help of such a command you can use &lt;code&gt;help&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+cd: &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-L&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-P &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-e&lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-@&lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dir&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+    Change the shell working directory.
+    
+    Change the current directory to DIR.  The default DIR is the value of the
+    HOME shell variable.
+    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Note that you can use the &lt;code&gt;help&lt;/code&gt; command &lt;strong&gt;only for a shell built in commands&lt;/strong&gt; and not for commands that are executable files on the disk. But another way to get some help is the option &lt;code&gt;--help&lt;/code&gt;, this is &lt;strong&gt;available for both shell builtin and executable files commands&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;To search for a &lt;strong&gt;command&lt;/strong&gt;, &lt;strong&gt;feature keyword&lt;/strong&gt; in all man pages, you can use &lt;code&gt;man -k&lt;/code&gt; and the keyword you are searching for. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ man -k ifconfig
+ifcfg &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;            - simplistic script which replaces ifconfig IP management
+ifconfig &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;         - configure a network interface
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can also pass a &lt;strong&gt;string&lt;/strong&gt; enclosed in double quotes as argument:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ man -k &lt;span class=&#34;s2&#34;&gt;&amp;#34;copy files&amp;#34;&lt;/span&gt;.
+cp &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;               - copy files and directories
+cpio &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;             - copy files to and from archives
+git-checkout-index &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; - Copy files from the index to the working tree
+install &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;          - copy files and &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; attributes
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;It will search for the string copy files in all man pages. Note that &lt;code&gt;man -k&lt;/code&gt; is similar to the &lt;code&gt;apropos&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ apropos ifconfig
+ifcfg &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;            - simplistic script which replaces ifconfig IP management
+ifconfig &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;         - configure a network interface
+ubuntu@ip-172-31-87-26:~$ apropos &lt;span class=&#34;s1&#34;&gt;&amp;#39;copy files&amp;#39;&lt;/span&gt;
+cp &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;               - copy files and directories
+cpio &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;             - copy files to and from archives
+git-checkout-index &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; - Copy files from the index to the working tree
+install &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;          - copy files and &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; attributes
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;compendium&#34;&gt;Compendium&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## Getting Help in Linux&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# MAN Pages&lt;/span&gt;
+man &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt;     &lt;span class=&#34;c1&#34;&gt;# For executable file =&amp;gt; Ex: man ls&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# The man page is displayed with the less command&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# SHORTCUTS:&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# h         =&amp;gt; getting help&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# q         =&amp;gt; quit&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# enter     =&amp;gt; show next line&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# space     =&amp;gt; show next screen&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# control + f =&amp;gt; show next screen&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# control + b =&amp;gt; show last screen&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# /string   =&amp;gt; search forward for a string&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# ?string   =&amp;gt; search backwards for a string&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# n / N     =&amp;gt; next/previous appearance&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# checking if a command is shell built-in or executable file&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; rm        &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; rm is /usr/bin/rm&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;        &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; cd is a shell builtin&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# getting help for shell built-in commands&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;# For build-in command =&amp;gt; Ex: help cd&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; --help  &lt;span class=&#34;c1&#34;&gt;# For both executable file and build-in command =&amp;gt; Ex: rm --help&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# searching for a command, feature or keyword in all man Pages&lt;/span&gt;
+man -k uname
+man -k &lt;span class=&#34;s2&#34;&gt;&amp;#34;copy files&amp;#34;&lt;/span&gt;
+apropos passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;keyboard-shoutcuts&#34;&gt;Keyboard Shoutcuts&lt;/h1&gt;
+&lt;h2 id=&#34;autocomplete&#34;&gt;Autocomplete&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;TAB&lt;/code&gt; key for auto-completion will not only save you much time at the Linux command line, but it will keep you from making mistakes as well.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;TAB&lt;/code&gt; is a feature supported by Bash and other shells as well. When typing at the Linux command line, just use &lt;code&gt;TAB&lt;/code&gt; to &lt;strong&gt;autocomplete commands, filenames or folder names&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If a single match is found, Bash will automatically complete the filename; if multiple matches are found, you have to press the &lt;code&gt;TAB&lt;/code&gt; key &lt;strong&gt;twice&lt;/strong&gt; and it will show you all results and you should continue typing until there is only one match.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls f
+f1  f2  f3  f4 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;If &lt;code&gt;TAB&lt;/code&gt; does not complete automatically a command or a filename when it should, then there is a mistake&lt;/strong&gt;. Do not continue writing the command or the file name, but stop and analyze what you have done up to that point.&lt;/p&gt;
+&lt;p&gt;For example, let&amp;rsquo;s suppose that by mistake we write a whitespace before the file path.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ rm /home/ubuntu/ f
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Then when you press &lt;code&gt;TAB&lt;/code&gt;, there is nothing happens, and you should notice it. Otherwise &lt;code&gt;rm&lt;/code&gt; command will delete your home directory and leads to the system corrupt. Such a mistake is avoided if you always use tab completion.&lt;/p&gt;
+&lt;h2 id=&#34;compendium-1&#34;&gt;Compendium&lt;/h2&gt;
+&lt;p&gt;There are also some important shortcuts:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## Keyboard Shortcuts&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+TAB  &lt;span class=&#34;c1&#34;&gt;# autocompletes the command or the filename if its unique&lt;/span&gt;
+TAB TAB &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;press twice&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;# displays all commands or filenames that start with those letters&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# clearing the terminal&lt;/span&gt;
+CTRL + L
+ 
+&lt;span class=&#34;c1&#34;&gt;# closing the shell (you can do this by command `exit`)&lt;/span&gt;
+CTRL + D
+ 
+&lt;span class=&#34;c1&#34;&gt;# cutting (removing) the current line &lt;/span&gt;
+CTRL + U
+ 
+&lt;span class=&#34;c1&#34;&gt;# moving the cursor to the start of the line&lt;/span&gt;
+CTRL + A
+ 
+&lt;span class=&#34;c1&#34;&gt;# moving the cursor to the end of the line&lt;/span&gt;
+Ctrl + E
+ 
+&lt;span class=&#34;c1&#34;&gt;# stopping the current command&lt;/span&gt;
+CTRL + C
+ 
+&lt;span class=&#34;c1&#34;&gt;# sleeping a the running program&lt;/span&gt;
+CTRL + Z
+ 
+&lt;span class=&#34;c1&#34;&gt;# opening a terminal &lt;/span&gt;
+CTRL + ALT + T
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;history&#34;&gt;History&lt;/h1&gt;
+&lt;h2 id=&#34;command-history&#34;&gt;command &lt;code&gt;history&lt;/code&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;histfilesize-and-histsize&#34;&gt;&lt;code&gt;$HISTFILESIZE&lt;/code&gt; and &lt;code&gt;$HISTSIZE&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The bash shell stores historical commands in the &lt;strong&gt;&lt;code&gt;~/.bash_history&lt;/code&gt;&lt;/strong&gt; by default.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls -a ~/
+.   .bash_history  .bashrc  .lesshst  .ssh                       d1  d3  f1  f3
+..  .bash_logout   .cache   .profile  .sudo_as_admin_successful  d2  d4  f2  f4
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Every user has his history file in his home directory.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The number of commands that will be stored in the this file is controlled by an environment variable called &lt;code&gt;HISTFILESIZE&lt;/code&gt; . To print the value of a variable run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTFILESIZE&lt;/span&gt; 
+&lt;span class=&#34;m&#34;&gt;2000&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ cat .bash_history &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+locate &lt;span class=&#34;s1&#34;&gt;&amp;#39;f2&amp;#39;&lt;/span&gt;
+find / &lt;span class=&#34;s1&#34;&gt;&amp;#39;f2&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
+ls
+&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;We can see that Linux system saves 2000 commands into the history file. Remember that these commands are stored in disk, which means these commands will not update until you log out. So to recall the commands you just used, you can use &lt;code&gt;history&lt;/code&gt; command, it will return the commands that stored in the memory:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;149&lt;/span&gt;  ls ~/ -a
+  &lt;span class=&#34;m&#34;&gt;150&lt;/span&gt;  cat .bash_history &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;151&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..
+  &lt;span class=&#34;m&#34;&gt;152&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
+  &lt;span class=&#34;m&#34;&gt;153&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Note that these running the history commands doesn’t mean listing the entire contents of the history file. There is another variable called &lt;code&gt;HISTSIZE&lt;/code&gt; that controls how many commands from your bash history will be stored in the memory:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Thus bash will save maximum 2000 commands in the &lt;code&gt;~/.bash_history&lt;/code&gt; file, and maximum 1000 commands in the memory.&lt;/p&gt;
+&lt;h3 id=&#34;heading&#34;&gt;&lt;code&gt;!&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;To run a specific command from the history, you can use an exclamation mark &lt;code&gt;!&lt;/code&gt; and the command number, &lt;strong&gt;without any space&lt;/strong&gt;. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;154&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;155&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;156&lt;/span&gt;  ! &lt;span class=&#34;m&#34;&gt;154&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;157&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;158&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ !154
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;heading-1&#34;&gt;&lt;code&gt;!!&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;And to rerun the last command type two exclamation marks. It has the same effect as pressing the Up arrow once to view the previous command and then pressing Enter.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ !!
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;-&#34;&gt;&lt;code&gt;!-&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;You can also refer to a command from a certain number of lines, back in the bash history. For example, &lt;code&gt;!-7&lt;/code&gt; would run the last 7th command.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+  &lt;span class=&#34;m&#34;&gt;156&lt;/span&gt;  ! &lt;span class=&#34;m&#34;&gt;154&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;157&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;158&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;159&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;160&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+ubuntu@ip-172-31-87-26:~$ !-2
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;command_namep&#34;&gt;&lt;code&gt;!&amp;lt;command_name&amp;gt;:p&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;To search for a command in your history and run it, type &lt;code&gt;!command_name&lt;/code&gt;. For example, if I want to run the last &lt;code&gt;echo&lt;/code&gt; command and to do that:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;159&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;160&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+  &lt;span class=&#34;m&#34;&gt;161&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;162&lt;/span&gt;  ls ~/ -a
+  &lt;span class=&#34;m&#34;&gt;163&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ !echo
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Note that this can be also dangerous because you don&amp;rsquo;t know exactly what command was executed and there&amp;rsquo;s the risk of executing another command. What you can do is append &lt;code&gt;:p&lt;/code&gt; behind the &lt;code&gt;&amp;lt;command_name&amp;gt;&lt;/code&gt; and bash will print out the command to the terminal instead of running it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ !echo:p
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;It&amp;rsquo;s just printing the command, it&amp;rsquo;s not running it. And if the command is correct, You can call it by just pressing &lt;code&gt;up-arrow&lt;/code&gt;, because Linux has written the matched command into the history:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:/$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
+ubuntu@ip-172-31-87-26:/home$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
+ubuntu@ip-172-31-87-26:~$ !echo:p
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;174&lt;/span&gt;  ls
+  &lt;span class=&#34;m&#34;&gt;175&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
+  &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
+  &lt;span class=&#34;m&#34;&gt;177&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;178&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;reverse-i-search-mode&#34;&gt;&lt;code&gt;reverse-i-search&lt;/code&gt; mode&lt;/h3&gt;
+&lt;p&gt;Bash also has a recall mode you can use to search for commands you&amp;rsquo;ve previously run; press &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;r&lt;/code&gt; and then start typing a command to search your Bash history for it. If you do not want to run the matched command, you can press &lt;code&gt;control&lt;/code&gt; and &lt;code&gt;g&lt;/code&gt; to leave the history searching mode and clear the line.&lt;/p&gt;
+&lt;h3 id=&#34;remove-history&#34;&gt;remove history&lt;/h3&gt;
+&lt;p&gt;If you want to delete a particular command you can add a &lt;code&gt;-d&lt;/code&gt; option with the line number of that command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;174&lt;/span&gt;  ls
+  &lt;span class=&#34;m&#34;&gt;175&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
+  &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~
+  &lt;span class=&#34;m&#34;&gt;177&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;178&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;175&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; home
+  &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;177&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;178&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;176&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;179&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;To clear the entire content of the history file, execute &lt;code&gt;history -c&lt;/code&gt;. The entire history will be removed:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -c
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; 
+    &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;histcontrol&#34;&gt;&lt;code&gt;$HISTCONTROL&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;As we introduced last section, you can use option &lt;code&gt;-d&lt;/code&gt; or &lt;code&gt;-c&lt;/code&gt; to remove the commands histiory. But a deficiency of that is the removing trace will be stored by &lt;code&gt;history&lt;/code&gt; at the same time.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+  &lt;span class=&#34;m&#34;&gt;110&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;111&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;112&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;  ls
+  &lt;span class=&#34;m&#34;&gt;114&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+  &lt;span class=&#34;m&#34;&gt;111&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;112&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+  &lt;span class=&#34;m&#34;&gt;114&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;115&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The variable &lt;code&gt;HISTCONTROL&lt;/code&gt; will help to solve this problem. This variable has three statuses : &lt;code&gt;ignorespace&lt;/code&gt;, &lt;code&gt;ignoredups&lt;/code&gt; and &lt;code&gt;ignoreboth&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;ignorespace&#34;&gt;&lt;code&gt;ignorespace&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If &lt;code&gt;$HISTCONTROL=ignorespace&lt;/code&gt;, shell will ignore the command that begins with a space. The command will be executed normally, except being stored by &lt;code&gt;history&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignorespace  &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Assign value to variable without symbol `$`&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Print value of variable with symbol `$`&lt;/span&gt;
+ignorespace
+ubuntu@ip-172-31-87-26:~$ ls
+d1  d2  d3  d4  f1  f2  f3  f4
+ubuntu@ip-172-31-87-26:~$  ls -a
+.              .bash_logout  .lesshst  .sudo_as_admin_successful  d3  f2
+..             .bashrc       .profile  d1                         d4  f3
+.bash_history  .cache        .ssh      d2                         f1  f4
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;117&lt;/span&gt;  &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignorespace &lt;span class=&#34;c1&#34;&gt;# &amp;lt;-- Yield error&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;118&lt;/span&gt;  &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignorespace
+  &lt;span class=&#34;m&#34;&gt;119&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;120&lt;/span&gt;  ls
+  &lt;span class=&#34;m&#34;&gt;121&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can see that the command &lt;code&gt;ls -a&lt;/code&gt; is not stored by &lt;code&gt;history&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;ignoredups&#34;&gt;&lt;code&gt;ignoredups&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If &lt;code&gt;$HISTCONTROL=ignoredups&lt;/code&gt;, then shell will only save the repeated same commands as one command. For example&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignoredups
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt; 
+ignoredups
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;122&lt;/span&gt;  &lt;span class=&#34;nv&#34;&gt;HISTCONTROL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ignoredups
+  &lt;span class=&#34;m&#34;&gt;123&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTCONTROL&lt;/span&gt; 
+  &lt;span class=&#34;m&#34;&gt;124&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;125&lt;/span&gt;   &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;126&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Notice that if you set &lt;code&gt;$HISTCONTROL=ignoredups&lt;/code&gt;, then shell will store the commands beginning with a space. Also Notice in shell&amp;rsquo;s perspective, &lt;code&gt;cd&lt;/code&gt; is distinct with &lt;code&gt;cd&lt;/code&gt; with a space in front.&lt;/p&gt;
+&lt;h3 id=&#34;ignoreboth&#34;&gt;&lt;code&gt;ignoreboth&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If you want incorporate the features on &lt;code&gt;ignorespace&lt;/code&gt; and &lt;code&gt;ignoredups&lt;/code&gt;, you can use &lt;code&gt;ignoreboth&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;bashrc-file&#34;&gt;&lt;code&gt;.bashrc&lt;/code&gt; file&lt;/h3&gt;
+&lt;p&gt;Note that bash variables you set will only persist for the current session. After you log out or restart your system the settings will be lost. To save the settings after the system reboots, you have to add the settings to &lt;strong&gt;&lt;code&gt;~/.bashrc&lt;/code&gt;&lt;/strong&gt; file in the user&amp;rsquo;s home directory.&lt;/p&gt;
+&lt;p&gt;The easiest way to do that is by running &lt;code&gt;echo&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;HISTCONTROL=ignoreboth&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; .bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Then this string will be appended to the end of the file.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Every user has his &lt;code&gt;.bashrc&lt;/code&gt; file in his home directory, and everytime bash shell is opened, &lt;code&gt;.bashrc&lt;/code&gt; file will be loaded.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;histtimeformat&#34;&gt;&lt;code&gt;$HISTTIMEFORMAT&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;history&lt;/code&gt; command will persist the command order index defaultly, but you can store the timestamp of the command when it was executed by setting the &lt;code&gt;HISTTIMEFORMAT&lt;/code&gt; variable:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nv&#34;&gt;HISTTIMEFORMAT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;%y/%m/%d %T  &amp;#34;&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;132&lt;/span&gt;  20/04/18 07:09:00  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;133&lt;/span&gt;  20/04/18 07:09:27  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;134&lt;/span&gt;  20/04/18 07:10:18  &lt;span class=&#34;nv&#34;&gt;HISTTIMEFORMAT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;%y/%m/%d %T  &amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;135&lt;/span&gt;  20/04/18 07:10:21  &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt;
+  &lt;span class=&#34;m&#34;&gt;136&lt;/span&gt;  20/04/18 07:10:34  &lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Similarly, the variable setting will be eliminated after the log out. Thus you can append this setting into &lt;code&gt;.bashrc&lt;/code&gt; file by &lt;code&gt;echo&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;HISTTIMEFORMAT=&amp;#34;%y/%m/%d %T &amp;#34;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; .bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;compendium-2&#34;&gt;Compendium&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## Bash History&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# showing the history&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# removing a line (ex: 100) from the history&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# removing the entire history&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;history&lt;/span&gt; -c
+ 
+&lt;span class=&#34;c1&#34;&gt;# printing the no. of commands saved in the history file (~/.bash_history)&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTFILESIZE&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# printing the no. of history commands saved in the memory&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HISTSIZE&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# rerunning the last command from the history&lt;/span&gt;
+!!
+ 
+&lt;span class=&#34;c1&#34;&gt;# running  a specific command from the history (ex: the 20th command)&lt;/span&gt;
+!20
+ 
+&lt;span class=&#34;c1&#34;&gt;# running the last nth (10th) command from the history&lt;/span&gt;
+!-10
+ 
+&lt;span class=&#34;c1&#34;&gt;# running the last command starting with abc &lt;/span&gt;
+!abc
+ 
+&lt;span class=&#34;c1&#34;&gt;# printing the last command starting with abc &lt;/span&gt;
+!abc:p
+ 
+&lt;span class=&#34;c1&#34;&gt;# reverse searching into the history&lt;/span&gt;
+CTRL + R
+ 
+&lt;span class=&#34;c1&#34;&gt;# recording the date and time of each command in the history&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;HISTTIMEFORMAT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;%d/%m/%y %T&amp;#34;&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# making it persistent after reboot&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;HISTTIMEFORMAT=\&amp;#34;%d/%m/%y %T\&amp;#34;&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc
+&lt;span class=&#34;c1&#34;&gt;# or&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;HISTTIMEFORMAT=&amp;#34;%d/%m/%y %T&amp;#34;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;root-user&#34;&gt;Root user&lt;/h1&gt;
+&lt;p&gt;There are two main categories of Linux users:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;non-privileged users&lt;/em&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;root&lt;/em&gt;. It is also referred to as the superuser or the administrator.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The root account has absolute power on Linux system. It can do anything on a Linux system, such as installing a new software or updating the existing ones, setting up the network, changing the ownership of files, managing other users accounts, or administering any service that&amp;rsquo;s running.&lt;/p&gt;
+&lt;p&gt;On the other hand, all other users, which are called non privileged or normal users, have no special rights on the system. They can only work in the user home directory (which is located in the &lt;code&gt;/home/&lt;/code&gt;) and cannot perform any administrative tasks like installing new software, creating other users or running administrative commands. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ apt install tree
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;13: Permission denied&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+E: Unable to acquire the dpkg frontend lock &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;/var/lib/dpkg/lock-frontend&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, are you root?
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Because the root is so powerful, it&amp;rsquo;s not recommended to use it for ordinary tasks such as browsing the web, writing e-mails or documents. Even a simple mistake can cause problems to the entire system. So for ordinary tasks, it&amp;rsquo;s highly recommended to use a normal user account. And when root permissions are needed, you simply become root only to perform that particular administrative task. There are more approaches to to gain root access in the terminal.&lt;/p&gt;
+&lt;h2 id=&#34;sudo-su-command&#34;&gt;&lt;code&gt;sudo su&lt;/code&gt; command&lt;/h2&gt;
+&lt;p&gt;The first way to temporarily become root in a terminal is to run: &lt;code&gt;sudo su&lt;/code&gt;. By the way &lt;code&gt;sudo&lt;/code&gt; stands for “super user do” and &lt;code&gt;su&lt;/code&gt; stands for “substitute user”. It will ask for the &lt;strong&gt;user&amp;rsquo;s password (instead of the root password)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If the password is right and &lt;strong&gt;the user is part of a specific group which is called sudo on Ubuntu and wheel on CentOs&lt;/strong&gt;, then a new shell with root privileges starts and the user can run there administrative commands as root. To see the user you are currently logged in run the &lt;code&gt;id&lt;/code&gt; command. This command prints out the logged in user and the groups it belongs to. To log out, you type &lt;code&gt;exit&lt;/code&gt; or press &lt;code&gt;Ctrl + D&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo su
+password:
+root@ip-172-31-87-26:/home/ubuntu# id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,4&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;adm&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,20&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dialout&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,24&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;cdrom&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,25&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;floppy&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,29&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;audio&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,30&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dip&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,44&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;video&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,46&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;plugdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,117&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;netdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,118&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lxd&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Note that when becoming root, if you add a white space and a hyphen after &lt;code&gt;su&lt;/code&gt; like &lt;code&gt;sudo su -&lt;/code&gt;, then the working environment is activated. The current working directory was changed to the root home directory, i.e. &lt;code&gt;/root/&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo su
+root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
+/home/ubuntu
+root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ sudo su -
+root@ip-172-31-87-26:~# &lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;
+/root
+root@ip-172-31-87-26:~# &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;logout&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This executed all of the root users shall initialization scripts and set all environmental variables as if the root user was logged into a fresh shell session.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By convention on Linux, all users prompt ends in a dollar sign &lt;code&gt;$&lt;/code&gt;, but root prompt ends in a hash &lt;code&gt;#&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;sudo-command&#34;&gt;&lt;code&gt;sudo &amp;lt;command&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;A second way to run commands as root is without logging into the root account, but by using the &lt;code&gt;sudo&lt;/code&gt; command and the command you want to run as root.&lt;/p&gt;
+&lt;p&gt;If you prefix a command with sudo, you are prompted for &lt;strong&gt;your password (not the root password)&lt;/strong&gt;, and if your &lt;strong&gt;user belongs to a specific group (sudo on Ubuntu and wheel on CentOS)&lt;/strong&gt; the command will run with root privileges. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ mkdir /root/dir
+mkdir: cannot create directory ‘/root/dir’: Permission denied
+ubuntu@ip-172-31-87-26:~$ sudo mkdir /root/dir
+Password:
+ubuntu@ip-172-31-87-26:~$ ls /root
+ls: cannot open directory &lt;span class=&#34;s1&#34;&gt;&amp;#39;/root&amp;#39;&lt;/span&gt;: Permission denied
+ubuntu@ip-172-31-87-26:~$ sudo ls /root
+dir  snap  t0
+ubuntu@ip-172-31-87-26:~$ id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,4&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;adm&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,20&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dialout&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,24&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;cdrom&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,25&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;floppy&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,29&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;audio&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,30&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dip&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,44&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;video&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,46&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;plugdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,117&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;netdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,118&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lxd&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Notice that &lt;strong&gt;&lt;code&gt;sudo&lt;/code&gt; policy caches for 5 minutes&lt;/strong&gt;, the credentials I&amp;rsquo;ve entered in the first place, and any time I ran the &lt;code&gt;sudo&lt;/code&gt; command the timestamp is updated to five minutes. In this example, after I ran the &lt;code&gt;sudo mkdir&lt;/code&gt; command, I could run other commands (like &lt;code&gt;sudo ls&lt;/code&gt;) as root without being asked for any password for exactly 5 minutes.&lt;/p&gt;
+&lt;p&gt;By running &lt;code&gt;sudo&lt;/code&gt; with the &lt;code&gt;-v&lt;/code&gt; option a user can update the cached credentials without running a command. And you can invalidate the user&amp;rsquo;s cached credentials running &lt;code&gt;sudo-k&lt;/code&gt;, and the next time &lt;code&gt;sudo&lt;/code&gt; is run, a passport will be required.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo -k
+ubuntu@ip-172-31-87-26:~$ sudo ls /
+Password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;su&#34;&gt;&lt;code&gt;su&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The last method of running commands as root is to temporarily become root in that terminal by running the &lt;code&gt;su&lt;/code&gt; command and entering the root password.&lt;/p&gt;
+&lt;p&gt;Note that on some distributions like Ubuntu based, this method is by default disabled because direct access to root is locked. Remember that you have installed Ubuntu in the first place without setting a password for the root account.&lt;/p&gt;
+&lt;p&gt;To unlock the account on such a distribution, you simply have to set its password. Note that not having a password doesn&amp;rsquo;t mean that without it you can login as root. The command used to change a password in Linux is &lt;code&gt;passwd &amp;lt;user name&amp;gt;&lt;/code&gt;, you will be prompted for password so that the command will run as root.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo passwd root
+New password: 
+Retype new password: 
+passwd: password updated successfully
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;A user can change its own password by running the &lt;code&gt;passwd&lt;/code&gt; command and root can change the password of any user by running the &lt;code&gt;passwd&lt;/code&gt; command and the &lt;code&gt;username&lt;/code&gt; whose password will be changed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And then you can temporarily login as root by running su and entering the &lt;strong&gt;root password( you just setted )&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ su
+Password: 
+root@ip-172-31-87-26:/home/ubuntu# id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;At the end of this section, we will briefly discuss 3 &amp;ldquo;root&amp;rdquo; in Linux: root directory, root&amp;rsquo;s home directory and root user:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;root directory: &lt;code&gt;/&lt;/code&gt; directory&lt;/li&gt;
+&lt;li&gt;root&amp;rsquo;s home directory: &lt;code&gt;/root/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo su
+root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; ~
+/root
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;root user: privilege user on Linux&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;compendium-3&#34;&gt;Compendium&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## Running commands as root (sudo, su)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# running a command as root (only users that belong to sudo group [Ubuntu] or wheel [CentOS])&lt;/span&gt;
+sudo &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; enter the user&amp;#39;s password&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# becoming root temporarily in the terminal&lt;/span&gt;
+sudo su      &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; enter the user&amp;#39;s password&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# setting the root password&lt;/span&gt;
+sudo passwd root
+ 
+&lt;span class=&#34;c1&#34;&gt;# changing a user&amp;#39;s password&lt;/span&gt;
+passwd username
+ 
+&lt;span class=&#34;c1&#34;&gt;# becoming root temporarily in the terminal&lt;/span&gt;
+su     &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; enter the root password&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;sudo su&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;sudo &amp;lt;command&amp;gt;&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;su&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;password&lt;/td&gt;
+&lt;td&gt;user&amp;rsquo;s password&lt;/td&gt;
+&lt;td&gt;user&amp;rsquo;s password&lt;/td&gt;
+&lt;td&gt;root&amp;rsquo;s password&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;only users that belong to sudo group [Ubuntu] or wheel [CentOS]&lt;/td&gt;
+&lt;td&gt;only users that belong to sudo group [Ubuntu] or wheel [CentOS]&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
         </item>
         <item>
         <title>Feature Engineering (Cleaning)</title>
