@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices. All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).
  File System Intro A file system controls how data is stored and retrieved. Without a file system, data placed on a storage medium, like a hard disk drive or USB stick, would be one large body of data with no way of telling where one piece of it stops and where another one begins.'><title>Linux Operation System II (File System 1)</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/linux-operation-system-ii-file-system-1/'>
 
 <link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='Linux Operation System II (File System 1)'>
-<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices. All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).
  File System Intro A file system controls how data is stored and retrieved. Without a file system, data placed on a storage medium, like a hard disk drive or USB stick, would be one large body of data with no way of telling where one piece of it stops and where another one begins.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/linux-operation-system-ii-file-system-1/'>
 <meta property='og:site_name' content='Haoming Wang'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-04-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-04-21T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Linux Operation System II (File System 1)">
-<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices. All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).
  File System Intro A file system controls how data is stored and retrieved. Without a file system, data placed on a storage medium, like a hard disk drive or USB stick, would be one large body of data with no way of telling where one piece of it stops and where another one begins.">
     </head>
     <body class="
@@ -354,7 +357,7 @@
 
 
                 <time class="article-time--reading">
-                    60 minute read
+                    61 minute read
                 </time>
             </div>
         
@@ -369,8 +372,8 @@
     
     
     <blockquote>
-<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
-All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).</p>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+<p>All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).</p>
 </blockquote>
 <h1 id="file-system">File System</h1>
 <h2 id="intro">Intro</h2>
@@ -765,7 +768,7 @@ auth.log.1        dpkg.log               private     unattended-upgrades
 btmp              journal                syslog      wtmp
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202104181925590.png"
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204181925590.png"
 	
 	
 	
@@ -773,7 +776,7 @@ btmp              journal                syslog      wtmp
 	
 	
 ></p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202104181926607.png"
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204181926607.png"
 	
 	
 	
@@ -2730,17 +2733,8 @@ multi on
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tail -n <span class="m">5</span> -f /var/log/auth.log
 </code></pre></td></tr></table>
 </div>
-</div><p>in one of the terminal, the window would be:</p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211638123.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>and then run <code>sudo su</code> in the other terminal to switch to the root user, this exectuation will be record in the <code>/var/log/auth.log</code> file, and the <code>tail</code> window will update the contents automatically.</p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211640278.png"
+</div><p>in one of the terminal, and then run <code>sudo su</code> in the other terminal to switch to the root user, this exectuation will be record in the <code>/var/log/auth.log</code> file, and the <code>tail</code> window will update the contents automatically.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204212107132.gif"
 	
 	
 	
@@ -2760,10 +2754,11 @@ multi on
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">watch tail -n /var/log/auth.log
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">watch -n <span class="m">1</span> tail -n <span class="m">5</span> /var/log/auth.log
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211655209.png"
+</div><p>Here the first <code>-n 1</code> is the option of <code>watch</code> command, it control the update time interval; the second <code>-n 5</code> is <code>tail</code> command&rsquo;s.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204212113065.gif"
 	
 	
 	
@@ -2771,15 +2766,7 @@ multi on
 	
 	
 ></p>
-<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204211657578.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>Two interesting options are <code>-d</code> to highlight the differences between successive updates; and <code>-n</code> and a number to specify the update time interval. For example, I want to see how packets are sent and received by executing the ifconfig repeatedly. So run</p>
+<p>Another interesting option is <code>-d</code> to highlight the differences between successive updates. For example, I want to see how packets are sent and received by executing the ifconfig repeatedly. So run</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -3110,7 +3097,8 @@ total <span class="m">8</span>
 </div>
 </div><h3 id="cp--r-dir"><code>cp -r &lt;dir&gt;...</code></h3>
 <p>And the third and the last mode of operation is when all arguments are of type directory. In this case, <code>cp</code> copies all files in the source directory to the destination directoy creating any files or directories needed. The destination directory <strong>must exist before</strong>. This requires <code>-r</code>, an option that indicates the recursive copying of directories. In these mode, option <code>-i</code> is invalid.</p>
-<p>The user that runs the cp command becomes the files owner and that&rsquo;s not good in some cases. To preserve file attributes, timestamps, permissions, group and user ownership pass the <code>-p</code> option, which stands for a preserve.</p>
+<p>The user that runs the cp command becomes the files owner and that&rsquo;s not good in some cases. To preserve file attributes, timestamps, permissions, group and user ownership pass the <code>-p</code> option, which stands for a <strong>preserve</strong>.</p>
+<p>Timestamp:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -3181,6 +3169,51 @@ Access: 2022-04-21 11:26:00.967959343 +0000
 Modify: 2022-04-21 11:23:42.937078490 +0000
 Change: 2022-04-21 11:31:06.249476726 +0000
  Birth: -
+</code></pre></td></tr></table>
+</div>
+</div><p>User and Group:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ubuntu@ip-172-31-87-26:~$ sudo cp -r /var/log ~
+ubuntu@ip-172-31-87-26:~$ ls -l
+total <span class="m">20</span>
+drwxrwxr-x <span class="m">3</span> ubuntu ubuntu <span class="m">4096</span> Apr <span class="m">22</span> 12:47 dir1
+drwxrwxr-x <span class="m">2</span> ubuntu ubuntu <span class="m">4096</span> Apr <span class="m">21</span> 11:40 dir2
+drwxrwxr-x <span class="m">9</span> ubuntu ubuntu <span class="m">4096</span> Apr <span class="m">22</span> 13:42 log
+-rw-rw-r-- <span class="m">1</span> ubuntu ubuntu    <span class="m">0</span> Apr <span class="m">22</span> 09:51 ls.txt
+-rw-rw-r-- <span class="m">1</span> ubuntu ubuntu   <span class="m">61</span> Apr <span class="m">22</span> 10:04 mac.txt
+drwxrwxr-x <span class="m">2</span> ubuntu ubuntu <span class="m">4096</span> Apr <span class="m">22</span> 12:40 projects
+ubuntu@ip-172-31-87-26:~$ sudo rm -rf log
+ubuntu@ip-172-31-87-26:~$ sudo cp -rp /var/log ~
+ubuntu@ip-172-31-87-26:~$ ls -l
+total <span class="m">20</span>
+drwxrwxr-x <span class="m">3</span> ubuntu ubuntu <span class="m">4096</span> Apr <span class="m">22</span> 12:47 dir1
+drwxrwxr-x <span class="m">2</span> ubuntu ubuntu <span class="m">4096</span> Apr <span class="m">21</span> 11:40 dir2
+drwxrwxr-x <span class="m">9</span> root   syslog <span class="m">4096</span> Apr <span class="m">22</span> 00:00 log
+-rw-rw-r-- <span class="m">1</span> ubuntu ubuntu    <span class="m">0</span> Apr <span class="m">22</span> 09:51 ls.txt
+-rw-rw-r-- <span class="m">1</span> ubuntu ubuntu   <span class="m">61</span> Apr <span class="m">22</span> 10:04 mac.txt
+drwxrwxr-x <span class="m">2</span> ubuntu ubuntu <span class="m">4096</span> Apr <span class="m">22</span> 12:40 projects
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="mv-command"><code>mv</code> command</h2>
@@ -3999,24 +4032,12 @@ shred -vu -n <span class="m">100</span> file1
             
                 
 <article class="">
-    <a href="/p/linux-operation-system-ii-file-system-1/">
+    <a href="/p/linux-operation-system-i-system-access-file-system/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Linux Operation System II (File System 1)</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/linux-operation-system-i-terminal/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Linux Operation System I (Terminal)</h2>
+            <h2 class="article-title">Linux Operation System I (System Access &amp; File System)</h2>
         </div>
     </a>
 </article>
