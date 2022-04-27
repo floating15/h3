@@ -27573,7 +27573,18 @@ END REPORT
         <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/notes/</guid>
-        <description>&lt;h1 id=&#34;singular-homology-theory&#34;&gt;Singular Homology Theory&lt;/h1&gt;
+        <description>&lt;p&gt;To download all pdf files, run&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/floating15/note.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;in terminal.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;singular-homology-theory&#34;&gt;Singular Homology Theory&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/02matrix.pdf&#34; &gt;Matrix.pdf&lt;/a&gt;&lt;/li&gt;
@@ -27695,6 +27706,7 @@ END REPORT
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_top/ptp02.pdf&#34; &gt;Open Sets on Metric Space (ii).pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_top/ptp03.pdf&#34; &gt;Topology Space, Subspace Topology.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_top/ptp04.pdf&#34; &gt;Product Topology, Quotient Topology and Some Group Theory.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_top/ptp05.pdf&#34; &gt;Compactness on Topology Space.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;collection-of-linear-algebra-tips-cn&#34;&gt;Collection of Linear Algebra Tips (CN)&lt;/h1&gt;
 &lt;ul&gt;
