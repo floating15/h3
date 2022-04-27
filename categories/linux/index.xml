@@ -7,11 +7,11 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Sat, 01 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Linux Operation System II (File System 1)</title>
-        <link>https://wanghaoming177.netlify.app/p/linux-operation-system-ii-file-system-1/</link>
+        <title>Linux Operation System III (File System 2)</title>
+        <link>https://wanghaoming177.netlify.app/p/linux-operation-system-iii-file-system-2/</link>
         <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://wanghaoming177.netlify.app/p/linux-operation-system-ii-file-system-1/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/linux-operation-system-iii-file-system-2/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;p&gt;All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).&lt;/p&gt;
