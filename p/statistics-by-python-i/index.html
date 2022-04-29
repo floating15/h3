@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Graphical Exploratory Data Analysis Explore the data means organizing and plotting the data, and maybe computing a few numerical summaries about them. This idea is known as exploratory data analysis, or EDA, and was developed by John Tukey. He wrote a book entitled Exploratory Data Analysis in 1977 where he laid out the principles.'><title>Statistics by Python I</title>
+
+<link rel='canonical' href='https://wanghaoming177.netlify.app/p/statistics-by-python-i/'>
+
+<link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='Statistics by Python I'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Graphical Exploratory Data Analysis Explore the data means organizing and plotting the data, and maybe computing a few numerical summaries about them. This idea is known as exploratory data analysis, or EDA, and was developed by John Tukey. He wrote a book entitled Exploratory Data Analysis in 1977 where he laid out the principles.'>
+<meta property='og:url' content='https://wanghaoming177.netlify.app/p/statistics-by-python-i/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-07-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-07-01T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Statistics by Python I">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Graphical Exploratory Data Analysis Explore the data means organizing and plotting the data, and maybe computing a few numerical summaries about them. This idea is known as exploratory data analysis, or EDA, and was developed by John Tukey. He wrote a book entitled Exploratory Data Analysis in 1977 where he laid out the principles.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/IMG_0770_hu86b91b9497cdda82d5c488540c7342b2_101927_300x0_resize_q75_box.jpg" width="300"
+                            height="273" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌏</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/floating15'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Linkedin"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://follow.it/haoming-wang?action=followPub'
+                        target="_blank"
+                        title="r-mail"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mailbox" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
+  <path d="M12 11v-8h4l2 2l-2 2h-4" />
+  <path d="M6 15h1" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#FF1C02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#35FF02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#02EAFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#0223FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#F402FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/data_science/" style="background-color: false; color: false;">
+                Data Science
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/statistics-by-python-i/">Statistics by Python I</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 01, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    12 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<h1 id="graphical-exploratory-data-analysis">Graphical Exploratory Data Analysis</h1>
+<p>Explore the data means organizing and plotting the data, and maybe computing a few numerical summaries about them. This idea is known as exploratory data analysis, or EDA, and was developed by John Tukey. He wrote a book entitled <em>Exploratory Data Analysis</em> in 1977 where he laid out the principles. In that book, he said, &ldquo;Exploratory data analysis can never be the whole story, but nothing else can serve as the foundation stone.&rdquo;</p>
+<h2 id="scatter">Scatter</h2>
+<p>We have talked about the relevant topics in the previous blog, so I won&rsquo;t repeat it.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">versicolor_petal_length</span><span class="p">,</span> <span class="c1"># x-axis</span>
+    <span class="n">versicolor_petal_width</span><span class="p">,</span> <span class="c1"># y-axis</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;versicolor_petal_length&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;versicolor_petal_width&#34;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204281037834.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="histogram">Histogram</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Import plotting modules</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Set default Seaborn style</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+<span class="c1"># Plot histogram of versicolor petal lengths</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+
+<span class="c1"># Show histogram</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204270842299.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Plot histogram of versicolor petal lengths</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+
+<span class="c1"># Label axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;petal length (cm)&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;count&#34;</span><span class="p">)</span>
+
+<span class="c1"># Show histogram</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204270848206.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Import numpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Compute number of data points: n_data</span>
+<span class="n">n_data</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+
+<span class="c1"># Number of bins is the square root of number of data points: n_bins</span>
+<span class="n">n_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_data</span><span class="p">)</span>
+
+<span class="c1"># Convert number of bins to integer: n_bins</span>
+<span class="n">n_bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_bins</span><span class="p">)</span>
+
+<span class="c1"># Plot the histogram</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">)</span>
+
+<span class="c1"># Label axes</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+
+<span class="c1"># Show histogram</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>7
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204270853551.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="bee-swarm-plots">Bee swarm plots</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Create bee swarm plot with Seaborn&#39;s default settings</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;species&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;petal length (cm)&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span>
+<span class="p">)</span>
+
+<span class="c1"># Label the axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;species&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;petal lengths&#34;</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm) species
+0                5.1               3.5                1.4               0.2  setosa
+1                4.9               3.0                1.4               0.2  setosa
+2                4.7               3.2                1.3               0.2  setosa
+3                4.6               3.1                1.5               0.2  setosa
+4                5.0               3.6                1.4               0.2  setosa
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204270929777.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="ecdfs">ECDFs</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">ecdf</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Compute ECDF for a one-dimensional array of measurements.&#34;&#34;&#34;</span>
+    <span class="c1"># Number of data points: n</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># x-data for the ECDF: x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># y-data for the ECDF: y</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="c1"># Compute ECDF for versicolor data: x_vers, y_vers</span>
+<span class="n">x_vers</span><span class="p">,</span> <span class="n">y_vers</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+
+<span class="c1"># Generate plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x_vers</span><span class="p">,</span>
+    <span class="n">y_vers</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&#34;.&#34;</span><span class="p">,</span>
+    <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Label the axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;versicolor petal length&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;ECDF&#34;</span><span class="p">)</span>
+
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204270943190.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Compute ECDFs</span>
+<span class="n">x_set</span><span class="p">,</span> <span class="n">y_set</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">setosa_petal_length</span><span class="p">)</span>
+<span class="n">x_vers</span><span class="p">,</span> <span class="n">y_vers</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+<span class="n">x_virg</span><span class="p">,</span> <span class="n">y_virg</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">virginica_petal_length</span><span class="p">)</span>
+
+
+
+<span class="c1"># Plot all ECDFs on the same plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_set</span><span class="p">,</span> <span class="n">y_set</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vers</span><span class="p">,</span> <span class="n">y_vers</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_virg</span><span class="p">,</span> <span class="n">y_virg</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Annotate the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;versicolor&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ECDF&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204270947261.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="quantitative-exploratory-data-analysis">Quantitative Exploratory Data Analysis</h1>
+<h2 id="the-sample-mean-and-median">The sample mean and median</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Compute the mean: mean_length_vers</span>
+<span class="n">mean_length_vers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+<span class="n">median_length_vers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+
+<span class="c1"># Print the result with some nice formatting</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean of I. versicolor:&#39;</span><span class="p">,</span> <span class="n">mean_length_vers</span><span class="p">,</span> <span class="s1">&#39;cm&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;median of I. versicolor:&#39;</span><span class="p">,</span> <span class="n">median_length_vers</span><span class="p">,</span> <span class="s1">&#39;cm&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>mean of I. versicolor: 4.26 cm
+median of I. versicolor: 4.35 cm
+</code></pre><h2 id="percentiles-outliers-and-box-plots">Percentiles, outliers, and box plots</h2>
+<p>The median is a special name for the 50th percentile;</p>
+<p>that is 50% of the data are less than the median. Similarly, the 25th percentile is the value of the data point that is greater than 25% of the sorted data, and so on for any other percentile we want. Percentiles are useful summary statistics, and can be computed by</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>and it returns the data that match those percentiles.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Specify array of percentiles: percentiles</span>
+<span class="n">percentiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
+
+<span class="c1"># Compute percentiles: ptiles_vers</span>
+<span class="n">ptiles_vers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">,</span> <span class="n">percentiles</span><span class="p">)</span>
+
+<span class="c1"># Print the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ptiles_vers</span><span class="p">)</span>
+
+<span class="c1"># Plot the ECDF</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vers</span><span class="p">,</span> <span class="n">y_vers</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ECDF&#39;</span><span class="p">)</span>
+
+<span class="c1"># Overlay percentiles as red diamonds.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+	<span class="n">ptiles_vers</span><span class="p">,</span> 
+	<span class="n">percentiles</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> 
+	<span class="n">marker</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> 
+	<span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[3.3    4.     4.35   4.6    4.9775]
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204271031364.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Box plots were invented by John Tukey himself to display some of the salient features of a data set based on percentiles. The center of box is the median, which is the 50th percentile of the data. The edges of the boxes are the 25th and 75th percentile. The total height of the box contains the middle 50% of the data, and is called the interquartile range, or IQR. The whiskers extend a distance of 1-point-5 times the IQR, or to the extent of the data, whichever is more extreme. Finally, any points outside of the whiskers are plotted as individual points, which we often demarcate as outliers. While there is no single definition for an outlier, being more than 2 IQRs away from the median is a common criterion.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202204271021590.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>It is important to remember that an outlier is not necessarily an erroneous data point. We should not assume an outlier is erroneous unless you have some known reason to.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Create box plot with Seaborn&#39;s default settings</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&#34;species&#34;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&#34;petal length (cm)&#34;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span>
+<span class="p">)</span>
+
+<span class="c1"># Label the axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;species&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;petal length (cm)&#34;</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204271034374.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="variance-and-standard-deviation">Variance and standard deviation</h2>
+<p>To calculate the variance and standard deviation, call <code>np.var()</code> and <code>np.std()</code> respectively.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Calculate var by hand</span>
+<span class="n">differences</span> <span class="o">=</span> <span class="n">versicolor_petal_length</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+<span class="n">diff_sq</span> <span class="o">=</span> <span class="n">differences</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">variance_explicit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">diff_sq</span><span class="p">)</span>
+
+<span class="c1"># Calculate var by np.var</span>
+<span class="n">variance_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">variance_explicit</span><span class="p">,</span> <span class="n">variance_np</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>0.21640000000000004 0.21640000000000004
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">versicolor_petal_length</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>0.4651881339845203
+0.4651881339845203
+</code></pre><h2 id="covariance-and-the-correlation-coefficient">Covariance and the Correlation coefficient</h2>
+<p>Tor calculate the Cov and Corr, call <code>np.cav()</code> and <code>np.corrcoef()</code> respectively.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Compute the covariance matrix: covariance_matrix</span>
+<span class="n">covariance_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span>
+    <span class="n">versicolor_petal_length</span><span class="p">,</span>
+    <span class="n">versicolor_petal_width</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract covariance of length and width</span>
+<span class="n">petal_cov</span> <span class="o">=</span> <span class="n">covariance_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">petal_cov</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[[0.22081633 0.07310204]
+ [0.07310204 0.03910612]]
+0.07310204081632653
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">pearson_r</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Compute Pearson correlation coefficient between two arrays.&#34;&#34;&#34;</span>
+    <span class="c1"># Compute correlation matrix: corr_mat</span>
+    <span class="n">corr_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+	<span class="c1"># equal to: corr_mat = np.cov(x,y)[0,1]/(np.std(x) * np.std(y))</span>
+
+    <span class="c1"># Return entry [0,1]</span>
+    <span class="k">return</span> <span class="n">corr_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">pearson_r</span><span class="p">(</span>
+    <span class="n">versicolor_petal_length</span><span class="p">,</span>
+    <span class="n">versicolor_petal_width</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>0.7866680885228169
+</code></pre><h1 id="random-variables">Random Variables</h1>
+<h2 id="seed">Seed</h2>
+<p>The pseudorandom number generator works by starting with an integer, called a seed, and then generates random numbers in succession. The same seed gives the same sequence of random numbers, hence the name, &ldquo;psuedorandom number generation&rdquo;. So, if you want to have reproducible code, it is a good idea to seed the random number generator using the np dot random dot seed function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># 0-1 uniform distr., U(0,1)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># integer uniform distr</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># 0-1 uniform distr., U(0,1)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span> <span class="c1"># standard normal dist., N(0,1)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">)))</span> <span class="c1"># a-b uniform distr., U(a,b)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;----------------&#34;</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">test</span><span class="p">()</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">test</span><span class="p">()</span>
+
+<span class="n">test</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[0.37454012 0.95071431 0.73199394 0.59865848]
+[0.15601864 0.15599452 0.05808361 0.86617615]
+5
+[0.14286682 0.65088847 0.05641158 0.72199877 0.93855271]
+[-0.46341769 -0.46572975  0.24196227]
+3.582458280396084
+----------------
+[0.37454012 0.95071431 0.73199394 0.59865848]
+[0.15601864 0.15599452 0.05808361 0.86617615]
+5
+[0.14286682 0.65088847 0.05641158 0.72199877 0.93855271]
+[-0.46341769 -0.46572975  0.24196227]
+3.582458280396084
+----------------
+[0.61185289 0.13949386 0.29214465 0.36636184]
+[0.45606998 0.78517596 0.19967378 0.51423444]
+9
+[0.46676289 0.85994041 0.68030754 0.45049925 0.01326496]
+[-1.91328024 -0.60063869]
+5.733054075301833
+</code></pre><blockquote>
+<p><code>np.random.random((a,b))</code> and <code>np.random.rand(3,5)</code> generate both 3*5 U(0,1) random matrix. More see <a class="link" href="https://stackoverflow.com/questions/47231852/np-random-rand-vs-np-random-random"  target="_blank" rel="noopener"
+    >here</a>.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Seed the random number generator</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Initialize random numbers: random_numbers</span>
+<span class="n">random_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+
+<span class="c1"># Generate random numbers by looping over range(100000)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">):</span>
+    <span class="n">random_numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+<span class="c1"># Plot a histogram</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">random_numbers</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204281119120.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">perform_bernoulli_trials</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Perform n Bernoulli trials with success probability p
+</span><span class="s2">    and return number of successes.&#34;&#34;&#34;</span>
+    <span class="c1"># Initialize number of successes: n_success</span>
+    <span class="n">n_success</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Perform trials</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># Choose random number between zero and one: random_number</span>
+        <span class="n">random_number</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+        <span class="c1"># If less than p, it&#39;s a success so add one to n_success</span>
+        <span class="k">if</span> <span class="n">random_number</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">:</span>
+            <span class="n">n_success</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">n_success</span>
+
+<span class="c1"># Seed random number generator</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Initialize the number of defaults: n_defaults</span>
+<span class="n">n_defaults</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Compute the number of defaults</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">n_defaults</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">perform_bernoulli_trials</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Plot the histogram with default number of bins; </span>
+<span class="c1"># `normed=True` keyword argument make the height of the bars of the histogram indicate the probability.</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">n_defaults</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of defaults out of 100 loans&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability&#39;</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204281127366.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Compute ECDF: x, y</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">n_defaults</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Compute the number of 100-loan simulations with 10 or more defaults: n_lose_money</span>
+<span class="n">n_lose_money</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_defaults</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Compute and print probability of losing money</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Probability of losing money =&#39;</span><span class="p">,</span> <span class="n">n_lose_money</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">n_defaults</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204281131624.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="binomial-distribution">Binomial distribution</h2>
+<p>Draw samples out of the Binomial distribution using <code>np.random.binomial(n, p, size)</code>.</p>
+<ul>
+<li><code>n</code>: times of random trials for each binomial random variable</li>
+<li><code>p</code>: probability of positive</li>
+<li><code>size</code>: size of the sample (number of random variable)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Take 10,000 samples out of the binomial distribution: n_defaults</span>
+<span class="n">n_defaults</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Compute CDF: x, y</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">n_defaults</span><span class="p">)</span>
+
+<span class="c1"># Plot the CDF</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204291327220.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>To plot the PMF of the Binomial distribution as a histogram, set up the edges of the bins to pass to <code>plt.hist()</code> via the <code>bins</code> keyword argument. We want the bins centered on the integers. So, the edges of the bins should be -0.5, 0.5, 1.5, 2.5, &hellip; up to max(n_defaults) + 1.5. we can generate an array like this using <code>np.arange()</code> and then subtracting 0.5 from the array.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Compute bin edges: bins</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">n_defaults</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+
+<span class="c1"># Generate histogram</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">n_defaults</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of defaults out of 100 loans&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PMF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204291333548.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="poisson-distribution">Poisson distribution</h2>
+<p>Draw samples out of the Poisson distribution using <code>np.random.poisson(lam, size)</code>.</p>
+<ul>
+<li><code>lam</code>: expect of r.v.</li>
+<li><code>size</code>: size of the sample</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Draw 10,000 samples out of Poisson distribution: samples_poisson</span>
+<span class="n">samples_poisson</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Poisson:     &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">samples_poisson</span><span class="p">),</span>
+                       <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">samples_poisson</span><span class="p">))</span>
+
+<span class="c1"># Draw 10,000 samples for each n,p pair: samples_binomial</span>
+<span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">samples_binomial</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;n =&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;Binom:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">samples_binomial</span><span class="p">),</span>
+                                 <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">samples_binomial</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Poisson:      10.0186 3.144813832327758
+n = 20 Binom: 9.9637 2.2163443572694206
+n = 100 Binom: 9.9947 3.0135812433050484
+n = 1000 Binom: 9.9985 3.139378561116833
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Draw 10,000 samples out of Poisson distribution: n_nohitters</span>
+<span class="n">n_nohitters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">251</span><span class="o">/</span><span class="mi">115</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Compute number of samples that are seven or greater: n_large</span>
+<span class="n">n_large</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_nohitters</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Compute probability of getting seven or more: p_large</span>
+<span class="n">p_large</span> <span class="o">=</span> <span class="n">n_large</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">n_nohitters</span><span class="p">)</span>
+
+<span class="c1"># Print the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Probability of seven or more no-hitters:&#39;</span><span class="p">,</span> <span class="n">p_large</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Probability of seven or more no-hitters: 0.0067
+</code></pre><h1 id="continuous-variables">Continuous Variables</h1>
+<h2 id="normal-distribution">Normal distribution</h2>
+<p>Draw samples out of the normal distribution using <code>np.random.normal(loc, scale, size)</code>.</p>
+<ul>
+<li><code>loc</code>: expect of r.v.</li>
+<li><code>scale</code>: std of r.v.</li>
+<li><code>size</code>: size of the sample</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Draw 100000 samples from Normal distribution with stds of interest: samples_std1, samples_std3, samples_std10</span>
+<span class="n">samples_std1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">samples_std3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">samples_std10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+
+<span class="c1"># Plot PDFs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samples_std1</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samples_std3</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samples_std10</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;std = 1&#39;</span><span class="p">,</span> <span class="s1">&#39;std = 3&#39;</span><span class="p">,</span> <span class="s1">&#39;std = 10&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204291406107.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Generate CDFs</span>
+<span class="n">x_std1</span><span class="p">,</span> <span class="n">y_std1</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">samples_std1</span><span class="p">)</span>
+<span class="n">x_std3</span><span class="p">,</span> <span class="n">y_std3</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">samples_std3</span><span class="p">)</span>
+<span class="n">x_std10</span><span class="p">,</span> <span class="n">y_std10</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">samples_std10</span><span class="p">)</span>
+
+<span class="c1"># Plot CDFs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_std1</span><span class="p">,</span> <span class="n">y_std1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_std3</span><span class="p">,</span> <span class="n">y_std3</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_std10</span><span class="p">,</span> <span class="n">y_std10</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;std = 1&#39;</span><span class="p">,</span> <span class="s1">&#39;std = 3&#39;</span><span class="p">,</span> <span class="s1">&#39;std = 10&#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204291410924.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Compute mean and standard deviation: mu, sigma</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">belmont_no_outliers</span><span class="p">)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">belmont_no_outliers</span><span class="p">)</span>
+
+<span class="c1"># Sample out of a normal distribution with this mu and sigma: samples</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Get the CDF of the samples and of the data</span>
+<span class="n">x_theor</span><span class="p">,</span> <span class="n">y_theor</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">belmont_no_outliers</span><span class="p">)</span>
+
+<span class="c1"># Plot the CDFs and show the plot</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_theor</span><span class="p">,</span> <span class="n">y_theor</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Belmont winning time (sec.)&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;CDF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204291417312.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="exponential-distribution">Exponential distribution</h2>
+<p>Draw samples out of the Exponential distribution using <code>np.random.exponential(scale, size)</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">successive_poisson</span><span class="p">(</span><span class="n">tau1</span><span class="p">,</span> <span class="n">tau2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Create the sum of two exp dist. r.v.&#34;&#34;&#34;</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">tau1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">tau2</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t1</span> <span class="o">+</span> <span class="n">t2</span>
+
+<span class="c1"># Draw samples </span>
+<span class="n">waiting_times</span> <span class="o">=</span> <span class="n">successive_poisson</span><span class="p">(</span><span class="mi">764</span><span class="p">,</span> <span class="mi">715</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+
+<span class="c1"># Plot the PDFs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">waiting_times</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">)</span>
+
+<span class="c1"># Label axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202204291427907.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/pyspark-and-large-dataset-i/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PySpark and Large Dataset I</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/importing-data-in-python-ii/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Importing Data in Python II</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/importing-data-in-python-i/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Importing Data in Python I</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/data-visualization-iii-seaborn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Visualization III (Seaborn)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/data-visualization-ii-seaborn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Visualization II (Seaborn)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#graphical-exploratory-data-analysis">Graphical Exploratory Data Analysis</a>
+      <ol>
+        <li><a href="#scatter">Scatter</a></li>
+        <li><a href="#histogram">Histogram</a></li>
+        <li><a href="#bee-swarm-plots">Bee swarm plots</a></li>
+        <li><a href="#ecdfs">ECDFs</a></li>
+      </ol>
+    </li>
+    <li><a href="#quantitative-exploratory-data-analysis">Quantitative Exploratory Data Analysis</a>
+      <ol>
+        <li><a href="#the-sample-mean-and-median">The sample mean and median</a></li>
+        <li><a href="#percentiles-outliers-and-box-plots">Percentiles, outliers, and box plots</a></li>
+        <li><a href="#variance-and-standard-deviation">Variance and standard deviation</a></li>
+        <li><a href="#covariance-and-the-correlation-coefficient">Covariance and the Correlation coefficient</a></li>
+      </ol>
+    </li>
+    <li><a href="#random-variables">Random Variables</a>
+      <ol>
+        <li><a href="#seed">Seed</a></li>
+        <li><a href="#binomial-distribution">Binomial distribution</a></li>
+        <li><a href="#poisson-distribution">Poisson distribution</a></li>
+      </ol>
+    </li>
+    <li><a href="#continuous-variables">Continuous Variables</a>
+      <ol>
+        <li><a href="#normal-distribution">Normal distribution</a></li>
+        <li><a href="#exponential-distribution">Exponential distribution</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+
+    </body>
+</html>

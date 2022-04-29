@@ -33,7 +33,7 @@
         <item>
         <title>Linux</title>
         <link>https://wanghaoming177.netlify.app/categories/linux/</link>
-        <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/linux/</guid>
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/linux/images2.jpeg" alt="Featured image of post Linux" /&gt;</description>
@@ -61,6 +61,14 @@
         
         <guid>https://wanghaoming177.netlify.app/categories/financial_engineering/</guid>
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/financial_engineering/doeblin.png" alt="Featured image of post Financial Engineering" /&gt;</description>
+        </item>
+        <item>
+        <title>Scientific Computing</title>
+        <link>https://wanghaoming177.netlify.app/categories/sci_compute/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/sci_compute/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/sci_compute/sss01.png" alt="Featured image of post Scientific Computing" /&gt;</description>
         </item>
         <item>
         <title>Thesis Reproduction</title>

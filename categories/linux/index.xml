@@ -6,7 +6,1149 @@
         <description>Recent content in Linux on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 01 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux Operation System IIV (User Account Management)</title>
+        <link>https://wanghaoming177.netlify.app/p/linux-operation-system-iiv-user-account-management/</link>
+        <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/p/linux-operation-system-iiv-user-account-management/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
+&lt;p&gt;All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;passwd-shadow-and-group-file&#34;&gt;&lt;code&gt;passwd&lt;/code&gt;, &lt;code&gt;shadow&lt;/code&gt; and &lt;code&gt;group&lt;/code&gt; file&lt;/h1&gt;
+&lt;h2 id=&#34;etcpasswd&#34;&gt;&lt;code&gt;/etc/passwd&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;/etc/passwd&lt;/code&gt; file contains basic information about each user account on the system. Each line of the file represents a single account of type, normal user or system user and there are 7 fields on each line.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ cat /etc/passwd &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+pollinate:x:111:1::/var/cache/pollinate:/bin/false
+ec2-instance-connect:x:112:65534::/nonexistent:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s take these fields one by one.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The first field is the user&amp;rsquo;s login name.&lt;/li&gt;
+&lt;li&gt;The second field, at the beginning of the Unix era, used to contain an encrypted password. Nowadays, it contains the letter &lt;code&gt;x&lt;/code&gt; to denote that a password has been assigned but was saved in &lt;code&gt;/etc/shadow&lt;/code&gt; file. If this second field is blank, the user does not need to enter a password to log in.&lt;/li&gt;
+&lt;li&gt;The third field is the user ID, a positive integer number assigned to the user, followed by the primary group ID in the fourth field.&lt;/li&gt;
+&lt;li&gt;The fifth field is a comment. Sometimes it is left blank.&lt;/li&gt;
+&lt;li&gt;The next field is the user&amp;rsquo;s home directory.&lt;/li&gt;
+&lt;li&gt;The last field is the default shell usually set to &lt;code&gt;/bin/bash&lt;/code&gt;. If instead of bash you see there &lt;code&gt;nologin&lt;/code&gt; of &lt;code&gt;false&lt;/code&gt; it means there is a system user that’s not allowed to log into the system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That is the format of etc password.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;ubuntu: user login name
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;x: password was saved in &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;/etc/shadow&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;1000: user ID
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;1000: group ID
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;Ubuntu: comment
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;6&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;/home/ubuntu: user home directory
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;7&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;/bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;etcshadow&#34;&gt;&lt;code&gt;/etc/shadow&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;/etc/shadow&lt;/code&gt; stores the actual passwords of the users in an encrypted format. The &lt;code&gt;/etc/passwd&lt;/code&gt; file is world-readable and that means that any user can read it but the &lt;code&gt;/etc/shadow&lt;/code&gt; file is only readable by the root account.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo cat /etc/shadow &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; 
+root:&lt;span class=&#34;nv&#34;&gt;$6$3&lt;/span&gt;L2TtFLTJR5Nz1sD&lt;span class=&#34;nv&#34;&gt;$x5UX&lt;/span&gt;/leqXMB07ALQ/RAHGCGqXeZ9y23.UqNeygwp/gA.R9mh5CLDA6bMVXYBl/tqfXGvFzPuG9570cQ7xwjIV/:19100:0:99999:7:::
+daemon:*:18960:0:99999:7:::
+bin:*:18960:0:99999:7:::
+sys:*:18960:0:99999:7:::
+sync:*:18960:0:99999:7:::
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Each line of the file contains nine comma separated fields:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The first field is the user name, and this is how a line in the &lt;code&gt;shadow&lt;/code&gt; file is connected to the corresponding line in the &lt;code&gt;password&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;The second field represents the password. If the password field contains an asterisk &lt;code&gt;*&lt;/code&gt; or an exclamation &lt;code&gt;!&lt;/code&gt; point the user will not be able to login to the system using the password authentication. Other login methods like key-based authentication or switching to the user are still allowed.&lt;/li&gt;
+&lt;li&gt;Then come 7 fields related to password expiration date like last password change, minimum and maximum passport age and so on. you can find a full description of these fields running &lt;code&gt;man shadow&lt;/code&gt; in which has a full description of each field.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s take a deeper look at the password field.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$type&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$salt&lt;/span&gt; 3L2TtFLTJR5Nz1sD
+&lt;span class=&#34;nv&#34;&gt;$hash&lt;/span&gt; x5UX/leqXMB07ALQ/RAHGCGqXeZ9y23.UqNeygwp/gA.R9mh5CLDA6bMVXYBl/tqfXGvFzPuG9570cQ7xwjIV/
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Usually the password format is set to &lt;code&gt;$type$salt$hash&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;type&lt;/strong&gt;, 6 in this case, is the cryptographic hash algorithm used and can have the following values:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1: MD5;&lt;/li&gt;
+&lt;li&gt;2a: Blowfish;&lt;/li&gt;
+&lt;li&gt;2y: Eksblowfish;&lt;/li&gt;
+&lt;li&gt;5: SHA-256;&lt;/li&gt;
+&lt;li&gt;6: SHA-512.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;strong&gt;salt&lt;/strong&gt; is randomly generated for each password, but it’s not secret like the password is. Then the salt combined with the password is added to the &lt;strong&gt;hashing&lt;/strong&gt; process to enforce the uniqueness of the outhash, or in other words, the same password will give different hashes because of this random salt.&lt;/p&gt;
+&lt;p&gt;If through having the hash an attacker can find the clear text password, all the other similar passwords of other users are still secure because their hash is different.&lt;/p&gt;
+&lt;p&gt;We now create two user accounts &lt;code&gt;user1&lt;/code&gt;, &lt;code&gt;user2&lt;/code&gt; which has the same password &lt;code&gt;test123&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd user1
+ubuntu@ip-172-31-87-26:~$ sudo passwd user1
+New password: 
+Retype new password: 
+passwd: password updated successfully
+ubuntu@ip-172-31-87-26:~$ sudo useradd user2
+ubuntu@ip-172-31-87-26:~$ sudo passwd user2
+New password: 
+Retype new password: 
+passwd: password updated successfully
+ubuntu@ip-172-31-87-26:~$
+ubuntu@ip-172-31-87-26:~$
+ubuntu@ip-172-31-87-26:~$ cat /etc/passwd &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n5
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+user1:x:1001:1001::/home/user1:/bin/sh
+user2:x:1002:1002::/home/user2:/bin/sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Now let&amp;rsquo;s check the hashes in the shadow file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo cat /etc/shadow &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+systemd-coredump:!!:19096::::::
+ubuntu:!:19096:0:99999:7:::
+lxd:!:19096::::::
+user1:&lt;span class=&#34;nv&#34;&gt;$6$OU&lt;/span&gt;/fVA4GQsPufXdI&lt;span class=&#34;nv&#34;&gt;$wsJFgBDT0hnH4Fbm5xRI0RpaxBCZpQBqoOQT3RxWmZep&lt;/span&gt;/yUehuyG25M.3.ZYcfrh/90wRWnqA9UWZqeSdpJmt1:19110:0:99999:7:::
+user2:&lt;span class=&#34;nv&#34;&gt;$6$sUJt5NJm8RSMpllV$9&lt;/span&gt;NYKlDsht5mZBvuFy5Dhrsi8R/098JdVgJS0FqnlHurMtmj9l6KcNjnWx3SfL8pekIazuQy7qyIBuhn1nCT411:19110:0:99999:7:::
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And we notice that even though both users have the same password, the saved hash is different. That&amp;rsquo;s because it has computed the hash using both the common password and the salt, which is unique for each user. Now, if a hacker manages to find the password of the first user having the hash, the hacker doesn&amp;rsquo;t know that the second user has the same password because there is another hash in the file.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;password&lt;/code&gt; and &lt;code&gt;Shadow&lt;/code&gt; file, should not be edited by hand unless you know what you are doing. Always use a command that is designed for this purpose.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;etcgroup&#34;&gt;&lt;code&gt;/etc/group&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The main purpose of the groups is to define a set of privileges or permissions like read, write or execute for a given file that can be shared among the users within the group. You have to add the user to a group if you want to have the privileges of the group.&lt;/p&gt;
+&lt;p&gt;In Linux, there are two types of groups that the user can belong to.&lt;/p&gt;
+&lt;h3 id=&#34;primary-or-login-group&#34;&gt;Primary or login group&lt;/h3&gt;
+&lt;p&gt;Primary group is the group that is assigned to the files that are created by the user. The group id of the primary group is stored in &lt;code&gt;/etc/passwd&lt;/code&gt;(4th field) and the group name in &lt;code&gt;/etc/group&lt;/code&gt;(1st field).&lt;/p&gt;
+&lt;p&gt;When a user creates a file, the user will be the owner of the file and file&amp;rsquo;s primary group will be the group owner of the file. Remember that &lt;strong&gt;in Linux a file is owned by both a user and a group&lt;/strong&gt;. I am creating a new file using &lt;code&gt;touch&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ touch a.txt
+ubuntu@ip-172-31-87-26:~$ ls -l a.txt 
+-rw-rw-r-- &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; ubuntu ubuntu &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; Apr &lt;span class=&#34;m&#34;&gt;28&lt;/span&gt; 05:55 a.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The user that runs &lt;code&gt;touch&lt;/code&gt; command is the &lt;strong&gt;owner&lt;/strong&gt; and its primary group (having usually the same name as the user) is the &lt;strong&gt;group owner&lt;/strong&gt;. Note that &lt;strong&gt;each user must belong exactly to one primary group&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;secondary-or-supplementary-groups&#34;&gt;Secondary or supplementary groups&lt;/h3&gt;
+&lt;p&gt;A user can be a member of none or more secondary groups. The secondary groups are stored in &lt;code&gt;/etc/group&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take the current user and see its entry in &lt;code&gt;/etc/passwd&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ grep ubuntu /etc/passwd
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;so from the 4th field, we know that the primary group of this user has the ID 1000. Let&amp;rsquo;s search the &lt;code&gt;/etc/group&lt;/code&gt; file for that ID.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ grep &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt; /etc/group
+ubuntu:x:1000:
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;So the user&amp;rsquo;s &lt;strong&gt;primary group&lt;/strong&gt; is a group with the same name, ubuntu in this case; typically no other user will belong to this group. Now let&amp;rsquo;s find out the &lt;strong&gt;secondary groups&lt;/strong&gt; of the user; to do that, I&amp;rsquo;ll search for the user name in the &lt;code&gt;/etc/group&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ grep ubuntu /etc/group
+adm:x:4:syslog,ubuntu
+dialout:x:20:ubuntu
+cdrom:x:24:ubuntu
+floppy:x:25:ubuntu
+sudo:x:27:ubuntu
+audio:x:29:ubuntu
+dip:x:30:ubuntu
+video:x:44:ubuntu
+plugdev:x:46:ubuntu
+netdev:x:117:ubuntu
+lxd:x:118:ubuntu
+ubuntu:x:1000:
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The last field of each line indicates the users that belong to that group as a secondary group. If there are more users belonging to the same group, then they are separated by a comma.&lt;/p&gt;
+&lt;p&gt;To summarize:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;find the primary group of the user:
+&lt;ul&gt;
+&lt;li&gt;grep user&amp;rsquo;s name in &lt;code&gt;passwd&lt;/code&gt; file to acquire the primary group id&lt;/li&gt;
+&lt;li&gt;grep primary group id in &lt;code&gt;group&lt;/code&gt; file to acquire the primary group name&lt;/li&gt;
+&lt;li&gt;if the primary group name is equal to the user&amp;rsquo;s name, then you can grep user&amp;rsquo;s name in &lt;code&gt;group&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;find the secondary group of the user:
+&lt;ul&gt;
+&lt;li&gt;grep the user&amp;rsquo;s name in &lt;code&gt;group&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;the first field of &lt;code&gt;group&lt;/code&gt; file is the names of groups; the 3rd field of the file is the group&amp;rsquo;s id; the last field is the users belong to the group.&lt;/p&gt;
+&lt;h3 id=&#34;groups-id-command&#34;&gt;&lt;code&gt;groups&lt;/code&gt;, &lt;code&gt;id&lt;/code&gt; command&lt;/h3&gt;
+&lt;p&gt;Normally, you don&amp;rsquo;t search through these files to find out to which groups a user belongs. There&amp;rsquo;s the &lt;code&gt;groups&lt;/code&gt; command that does the job for you.&lt;/p&gt;
+&lt;p&gt;When executed without any arguments, the command will print out a list of all groups the current user belongs to. And the first group is the primary one.&lt;/p&gt;
+&lt;p&gt;To get a list of all groups a specific user belongs to provide the user name to the &lt;code&gt;groups&lt;/code&gt; command as argument.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ groups 
+ubuntu adm dialout cdrom floppy sudo audio dip video plugdev netdev lxd
+ubuntu@ip-172-31-87-26:~$ groups ubuntu
+ubuntu : ubuntu adm dialout cdrom floppy sudo audio dip video plugdev netdev lxd
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Another useful command is &lt;code&gt;id&lt;/code&gt;. It prints information about the specified user and its groups and as the &lt;code&gt;groups&lt;/code&gt; command, if the username is omitted, it shows information for the current user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,4&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;adm&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,20&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dialout&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,24&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;cdrom&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,25&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;floppy&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,29&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;audio&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,30&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dip&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,44&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;video&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,46&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;plugdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,117&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;netdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,118&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lxd&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ id ubuntu
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,4&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;adm&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,20&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dialout&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,24&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;cdrom&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,25&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;floppy&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,29&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;audio&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,30&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dip&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,44&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;video&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,46&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;plugdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,117&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;netdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,118&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lxd&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The command is showing the user ID 1000, the user&amp;rsquo;s primary group and group id and the user&amp;rsquo;s secondary groups and their id.&lt;/p&gt;
+&lt;h1 id=&#34;user&#34;&gt;User&lt;/h1&gt;
+&lt;h2 id=&#34;create-user&#34;&gt;Create user&lt;/h2&gt;
+&lt;h3 id=&#34;useradd-command&#34;&gt;&lt;code&gt;useradd&lt;/code&gt; command&lt;/h3&gt;
+&lt;p&gt;In Linux you need root privileges to create, change or delete an account. To create a new account you run the &lt;code&gt;useradd&lt;/code&gt; command. Run &lt;code&gt;man useradd&lt;/code&gt; and you’ll see lots of options.&lt;/p&gt;
+&lt;p&gt;To create a new user without specifying any options, just run &lt;code&gt;useradd&lt;/code&gt; and the new username:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd u1
+ubuntu@ip-172-31-87-26:~$ tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; /etc/passwd
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+user1:x:1001:1001::/home/user1:/bin/sh
+user2:x:1002:1002::/home/user2:/bin/sh
+u1:x:1003:1003::/home/u1:/bin/sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And the last user is &lt;code&gt;u1&lt;/code&gt;, the user that have just created.  By default, for the new user a group with the same name as the user name was also created.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ groups u1
+u1 : u1
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And it belongs to only one group called &lt;code&gt;u1&lt;/code&gt;; this is its primary group. Note that the default behavior of &lt;code&gt;useradd&lt;/code&gt; can differ from distribution to distribution;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;On some distributions, especially those based on Ubuntu, you&amp;rsquo;ll see another command called &lt;code&gt;adduser&lt;/code&gt;. &lt;code&gt;useradd&lt;/code&gt; is a native binary compiled with any Linux system. But, &lt;code&gt;adduser&lt;/code&gt; is just a perl script which uses &lt;code&gt;useradd&lt;/code&gt; binary as a back-end. &lt;code&gt;adduser&lt;/code&gt; is more user friendly and interactive than its back-end &lt;code&gt;useradd&lt;/code&gt;. There is no actual difference in features provided.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;passwd-command&#34;&gt;&lt;code&gt;passwd&lt;/code&gt; command&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;useradd&lt;/code&gt; reads the contents of the file &lt;code&gt;/etc/login.def&lt;/code&gt; which contains options for the shadow password, such as password expiration policy, ranges of user IDs used when creating system and regular users and more. &lt;strong&gt;To be able to login&lt;/strong&gt; , we need to set a password to the newly created user; to do that &lt;code&gt;passwd&lt;/code&gt; command followed by the username.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo passwd u1
+New password: 
+Retype new password: 
+passwd: password updated successfully
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Now the user has a password and can login.&lt;/p&gt;
+&lt;h3 id=&#34;-m&#34;&gt;&lt;code&gt;-m&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If a user is created without any option, its home directory is not created as well. If you want to create the user&amp;rsquo;s home directory, use the &lt;code&gt;-m&lt;/code&gt; option, and the directory name will be the same as the username and will be created in &lt;code&gt;/home&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -m u2
+ubuntu@ip-172-31-87-26:~$ ls ~/..
+u2  ubuntu
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;-d&#34;&gt;&lt;code&gt;-d&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If you want to give it another name or create it in another location add the &lt;code&gt;-d&lt;/code&gt; option to &lt;code&gt;-m&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -md /home/uu3 u3
+ubuntu@ip-172-31-87-26:~$ ls ~/..
+u2  ubuntu  uu3
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;-c&#34;&gt;&lt;code&gt;-c&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If you want to add a comment to the user entry in &lt;code&gt;/etc/ passwd&lt;/code&gt; file, add the &lt;code&gt;-c&lt;/code&gt; option and a comment between quotes. This comment is typically a short description, like the user&amp;rsquo;s full name or the contact information.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;comment for u4&amp;#34;&lt;/span&gt; u4
+ubuntu@ip-172-31-87-26:~$ tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; /etc/passwd
+user2:x:1002:1002::/home/user2:/bin/sh
+u1:x:1003:1003::/home/u1:/bin/sh
+u2:x:1004:1004::/home/u2:/bin/sh
+u3:x:1005:1005::/home/uu3:/bin/sh
+u4:x:1006:1006:comment &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; u4:/home/u4:/bin/sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;-g--g&#34;&gt;&lt;code&gt;-g&lt;/code&gt;, &lt;code&gt;-G&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;By default, the primary group of the user will be a group with the same name as the user. If you want to add this user to another primary group, use the &lt;code&gt;-g&lt;/code&gt; option and the name of the group. However, this is not common. What is common is to add the user to some secondary groups as well. To do that, use the capital &lt;code&gt;-G&lt;/code&gt; option and the secondary groups with a comma between them.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -G sudo,adm,video u6
+ubuntu@ip-172-31-87-26:~$ groups u6
+u6 : u6 adm sudo video
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Note that the groups should already exist or you&amp;rsquo;ll get an error.&lt;/p&gt;
+&lt;h3 id=&#34;-e&#34;&gt;&lt;code&gt;-e&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If you want to create a temporary user, then you should specify an expiration date, the date on which the user account will be disabled. Use the &lt;code&gt;-e&lt;/code&gt; option and the date in the format &lt;code&gt;yyyy-mm-dd&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -e 2021-12-31 u7
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;If you want to change the user&amp;rsquo;s password expire policy of an existing user run the &lt;code&gt;chage&lt;/code&gt; command and the username.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo chage u7
+Changing the aging information &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; u7
+Enter the new value, or press ENTER &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; the default
+
+	Minimum Password Age &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: 
+	Maximum Password Age &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;99999&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: 
+	Last Password Change &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;YYYY-MM-DD&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;2021-04-29&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: 
+	Password Expiration Warning &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;7&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: 
+	Password Inactive &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: 
+	Account Expiration Date &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;YYYY-MM-DD&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;2021-12-31&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And if you want to list the expiration information only, add &lt;code&gt;-l&lt;/code&gt; option to &lt;code&gt;chage&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo chage -l u7
+Last password change					: Apr 29, &lt;span class=&#34;m&#34;&gt;2021&lt;/span&gt;
+Password expires					: never
+Password inactive					: never
+Account expires						: Dec 31, &lt;span class=&#34;m&#34;&gt;2021&lt;/span&gt;
+Minimum number of days between password change		: &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+Maximum number of days between password change		: &lt;span class=&#34;m&#34;&gt;99999&lt;/span&gt;
+Number of days of warning before password expires	: &lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;-s&#34;&gt;&lt;code&gt;-s&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;In computing, a &lt;strong&gt;shell is a computer program&lt;/strong&gt; (an executable file in Linux) which exposes an operating system&amp;rsquo;s services to a human user or other programs. In general, operating system shells use either a command-line interface (CLI) or graphical user interface (GUI), depending on a computer&amp;rsquo;s role and particular operation. It is named a shell because it is the outermost layer around the operating system.&lt;/p&gt;
+&lt;p&gt;To create the user with a specific login shell at the &lt;code&gt;-s&lt;/code&gt; option and the absolute path to that shell. That shell will be automatically launched when the user logs in or opens a terminal. We usually use &lt;code&gt;/bin/bash&lt;/code&gt; shell.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -s /bin/bash u5
+ubuntu@ip-172-31-87-26:~$ tail -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; /etc/passwd
+u1:x:1003:1003::/home/u1:/bin/sh
+u2:x:1004:1004::/home/u2:/bin/sh
+u3:x:1005:1005::/home/uu3:/bin/sh
+u4:x:1006:1006:comment &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; u4:/home/u4:/bin/sh
+u5:x:1007:1007::/home/u5:/bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;If you take a look in &lt;code&gt;/etc/passwd&lt;/code&gt; you’ll see that some accounts have as shell something like &lt;code&gt;/usr/bin/nologin&lt;/code&gt; (or &lt;code&gt;/usr/sbin/nologin&lt;/code&gt;) or &lt;code&gt;/bin/false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/floating15/img/main/202204291523111.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes you need a system account to be used only to run a service such as a Web server. In Linux every daemon or process should be run as a specific user and it’s recommended not to be root. This is an important security consideration. To have such a limited user account, that never logs in, you set its shell as being &lt;code&gt;false&lt;/code&gt; or &lt;code&gt;nologin&lt;/code&gt;. If &lt;code&gt;nologin&lt;/code&gt; is set as the user&amp;rsquo;s shell, when the user tries to login, it will get a message saying this account is currently not available. And &lt;code&gt;false&lt;/code&gt;, is just a binary that immediately exists, returning false when called. That&amp;rsquo;s why when someone that has false as shell logs in is immediately logged out. There isn&amp;rsquo;t actually such a big difference between &lt;code&gt;nologin&lt;/code&gt; and &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;By the way, &lt;code&gt;/bin/bash&lt;/code&gt;, &lt;code&gt;/usr/sbin/nologin&lt;/code&gt;, &lt;code&gt;/bin/false&lt;/code&gt; and the default shell when user is created &lt;code&gt;/bin/sh&lt;/code&gt; and all executable files:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls -lF /bin/bash /usr/sbin/nologin /bin/false /bin/sh
+-rwxr-xr-x &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; root root &lt;span class=&#34;m&#34;&gt;1183448&lt;/span&gt; Apr &lt;span class=&#34;m&#34;&gt;18&lt;/span&gt; 09:14 /bin/bash*
+-rwxr-xr-x &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; root root   &lt;span class=&#34;m&#34;&gt;39256&lt;/span&gt; Sep  &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;2019&lt;/span&gt; /bin/false*
+lrwxrwxrwx &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; root root       &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; Nov &lt;span class=&#34;m&#34;&gt;29&lt;/span&gt; 23:30 /bin/sh -&amp;gt; dash*
+-rwxr-xr-x &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; root root   &lt;span class=&#34;m&#34;&gt;14640&lt;/span&gt; Jul &lt;span class=&#34;m&#34;&gt;14&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;2021&lt;/span&gt; /usr/sbin/nologin*
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;change-property&#34;&gt;Change property&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s see how to change the properties of an existing user.&lt;/p&gt;
+&lt;p&gt;All of the information about a user is stored in the following files:&lt;code&gt; /etc/passwd&lt;/code&gt;, &lt;code&gt;/etc/shadow&lt;/code&gt; that can be displayed only by root, &lt;code&gt;/etc/group&lt;/code&gt; and &lt;code&gt;/etc/gshadow&lt;/code&gt;; there&amp;rsquo;s also &lt;code&gt;/etc/login.defs&lt;/code&gt; which contains the default options of a new user (if they are not specified when creating that user). Such an example is the fact that it&amp;rsquo;s not explicitly indicated if the home directory is created or not. The shell commands that create, change or remove a user or a group are in fact only modifying these files.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;usermod&lt;/code&gt; is the shell command used to change the properties of an existing user. It uses the same options as &lt;code&gt;useradd&lt;/code&gt; just so that instead of creating a user with the specified options, it changes those options.&lt;/p&gt;
+&lt;p&gt;For example change or add a comment for an existing user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo usermod -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;cmt for user 7&amp;#34;&lt;/span&gt; u7
+ubuntu@ip-172-31-87-26:~$ tail -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; /etc/passwd
+u5:x:1007:1007::/home/u5:/bin/bash
+u6:x:1008:1008::/home/u6:/bin/sh
+u7:x:1009:1009:cmt &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; user 7:/home/u7:/bin/sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;To change the primary group of user use, the &lt;code&gt;-g&lt;/code&gt; option and the name. Note that the group name, in this case &lt;code&gt;u6&lt;/code&gt;, must already exist.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ groups u7
+u7 : u7
+ubuntu@ip-172-31-87-26:~$ sudo usermod -g u6 u7
+ubuntu@ip-172-31-87-26:~$ groups u7
+u7 : u6
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;usermod&lt;/code&gt; does not delete the group &lt;code&gt;u7&lt;/code&gt;, and you can set it back.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo usermod -g u7 u7
+ubuntu@ip-172-31-87-26:~$ groups u7
+u7 : u7
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;If you want to add the user to some secondary groups use the &lt;code&gt;-G&lt;/code&gt; option. Each group is separated from the next one by a comma, with no intervening whitespace.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ groups u6
+u6 : u6 adm sudo video
+ubuntu@ip-172-31-87-26:~$ sudo usermod -G dip,lxd u6
+ubuntu@ip-172-31-87-26:~$ groups u6
+u6 : u6 dip lxd
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Note that the primary group was not modified and the user belongs only to those 2 groups as secondary groups. If the user is currently a member of a group, which is not specified as an option of &lt;code&gt;-G&lt;/code&gt;, then the user will be removed from that group. Or in other words, after running the command, the user will be a member of those groups only, in this case &lt;code&gt;dip&lt;/code&gt; and &lt;code&gt;lxd&lt;/code&gt; groups. The user is not anymore a member of &lt;code&gt;adm&lt;/code&gt;, &lt;code&gt;video&lt;/code&gt; or &lt;code&gt;sudo&lt;/code&gt;. This behavior can be changed via &lt;code&gt;-a&lt;/code&gt; option, which appends the user to the current secondary group list.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo usermod -aG plugdev,audio u6
+ubuntu@ip-172-31-87-26:~$ groups u6
+u6 : u6 audio dip plugdev lxd
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;delete-user&#34;&gt;Delete user&lt;/h2&gt;
+&lt;p&gt;In Linux you can delete a user account and all its associated files by using the &lt;code&gt;userdel&lt;/code&gt; command. It also deletes the group with the same name as the user, only if no other user is a member of that group. Let&amp;rsquo;s delete an account.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ ls /home
+u2  ubuntu  uu3
+ubuntu@ip-172-31-87-26:~$ sudo userdel u2
+ubuntu@ip-172-31-87-26:~$ ls /home
+u2  ubuntu  uu3
+ubuntu@ip-172-31-87-26:~$ grep u2 /etc/passwd
+ubuntu@ip-172-31-87-26:~$ 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The account &lt;code&gt;u2&lt;/code&gt;  was removed, but its home directory is still there. To remove a user along with its home directory and mail spool use the &lt;code&gt;-r&lt;/code&gt; option.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo usermod -g u4 u3
+ubuntu@ip-172-31-87-26:~$ groups u3
+u3 : u4
+ubuntu@ip-172-31-87-26:~$ ls ~/..
+u2  ubuntu  uu3
+ubuntu@ip-172-31-87-26:~$ sudo userdel -r u3
+userdel: group u3 not removed because it is not the primary group of user u3.
+userdel: u3 mail spool &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;/var/mail/u3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; not found
+ubuntu@ip-172-31-87-26:~$ ls /home
+u2  ubuntu
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The user was removed. It&amp;rsquo;s home directory was removed, but the group with the same name called &lt;code&gt;u3&lt;/code&gt; was not removed because it was not the primary group of the user &lt;code&gt;u3&lt;/code&gt;; and the user &lt;code&gt;u3&lt;/code&gt;&amp;rsquo;s primary group &lt;code&gt;u4&lt;/code&gt; was also not removed, because it is the primary group of user &lt;code&gt;u4&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ cat /etc/group &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep u&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;1-9&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+audio:x:29:ubuntu,u6
+dip:x:30:ubuntu,u6
+plugdev:x:46:ubuntu,u6
+lxd:x:118:ubuntu,u6
+u1:x:1003:
+u3:x:1005:
+u4:x:1006:
+u5:x:1007:
+u6:x:1008:
+u7:x:1009:
+ubuntu@ip-172-31-87-26:~$ groups u4
+u4 : u4
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Note that the command didn&amp;rsquo;t delete any other files that belong to the user and are located in other places; you have to search for and delete them manually.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As with &lt;code&gt;useradd&lt;/code&gt;, &lt;code&gt;userdel&lt;/code&gt; is a low level utility, but Debian and Ubuntu distributions have a friendlier command called &lt;code&gt;deluser&lt;/code&gt;. It just uses &lt;code&gt;userdel&lt;/code&gt; as a backend.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;create-admin-user&#34;&gt;Create admin user&lt;/h2&gt;
+&lt;p&gt;A common administrative task is to give the user the possibility to run administrative commands as root. By default only the user created at system installation time can run commands as root by prefixing them with &lt;code&gt;sudo&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There are 2 predefined group names: &lt;code&gt;sudo&lt;/code&gt; on debian and ubuntu based distributions (BTW in older versions of ubuntu this group&amp;rsquo;s name was &lt;code&gt;admin&lt;/code&gt;.) and &lt;code&gt;wheel&lt;/code&gt; on redhat and centos based distributions. If the user is part of this group then it can run commands as root.&lt;/p&gt;
+&lt;p&gt;For example, I’m creating a new user called &lt;code&gt;u8&lt;/code&gt; and then check if it can run commands as root:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -m u8
+ubuntu@ip-172-31-87-26:~$ sudo passwd u8
+New password: 
+Retype new password: 
+passwd: password updated successfully
+ubuntu@ip-172-31-87-26:~$ su u8
+Password: 
+$ id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1010&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;u8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1011&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;u8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1011&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;u8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And now I&amp;rsquo;m &lt;code&gt;u8&lt;/code&gt;, Let&amp;rsquo;s see if it can run administrative commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat /etc/shadow
+cat: /etc/shadow: Permission denied
+$ sudo cat /etc/shadow
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; password &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; u8: 
+u8 is not in the sudoers file.  This incident will be reported.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And it&amp;rsquo;s not allowed. I&amp;rsquo;m logging out by &lt;code&gt;exit&lt;/code&gt;. You can see that user &lt;code&gt;u8&lt;/code&gt; only has a &lt;code&gt;$&lt;/code&gt; as prompt, that because we haven&amp;rsquo;t set shell for &lt;code&gt;u8&lt;/code&gt;. Now set it&amp;rsquo;s shell as &lt;code&gt;/bin/bash&lt;/code&gt; and add &lt;code&gt;u8&lt;/code&gt; in group &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo usermod -s /bin/bash -aG sudo u8
+ubuntu@ip-172-31-87-26:~$ su u8
+Password: 
+To run a &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; as administrator &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;user &lt;span class=&#34;s2&#34;&gt;&amp;#34;root&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, use &lt;span class=&#34;s2&#34;&gt;&amp;#34;sudo &amp;lt;command&amp;gt;&amp;#34;&lt;/span&gt;.
+See &lt;span class=&#34;s2&#34;&gt;&amp;#34;man sudo_root&amp;#34;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; details.
+
+u8@ip-172-31-87-26:/home/ubuntu$ id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1010&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;u8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1011&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;u8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1011&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;u8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+u8@ip-172-31-87-26:/home/ubuntu$ sudo cat /etc/shadow &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; password &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; u8: 
+u6:!:19111:0:99999:7:::
+u7:!:19111:0:99999:7::19357:
+u8:&lt;span class=&#34;nv&#34;&gt;$6$EEryHMMe70k6tYzh$jgHahiEp89iwwX&lt;/span&gt;/ngdU0WNHg1Vjci.6lHoqY05omT.5s/VIEob2gpxSlo41KKrDmnpanvIwL11uxZpyc8zgvU1:19111:0:99999:7:::
+u8@ip-172-31-87-26:/home/ubuntu$ &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1000&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ubuntu&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,4&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;adm&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,20&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dialout&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,24&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;cdrom&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,25&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;floppy&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,27&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;sudo&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,29&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;audio&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,30&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dip&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,44&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;video&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,46&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;plugdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,117&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;netdev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,118&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lxd&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And It was allowed to run the command as root. That&amp;rsquo;s because the user belongs to the sudo group.&lt;/p&gt;
+&lt;h1 id=&#34;group&#34;&gt;Group&lt;/h1&gt;
+&lt;p&gt;To create a new group use the &lt;code&gt;groupadd&lt;/code&gt; command. In its simplest form you just specify the group name as argument.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo addgroup g1
+Adding group &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;g1&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;GID 1004&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; ...
+Done.
+ubuntu@ip-172-31-87-26:~$ sudo tail -n &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; /etc/group
+u3:x:1010:
+u8:x:1011:
+g1:x:1004:
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And the group was added to the group file. Once the group is created, you can start adding users to the group; use the &lt;code&gt;useradd&lt;/code&gt; or &lt;code&gt;usermod&lt;/code&gt; command with the &lt;code&gt;-G&lt;/code&gt; option.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo useradd -G g1 u9
+ubuntu@ip-172-31-87-26:~$ groups u9
+u9 : u9 g1
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;To change the name of the group, used the group &lt;code&gt;groupmod&lt;/code&gt; command with &lt;code&gt;-n&lt;/code&gt; option and the new name.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo groupmod -n g2 g1
+ubuntu@ip-172-31-87-26:~$ groups u9
+u9 : u9 g2
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;To delete a group run the &lt;code&gt;groupdel&lt;/code&gt; command followed by the groupname.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo groupdel g2
+ubuntu@ip-172-31-87-26:~$ groups u9
+u9 : u9
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;On success, the groupdel command does not print any output. if the group plan to remove doesn&amp;rsquo;t exist, the system will print an error message saying that the group does not exist.&lt;/p&gt;
+&lt;p&gt;Note that it&amp;rsquo;s not possible to move the primary group of an existing user without first removing the user.&lt;/p&gt;
+&lt;h1 id=&#34;user-account-monitoring&#34;&gt;User Account Monitoring&lt;/h1&gt;
+&lt;p&gt;User account monitoring, which means finding out who&amp;rsquo;s logged into the system and what the users do. Because in Linux you can log in as a user and become another one by running the &lt;code&gt;su&lt;/code&gt; command that there are two concepts: the real user ID and the effective user ID.&lt;/p&gt;
+&lt;p&gt;The real user ID or are RUID is the id of the user who initially logs in and never changes. On the other hand, EUID or effective user ID is the id of the user who executes a command in the shell. For example, I log in as ubuntu. This is the real user ID, but I can become &lt;code&gt;root&lt;/code&gt; by running &lt;code&gt;sudo su&lt;/code&gt;. Now, the effective user ID is root.&lt;/p&gt;
+&lt;h2 id=&#34;whoami-id-command&#34;&gt;&lt;code&gt;whoami&lt;/code&gt;, &lt;code&gt;id&lt;/code&gt; command&lt;/h2&gt;
+&lt;p&gt;the &lt;code&gt;whoami&lt;/code&gt; command, prints out the user name of the effective user ID who is root in this case. It’s equivalent to &lt;code&gt;id -un&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ whoami
+ubuntu
+ubuntu@ip-172-31-87-26:~$ sudo su
+root@ip-172-31-87-26:/home/ubuntu# whoami
+root
+root@ip-172-31-87-26:/home/ubuntu# id -un
+root
+root@ip-172-31-87-26:/home/ubuntu# &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+ubuntu@ip-172-31-87-26:~$ id -un
+ubuntu
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Another useful command is &lt;code&gt;id&lt;/code&gt;, which prints the effective user and its groups.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ubuntu@ip-172-31-87-26:~$ sudo su
+root@ip-172-31-87-26:/home/ubuntu# id
+&lt;span class=&#34;nv&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;root&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;who-command&#34;&gt;&lt;code&gt;who&lt;/code&gt; command&lt;/h2&gt;
+&lt;p&gt;To display the name of the real user id run &lt;code&gt;who&lt;/code&gt;. The name of the user who initially logged in is &lt;code&gt;ubuntu&lt;/code&gt;. If you want to find out who&amp;rsquo;s logged into your system run &lt;code&gt;who&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;What the &lt;code&gt;who&lt;/code&gt; command does is parsing and displaying the contents of &lt;code&gt;/var/run/utmp&lt;/code&gt;. This is the file which logs the current users on the system. There is also another file &lt;code&gt;/var/log/wtmp&lt;/code&gt; which is like history for the &lt;code&gt;utmp&lt;/code&gt; file, it maintains the logs of all logged in and logged out users in the past. Each time a user logs into the system, a record for that session is written to a file &lt;code&gt;/var/log/wtmp&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@ip-172-31-87-26:/home/ubuntu# who
+ubuntu   pts/0        2021-04-29 06:51 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;174.139.202.93&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;At this moment, there is only one user logged in. We will discuss this again when we reach the &amp;ldquo;Network Management in Linux&amp;rdquo; topic.&lt;/p&gt;
+&lt;p&gt;To display the IP address of the logged in user and the time when it logged in, add &lt;code&gt;-H&lt;/code&gt; option.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@ip-172-31-87-26:/home/ubuntu# who -H
+NAME     LINE         TIME             COMMENT
+ubuntu   pts/0        2021-04-29 06:51 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;174.139.202.93&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can also add the &lt;code&gt;-a&lt;/code&gt; option to display more information.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@ip-172-31-87-26:/home/ubuntu# who -a
+           system boot  2021-04-14 01:53
+LOGIN      ttyS0        2021-04-14 01:54               &lt;span class=&#34;m&#34;&gt;578&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;tyS0
+LOGIN      tty1         2021-04-14 01:54               &lt;span class=&#34;m&#34;&gt;616&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;tty1
+           run-level &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;  2021-04-14 01:54
+ubuntu   + pts/0        2021-04-29 06:51   .        &lt;span class=&#34;m&#34;&gt;138433&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;174.139.202.93&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+           pts/1        2021-04-22 09:38            &lt;span class=&#34;m&#34;&gt;103062&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ts/1  &lt;span class=&#34;nv&#34;&gt;term&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;w-command&#34;&gt;&lt;code&gt;w&lt;/code&gt; command&lt;/h2&gt;
+&lt;p&gt;For a little more context about users, the simple &lt;code&gt;w&lt;/code&gt; command provides a list of who&amp;rsquo;s logged in and what they are doing, what&amp;rsquo;s their current process.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@ip-172-31-87-26:/home/ubuntu# w
+ 09:32:12 up &lt;span class=&#34;m&#34;&gt;15&lt;/span&gt; days,  7:38,  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; user,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+ubuntu   pts/0    174.139.202.93   06:51    0.00s  0.24s  0.01s sshd: ubun
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The header shows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the current time,&lt;/li&gt;
+&lt;li&gt;how long the system has been running, 15 days 7 hours and 38 minutes.&lt;/li&gt;
+&lt;li&gt;how many users are currently logged in,&lt;/li&gt;
+&lt;li&gt;the system load average for the past 1, and 15 minutes. Notice that the values for these load averages should be below 1 or there&amp;rsquo;s a problem.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The same information can be displayed running the &lt;code&gt;uptime&lt;/code&gt; command.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@ip-172-31-87-26:/home/ubuntu# uptime
+ 09:34:20 up &lt;span class=&#34;m&#34;&gt;15&lt;/span&gt; days,  7:40,  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; user,  load average: 0.00, 0.00, 0.00
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;last&#34;&gt;&lt;code&gt;last&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;last&lt;/code&gt; is very useful when you need to track users activity or investigate a possible security breach. It shows a listing of the last logged in users.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@ip-172-31-87-26:/home/ubuntu# last &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+ubuntu   pts/0        174.139.202.93   Fri Apr &lt;span class=&#34;m&#34;&gt;29&lt;/span&gt; 06:51   still logged in
+ubuntu   pts/0        174.139.202.93   Thu Apr &lt;span class=&#34;m&#34;&gt;28&lt;/span&gt; 03:37 - 06:16  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;02:39&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+ubuntu   pts/0        174.139.202.93   Wed Apr &lt;span class=&#34;m&#34;&gt;27&lt;/span&gt; 02:52 - 05:56  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;03:03&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+ubuntu   pts/0        174.139.202.93   Tue Apr &lt;span class=&#34;m&#34;&gt;26&lt;/span&gt; 02:13 - 05:09  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;02:56&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+ubuntu   pts/0        174.139.202.93   Tue Apr &lt;span class=&#34;m&#34;&gt;26&lt;/span&gt; 02:09 - 02:12  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;00:02&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;last&lt;/code&gt; reads the &lt;code&gt;/var/log/wtmp&lt;/code&gt; file, and prints information about the logins and logouts of the users. Records are printed in reverse order, starting from the most recent ones. And if you want to restrict the output to a specific user give that username as argument to last, for example,&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@ip-172-31-87-26:/home/ubuntu# last reboot
+reboot   system boot  5.11.0-1022-aws  Thu Apr &lt;span class=&#34;m&#34;&gt;14&lt;/span&gt; 01:53   still running
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The command has some options that could prove useful sometimes that can be find more information about them in the &lt;code&gt;man&lt;/code&gt; page of the command.&lt;/p&gt;
+&lt;h1 id=&#34;compendium&#34;&gt;Compendium&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## Account Management&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;##########################&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;## IMPORTANT FILES&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# /etc/passwd # =&amp;gt; users and info: username:x:uid:gid:comment:home_directory:login_shell&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# /etc/shadow # =&amp;gt; users&amp;#39; passwords&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# /etc/group # =&amp;gt; groups&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# creating a user account&lt;/span&gt;
+useradd &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;OPTIONS&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; username
+&lt;span class=&#34;c1&#34;&gt;# OPTIONS:&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -m =&amp;gt; create home directory&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -d directory =&amp;gt; specify another home directory&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -c &amp;#34;comment&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -s shell&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -G =&amp;gt; specify the secondary groups (must exist)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -g =&amp;gt; specify the primary group (must exist)&lt;/span&gt;
+ 
+Exemple:
+useradd -m -d /home/john -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;C++ Developer&amp;#34;&lt;/span&gt; -s /bin/bash -G sudo,adm,mail john
+ 
+&lt;span class=&#34;c1&#34;&gt;# changing a user account&lt;/span&gt;
+usermod &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;OPTIONS&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; username &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; uses the same options as useradd&lt;/span&gt;
+Example:
+usermod -aG developers,managers john &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; adding the user to two secondary groups&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# deleting a user account&lt;/span&gt;
+userdel -r username &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; -r removes user&amp;#39;s home directory as well&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# creating a group&lt;/span&gt;
+groupadd group_name
+ 
+&lt;span class=&#34;c1&#34;&gt;# deleting a group&lt;/span&gt;
+groupdel group_name
+ 
+&lt;span class=&#34;c1&#34;&gt;# displaying all groups&lt;/span&gt;
+cat /etc/groups
+ 
+&lt;span class=&#34;c1&#34;&gt;# displaying the groups a user belongs to&lt;/span&gt;
+groups
+ 
+&lt;span class=&#34;c1&#34;&gt;# creating admin users&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# add the user to sudo group in Ubuntu and wheel group in CentOS&lt;/span&gt;
+usermod -aG sudo john
+ 
+ 
+&lt;span class=&#34;c1&#34;&gt;## Monitoring Users ##&lt;/span&gt;
+who -H &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; displays logged in users&lt;/span&gt;
+id &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; displays the current user and its groups&lt;/span&gt;
+whoami &lt;span class=&#34;c1&#34;&gt;# =&amp;gt; displays EUID&lt;/span&gt;
+ 
+&lt;span class=&#34;c1&#34;&gt;# listing who’s logged in and what’s their current process.&lt;/span&gt;
+w
+uptime
+ 
+&lt;span class=&#34;c1&#34;&gt;# printing information about the logins and logouts of the users&lt;/span&gt;
+last
+last -u username
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>Linux Operation System III (File System 2)</title>
         <link>https://wanghaoming177.netlify.app/p/linux-operation-system-iii-file-system-2/</link>
         <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
