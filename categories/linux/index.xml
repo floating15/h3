@@ -7,11 +7,11 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Linux Operation System IIV (User Account Management)</title>
-        <link>https://wanghaoming177.netlify.app/p/linux-operation-system-iiv-user-account-management/</link>
+        <title>Linux Operation System IV (User Account Management)</title>
+        <link>https://wanghaoming177.netlify.app/p/linux-operation-system-iv-user-account-management/</link>
         <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://wanghaoming177.netlify.app/p/linux-operation-system-iiv-user-account-management/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/linux-operation-system-iv-user-account-management/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;p&gt;All operations in this series of blogs (Linux Operation System) are done in AWS Elastic Compute Cloud (EC2).&lt;/p&gt;
