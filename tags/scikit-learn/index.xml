@@ -6,12 +6,23 @@
         <description>Recent content in scikit-learn on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 15 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Scikit-Learn I (Supervised Learning)</title>
-        <link>https://wanghaoming177.netlify.app/p/scikit-learn-i-supervised-learning/</link>
+        <lastBuildDate>Sat, 21 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Scikit-Learn II (Unsupervised Learning)</title>
+        <link>https://wanghaoming177.netlify.app/p/scikit-learn-ii-unsupervised-learning/</link>
+        <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/p/scikit-learn-ii-unsupervised-learning/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Machine Learning I (Supervised Learning by Scikit-Learn)</title>
+        <link>https://wanghaoming177.netlify.app/p/machine-learning-i-supervised-learning-by-scikit-learn/</link>
         <pubDate>Sun, 15 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://wanghaoming177.netlify.app/p/scikit-learn-i-supervised-learning/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/machine-learning-i-supervised-learning-by-scikit-learn/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;/blockquote&gt;
