@@ -11,7 +11,7 @@
  Classification k-Nearest Neighbors We have a set of labeled data and we want to build a classifier that takes unlabeled data as input and outputs a label. We first need choose a type of classifier and it needs to learn from the already labeled data. For this reason, we call the already labeled data the training data.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/machine-learning-i-supervised-learning-by-scikit-learn/'>
 <meta property='og:site_name' content='Haoming Wang'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='scikit-learn' /><meta property='article:published_time' content='2021-08-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-08-15T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='scikit-learn' /><meta property='article:published_time' content='2022-02-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-02-28T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Machine Learning I (Supervised Learning by Scikit-Learn)">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  Classification k-Nearest Neighbors We have a set of labeled data and we want to build a classifier that takes unlabeled data as input and outputs a label. We first need choose a type of classifier and it needs to learn from the already labeled data. For this reason, we call the already labeled data the training data.">
@@ -339,7 +339,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 15, 2021</time>
+                <time class="article-time--published">Feb 28, 2022</time>
             </div>
         
 
@@ -2387,7 +2387,7 @@ Tuned Model Parameters: {'SVM__C': 10, 'SVM__gamma': 0.1}
 </div><pre tabindex="0"><code>Tuned ElasticNet Alpha: {'elasticnet__l1_ratio': 1.0}
 Tuned ElasticNet R squared: 0.8862016570888217
 </code></pre><h1 id="compendium">Compendium</h1>
-<p>sklearn.neighbors</p>
+<h2 id="sklearnneighbors">sklearn.neighbors</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2402,7 +2402,9 @@ Tuned ElasticNet R squared: 0.8862016570888217
 		<span class="o">.</span><span class="n">predict</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>sklearn.linear_model</p>
+</div><h2 id="sklearnlinear_model">sklearn.linear_model</h2>
+<p><a class="link" href="https://scikit-learn.org/stable/modules/classes.html?highlight=linear_model#module-sklearn.linear_model"  target="_blank" rel="noopener"
+    >sklearn.linear_model</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2434,6 +2436,11 @@ Tuned ElasticNet R squared: 0.8862016570888217
 </span><span class="lnt">27
 </span><span class="lnt">28
 </span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sklearn</span><span class="o">.</span><span class="n">linear_model</span>
@@ -2462,12 +2469,17 @@ Tuned ElasticNet R squared: 0.8862016570888217
 		<span class="o">.</span><span class="n">l1_ratio</span>
 
 	<span class="n">LogisticRegression</span><span class="p">()</span>
-		<span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+		<span class="o">.</span><span class="n">fit</span><span class="p">()</span> <span class="c1"># method</span>
 		<span class="o">.</span><span class="n">predict</span><span class="p">()</span>
 		<span class="o">.</span><span class="n">predict_proba</span><span class="p">()</span>
+		<span class="n">fit_intercept</span><span class="p">,</span> <span class="c1"># argument</span>
+		<span class="n">penalty</span>
+		<span class="n">C</span><span class="p">,</span>
+		<span class="n">mutli_class</span><span class="p">,</span>
+		<span class="n">solver</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>sklearn.metrics</p>
+</div><h2 id="sklearnmetrics">sklearn.metrics</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2494,7 +2506,19 @@ Tuned ElasticNet R squared: 0.8862016570888217
 	<span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_prob</span><span class="p">),</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>sklearn.model_selection</p>
+</div><h2 id="sklearnmodel_selection">sklearn.model_selection</h2>
+<p><a class="link" href="https://scikit-learn.org/stable/modules/classes.html?highlight=model_selection#module-sklearn.model_selection"  target="_blank" rel="noopener"
+    >sklearn.model_selection</a></p>
+<ul>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html?highlight=train_test_split#sklearn.model_selection.train_test_split"  target="_blank" rel="noopener"
+    >train_test_split</a></li>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html?highlight=cross_val_score#sklearn.model_selection.cross_val_score"  target="_blank" rel="noopener"
+    >cross_val_score</a></li>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html?highlight=gridsearchcv#sklearn.model_selection.GridSearchCV"  target="_blank" rel="noopener"
+    >GridSearchCV</a></li>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html?highlight=randomizedsearchcv#sklearn.model_selection.RandomizedSearchCV"  target="_blank" rel="noopener"
+    >RandomizedSearchCV</a></li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2511,6 +2535,7 @@ Tuned ElasticNet R squared: 0.8862016570888217
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sklearn</span><span class="o">.</span><span class="n">model_selection</span>
@@ -2522,6 +2547,7 @@ Tuned ElasticNet R squared: 0.8862016570888217
 		<span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 		<span class="o">.</span><span class="n">best_params_</span>
 		<span class="o">.</span><span class="n">best_score_</span>
+		<span class="o">.</span><span class="n">best_estimator_</span>
 
 	<span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">cv</span><span class="p">)</span>
 		<span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -2529,7 +2555,7 @@ Tuned ElasticNet R squared: 0.8862016570888217
 		<span class="o">.</span><span class="n">best_score_</span>		
 </code></pre></td></tr></table>
 </div>
-</div><p>sklearn.impute</p>
+</div><h2 id="sklearnimpute">sklearn.impute</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2544,7 +2570,15 @@ Tuned ElasticNet R squared: 0.8862016570888217
 		<span class="o">.</span><span class="n">strategy</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>sklearn.pipeline</p>
+</div><h2 id="sklearnpipeline">sklearn.pipeline</h2>
+<p><a class="link" href="https://scikit-learn.org/stable/modules/classes.html?highlight=pipeline#module-sklearn.pipeline"  target="_blank" rel="noopener"
+    >sklearn.pipeline</a></p>
+<ul>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html?highlight=pipeline#sklearn.pipeline.Pipeline"  target="_blank" rel="noopener"
+    >Pipeline</a></li>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline"  target="_blank" rel="noopener"
+    >make_pipeline</a></li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2552,6 +2586,8 @@ Tuned ElasticNet R squared: 0.8862016570888217
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">sklearn</span><span class="o">.</span><span class="n">pipeline</span> 
@@ -2559,6 +2595,8 @@ Tuned ElasticNet R squared: 0.8862016570888217
 		<span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 		<span class="o">.</span><span class="n">predict</span><span class="p">()</span>
 		<span class="o">.</span><span class="n">score</span><span class="p">()</span>
+
+	<span class="n">make_pipeline</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2637,6 +2675,18 @@ Tuned ElasticNet R squared: 0.8862016570888217
     <h2 class="section-title">Related contents</h2>
     <div class="related-contents">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/machine-learning-iii-linear-classifiers/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Machine Learning III (Linear Classifiers)</h2>
+        </div>
+    </a>
+</article>
             
                 
 <article class="">
@@ -2833,7 +2883,16 @@ Tuned ElasticNet R squared: 0.8862016570888217
         </li>
       </ol>
     </li>
-    <li><a href="#compendium">Compendium</a></li>
+    <li><a href="#compendium">Compendium</a>
+      <ol>
+        <li><a href="#sklearnneighbors">sklearn.neighbors</a></li>
+        <li><a href="#sklearnlinear_model">sklearn.linear_model</a></li>
+        <li><a href="#sklearnmetrics">sklearn.metrics</a></li>
+        <li><a href="#sklearnmodel_selection">sklearn.model_selection</a></li>
+        <li><a href="#sklearnimpute">sklearn.impute</a></li>
+        <li><a href="#sklearnpipeline">sklearn.pipeline</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>

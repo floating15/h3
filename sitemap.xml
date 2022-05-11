@@ -5,16 +5,34 @@
     <loc>https://wanghaoming177.netlify.app/</loc>
     <lastmod>2022-04-09T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://wanghaoming177.netlify.app/categories/</loc>
+    <lastmod>2022-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/categories/ml/</loc>
+    <lastmod>2022-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/machine-learning-iii-linear-classifiers/</loc>
+    <lastmod>2022-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/post/</loc>
+    <lastmod>2022-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/tags/scikit-learn/</loc>
+    <lastmod>2022-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/tags/</loc>
+    <lastmod>2022-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/machine-learning-ii-unsupervised-learning/</loc>
+    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/machine-learning-i-supervised-learning-by-scikit-learn/</loc>
+    <lastmod>2022-02-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://wanghaoming177.netlify.app/tags/big-data/</loc>
     <lastmod>2022-02-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://wanghaoming177.netlify.app/categories/</loc>
-    <lastmod>2022-02-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://wanghaoming177.netlify.app/categories/data_science/</loc>
-    <lastmod>2022-02-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/post/</loc>
     <lastmod>2022-02-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/tags/pyspark/</loc>
@@ -22,21 +40,6 @@
   </url><url>
     <loc>https://wanghaoming177.netlify.app/p/pyspark-and-large-dataset-i/</loc>
     <lastmod>2022-02-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/tags/</loc>
-    <lastmod>2022-02-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/categories/ml/</loc>
-    <lastmod>2021-08-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/p/machine-learning-ii-unsupervised-learning/</loc>
-    <lastmod>2021-08-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/tags/scikit-learn/</loc>
-    <lastmod>2021-08-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/p/machine-learning-i-supervised-learning-by-scikit-learn/</loc>
-    <lastmod>2021-08-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/categories/kaggle/</loc>
     <lastmod>2021-07-23T00:00:00+00:00</lastmod>
@@ -49,6 +52,15 @@
   </url><url>
     <loc>https://wanghaoming177.netlify.app/p/linux-operation-system-iv-user-account-management/</loc>
     <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/tags/matlab/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/p/matlab-in-engineering-i-array-operations/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wanghaoming177.netlify.app/categories/sci_compute/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/p/linux-operation-system-iii-file-system-2/</loc>
     <lastmod>2021-05-01T00:00:00+00:00</lastmod>
@@ -151,8 +163,6 @@
     <loc>https://wanghaoming177.netlify.app/categories/financial_engineering/</loc>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/links/</loc>
-  </url><url>
-    <loc>https://wanghaoming177.netlify.app/categories/sci_compute/</loc>
   </url><url>
     <loc>https://wanghaoming177.netlify.app/search/</loc>
   </url><url>

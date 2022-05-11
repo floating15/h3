@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Loss Functions Decision boundary A decision boundary tells us what class our classifier will predict for any value of x. The dividing line between the two regions is called the decision boundary.
+The decision boundary is considered linear because it looks like a line. This definition extends to more than 2 features as well.'><title>Machine Learning III (Linear Classifiers)</title>
+
+<link rel='canonical' href='https://wanghaoming177.netlify.app/p/machine-learning-iii-linear-classifiers/'>
+
+<link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='Machine Learning III (Linear Classifiers)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Loss Functions Decision boundary A decision boundary tells us what class our classifier will predict for any value of x. The dividing line between the two regions is called the decision boundary.
+The decision boundary is considered linear because it looks like a line. This definition extends to more than 2 features as well.'>
+<meta property='og:url' content='https://wanghaoming177.netlify.app/p/machine-learning-iii-linear-classifiers/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='scikit-learn' /><meta property='article:published_time' content='2022-03-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-03-27T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Machine Learning III (Linear Classifiers)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Loss Functions Decision boundary A decision boundary tells us what class our classifier will predict for any value of x. The dividing line between the two regions is called the decision boundary.
+The decision boundary is considered linear because it looks like a line. This definition extends to more than 2 features as well.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/IMG_0770_hu86b91b9497cdda82d5c488540c7342b2_101927_300x0_resize_q75_box.jpg" width="300"
+                            height="273" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌏</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/floating15'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Linkedin"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://follow.it/haoming-wang?action=followPub'
+                        target="_blank"
+                        title="r-mail"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mailbox" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
+  <path d="M12 11v-8h4l2 2l-2 2h-4" />
+  <path d="M6 15h1" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#FF1C02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#35FF02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#02EAFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#0223FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#F402FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/ml/" style="background-color: false; color: false;">
+                Machine Learning
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/machine-learning-iii-linear-classifiers/">Machine Learning III (Linear Classifiers)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 27, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    27 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<h1 id="loss-functions">Loss Functions</h1>
+<h2 id="decision-boundary">Decision boundary</h2>
+<p>A decision boundary tells us what class our classifier will predict for any value of x. The dividing line between the two regions is called the <strong>decision boundary</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091057552.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The decision boundary is considered linear because it looks like a line. This definition extends to more than 2 features as well. With 5 features, the space of possible x-values is 5-dimensional. In that case, the boundary would be a higher-dimensional &ldquo;hyperplane&rdquo; cutting the space into two halves. A nonlinear boundary is any other type of boundary. Sometimes this leads to non-contiguous regions of a certain prediction, like in the figure.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span><span class="p">,</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span><span class="p">,</span> <span class="n">LinearSVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="k">def</span> <span class="nf">make_meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.02</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Create a mesh of points to plot in
+</span><span class="s2">
+</span><span class="s2">    Parameters
+</span><span class="s2">    ----------
+</span><span class="s2">    x: data to base x-axis meshgrid on
+</span><span class="s2">    y: data to base y-axis meshgrid on
+</span><span class="s2">    h: stepsize for meshgrid, optional
+</span><span class="s2">
+</span><span class="s2">    Returns
+</span><span class="s2">    -------
+</span><span class="s2">    xx, yy : ndarray
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span>
+
+
+<span class="k">def</span> <span class="nf">plot_contours</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Plot the decision boundaries for a classifier.
+</span><span class="s2">
+</span><span class="s2">    Parameters
+</span><span class="s2">    ----------
+</span><span class="s2">    ax: matplotlib axes object
+</span><span class="s2">    clf: a classifier
+</span><span class="s2">    xx: meshgrid ndarray
+</span><span class="s2">    yy: meshgrid ndarray
+</span><span class="s2">    params: dictionary of params to pass to contourf, optional
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># import some data to play with</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="c1"># Take the first two features. We could avoid this by using a two-dim dataset</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># SVM regularization parameter</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span> <span class="n">LinearSVC</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(),</span> <span class="n">KNeighborsClassifier</span><span class="p">())</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">)</span>
+
+<span class="c1"># title for the plots</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&#34;LogisticRegression&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;LinearSVC&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;SVC&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;KNeighborsClassifier&#34;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Set-up 2x2 grid for plotting.</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">X0</span><span class="p">,</span> <span class="n">X1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">make_meshgrid</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">clf</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">titles</span><span class="p">,</span> <span class="n">sub</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="n">plot_contours</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&#34;k&#34;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">yy</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Sepal length&#34;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Sepal width&#34;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091051849.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="coefficients">Coefficients</h2>
+<p>Let&rsquo;s create some numpy arrays <code>x</code> and <code>y</code>. To take the dot product between them, we need to multiply them element-wise. The result is 0 (from 0 times 3), 4 (from 1 times 4), and 10 (from 2 times 5). The sum of these numbers, also known as the <strong>dot product</strong>, is 14. A convenient notation for this in recent Python versions is the &ldquo;at&rdquo; symbol. <code>x@y</code> gives us the same result.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="nd">@y</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[ 0  4 10]
+14
+14
+</code></pre><p>Using dot products, we can express how linear classifiers make predictions. First, we compute what we&rsquo;ll call the <strong>&ldquo;raw model output&rdquo;, which is the dot product of the coefficients and the features, plus an intercept</strong>. We&rsquo;ll then take the sign of this quantity, in other words, we&rsquo;ll check if it&rsquo;s positive or negative. This is a key equation in the course. Crucially, this pattern is the same for both logistic regression and linear SVMs. In scikit-learn terms, we can say <strong>logistic regression and linear SVM have different fit functions but the same predict function</strong>. The differences in &ldquo;fit&rdquo; relate to loss functions, which are coming later.</p>
+<p>Let&rsquo;s see this equation in action with scikit-learn&rsquo;s breast cancer classification data set. We create a logistic regression object, fit it to the data, and look at the predictions on samples 10 and 20, which are 0 and 1.</p>
+<p>Let&rsquo;s now dig deeper. We can get the learned coefficients and intercept with <code>.coef_</code> and <code>.intercept_</code> attributes. Let&rsquo;s compute the raw model output for sample 10. It&rsquo;s negative: that&rsquo;s why we predict the negative class, called &ldquo;0&rdquo; in this data set. On the other hand, for sample 20 the raw model output is positive: so we predict the other class, called &ldquo;1&rdquo; in this data set.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">canc</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_breast_cancer</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">canc</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">canc</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">yp10</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">rmo10</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">coef_</span> <span class="o">@</span> <span class="n">X</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span>
+
+<span class="n">yp20</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">rmo20</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">coef_</span> <span class="o">@</span> <span class="n">X</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">+</span> <span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">yp10</span><span class="p">,</span> <span class="n">rmo10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yp20</span><span class="p">,</span> <span class="n">rmo20</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>0 [-6.40822928]
+1 [5.20936974]
+</code></pre><p><strong>In general, this is what the predict function does for any X: it computes the raw model output, checks if it&rsquo;s positive or negative, and then returns a result based on the names of the classes in your data set, in this case 0 and 1</strong>.</p>
+<h2 id="loss-function">Loss Function</h2>
+<h3 id="minimize">minimize</h3>
+<p>We have actually seen loss functions before. For example, least squares linear regression, such as scikit-learn&rsquo;s <code>LinearRegression</code> class, minimizes the sum of squares of the errors (MSE) made on our training set. Here, error is defined as the difference between the true target value and the predicted target value. The loss function is a penalty score that tells us how well the model is doing on the training data. <strong>We can think of the &ldquo;<code>fit</code>&rdquo; function as running code that minimizes the loss</strong>.</p>
+<blockquote>
+<p>Note that the <code>score</code> function provided by scikit-learn isn&rsquo;t necessarily the same thing as the loss function.</p>
+</blockquote>
+<p>The squared error from <code>LinearRegression</code> is not appropriate for classification problems, because our y-values are categories, not numbers. For classification, a natural quantity to think about is the number of errors we&rsquo;ve made. Since we&rsquo;d like to make this as small as possible, the number of errors might be a good loss function. We&rsquo;ll refer to this loss function as the <strong>0-1 loss</strong>, because it&rsquo;s defined to be either 0 (if your prediction is correct) or 1 (if your prediction is wrong). By summing this function over all training examples, we get the number of mistakes we&rsquo;ve made on the training set, since we add 1 to the total for each mistake. While the 0-1 loss is important for our conceptual journey, it turns out to be very hard to minimize it directly in practice, which is why logistic regression and SVMs don&rsquo;t use it.</p>
+<p>To try minimizing a loss function,</p>
+<ul>
+<li>import a Python package called <code>scipy.optimize.minimize</code>, which can minimize all sorts of functions.</li>
+<li>specify the first argument: the function that be minimized. For example, if we gonna minimize the function <code>y=x^3-3x^2-2x</code>:</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091357833.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ul>
+<li>specify the second argument: initial guess. Let&rsquo;s try 0.5.</li>
+<li>refer <code>.x</code> attribute to grab the value that makes the function as small as possible.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">minimize</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[2.29099446]
+</code></pre><p>We&rsquo;ll train a model on the Boston housing price data set with 0-1 loss function. For simplicity, we won&rsquo;t include an intercept in our regression model. Compare the difference between the coefficients:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># The squared error, summed over training examples</span>
+<span class="k">def</span> <span class="nf">my_loss</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="c1"># Get the true and predicted target values for example &#39;i&#39;</span>
+        <span class="n">y_i_true</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">y_i_pred</span> <span class="o">=</span> <span class="n">w</span><span class="nd">@X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_i_pred</span><span class="o">-</span><span class="n">y_i_true</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># Returns the w that makes my_loss(w) smallest</span>
+<span class="n">w_fit</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">my_loss</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w_fit</span><span class="p">)</span>
+
+<span class="c1"># Compare with scikit-learn&#39;s LinearRegression coefficients</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[-9.16299112e-02  4.86754828e-02 -3.77698794e-03  2.85635998e+00
+ -2.88057050e+00  5.92521269e+00 -7.22470732e-03 -9.67992974e-01
+  1.70448714e-01 -9.38971600e-03 -3.92421893e-01  1.49830571e-02
+ -4.16973012e-01]
+[-9.16297843e-02  4.86751203e-02 -3.77930006e-03  2.85636751e+00
+ -2.88077933e+00  5.92521432e+00 -7.22447929e-03 -9.67995240e-01
+  1.70443393e-01 -9.38925373e-03 -3.92425680e-01  1.49832102e-02
+ -4.16972624e-01]
+</code></pre><h3 id="loss-function-diagrams">loss function diagrams</h3>
+<p>We want to draw loss functions, so let&rsquo;s set up a plot with loss on the vertical axis. On the horizontal axis we&rsquo;ll plot the raw model output. Since we predict using the sign of the raw model output, the plot is divided into two halves: in the left half we predict the one class (call it -1) and in the right half we predict the other class (call it +1). For concreteness, <strong>let&rsquo;s focus on a training sample in class +1</strong>. Then, the right half represents correct predictions and the left half represents incorrect predictions.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091412750.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Let&rsquo;s now draw our <strong>0-1 loss</strong> onto the picture. By the definition of the 0-1 loss, incorrect predictions, or mistakes, get a penalty of 1 and correct predictions get no penalty.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091414283.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>It&rsquo;s important to distinguish this diagram from the decision boundary plots from earlier: here, the axes aren&rsquo;t two features, but rather the raw model output and the loss, regardless of how many features we have. Keep in mind that this picture is the loss for a particular training example: to get the whole loss, we need to sum up the contribution from all examples.</p>
+<p>Using this type of diagram, we can draw the loss from <strong>least squares linear regression</strong>. As the name implies, this is a squared or quadratic function. In linear regression, the raw model output is the prediction. Intuitively, the loss is higher as the prediction is further away from the true target value, which we&rsquo;re assuming is 1 in this case.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091416692.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>While this intuition makes sense for linear regression, it doesn&rsquo;t make sense for a linear classifier: for us, being really close to the true value doesn&rsquo;t matter, as long as we get the sign right. We can see this problem in the picture. The left arm of the curve is OK: the loss is large for wrong answers. But the right arm is problematic: if the raw model output is large and positive, the loss grows large even though we&rsquo;re correctly predicting +1. Since we&rsquo;re fitting a model by minimizing the loss, this means <strong>perfectly good models are considered &ldquo;bad&rdquo; by the loss</strong>. This is why we need specialized loss functions for classification, and can&rsquo;t just use the squared error from linear regression. Let&rsquo;s now look at the logistic loss used in logistic regression.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091419791.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>This is the <strong>logistic loss</strong>. You can think of it as a smooth version of the 0-1 loss. It has the properties we want: as you move to the right, towards the zone of correct predictions, the loss goes down. We no longer have the interpretation as the number of mistakes, but, unlike the 0-1 loss, we can minimize this easily in practice.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091420018.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>This is the hinge loss, used in SVMs. The general shape is the same as for the logistic loss: both penalize incorrect predictions. These loss function diagrams capture the essence of logistic regression and SVMs.</p>
+<p>Now we&rsquo;ll minimize the logistic loss, hinge loss and compare with scikit-learn&rsquo;s LogisticRegression (we&rsquo;ve set C to a large value to disable regularization). The sklearn breast cancer prediction dataset (first 10 features, standardized) is available as the variables <code>X</code> and <code>y</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Mathematical functions for logistic and hinge losses</span>
+<span class="k">def</span> <span class="nf">log_loss</span><span class="p">(</span><span class="n">raw_model_output</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">raw_model_output</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">hinge_loss</span><span class="p">(</span><span class="n">raw_model_output</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">raw_model_output</span><span class="p">)</span>
+
+<span class="c1"># The logistic loss, summed over training examples</span>
+<span class="k">def</span> <span class="nf">my_loss_l</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">raw_model_output</span> <span class="o">=</span> <span class="n">w</span><span class="nd">@X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">log_loss</span><span class="p">(</span><span class="n">raw_model_output</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># The logistic loss, summed over training examples</span>
+<span class="k">def</span> <span class="nf">my_loss_h</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">raw_model_output</span> <span class="o">=</span> <span class="n">w</span><span class="nd">@X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">hinge_loss</span><span class="p">(</span><span class="n">raw_model_output</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># Returns the w that makes loss smallest</span>
+<span class="n">w_fit_l</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">my_loss_l</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">x</span>
+<span class="n">w_fit_h</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">my_loss_h</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">x</span>
+
+<span class="c1"># Compare with scikit-learn&#39;s LogisticRegression</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">w_fit_l</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w_fit_h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+<span class="c1"># Create a grid of values and plot</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">log_loss</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;logistic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">hinge_loss</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;hinge&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[ 1.03592182 -1.65378492  4.08331342 -9.40923002 -1.06786489  0.07892114
+ -0.85110344 -2.44103305 -0.45285671  0.43353448]
+[ 3.16578173 -1.11720549  3.18675237 -8.64972579 -0.96748775 -0.5534664
+ -0.62756357 -1.82274064 -0.13455769  0.89649769]
+[[ 1.03731085 -1.65339037  4.08143924 -9.40788356 -1.06757746  0.07895582
+  -0.85072003 -2.44079089 -0.45271     0.43334997]]
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205091429282.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="logistic-regression">Logistic Regression</h1>
+<h2 id="regularization">Regularization</h2>
+<h3 id="regularization-reduce-the-coef">regularization reduce the coef</h3>
+<p>Regularization combats overfitting by making the model coefficients smaller. In scikit-learn, the hyperparameter &ldquo;<code>C</code>&rdquo; is the inverse of the regularization strength. In other words, larger <code>C</code> means less regularization and smaller <code>C</code> means more regularization.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Train and validaton errors initialized as empty list</span>
+<span class="n">train_errs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">valid_errs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+<span class="c1"># Loop over values of C_value</span>
+<span class="k">for</span> <span class="n">C_value</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]:</span>
+    <span class="c1"># Create LogisticRegression object and fit</span>
+    <span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">C_value</span><span class="p">)</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;C=</span><span class="si">{</span><span class="n">C_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;value of coef&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;coef&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205101235034.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The figure shows the learned coefficients of a logistic regression model with different strength of regularization. It indicates more regularization for our logistic regression model makes the coefficients smaller.</p>
+<h3 id="regularization-effect-accuracy">regularization effect accuracy</h3>
+<p>Let&rsquo;s see how regularization influences training and test accuracy. With the data set already loaded and split into train and valid sets, we instantiate a list of logistic regression models, with various <code>C</code>. We then fit these models. Next, we compute <strong>training accuracy</strong> and <strong>test accuracy</strong>. As we can see, <strong>regularization will reduce the accuracy on training data set; but will improve the accuracy on valid set within a certain range</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Train and validaton errors initialized as empty list</span>
+<span class="n">train_errs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">valid_errs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+<span class="c1"># Loop over values of C_value</span>
+<span class="k">for</span> <span class="n">C_value</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]:</span>
+    <span class="c1"># Create LogisticRegression object and fit</span>
+    <span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">C_value</span><span class="p">)</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    
+    <span class="c1"># Evaluate error rates and append to lists</span>
+    <span class="n">train_errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">valid_errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span> <span class="p">)</span>
+    
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">C_values</span><span class="p">,</span> <span class="n">train_errs</span><span class="p">,</span> <span class="n">C_values</span><span class="p">,</span> <span class="n">valid_errs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s2">&#34;train&#34;</span><span class="p">,</span> <span class="s2">&#34;validation&#34;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205101155629.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Now that we&rsquo;ve studied loss functions, we can see why regularization makes the training accuracy go down: Regularization is an extra term that we add to the original loss function, which penalizes large values of the coefficients. Intuitively, without regularization, we are maximizing the training accuracy, so we do well on that metric. When we add regularization, we&rsquo;re modifying the loss function to penalize large coefficients, which distracts from the goal of optimizing accuracy. The larger the regularization penalty (or the smaller we set <code>C</code>), the more we deviate from our goal of maximizing training accuracy. Hence, training accuracy goes down.</p>
+<p>We discussed why regularization reduces training accuracy, but why does it improve test accuracy? Imagine you did not have access to a particular feature; that&rsquo;s like setting the corresponding coefficient to zero. Regularizing, and thus making your coefficient smaller, is like a compromise between not using the feature at all (setting the coefficient to zero) and fully using it (the un-regularized coefficient value). If using a feature too heavily was causing overfitting, then regularization causes you to &ldquo;fit less&rdquo; and thus overfit less.</p>
+<h3 id="l1-and-l2-regularization">l1 and l2 regularization</h3>
+<p>For linear regression we use the terms Ridge (L2) and Lasso (L1) for two different types of regularization. We can apply ridge (or L2) and lasso (or L1) to logistic regression as well by specifying <code>penalty</code> argument. For example, both help reduce overfitting, and L1 also performs feature selection.</p>
+<p>As an example, let&rsquo;s train two logistic regression models, with L1, L2 regularization. We can extract the coefficients for both models. As you can see, L1 regularization set many of the coefficients to zero, thus ignoring those features; in other words, it performed feature selection for us. This is analogous to what happens with Lasso and Ridge regression.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Specify L1 regularization</span>
+<span class="n">lr1</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+<span class="n">lr2</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span> <span class="c1"># penalty=&#39;l2&#39; by default</span>
+
+<span class="c1"># Instantiate the GridSearchCV object and run the search</span>
+<span class="n">searcher1</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">lr1</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]})</span>
+<span class="n">searcher1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">searcher2</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">lr2</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]})</span>
+<span class="n">searcher2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Report the best parameters and the number of nonzero coefficients (selected features)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;For l1: &#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best CV params&#34;</span><span class="p">,</span> <span class="n">searcher1</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="n">best_lr1</span> <span class="o">=</span> <span class="n">searcher1</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">coefs1</span> <span class="o">=</span> <span class="n">best_lr1</span><span class="o">.</span><span class="n">coef_</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Total number of features:&#34;</span><span class="p">,</span> <span class="n">coefs1</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Number of selected features:&#34;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">coefs1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;-------------</span><span class="se">\n</span><span class="s2">For l2: &#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best CV params&#34;</span><span class="p">,</span> <span class="n">searcher2</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="n">best_lr2</span> <span class="o">=</span> <span class="n">searcher2</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">coefs2</span> <span class="o">=</span> <span class="n">best_lr2</span><span class="o">.</span><span class="n">coef_</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Total number of features:&#34;</span><span class="p">,</span> <span class="n">coefs2</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Number of selected features:&#34;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">coefs2</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>For l1: 
+Best CV params {'C': 1}
+Total number of features: 2500
+Number of selected features: 1218
+-------------
+For l2: 
+Best CV params {'C': 0.1}
+Total number of features: 2500
+Number of selected features: 2500
+</code></pre><blockquote>
+<p>scaling features is usually good practice, especially when using regularization.</p>
+</blockquote>
+<h2 id="probabilities">Probabilities</h2>
+<p>So far we&rsquo;ve been using logistic regression to make hard predictions, meaning we predict either one class or the other. we&rsquo;ll discuss how to interpret the raw model output of the classifier as a probability. The scikit-learn logistic regression object can output probabilities with the &ldquo;<code>predict_proba</code>&rdquo; function.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205101303272.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>In this figure, the new interpretation of the colors is the predicted probability of the red class. The black line is the old decision boundary, which we can refer to if we need to make definite, or hard, decisions. We can see that this line is where the probabilities cross 0.5. In other words, if we&rsquo;re more than 50% sure it&rsquo;s red, we predict red, and if we&rsquo;re less than 50% sure it&rsquo;s red, we predict blue. We can also see that <strong>we get more and more confident as we move away from the decision boundary</strong>, which sounds reasonable. In this figure, regularization is effectively disabled because <code>C</code> is very large.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205101304682.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>This figure shows what happens when we turn on regularization. We see that the coefficients are smaller, as expected. The effect of regularization is that the probabilities are closer to 0.5; <strong>we don&rsquo;t get to the very dark red or very dark blue on the figure</strong>. In other words, smaller coefficients mean less confident predictions. This fits with our story: regularization is supposed to combat overfitting, and there&rsquo;s a connection between overconfidence and overfitting. With 2 features, we had 2 coefficients even though you only really need one number to represent the slope of a line. We now have a reason for this: <strong>the ratio of the coefficients gives us the slope of the line, and the magnitude of the coefficients gives us our confidence level</strong>. Finally, as you can see, regularization not only affects the confidence, but also the orientation of the boundary.</p>
+<p>So how are these probabilities computed? Like the definite class predictions, they come from the <strong>raw model output</strong>. The raw model output can be any number, but probabilities are numbers between 0 and 1. So we need a way to &ldquo;squash&rdquo; the raw model output to be between 0 and 1. The <strong>sigmoid</strong> function takes care of that for us. Here&rsquo;s what it looks like.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205101257977.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>when the raw model output is zero, the probability is 0.5 - this means we&rsquo;re right on the boundary. When the raw model output is positive, we would have predicted the positive class, and indeed the probability of the positive class approaches 1. When the raw model output is negative, we would have predicted the negative class, and indeed the probability of the positive class approaches 0, which is another way of saying that we&rsquo;re very confident it&rsquo;s the negative class. Since the raw model output grows as we move away from the boundary, we&rsquo;re more confident in our predictions far away from the boundary.</p>
+<h2 id="multi-class-logistic-regression">Multi-class logistic regression</h2>
+<p>Multi-class classification means having more than 2 classes. While we&rsquo;ve used scikit-learn to perform multi-class classification, all of our conceptual discussions have been in the binary, or 2-class, case. Now, we&rsquo;ll discuss how multi-class classification works for linear classifiers.</p>
+<h3 id="one-vs-rest">one-vs-rest</h3>
+<p>We&rsquo;ll cover two popular approaches to multi-class classification. The first is to train a series of binary classifiers for each class. For example, I&rsquo;ve loaded the wine dataset and instantiated 3 logistic regression classifiers. I&rsquo;ll now fit these classifiers on 3 different data sets. The code <code>y==0</code> returns an array the same size as y that&rsquo;s True when y is 0 and False otherwise, so the classifier learns to predict these true/false values. In other words, <strong>it&rsquo;s a binary classifier learning to discriminate between class 0 or not 0</strong>. The next one learns y=1 vs. not 1, etc. This is called the <strong>one-vs-rest strategy</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">w</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_wine</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">lr0</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr1</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr2</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="n">lr0</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lr1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">lr2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In order to make predictions using one-vs-rest, we take the class whose classifier gives the largest <strong>raw model output</strong> - or <code>decision_function</code>, in scikit-learn terminology. In this case, the largest raw model output comes from classifier 0. This means it&rsquo;s more confident that the class is 0 than any of the other classes, so we predict class 0.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">lr0</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr0</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr0</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>5.874266145271733
+-4.926950694318412
+-7.575077057976998
+</code></pre><p>To perform multiclass classification in sklearn, specify <code>multi_class=ovr</code> when instance the estimator:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">lrovr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;ovr&#39;</span><span class="p">)</span>
+<span class="n">lrovr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lrovr</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[ 5.87426615 -4.92695069 -7.57507706]
+</code></pre><h3 id="multinomial-logistic-regression">multinomial logistic regression</h3>
+<p>Another way to achieve multi-class classification with logistic regression is to modify the loss function so that it directly tries to optimize accuracy on the multi-class problem. You may encounter various words related to this, like multinomial logistic regression, softmax, or cross-entropy loss. This figure shows a comparison of the two approaches.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205101344234.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>In one case you fit separately for each class, whereas in the other you just do it once. The same goes for prediction. An appealing property of the binary approach is that you can reuse your binary classifier implementation rather than needing a new one. On the other hand, you might sometimes get better accuracy with the multinomial classifier since its loss is more directly aligned with accuracy. In the field of neural networks, the multinomial approach is standard. Finally, while both approaches can work for SVMs, one-vs-rest and related strategies tend to be more popular. By the way, both of these methods can output probabilities just like a binary classifier.</p>
+<p>We can instantiate the multinomial version by setting the argument <code>mutli_class='multinomial'</code>. In scikit-learn, this also requires changing to a non-default <code>solver</code> like &ldquo;<code>lbfgs</code>&rdquo;. The solver hyperparameter specifies the algorithm used to minimize the loss; the default algorithm is for the binary problem, so it can be used for one-vs-rest but not multinomial. (Currently the <code>multinomial</code> option is supported only by the <code>lbfgs</code>, <code>sag</code>, <code>saga</code> and <code>newton-cg</code> solvers.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">lrmn</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">)</span>
+<span class="n">lrmn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lrmn</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[ 4.39448794 -1.49967454 -2.8948134 ]
+</code></pre><h3 id="coefficients-1">coefficients</h3>
+<p>We&rsquo;ve talked a lot about the coefficients, so it&rsquo;s natural to ask, what do the coefficients look like for multi-class classification? Continuing with the wine dataset, let&rsquo;s fit a one-vs-rest model and look at the coefficients.</p>
+<p>In the binary case we had <strong>one coefficient per feature and one intercept</strong>. For 3 classes we now have 3 entire binary classifiers, so we end up with <strong>one coefficient per feature per class, and one intercept per class</strong>. Hence, the coefficients of this model are stored in a 3-by-13 array.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="nb">print</span><span class="p">(</span><span class="n">lrovr</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">lrovr</span><span class="o">.</span><span class="n">intercept_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lrmn</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">lrmn</span><span class="o">.</span><span class="n">intercept_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>(3, 13) (3,)
+(3, 13) (3,)
+</code></pre><p>As we can see, The multinomial classifier has the same number of coefficients and intercepts as one-vs-rest. Although these two approaches work differently, they learn the same number of parameters and, roughly speaking, the parameters have the same interpretations.</p>
+<h1 id="support-vector-machines">Support Vector Machines</h1>
+<h2 id="support-vectors">Support vectors</h2>
+<p>In the last chapter we talked about logistic regression, which is a linear classifier learned with the logistic loss function. Linear SVMs are also linear classifiers, but they use the hinge loss instead.</p>
+<p>The standard definition of an SVM also includes L2 regularization. The logistic and hinge losses look fairly similar. A key difference is in the &ldquo;flat&rdquo; part of the hinge loss, which occurs when the raw model output is greater than 1, meaning you predicted a sample correctly beyond some margin of error. If a training sample falls in this &ldquo;zero loss&rdquo; region, it doesn&rsquo;t contribute to the fit; if I removed that sample, nothing would change. This is a key property of SVMs.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111115732.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Support vectors are defined as samples that are NOT in the flat part of the loss diagram. In the figure, support vectors are shown with yellow circles around them. Another way of defining support vectors is that they include <strong>incorrectly classified samples, as well as correctly classified samples that are close to the boundary</strong>. If you&rsquo;re wondering how close is considered close enough, this is controlled by the regularization strength.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111117508.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><strong>Support vectors are the samples that matter to your fit.</strong> If an sample is not a support vector, removing it has no effect on the model, because its loss was already zero. Comparing with logistic regression, there is no flat part of the loss there, and therefore all data points matter to the fit.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Train a linear SVM</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&#34;linear&#34;</span><span class="p">)</span>
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="p">,</span> <span class="n">lims</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Make a new data set keeping only the support vectors</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Number of original examples&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Number of support vectors&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">support_</span><span class="p">))</span>
+<span class="n">X_small</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">svm</span><span class="o">.</span><span class="n">support_</span><span class="p">]</span>
+<span class="n">y_small</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">svm</span><span class="o">.</span><span class="n">support_</span><span class="p">]</span>
+
+<span class="c1"># Train a new SVM using only the support vectors</span>
+<span class="n">svm_small</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&#34;linear&#34;</span><span class="p">)</span>
+<span class="n">svm_small</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_small</span><span class="p">,</span> <span class="n">y_small</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_small</span><span class="p">,</span> <span class="n">y_small</span><span class="p">,</span> <span class="n">svm_small</span><span class="p">,</span> <span class="n">lims</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Number of original examples 178
+Number of support vectors 81
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111133605.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The following diagram shows an SVM fit on a linearly separable dataset. As you can see, the learned boundary falls just half way between the two classes. This is an appealing property: in the absence of other information, this boundary makes more sense than a boundary that is much closer to one class than the other.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111122102.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>The yellow lines show the distances from the support vectors to the boundary. <strong>The length of the yellow lines, which is the same for all 3 cases, is called the margin</strong>. If the regularization strength is not too large, SVMs maximize the margin of linearly separable datasets. Unfortunately, most datasets are not linearly separable; in other words, we don&rsquo;t typically expect a training accuracy of 100%.</p>
+<h2 id="kernel-svms">Kernel SVMs</h2>
+<p>Consider this 2D toy dataset. The two classes are not linearly separable; in other words, there&rsquo;s no linear boundary that perfectly classifies all the points. If you try fitting a linear SVM on these points, you might get back something that predicts blue everywhere.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111144611.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>However, notice that the red points are all close to the point (0,0) in the coordinate system. Let&rsquo;s create two new features, one of which is feature 1 squared and the other of which is feature 2 squared. That means values near zero will become small values, and values far from zero, both positive and negative, will become large. And now they are linearly separable in this transformed universe, because all the red points are near the lower left and all the blue points are above and to the right. We can fit a linear SVM using these new features and the result is a perfect classification.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111145342.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>But then we might ask what does this linear boundary look like back in the original space. In other words, if we took these axes and un-squared them, what would happen to the shape of the boundary? In this case, we get an ellipse.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111146795.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>It&rsquo;s that fitting a linear model in a transformed space corresponds to fitting a nonlinear model in the original space. In general, the transformation isn&rsquo;t always going to be squaring and the boundary isn&rsquo;t always going to be an ellipse. In fact, the new space often has a different number of dimensions from the original space! But this is the basic idea. <strong>Kernels and kernel SVMs</strong> implement feature transformations in a computationally efficient way.</p>
+<p>We&rsquo;ll need to use scikit-learn&rsquo;s <a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html"  target="_blank" rel="noopener"
+    >SVC</a> class, rather than <code>LinearSVC</code>, to allow for different kernels. To select kernel, specify argument <code>kernel</code>, the available choice has &lsquo;linear&rsquo;, &lsquo;poly&rsquo;, &lsquo;rbf&rsquo;, &lsquo;sigmoid&rsquo;, &lsquo;precomputed&rsquo;. The default behavior is what&rsquo;s called an rbf or <strong>Radial Basis Function</strong> kernel. Although it&rsquo;s not computed this way, you can think of this as an extremely complicated transformation of the features, followed by fitting a linear boundary in that new space, just like we saw for the simpler squaring transformation.</p>
+<p>With kernel SVMs, we can call fit and predict in all the usual ways. Let&rsquo;s look at a decision boundary. This is definitely not linear. And, as a result, we&rsquo;ve gotten a higher training accuracy than we could have with a linear boundary. We can control the shape of the boundary using the hyperparameters. As usual we have the <code>C</code> hyperparameter that controls regularization. The RBF kernel also introduces a new hyperparameter, <code>gamma</code>, which controls the <strong>smoothness of the boundary</strong>. By decreasing gamma, we can make the boundaries smoother.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111155672.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>With the right hyperparameters, RBF SVMs are capable of perfectly separating almost any data set, but it leads to overfitting as well.</p>
+<p>To search for the <code>gamma</code> that maximizes cross-validation accuracy we use can scikit-learn&rsquo;s <code>GridSearchCV</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Instantiate an RBF SVM</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+
+<span class="c1"># Instantiate the GridSearchCV object and run the search</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gamma&#39;</span><span class="p">:[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]}</span>
+<span class="n">searcher</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span> <span class="c1"># 5-fold cv by default</span>
+<span class="n">searcher</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Report the best parameters</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best CV params&#34;</span><span class="p">,</span> <span class="n">searcher</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Best CV params {'gamma': 0.001}
+</code></pre><p>In the previous example, the best value of <code>gamma</code> was 0.001 using the default value of <code>C</code>, which is 1. Now, we gonna search for the best combination of <code>C</code> and <code>gamma</code> using <code>GridSearchCV</code>. Even though cross-validation already splits the training set into parts, it&rsquo;s often a good idea to hold out a separate test set to make sure the cross-validation results are sensible.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># Instantiate an RBF SVM</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+
+<span class="c1"># Instantiate the GridSearchCV object and run the search</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]}</span>
+<span class="n">searcher</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+<span class="n">searcher</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Report the best parameters and the corresponding score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best CV params&#34;</span><span class="p">,</span> <span class="n">searcher</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best CV accuracy&#34;</span><span class="p">,</span> <span class="n">searcher</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+
+<span class="c1"># Report the test accuracy using these best parameters</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test accuracy of best grid search hypers:&#34;</span><span class="p">,</span> <span class="n">searcher</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Best CV params {'C': 10, 'gamma': 0.0001}
+Best CV accuracy 0.9988864142538976
+Test accuracy of best grid search hypers: 0.9988876529477196
+</code></pre><h2 id="comparing-logistic-regression-and-svm-and-beyond">Comparing logistic regression and SVM (and beyond)</h2>
+<p>Let&rsquo;s summarize the points about logistic regression and SVMs we&rsquo;ve covered.</p>
+<ul>
+<li>Both logistic regression and SVM are linear classifiers.</li>
+<li>Both can be used with kernels, but this is more common with SVMs because the predictions are much <strong>faster</strong> when the number of support vectors is small.</li>
+<li>While both can be coerced to output probabilities, this is much more natural with logistic regression.</li>
+<li>Both can be extended to multi-class with a one-vs-rest scheme or by directly modifying the loss.</li>
+<li>In logistic regression, like most methods, all data points affect the fit. SVMs have the special property that only a subset of the examples are &ldquo;support vectors&rdquo; and the rest can be removed without affecting the fit.</li>
+<li>While the term &ldquo;logistic regression&rdquo; doesn&rsquo;t refer to a particular type of regularization, the term &ldquo;SVM&rdquo; typically refers to a linear classifier that uses the hinge loss and L2 regularization.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111212008.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Let&rsquo;s compare the use of our two methods in scikit-learn. Logistic regression is imported via <code>sklearn.linear_model.LogisticRegression</code>, and its key hyperparameters have</p>
+<ul>
+<li><code>C</code>, which controls the amount of regularization: smaller C means more regularization and vice versa;</li>
+<li><code>penalty</code> which is the type of regularization: scikit-learn supports L2 and L1.</li>
+<li><code>multi_class</code> and <code>solver</code> which extend a binary classifier to multi-class.</li>
+</ul>
+<p>There are a bunch more hyperparameters that scikit-learn exposes, but these are the ones most fundamental.</p>
+<p>As for SVMs, they can be instantiated from <code>sklearn.svm</code> using either <code>LinearSVC</code> for a linear SVM or <code>SVC</code> for a kernel SVM. (You can actually also fit linear SVMs via the <code>SVC</code> class by setting the <code>kernel</code> to <code>'linear'</code>, but you may find <code>LinearSVC</code> to be <strong>faster</strong>.) The key hyperparameters of the SVC class are</p>
+<ul>
+<li><code>C</code>, just like with logistic regression.</li>
+<li><code>kernel</code>, the type of kernel - we only talked about linear and RBF, but scikit learn supports a couple others.</li>
+<li><code>gamma</code>, which only applies to the RBF kernel and controls the smoothness. Smaller values of gamma lead to smoother, or simpler, decision boundaries, and larger values of gamma lead to more complex boundaries.</li>
+</ul>
+<p>As with LogisticRegression, there are certainly more hyperparameters.</p>
+<p>Finally, I want to introduce scikit-learn&rsquo;s <a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html?highlight=sgdclassifier#sklearn.linear_model.SGDClassifier"  target="_blank" rel="noopener"
+    >SGDClassifier</a>. SGD stands for <strong>stochastic gradient descent</strong>. Although we didn&rsquo;t cover SGD, it&rsquo;s worth knowing about <code>SGDClassifier</code>, since it can handle <strong>very large datasets</strong> much better than the other methods we&rsquo;ve discussed.</p>
+<p>We&rsquo;ve been talking about how logistic regression and SVM are just two types of linear classifiers, and <code>SGDClassifier</code> really brings this point home. In fact, to switch between logistic regression and a linear SVM, one only has to set the <code>loss</code> hyperparameter of the SGDClassifier. It&rsquo;s just like we said: the model is the same, and only the loss changes. <code>SGDClassifier</code> works pretty much like the other scikit-learn methods we&rsquo;ve seen. One &ldquo;gotcha&rdquo; with <code>SGDClassifier</code> is that the regularization hyperparameter is called <code>alpha</code> instead of <code>C</code>, <code>alpha</code> is the inverse of <code>C</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="c1"># We set random_state=0 for reproducibility </span>
+<span class="n">linear_classifier</span> <span class="o">=</span> <span class="n">SGDClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Instantiate the GridSearchCV object and run the search</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s1">&#39;alpha&#39;</span><span class="p">:[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+        <span class="s1">&#39;loss&#39;</span><span class="p">:[</span><span class="s1">&#39;hinge&#39;</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">],</span> 
+		<span class="s1">&#39;penalty&#39;</span><span class="p">:[</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="s1">&#39;l2&#39;</span><span class="p">]</span>
+	<span class="p">}</span>
+<span class="n">searcher</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">linear_classifier</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">searcher</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Report the best parameters and the corresponding score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best CV params&#34;</span><span class="p">,</span> <span class="n">searcher</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best CV accuracy&#34;</span><span class="p">,</span> <span class="n">searcher</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test accuracy of best grid search hypers:&#34;</span><span class="p">,</span> <span class="n">searcher</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Best CV params {'alpha': 0.0001, 'loss': 'hinge', 'penalty': 'l1'}
+Best CV accuracy 0.94351630867144
+Test accuracy of best grid search hypers: 0.9592592592592593
+</code></pre><h1 id="compendium">Compendium</h1>
+<p><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html"  target="_blank" rel="noopener"
+    >LogisticRegression</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">LogisticRegression</span><span class="p">(</span>
+	<span class="n">fit_intercept</span><span class="p">,</span> 
+	<span class="n">penalty</span>
+	<span class="n">C</span><span class="p">,</span>
+	<span class="n">mutli_class</span><span class="p">,</span>
+	<span class="n">solver</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="sklearnsvm">sklearn.svm</h2>
+<p><a class="link" href="https://scikit-learn.org/stable/modules/classes.html?highlight=sklearn%20svm#module-sklearn.svm"  target="_blank" rel="noopener"
+    >sklearn.svm </a></p>
+<ul>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC"  target="_blank" rel="noopener"
+    >LinearSVC</a></li>
+<li><a class="link" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html"  target="_blank" rel="noopener"
+    >SVC</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py">	<span class="n">LinearSVC</span><span class="p">(),</span>
+	<span class="n">SVC</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/scikit-learn/">scikit-learn</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/machine-learning-ii-unsupervised-learning/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Machine Learning II (Unsupervised Learning)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/machine-learning-i-supervised-learning-by-scikit-learn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Machine Learning I (Supervised Learning by Scikit-Learn)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#loss-functions">Loss Functions</a>
+      <ol>
+        <li><a href="#decision-boundary">Decision boundary</a></li>
+        <li><a href="#coefficients">Coefficients</a></li>
+        <li><a href="#loss-function">Loss Function</a>
+          <ol>
+            <li><a href="#minimize">minimize</a></li>
+            <li><a href="#loss-function-diagrams">loss function diagrams</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#logistic-regression">Logistic Regression</a>
+      <ol>
+        <li><a href="#regularization">Regularization</a>
+          <ol>
+            <li><a href="#regularization-reduce-the-coef">regularization reduce the coef</a></li>
+            <li><a href="#regularization-effect-accuracy">regularization effect accuracy</a></li>
+            <li><a href="#l1-and-l2-regularization">l1 and l2 regularization</a></li>
+          </ol>
+        </li>
+        <li><a href="#probabilities">Probabilities</a></li>
+        <li><a href="#multi-class-logistic-regression">Multi-class logistic regression</a>
+          <ol>
+            <li><a href="#one-vs-rest">one-vs-rest</a></li>
+            <li><a href="#multinomial-logistic-regression">multinomial logistic regression</a></li>
+            <li><a href="#coefficients-1">coefficients</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#support-vector-machines">Support Vector Machines</a>
+      <ol>
+        <li><a href="#support-vectors">Support vectors</a></li>
+        <li><a href="#kernel-svms">Kernel SVMs</a></li>
+        <li><a href="#comparing-logistic-regression-and-svm-and-beyond">Comparing logistic regression and SVM (and beyond)</a></li>
+      </ol>
+    </li>
+    <li><a href="#compendium">Compendium</a>
+      <ol>
+        <li><a href="#sklearnsvm">sklearn.svm</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+
+    </body>
+</html>

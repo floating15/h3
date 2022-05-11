@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Scientific Computing on Haoming Wang</title>
-        <link>https://wanghaoming177.netlify.app/categories/sci_compute/</link>
-        <description>Recent content in Scientific Computing on Haoming Wang</description>
+        <title>MATLAB on Haoming Wang</title>
+        <link>https://wanghaoming177.netlify.app/tags/matlab/</link>
+        <description>Recent content in MATLAB on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/sci_compute/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/tags/matlab/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>MATLAB in Engineering I (Array Operations)</title>
         <link>https://wanghaoming177.netlify.app/p/matlab-in-engineering-i-array-operations/</link>
         <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
