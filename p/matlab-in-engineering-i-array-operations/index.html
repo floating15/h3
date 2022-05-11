@@ -360,7 +360,7 @@
 
 
                 <time class="article-time--reading">
-                    5 minute read
+                    9 minute read
                 </time>
             </div>
         
@@ -426,7 +426,7 @@ a =
 <li><code>NaN</code>:   not a number</li>
 <li><code>pi</code>:    π</li>
 </ul>
-<p>In addition, the <code>iskeyword</code> command allows you to view all keywords in the MATLAB language, which are also not allowed to be used as variable names. In MATLAB, the calling priority of variables is higher than that of functions, so variable names should not override built-in functions.</p>
+<p>In addition, the <code>iskeyword</code> command allows you to view all keywords in the MATLAB language, which are also not allowed to be used as variable names. In MATLAB, the <strong>calling priority of variables is higher than that of functions</strong>, so variable names should not override built-in functions.</p>
 <p><img src="https://raw.githubusercontent.com/floating15/img/main/202205101738455.png"
 	
 	
@@ -463,7 +463,7 @@ a =
 
    -0.1455
 </code></pre><blockquote>
-<p><code>clear</code> is a dangerous command, because it clears all variables in the current workspace if it is not followed by an argument.</p>
+<p><code>clear</code> is a dangerous command, because it clears <strong>all</strong> variables in the current workspace if it is not followed by an argument.</p>
 </blockquote>
 <h3 id="type-and-format">type and format</h3>
 <p>The types of variables in MATLAB are: <code>logical</code>, <code>char</code>, <code>numeric</code>, <code>cell</code>, <code>struct</code> and arrays or matrices composed of them.</p>
@@ -498,7 +498,7 @@ a         1x1                 8  double
 ans       1x1                 8  double              
 b         1x1                 8  double              
 c         1x1                 8  double   
-</code></pre><p>我们可以通过 <code>format &lt;显示格式&gt;</code> 改变数字型变量的显示格式.</p>
+</code></pre><p>We can change the display format of numeric variables with <code>format &lt;display format&gt;</code>.</p>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -519,7 +519,7 @@ c         1x1                 8  double
 <td>3.141592653589793</td>
 </tr>
 <tr>
-<td>shortE'</td>
+<td><code>shortE</code></td>
 <td>Short scientific notation, displaying 4 decimal places. with scientific notation.</td>
 <td>3.1416e+00</td>
 </tr>
@@ -545,16 +545,42 @@ c         1x1                 8  double
 </tr>
 </tbody>
 </table></div>
-<h2 id="command-line">Command line</h2>
-<p>Use <code>;</code> at the end of the command line to mute the outcome, otherwise the outcome of the command line will display in the command line window. Some useful commands line:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">format</span> <span class="n">hex</span>
+<span class="o">&gt;&gt;</span> <span class="nb">pi</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+   400921fb54442d18
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">format</span> <span class="nb">rat</span>
+<span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="o">/</span><span class="mi">13</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="mi">14</span> <span class="o">+</span> <span class="mi">5</span><span class="o">/</span><span class="mi">15</span> 
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+     232/273  
+</code></pre><h2 id="command-line">Command line</h2>
+<p>Use <code>;</code> at the end of the command line to mute the outcome, otherwise the outcome of the command line will display in the command line window. To recall previous commands, press <code>uparrow</code> key, just like shell. Some useful commands line:</p>
 <ul>
 <li><code>clc</code>: Clear the output of the terminal</li>
 <li><code>clear</code>: clears all variables in the current workspace</li>
 <li><code>who</code>: displays all variables in the workspace in an abbreviated format</li>
-<li><code>whos</code>: displays all variables in the workspace in a complex format]</li>
+<li><code>whos</code>: displays all variables in the workspace in a long format</li>
+<li><code>format</code>: change the format displayed</li>
 </ul>
-<h1 id="calculate-by-matlab">Calculate by MATLAB</h1>
-<h2 id="comprehension">Comprehension</h2>
+<h2 id="operators">Operators</h2>
 <p>Common MATLAB operators are: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>. After a mathematical expression is computed, its value is stored in the variable <code>ans</code>. The order of operations is left-to-right with equal priority. The order of precedence (from highest to lowest) is:</p>
 <ul>
 <li>Association <code>()</code></li>
@@ -697,7 +723,324 @@ c         1x1                 8  double
 <li><code>isreal</code>	Determine whether array uses complex storage</li>
 <li><code>sign</code>	Sign function (signum function)</li>
 </ul>
-<h2 id="array-operation">Array operation</h2>
+<h1 id="array-operations">Array Operations</h1>
+<h2 id="create-matrix">Create matrix</h2>
+<h3 id="direct-definition">Direct definition</h3>
+<p>In MATLAB, use <code>[]</code> to enclose the contents of the matrix to be entered, use spaces <code> </code> or commas <code>,</code> to separate variables within rows, and use semicolon <code>;</code> to separate each row. For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>a =
+
+       1              2              3       
+b =
+
+       1       
+       2       
+       3       
+c =
+
+       1              2              3       
+       4              5              6     
+</code></pre><h3 id="using-the-colon-operator-to-create-a-vector">Using the colon operator to create a vector</h3>
+<p>Using the colon <code>:</code> operator: you can create a long vector with the following syntax:</p>
+<ul>
+<li><code>i:j</code>: <code>[i, i+1, ..., j]</code>. Note that it contains both <code>i</code> and <code>j</code>;</li>
+<li><code>i:k:j</code>: <code>[i, i+k, i+2k, ..., i+mk]</code>, where <code>i+mk =&lt; j</code> and <code>i+(m+1)k &gt; j</code>.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">15</span><span class="p">;</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">d</span> <span class="p">=</span> <span class="s">&#39;a&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="s">&#39;z&#39;</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>a =
+
+       1              2              3              4              5       
+b =
+
+       1              3              5       
+c =
+
+       1              2              3              4              5       
+       2              5              8             11             14       
+      -2             -3/2           -1             -1/2            0       
+d =
+
+    'acegikmoqsuwy'
+</code></pre><h3 id="special-matrix">Special matrix</h3>
+<ul>
+<li><code>eye(n)</code>: get an n*n unit matrix</li>
+<li><code>zeros(n1, n2)</code>: get an n1*n2 all-0 matrix</li>
+<li><code>ones(n1, n2)</code>: get an n1*n2 all-1 matrix</li>
+<li><code>diag(vector)</code>: get a diagonal matrix with the contents of the vector <code>vector</code> as the diagonal</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">diag</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+       1              0              0              0              0       
+       0              3              0              0              0       
+       0              0              5              0              0       
+       0              0              0              7              0       
+       0              0              0              0              9    
+</code></pre><h2 id="indexing-matrices">Indexing matrices</h2>
+<p>Matrices in MATLAB are stored in <strong>columnar preorder</strong>. The index subscript <strong>starts from 1</strong> (instead of 0).</p>
+<p>There are two ways to index a matrix:</p>
+<ul>
+<li>by one-dimensional indexing: <code>A(n)</code></li>
+<li>by two-dimensional indexing: <code>A(r,c)</code>.</li>
+</ul>
+<p>For a general matrix, the indexing order is as follows:</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111447214.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Thus <code>A(6)=A(3,2)=a32</code>. For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>A =
+
+       1              2              3       
+       4              5              6       
+       7              8              9       
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+       8       
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+       8       
+
+</code></pre><p>The index of a matrix can use a colon <code>:</code>, indicating that all rows or columns are selected.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+       1              2              3    
+</code></pre><p>The index of a matrix can be one or two vectors, indicating that all rows or columns in the vector are selected. In particular:</p>
+<p>Method 1:</p>
+<ul>
+<li><code>A([1 3 5])</code>: <code>[A(1) A(3) A(5)]</code></li>
+<li><code>A([1 2; 3 4])</code>: <code>[A(1) A(2); A(3) A(4)]</code></li>
+</ul>
+<p>Method 2:</p>
+<ul>
+<li><code>A([1,2], :)</code></li>
+<li><code>A([1 3], [1 2])</code></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205111503018.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a1</span> <span class="p">=</span> <span class="n">A</span><span class="p">([</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">]);</span>
+<span class="o">&gt;&gt;</span> <span class="n">a2</span> <span class="p">=</span> <span class="n">A</span><span class="p">([</span><span class="mi">1</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]);</span>
+<span class="o">&gt;&gt;</span> <span class="n">a3</span> <span class="p">=</span> <span class="n">A</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">:);</span>
+<span class="o">&gt;&gt;</span> <span class="n">a4</span> <span class="p">=</span> <span class="n">A</span><span class="p">([</span><span class="mi">1</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">]);</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n">a4</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>A =
+
+       1              2              3       
+       4              5              6       
+       7              8              9       
+a1 =
+
+       1              7              5       
+a2 =
+
+       1              4       
+       7              2     
+a3 =
+
+       1              2              3       
+       4              5              6       
+a4 =
+
+       1              2       
+       7              8     
+</code></pre><h2 id="operations-on-matrices">Operations on matrices</h2>
+<h3 id="operators-for-manipulating-matrices">Operators for manipulating matrices</h3>
+<p>Let <code>A</code>, <code>B</code> are matrixes, <code>a</code> is a scalar:</p>
+<p>Each matrix element performs operations with scalar <code>a</code>:</p>
+<ul>
+<li><code>A + a</code></li>
+<li><code>A - a</code></li>
+<li><code>A .* a</code></li>
+<li><code>A ./ a</code></li>
+<li><code>A .^ a</code></li>
+</ul>
+<p>Matrix and matrix corresponding position elements perform operations:</p>
+<ul>
+<li><code>A + B</code></li>
+<li><code>A - B</code></li>
+<li><code>A .* B</code></li>
+<li><code>A ./ B</code></li>
+</ul>
+<p>Matrix operations:</p>
+<ul>
+<li><code>A * B</code></li>
+<li><code>A / B</code>: <code>A * inv(B)</code></li>
+<li><code>A \ B</code>: <code>inv(A) * B</code></li>
+<li><code>A ^ a</code>: for example, <code>A^2 = A * A</code></li>
+<li><code>A'</code>: transfer</li>
+</ul>
+<h3 id="functions-for-manipulating-matrices">Functions for manipulating matrices</h3>
+<p>Aggregation: <code>dim</code> represents the aggregation dimension, <code>dim=1</code> indicates aggregate by columns, <code>dim=2</code> means by rows. The default value of <code>dim</code> is <code>1</code>.</p>
+<ul>
+<li><code>max(A, [], dim)</code>: returns the maximal element along dimension <code>dim</code></li>
+<li><code>min(A, [], dim)</code>: returns the minimal element along dimension <code>dim</code></li>
+<li><code>sum(A, dim)</code>: return the sum along the dimensions <code>dim</code></li>
+<li><code>mean(A, dim)</code>: return the mean along the dimensions <code>dim</code>
+​</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">9</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">4</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">maxc</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">1</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">maxr</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">2</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">maxv</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">maxc</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">,</span> <span class="n">maxc</span><span class="p">,</span> <span class="n">maxr</span><span class="p">,</span> <span class="n">maxv</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>A =
+
+       1              9              3       
+       4              6              1       
+       6              7              4       
+maxc =
+
+       6              9              4       
+maxr =
+
+       9       
+       6       
+       7       
+maxv =
+
+       9       
+</code></pre><ul>
+<li><code>sort(A, dim, direction)</code>: sorts the elements of A in <code>direction</code> (&lsquo;ascend&rsquo; (default) or &lsquo;descend&rsquo;) order by dimension <code>dim</code> (=1 by default).</li>
+<li><code>sortrows(A, column, direction)</code>:  sorts the rows of a matrix in <code>direction</code> order based on the elements in the <code>column</code> (=1 by default) column.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">s1</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">s2</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;descend&#39;</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">s3</span> <span class="p">=</span> <span class="n">sortrows</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;descend&#39;</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>A =
+
+       1              9              3       
+       4              6              1       
+       6              7              4       
+s1 =
+
+       1              6              1       
+       4              7              3       
+       6              9              4       
+s2 =
+
+       9              3              1       
+       6              4              1       
+       7              6              4       
+s3 =
+
+       1              9              3       
+       6              7              4       
+       4              6              1     
+</code></pre><p>​</p>
+<ul>
+<li><code>size(A, dim)</code>: returns the shape of matrix A in <code>dim</code> dimension. If <code>dim</code> is not specified, the shape of the entire matrix is returned.</li>
+<li><code>find(A, n)</code>: returns the first n indices corresponding to the nonzero elements in X.</li>
+</ul>
 
 </section>
 
@@ -889,11 +1232,7 @@ c         1x1                 8  double
           </ol>
         </li>
         <li><a href="#command-line">Command line</a></li>
-      </ol>
-    </li>
-    <li><a href="#calculate-by-matlab">Calculate by MATLAB</a>
-      <ol>
-        <li><a href="#comprehension">Comprehension</a></li>
+        <li><a href="#operators">Operators</a></li>
         <li><a href="#built-in-function">Built-in function</a>
           <ol>
             <li><a href="#arithmetic-operations">Arithmetic Operations</a></li>
@@ -902,7 +1241,24 @@ c         1x1                 8  double
             <li><a href="#complex-numbers">Complex Numbers</a></li>
           </ol>
         </li>
-        <li><a href="#array-operation">Array operation</a></li>
+      </ol>
+    </li>
+    <li><a href="#array-operations">Array Operations</a>
+      <ol>
+        <li><a href="#create-matrix">Create matrix</a>
+          <ol>
+            <li><a href="#direct-definition">Direct definition</a></li>
+            <li><a href="#using-the-colon-operator-to-create-a-vector">Using the colon operator to create a vector</a></li>
+            <li><a href="#special-matrix">Special matrix</a></li>
+          </ol>
+        </li>
+        <li><a href="#indexing-matrices">Indexing matrices</a></li>
+        <li><a href="#operations-on-matrices">Operations on matrices</a>
+          <ol>
+            <li><a href="#operators-for-manipulating-matrices">Operators for manipulating matrices</a></li>
+            <li><a href="#functions-for-manipulating-matrices">Functions for manipulating matrices</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
