@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Script Editor Script is a .m file containing MATLAB commands, to create a MATLAB script, press command&#43;N.
+The following features are commonly used in the script editor: find function, breakpoint debugging, sectioning, commenting, smart indentation etc.
+Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &amp;lt;= less than or equal to &amp;gt;- greater than or equal to == equal to ~= not equal to &amp;amp;&amp;amp; and || or  1  &amp;gt;&amp;gt; (2 &amp;gt;= 1) &amp;amp;&amp;amp; (2 ~= 4)   ans = logical 1 Boolean variables can participate in operations:'><title>MATLAB in Engineering II (Script and Function)</title>
+
+<link rel='canonical' href='https://wanghaoming177.netlify.app/p/matlab-in-engineering-ii-script-and-function/'>
+
+<link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='MATLAB in Engineering II (Script and Function)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Script Editor Script is a .m file containing MATLAB commands, to create a MATLAB script, press command&#43;N.
+The following features are commonly used in the script editor: find function, breakpoint debugging, sectioning, commenting, smart indentation etc.
+Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &amp;lt;= less than or equal to &amp;gt;- greater than or equal to == equal to ~= not equal to &amp;amp;&amp;amp; and || or  1  &amp;gt;&amp;gt; (2 &amp;gt;= 1) &amp;amp;&amp;amp; (2 ~= 4)   ans = logical 1 Boolean variables can participate in operations:'>
+<meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-ii-script-and-function/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-05-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-17T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="MATLAB in Engineering II (Script and Function)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Script Editor Script is a .m file containing MATLAB commands, to create a MATLAB script, press command&#43;N.
+The following features are commonly used in the script editor: find function, breakpoint debugging, sectioning, commenting, smart indentation etc.
+Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &amp;lt;= less than or equal to &amp;gt;- greater than or equal to == equal to ~= not equal to &amp;amp;&amp;amp; and || or  1  &amp;gt;&amp;gt; (2 &amp;gt;= 1) &amp;amp;&amp;amp; (2 ~= 4)   ans = logical 1 Boolean variables can participate in operations:">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/IMG_0770_hu86b91b9497cdda82d5c488540c7342b2_101927_300x0_resize_q75_box.jpg" width="300"
+                            height="273" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌏</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/floating15'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/%E6%B5%A9%E9%93%AD-%E7%8E%8B-b0a164171/'
+                        target="_blank"
+                        title="Linkedin"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://follow.it/haoming-wang?action=followPub'
+                        target="_blank"
+                        title="r-mail"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mailbox" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
+  <path d="M12 11v-8h4l2 2l-2 2h-4" />
+  <path d="M6 15h1" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#FF1C02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#35FF02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#02EAFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#0223FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#F402FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sci_compute/" >
+                Scientific Computing
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/matlab-in-engineering-ii-script-and-function/">MATLAB in Engineering II (Script and Function)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 17, 2021</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<h1 id="script-editor">Script Editor</h1>
+<p>Script is a <code>.m</code> file containing MATLAB commands, to create a MATLAB script, press <code>command+N</code>.</p>
+<p>The following features are commonly used in the script editor: find function, breakpoint debugging, sectioning, commenting, smart indentation etc.</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205121726512.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="structure-control">Structure Control</h1>
+<h2 id="logical-operators">Logical Operators</h2>
+<ul>
+<li><code>&lt;</code> less than</li>
+<li><code>&gt;</code> greater than</li>
+<li><code>&lt;=</code> less than or equal to</li>
+<li><code>&gt;-</code> greater than or equal to</li>
+<li><code>==</code> equal to</li>
+<li><code>~=</code> not equal to</li>
+<li><code>&amp;&amp;</code> and</li>
+<li><code>||</code> or</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">(</span><span class="mi">2</span> <span class="o">&gt;</span><span class="p">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">2</span> <span class="o">~=</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+  logical
+
+   1
+</code></pre><p>Boolean variables can participate in operations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">((</span><span class="mi">2</span> <span class="o">&gt;</span><span class="p">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">2</span> <span class="o">~=</span> <span class="mi">4</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+       2    
+</code></pre><h2 id="flow-control">Flow Control</h2>
+<p>The following are the main flow control keywords in MATLAB:</p>
+<ul>
+<li><code>if-elseif-else</code>: Execute statements if condition is true</li>
+<li><code>switch-case-otherwise</code>: Execute one of several groups of statements</li>
+<li><code>for</code>: Execute statements specified number of times</li>
+<li><code>while</code>: Repeat execution of statements while condition is true</li>
+<li><code>try-catch</code>: Execute statements and catch resulting errors</li>
+</ul>
+<p>and the corresponding</p>
+<ul>
+<li><code>break</code>: Terminate execution of <code>for</code> or <code>while</code> loop</li>
+<li><code>continue</code>: Pass control to next iteration of <code>for</code> or <code>while</code> loop</li>
+<li><code>end</code>: Terminate block of <strong>any</strong> flow control codes, or indicate last array index.</li>
+<li><code>pause</code>: Halt execution temporarily</li>
+<li><code>return</code>: Return control to invoking function</li>
+</ul>
+<h3 id="if-elseif-else"><code>if-elseif-else</code></h3>
+<p>The syntax of <code>if-elseif-else</code> flow control is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">if</span> <span class="n">condition1</span>
+	<span class="n">statement1</span>
+<span class="k">elseif</span> <span class="n">condition2</span>
+	<span class="n">statement2</span>
+<span class="k">else</span>
+	<span class="n">statement3</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note that there is no <code>:</code> behind the <code>if</code>, <code>elseif</code> and <code>else</code>. For example, run the following script section:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">a</span> <span class="p">=</span> <span class="mi">53456453</span><span class="p">;</span>
+<span class="k">if</span> <span class="nb">rem</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="nb">disp</span><span class="p">([</span><span class="n">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">,</span><span class="s">&#39; ≡ 3 (mod 0)&#39;</span><span class="p">])</span>
+<span class="k">elseif</span> <span class="nb">rem</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="nb">disp</span><span class="p">([</span><span class="n">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">,</span><span class="s">&#39; ≡ 3 (mod 1)&#39;</span><span class="p">])</span>
+<span class="k">else</span>
+    <span class="nb">disp</span><span class="p">([</span><span class="n">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">,</span><span class="s">&#39; ≡ 3 (mod 2)&#39;</span><span class="p">])</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>53456453 ≡ 3 (mod 2)
+</code></pre><p>Here, <a class="link" href="https://www.mathworks.com/help/matlab/ref/disp.html"  target="_blank" rel="noopener"
+    >disp(X)</a> displays the value of variable <code>X</code> without printing the variable name. <code>disp</code> only accept one argument, thus we need to assemble <code>num2str(a)</code> and <code>' ≡ 3 (mod 0)'</code> into an array.</p>
+<h3 id="switch-case-otherwise"><code>switch-case-otherwise</code></h3>
+<p>The syntax of <code>switch-case-otherwise</code> flow control is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">switch</span> <span class="n">expression</span>
+	<span class="k">case</span> <span class="n">value1</span>
+		<span class="n">statement1</span>
+	<span class="k">case</span> <span class="n">value2</span>
+		<span class="n">statement2</span>
+	<span class="k">case</span> <span class="n">value3</span>
+		<span class="n">statement3</span>
+	<span class="k">otherwise</span>
+		<span class="n">statement4</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>For example, run the following script section:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">a</span> <span class="p">=</span> <span class="mi">9329874214285</span><span class="p">;</span>
+<span class="k">switch</span> <span class="nb">rem</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">case</span> <span class="mi">0</span>
+        <span class="nb">disp</span><span class="p">([</span><span class="n">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">,</span><span class="s">&#39; ≡ 3 (mod 0)&#39;</span><span class="p">])</span>
+    <span class="k">case</span> <span class="mi">1</span>
+        <span class="nb">disp</span><span class="p">([</span><span class="n">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">,</span><span class="s">&#39; ≡ 3 (mod 1)&#39;</span><span class="p">])</span>
+    <span class="k">case</span> <span class="mi">2</span>
+        <span class="nb">disp</span><span class="p">([</span><span class="n">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">,</span><span class="s">&#39; ≡ 3 (mod 2)&#39;</span><span class="p">])</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>9329874214285 ≡ 3 (mod 1)
+</code></pre><h3 id="while"><code>while</code></h3>
+<p>The syntax of <code>while</code> flow control is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">while</span> <span class="n">expression</span>
+	<span class="n">statement</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>For example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">n</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">prod</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e100</span> <span class="c">% n! &lt; 1e100</span>
+   <span class="n">n</span> <span class="p">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> 
+<span class="k">end</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>70
+</code></pre><p>This means 69! &lt; 1e100 whereas 70! &gt; 1e100.</p>
+<h3 id="for-and-pre-allocating"><code>for</code> and Pre-allocating</h3>
+<p>The syntax of <code>for</code> flow control is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">variable</span> <span class="p">=</span> <span class="n">strat</span> <span class="p">[:</span> <span class="n">increment</span><span class="p">]</span> <span class="p">:</span> <span class="k">end</span>
+	<span class="n">commands</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If a variable requires a predictable amount of memory space, we should try to allocate memory space for it in advance, which is called <strong>pre-allocating</strong>. This can significantly increase the speed of operations. For example,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">tic</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2000</span>
+    <span class="k">for</span> <span class="n">jj</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">2000</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="p">=</span> <span class="n">ii</span> <span class="o">+</span> <span class="n">jj</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">toc</span>
+
+
+<span class="n">tic</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span> <span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">jj</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span> <span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="p">=</span> <span class="n">ii</span> <span class="o">+</span> <span class="n">jj</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">toc</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>历时 1.826418 秒。
+历时 0.028722 秒。
+</code></pre><p><a class="link" href="https://www.mathworks.com/help/matlab/ref/tic.html?searchHighlight=tic&amp;s_tid=srchtitle_tic_1"  target="_blank" rel="noopener"
+    >tic</a> works with the <code>toc</code> function to measure elapsed time. The <code>tic</code> function records the current time, and the <code>toc</code> function uses the recorded value to calculate the elapsed time.</p>
+<p>Use structured programming to: Find the entries in matrix <code>A</code> that are negative, store these entries’ position in a matrix <code>B</code>, and finally, change the values of these entries to zero:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">B</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">));</span>
+<span class="n">C</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">));</span>
+
+<span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">jj</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="o">&gt;</span><span class="p">=</span> <span class="mi">0</span>
+            <span class="n">B</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">B</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">&gt;</span><span class="p">=</span> <span class="mi">0</span>
+        <span class="n">C</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">C</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>    1.4058   -0.2375   -1.1693   -0.8494   -1.0639
+    1.0230    0.6902    0.6402   -0.6881   -0.9510
+   -0.7450    0.0016    0.8447   -0.0991   -0.5942
+    1.2759   -1.1323    1.0848    0.7670    0.2078
+   -0.8010    0.1670    0.3202    1.7301   -1.1932
+
+    1.4058         0         0         0         0
+    1.0230    0.6902    0.6402         0         0
+         0    0.0016    0.8447         0         0
+    1.2759         0    1.0848    0.7670    0.2078
+         0    0.1670    0.3202    1.7301         0
+
+    1.4058         0         0         0         0
+    1.0230    0.6902    0.6402         0         0
+         0    0.0016    0.8447         0         0
+    1.2759         0    1.0848    0.7670    0.2078
+         0    0.1670    0.3202    1.7301         0
+</code></pre><h3 id="break"><code>break</code></h3>
+<p>Sometimes, the convergence of iteration is not guaranteed, to terminate the execution of <code>for</code> or <code>while</code> loops, use <code>break</code> keyword:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">error</span> <span class="p">=</span> <span class="nb">inf</span><span class="p">;</span> <span class="n">error_t</span> <span class="p">=</span> <span class="mf">1e-32</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">error_t</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">100</span>
+        <span class="k">break</span>
+    <span class="k">end</span>
+   <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">-</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="nb">cos</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+   <span class="n">error</span> <span class="p">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="nb">pi</span><span class="p">);</span>
+   <span class="n">k</span> <span class="p">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="nb">disp</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">error</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>6.0000    3.1416         0
+</code></pre><h3 id="tips-for-script-write">Tips for script write</h3>
+<ul>
+<li>At the beginning of the script, use command <code>clear all</code> to remove previous variables; <code>close all</code> to close all figures.</li>
+<li>Semicolons <code>;</code> should be added to all operations and assignments to suppress the output. If a variable needs to be output to the terminal, it should call the <code>disp</code> method.</li>
+<li>The ellipsis <code>...</code> can stitch multiple lines into one line, and the flexible use of this statement can improve the readability of the code.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">annPoints_sampled</span> <span class="p">=</span> <span class="n">annPoints</span><span class="p">(</span><span class="n">annPoints</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="n">x1</span> <span class="o">&amp;</span> <span class="c">...</span>
+    <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">x2</span> <span class="o">&amp;</span> <span class="c">...</span>
+    <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">y1</span> <span class="o">&amp;</span> <span class="c">...</span>
+    <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">y2</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Press <code>Control+C</code> to terminate the script before conclusion.</li>
+</ul>
+<h1 id="functions">Functions</h1>
+<p>Scripts and functions are both <code>.m</code> files that contain MATLAB commands. Functions are written when we need to perform routines. The difference between script and function are as follows.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Scripts</th>
+<th>Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No input arguments</td>
+<td>May have input arguments</td>
+</tr>
+<tr>
+<td>No output arguments</td>
+<td>May have output arguments</td>
+</tr>
+<tr>
+<td>Operate on data in the global workspace</td>
+<td>Operate on data in the local workspace</td>
+</tr>
+</tbody>
+</table></div>
+<p>We can use the <code>which</code> command to view the location of the source file of the built-in function, combined with the <code>edit</code> command to view the source code of the built-in function. For example, run the following statement to open the source file of MATLAB&rsquo;s built-in mean function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">edit</span><span class="p">(</span><span class="n">which</span><span class="p">(</span><span class="s">&#39;mean.m&#39;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note that the function&rsquo;s <code>.m</code> file name need to <strong>match</strong> the function name.</p>
+<h2 id="standard-structure">Standard structure</h2>
+<p>The standard structure of function <code>.m</code> file is</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>y <span class="p">=</span><span class="w"> </span><span class="nf">funcname</span><span class="p">(</span>x1, x2<span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c">% comment</span>
+<span class="n">code</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>MATLAB will return the outcome of <code>y</code> to the variable you specified, just like the <code>return</code> keyword in python. For example, calculate the displacement of free falling for given initial displacement <code>x0</code> , initial velocity <code>v0</code> , and duration of falling <code>t</code>:</p>
+<p>$$
+x = x_0 + v_0t + \frac{1}{2} g t^2
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>x <span class="p">=</span><span class="w"> </span><span class="nf">freebody</span><span class="p">(</span>x0,v0,t<span class="p">)</span><span class="w"> 
+</span><span class="w"></span><span class="c">% calculation of free falling </span>
+<span class="c">% x0: initial displacement in m </span>
+<span class="c">% v0: initial velocity in m/sec </span>
+<span class="c">% t: the elapsed time in sec </span>
+<span class="c">% x: the depth of falling in m</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">v0</span><span class="o">.*</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="mf">9.8</span><span class="o">*</span><span class="n">t</span><span class="o">.*</span><span class="n">t</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Call this function in the terminal:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">freebody</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+   490
+</code></pre><p>Note that we write function body as <strong><code>t.*t</code></strong>, which represents the <strong>element-wise operation</strong>, instead of matrix operation. Thus we can achieve <code>freebody([x1, x2, x3], [v1, v2, v3], [t1, t2, t3]) -&gt; [freebody(x1, v1, t1), freebody(x2, v2, t2), freebody(x3, v3, t3)]</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">X</span> <span class="p">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="o">-</span><span class="mi">353</span><span class="p">];</span> <span class="n">V</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3524</span><span class="p">,</span> <span class="o">-</span><span class="mi">432</span><span class="p">];</span> <span class="n">T</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">X1</span> <span class="p">=</span> <span class="n">freebody</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">X1</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>X1 =
+
+   1.0e+03 *
+
+    0.0040    0.0430    7.1316   -0.7801
+</code></pre><p>If you want to return multi outcomes, you can assemble them into a list. For example. The acceleration of a particle and the force acting on it are as follows:</p>
+<p>$$
+a = \frac{v_2-v_1}{t_2-t_1},
+$$</p>
+<p>$$
+F = ma
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>[a F] <span class="p">=</span><span class="w"> </span><span class="nf">acc</span><span class="p">(</span>v2,v1,t2,t1,m<span class="p">)</span><span class="w"> 
+</span><span class="w"></span><span class="n">a</span> <span class="p">=</span> <span class="p">(</span><span class="n">v2</span><span class="o">-</span><span class="n">v1</span><span class="p">)</span><span class="o">./</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">);</span>
+<span class="n">F</span> <span class="p">=</span> <span class="n">m</span><span class="o">.*</span><span class="n">a</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">Acc</span> <span class="n">Force</span><span class="p">]</span> <span class="p">=</span> <span class="n">acc</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">([</span><span class="n">Acc</span> <span class="n">Force</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>    10    10
+</code></pre><h2 id="no-input-or-output">No input or output</h2>
+<p>The input and output are optional:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span><span class="nf">converttemp</span><span class="p">()</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;/—————— input space to escape ——————/&#39;</span><span class="p">)</span>
+<span class="n">str_qus</span> <span class="p">=</span> <span class="s">&#39;&lt;== F：&#39;</span><span class="p">;</span>
+<span class="n">str_ans</span> <span class="p">=</span> <span class="s">&#39;C ==&gt;：&#39;</span><span class="p">;</span>
+<span class="k">while</span> <span class="mi">1</span>
+    <span class="n">f</span> <span class="p">=</span> <span class="n">input</span><span class="p">(</span><span class="n">str_qus</span><span class="p">);</span>
+    <span class="k">if</span> <span class="nb">isempty</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">else</span>  
+        <span class="n">c</span> <span class="p">=</span> <span class="p">(</span><span class="n">f</span><span class="o">-</span><span class="mi">32</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">;</span> 
+        <span class="nb">disp</span><span class="p">([</span><span class="n">str_ans</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="s">&#39;%.2f&#39;</span><span class="p">)]);</span>  
+    <span class="k">end</span>  
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">converttemp</span><span class="p">()</span>
+<span class="o">/</span>—————— <span class="n">input</span> <span class="n">space</span> <span class="n">to</span> <span class="n">escape</span> ——————<span class="o">/</span>
+<span class="o">&lt;==</span> <span class="n">F</span>：<span class="mi">1234</span>
+<span class="n">C</span> <span class="o">==&gt;</span>：<span class="mf">667.78</span>
+<span class="o">&lt;==</span> <span class="n">F</span>：<span class="mi">432</span>
+<span class="n">C</span> <span class="o">==&gt;</span>：<span class="mf">222.22</span>
+<span class="o">&lt;==</span> <span class="n">F</span>：<span class="mi">432</span>
+<span class="n">C</span> <span class="o">==&gt;</span>：<span class="mf">222.22</span>
+<span class="o">&lt;==</span> <span class="n">F</span>： 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="built-in-function-parameters">Built-in function parameters</h2>
+<p>In MATLAB, there are some built-in function parameters as follows:</p>
+<ul>
+<li><code>imputname</code>:	Variable name of function input</li>
+<li><code>mfilename</code>:	File name of currently running function</li>
+<li><code>nargin</code>:	Number of function input arguments</li>
+<li><code>nargout</code>:	Number of function output arguments</li>
+<li><code>varargin</code>:	Variable length input argument list</li>
+<li><code>varargout</code>:	Variable length output argument list</li>
+</ul>
+<p>MATLAB does not provide the syntax for specifying default parameter values and function overloading of other high-level languages, but the flexible use of the above built-in function parameters can, to a certain extent, specify default parameter values and method overloading:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>[volume]<span class="p">=</span><span class="nf">pillar</span><span class="p">(</span>Do,Di,height<span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">if</span> <span class="n">nargin</span><span class="o">==</span><span class="mi">2</span><span class="p">,</span>
+	<span class="n">height</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="n">volume</span><span class="p">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">Do</span><span class="o">.^</span><span class="mi">2</span><span class="o">-</span><span class="n">Di</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.*</span><span class="n">height</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/matlab/">MATLAB</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-i-array-operations/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering I (Array Operations)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#script-editor">Script Editor</a></li>
+    <li><a href="#structure-control">Structure Control</a>
+      <ol>
+        <li><a href="#logical-operators">Logical Operators</a></li>
+        <li><a href="#flow-control">Flow Control</a>
+          <ol>
+            <li><a href="#if-elseif-else"><code>if-elseif-else</code></a></li>
+            <li><a href="#switch-case-otherwise"><code>switch-case-otherwise</code></a></li>
+            <li><a href="#while"><code>while</code></a></li>
+            <li><a href="#for-and-pre-allocating"><code>for</code> and Pre-allocating</a></li>
+            <li><a href="#break"><code>break</code></a></li>
+            <li><a href="#tips-for-script-write">Tips for script write</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#functions">Functions</a>
+      <ol>
+        <li><a href="#standard-structure">Standard structure</a></li>
+        <li><a href="#no-input-or-output">No input or output</a></li>
+        <li><a href="#built-in-function-parameters">Built-in function parameters</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+
+    </body>
+</html>
