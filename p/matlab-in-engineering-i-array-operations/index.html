@@ -15,7 +15,7 @@
 1 2 3 4  &amp;gt;&amp;gt; a = 10; &amp;gt;&amp;gt; b = a; &amp;gt;&amp;gt; a = 5; &amp;gt;&amp;gt; b, a   b = 10 a = 5 Like most programming languages, variable names in MATLAB are case-sensitive.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-i-array-operations/'>
 <meta property='og:site_name' content='Haoming Wang'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-05-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-12T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-01-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-01-12T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="MATLAB in Engineering I (Array Operations)">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  Introduction Operation interface The operator interface of MATLAB consists of the following parts:
@@ -323,7 +323,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">May 12, 2021</time>
+                <time class="article-time--published">Jan 12, 2021</time>
             </div>
         
 
@@ -775,7 +775,42 @@ d =
        0              0              5              0              0       
        0              0              0              7              0       
        0              0              0              0              9    
+</code></pre><ul>
+<li><code>magic(n)</code>: returns an n-by-n matrix constructed from the integers 1 through n^2 with equal row and column sums. The order n must be a scalar greater than or equal to 3 in order to create a valid magic square.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="nb">magic</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">,</span>  <span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>A =
+
+    17    24     1     8    15
+    23     5     7    14    16
+     4     6    13    20    22
+    10    12    19    21     3
+    11    18    25     2     9
+
+
+ans =
+
+    65    65    65    65    65
+
+
+ans =
+
+    65
+    65
+    65
+    65
+    65
 </code></pre><h2 id="indexing-matrices">Indexing matrices</h2>
+<h3 id="normal">normal</h3>
 <p>Matrices in MATLAB are stored in <strong>columnar preorder</strong>. The index subscript <strong>starts from 1</strong> (instead of 0).</p>
 <p>There are two ways to index a matrix:</p>
 <ul>
@@ -795,52 +830,63 @@ d =
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">([</span><span class="n">A</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
 </code></pre></td></tr></table>
 </div>
-</div><pre tabindex="0"><code>A =
-
-       1              2              3       
-       4              5              6       
-       7              8              9       
-</code></pre><div class="highlight"><div class="chroma">
+</div><pre tabindex="0"><code>     8     8
+</code></pre><h3 id="colon">colon</h3>
+<p>Recall that you can create an array using a <strong>colon</strong> like <code>start : increment : end</code>.</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">100</span><span class="p">;</span> <span class="mi">101</span><span class="p">:</span><span class="mi">200</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">55</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><pre tabindex="0"><code>ans =
-
-       8       
-</code></pre><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><pre tabindex="0"><code>ans =
-
-       8       
-
-</code></pre><p>The index of a matrix can use a colon <code>:</code>, indicating that all rows or columns are selected.</p>
+</div><pre tabindex="0"><code>    50    51    52    53    54    55
+</code></pre><p>In particular, you can index all row or column without specifying the start and end.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">(:,</span> <span class="mi">50</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">60</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><pre tabindex="0"><code>ans =
-
-       1              2              3    
-</code></pre><p>The index of a matrix can be one or two vectors, indicating that all rows or columns in the vector are selected. In particular:</p>
+</div><pre tabindex="0"><code>    50    52    54    56    58    60
+   150   152   154   156   158   160
+</code></pre><p>To index from the tail to the head of the array, you can use <code>end</code> keyword:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">(:,</span> <span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">95</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   100    99    98    97    96    95
+   200   199   198   197   196   195
+</code></pre><p>another example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">str1</span> <span class="p">=</span> <span class="s">&#39;abcdef&#39;</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">str1</span><span class="p">(</span><span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>fedcba
+</code></pre><h3 id="vectors">vectors</h3>
+<p>The index of a matrix can be one or two <strong>vectors</strong>, indicating that all rows or columns in the vector are selected. In particular:</p>
 <p>Method 1:</p>
 <ul>
 <li><code>A([1 3 5])</code>: <code>[A(1) A(3) A(5)]</code></li>
@@ -895,16 +941,17 @@ a4 =
 
        1              2       
        7              8     
-</code></pre><h2 id="operations-on-matrices">Operations on matrices</h2>
+</code></pre><p>To index the end element of the array, use key word <code>end</code> in indexing:</p>
+<h2 id="operations-on-matrices">Operations on matrices</h2>
 <h3 id="operators-for-manipulating-matrices">Operators for manipulating matrices</h3>
 <p>Let <code>A</code>, <code>B</code> are matrixes, <code>a</code> is a scalar:</p>
 <p>Each matrix element performs operations with scalar <code>a</code>:</p>
 <ul>
 <li><code>A + a</code></li>
 <li><code>A - a</code></li>
-<li><code>A .* a</code></li>
-<li><code>A ./ a</code></li>
-<li><code>A .^ a</code></li>
+<li><code>A .* a</code> (= <code>A * a</code>)</li>
+<li><code>A ./ a</code> (= <code>A / a</code>)</li>
+<li><code>A .^ a</code> (= <code>A ^ a</code>)</li>
 </ul>
 <p>Matrix and matrix corresponding position elements perform operations:</p>
 <ul>
@@ -1080,6 +1127,18 @@ s3 =
     </a>
 </article>
             
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-ii-script-and-function/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering II (Script and Function)</h2>
+        </div>
+    </a>
+</article>
+            
         </div>
     </div>
 </aside>
@@ -1237,7 +1296,13 @@ s3 =
             <li><a href="#special-matrix">Special matrix</a></li>
           </ol>
         </li>
-        <li><a href="#indexing-matrices">Indexing matrices</a></li>
+        <li><a href="#indexing-matrices">Indexing matrices</a>
+          <ol>
+            <li><a href="#normal">normal</a></li>
+            <li><a href="#colon">colon</a></li>
+            <li><a href="#vectors">vectors</a></li>
+          </ol>
+        </li>
         <li><a href="#operations-on-matrices">Operations on matrices</a>
           <ol>
             <li><a href="#operators-for-manipulating-matrices">Operators for manipulating matrices</a></li>

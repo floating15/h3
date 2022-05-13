@@ -2,25 +2,28 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Script Editor Script is a .m file containing MATLAB commands, to create a MATLAB script, press command&#43;N.
-The following features are commonly used in the script editor: find function, breakpoint debugging, sectioning, commenting, smart indentation etc.
-Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &amp;lt;= less than or equal to &amp;gt;- greater than or equal to == equal to ~= not equal to &amp;amp;&amp;amp; and || or  1  &amp;gt;&amp;gt; (2 &amp;gt;= 1) &amp;amp;&amp;amp; (2 ~= 4)   ans = logical 1 Boolean variables can participate in operations:'><title>MATLAB in Engineering II (Script and Function)</title>
+ Data Type The main data types in MATLAB are as follows:
+The following is an introduction to the main data types in order, the MATLAB documentation describes all data types.
+numeric The numeric types supported by MATLAB are as follows:
+ double(default): double-precision floating-point number single: single-precision floating-point number int8: 8-bit signed integer int16: 16-bit signed integer int32: 32-bit signed integer int64: 64-bit signed integer uint8: 8-bit unsigned integer uint16: 16-bit unsigned integer uint32: 32-bit unsigned integer uint64: 64-bit unsigned integer  In MATLAB, variables of numeric type are defaulted to double type and can be converted to other numeric types using type conversion.'><title>MATLAB in Engineering II (Script and Function)</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/matlab-in-engineering-ii-script-and-function/'>
 
 <link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='MATLAB in Engineering II (Script and Function)'>
 <meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Script Editor Script is a .m file containing MATLAB commands, to create a MATLAB script, press command&#43;N.
-The following features are commonly used in the script editor: find function, breakpoint debugging, sectioning, commenting, smart indentation etc.
-Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &amp;lt;= less than or equal to &amp;gt;- greater than or equal to == equal to ~= not equal to &amp;amp;&amp;amp; and || or  1  &amp;gt;&amp;gt; (2 &amp;gt;= 1) &amp;amp;&amp;amp; (2 ~= 4)   ans = logical 1 Boolean variables can participate in operations:'>
+ Data Type The main data types in MATLAB are as follows:
+The following is an introduction to the main data types in order, the MATLAB documentation describes all data types.
+numeric The numeric types supported by MATLAB are as follows:
+ double(default): double-precision floating-point number single: single-precision floating-point number int8: 8-bit signed integer int16: 16-bit signed integer int32: 32-bit signed integer int64: 64-bit signed integer uint8: 8-bit unsigned integer uint16: 16-bit unsigned integer uint32: 32-bit unsigned integer uint64: 64-bit unsigned integer  In MATLAB, variables of numeric type are defaulted to double type and can be converted to other numeric types using type conversion.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-ii-script-and-function/'>
 <meta property='og:site_name' content='Haoming Wang'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-05-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-17T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-01-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-01-17T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="MATLAB in Engineering II (Script and Function)">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
- Script Editor Script is a .m file containing MATLAB commands, to create a MATLAB script, press command&#43;N.
-The following features are commonly used in the script editor: find function, breakpoint debugging, sectioning, commenting, smart indentation etc.
-Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &amp;lt;= less than or equal to &amp;gt;- greater than or equal to == equal to ~= not equal to &amp;amp;&amp;amp; and || or  1  &amp;gt;&amp;gt; (2 &amp;gt;= 1) &amp;amp;&amp;amp; (2 ~= 4)   ans = logical 1 Boolean variables can participate in operations:">
+ Data Type The main data types in MATLAB are as follows:
+The following is an introduction to the main data types in order, the MATLAB documentation describes all data types.
+numeric The numeric types supported by MATLAB are as follows:
+ double(default): double-precision floating-point number single: single-precision floating-point number int8: 8-bit signed integer int16: 16-bit signed integer int32: 32-bit signed integer int64: 64-bit signed integer uint8: 8-bit unsigned integer uint16: 16-bit unsigned integer uint32: 32-bit unsigned integer uint64: 64-bit unsigned integer  In MATLAB, variables of numeric type are defaulted to double type and can be converted to other numeric types using type conversion.">
     </head>
     <body class="
     article-page
@@ -323,7 +326,7 @@ Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &a
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">May 17, 2021</time>
+                <time class="article-time--published">Jan 21, 2021</time>
             </div>
         
 
@@ -567,7 +570,76 @@ Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &a
 <span class="k">end</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>If a variable requires a predictable amount of memory space, we should try to allocate memory space for it in advance, which is called <strong>pre-allocating</strong>. This can significantly increase the speed of operations. For example,</p>
+</div><p>To iterate from back to front, we can run</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">12</span> <span class="mi">26</span> <span class="mi">33</span><span class="p">];</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">A</span><span class="p">):</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span>
+    <span class="n">B</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>33    26    12
+</code></pre><p>or simply</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>33    26    12
+</code></pre><p>The later method is strikingly faster than the former one:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mf">1e7</span><span class="p">];</span>
+
+<span class="n">tic</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">A</span><span class="p">):</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span>
+    <span class="n">B</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="n">toc</span>
+
+<span class="n">tic</span>
+<span class="n">C</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">toc</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>历时 2.370994 秒。
+历时 0.038670 秒。
+</code></pre><p>If a variable requires a predictable amount of memory space, we should try to allocate memory space for it in advance, which is called <strong>pre-allocating</strong>. This can significantly increase the speed of operations. For example,</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -616,85 +688,7 @@ Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &a
 历时 0.028722 秒。
 </code></pre><p><a class="link" href="https://www.mathworks.com/help/matlab/ref/tic.html?searchHighlight=tic&amp;s_tid=srchtitle_tic_1"  target="_blank" rel="noopener"
     >tic</a> works with the <code>toc</code> function to measure elapsed time. The <code>tic</code> function records the current time, and the <code>toc</code> function uses the recorded value to calculate the elapsed time.</p>
-<p>Use structured programming to: Find the entries in matrix <code>A</code> that are negative, store these entries’ position in a matrix <code>B</code>, and finally, change the values of these entries to zero:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
-
-<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="n">B</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">));</span>
-<span class="n">C</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">));</span>
-
-<span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">jj</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="o">&gt;</span><span class="p">=</span> <span class="mi">0</span>
-            <span class="n">B</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">);</span>
-        <span class="k">else</span>
-            <span class="n">B</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">end</span>
-    <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">&gt;</span><span class="p">=</span> <span class="mi">0</span>
-        <span class="n">C</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="p">=</span> <span class="n">A</span><span class="p">(</span><span class="n">ii</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="n">C</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="nb">disp</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
-<span class="nb">disp</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><pre tabindex="0"><code>    1.4058   -0.2375   -1.1693   -0.8494   -1.0639
-    1.0230    0.6902    0.6402   -0.6881   -0.9510
-   -0.7450    0.0016    0.8447   -0.0991   -0.5942
-    1.2759   -1.1323    1.0848    0.7670    0.2078
-   -0.8010    0.1670    0.3202    1.7301   -1.1932
-
-    1.4058         0         0         0         0
-    1.0230    0.6902    0.6402         0         0
-         0    0.0016    0.8447         0         0
-    1.2759         0    1.0848    0.7670    0.2078
-         0    0.1670    0.3202    1.7301         0
-
-    1.4058         0         0         0         0
-    1.0230    0.6902    0.6402         0         0
-         0    0.0016    0.8447         0         0
-    1.2759         0    1.0848    0.7670    0.2078
-         0    0.1670    0.3202    1.7301         0
-</code></pre><h3 id="break"><code>break</code></h3>
+<h3 id="break"><code>break</code></h3>
 <p>Sometimes, the convergence of iteration is not guaranteed, to terminate the execution of <code>for</code> or <code>while</code> loops, use <code>break</code> keyword:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -741,11 +735,13 @@ Structure Control Logical Operators  &amp;lt; less than &amp;gt; greater than &a
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">annPoints_sampled</span> <span class="p">=</span> <span class="n">annPoints</span><span class="p">(</span><span class="n">annPoints</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="n">x1</span> <span class="o">&amp;</span> <span class="c">...</span>
-    <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">x2</span> <span class="o">&amp;</span> <span class="c">...</span>
-    <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">y1</span> <span class="o">&amp;</span> <span class="c">...</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">annPoints_sampled</span> <span class="p">=</span> <span class="n">annPoints</span><span class="p">(</span>
+	<span class="n">annPoints</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">x1</span> <span class="o">&amp;&amp;</span> <span class="c">...</span>
+    <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">x2</span> <span class="o">&amp;&amp;</span> <span class="c">...</span>
+    <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">y1</span> <span class="o">&amp;&amp;</span> <span class="c">...</span>
     <span class="n">annPoints</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">y2</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
@@ -1033,6 +1029,18 @@ $$</p>
     <h2 class="section-title">Related contents</h2>
     <div class="related-contents">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-ii-script-and-function/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering II (Script and Function)</h2>
+        </div>
+    </a>
+</article>
             
                 
 <article class="">

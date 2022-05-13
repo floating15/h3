@@ -31,20 +31,20 @@
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/kaggle/kk5.jpg" alt="Featured image of post Kaggle" /&gt;</description>
         </item>
         <item>
-        <title>Scientific Computing</title>
-        <link>https://wanghaoming177.netlify.app/categories/sci_compute/</link>
-        <pubDate>Mon, 17 May 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/categories/sci_compute/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/sci_compute/sss05.png" alt="Featured image of post Scientific Computing" /&gt;</description>
-        </item>
-        <item>
         <title>Linux</title>
         <link>https://wanghaoming177.netlify.app/categories/linux/</link>
         <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
         
         <guid>https://wanghaoming177.netlify.app/categories/linux/</guid>
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/linux/images2.jpeg" alt="Featured image of post Linux" /&gt;</description>
+        </item>
+        <item>
+        <title>Scientific Computing</title>
+        <link>https://wanghaoming177.netlify.app/categories/sci_compute/</link>
+        <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/sci_compute/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/sci_compute/sss05.png" alt="Featured image of post Scientific Computing" /&gt;</description>
         </item>
         <item>
         <title>Python</title>
