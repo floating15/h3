@@ -15,14 +15,6 @@
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/ml/ttt6.JPG" alt="Featured image of post Machine Learning" /&gt;</description>
         </item>
         <item>
-        <title>Data Science</title>
-        <link>https://wanghaoming177.netlify.app/categories/data_science/</link>
-        <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/categories/data_science/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_science/ttt2.jpeg" alt="Featured image of post Data Science" /&gt;</description>
-        </item>
-        <item>
         <title>Kaggle</title>
         <link>https://wanghaoming177.netlify.app/categories/kaggle/</link>
         <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
@@ -45,6 +37,14 @@
         
         <guid>https://wanghaoming177.netlify.app/categories/sci_compute/</guid>
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/sci_compute/sss05.png" alt="Featured image of post Scientific Computing" /&gt;</description>
+        </item>
+        <item>
+        <title>Data Science</title>
+        <link>https://wanghaoming177.netlify.app/categories/data_science/</link>
+        <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/data_science/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/data_science/ttt2.jpeg" alt="Featured image of post Data Science" /&gt;</description>
         </item>
         <item>
         <title>Python</title>
