@@ -904,6 +904,51 @@
 	
 	
 ></p>
+<p>If we want to align the subplot axis, we can call <code>get()</code> function inside the <code>set()</code> function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% axis align</span>
+
+<span class="n">close</span> <span class="n">all</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="nb">pi</span><span class="o">/</span><span class="mi">20</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">;</span>
+<span class="n">y1</span> <span class="p">=</span> <span class="nb">cos</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">y2</span> <span class="p">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">ax1</span> <span class="p">=</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">p1</span> <span class="p">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s">&#39;c^-&#39;</span><span class="p">);</span>
+
+<span class="n">ax2</span> <span class="p">=</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">p2</span> <span class="p">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="s">&#39;ro-&#39;</span><span class="p">);</span>
+
+<span class="n">set</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="s">&#39;YLim&#39;</span><span class="p">,</span> <span class="n">get</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="s">&#39;YLim&#39;</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161623435.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <h3 id="axisxlabel-axistitle"><code>axis.XLabel</code>, <code>axis.Title</code></h3>
 <p>Note that the label (<code>XLabel</code>, <code>YLabel</code>, <code>Zlabel</code>) and title (<code>Title</code>) of the the axis is a sub-object of the axis (or <code>gca</code>), instead of a property. Thus when we want to modify the label, we need to obtain its handel first by</p>
 <div class="highlight"><div class="chroma">
@@ -1201,6 +1246,18 @@
     <h2 class="section-title">Related contents</h2>
     <div class="related-contents">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vi-differentiation-integration/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VI (Differentiation &amp; Integration)</h2>
+        </div>
+    </a>
+</article>
             
                 
 <article class="">

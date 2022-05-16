@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Numerical operations on polynomials Polynomials and it&amp;rsquo;s values In MATLAB, a polynomial can be represented as a vector, where the elements of the vector are the coefficients of the polynomial (in descending power order): the first is the coefficient of the highest term of the polynomial, and the last is the constant term.'><title>MATLAB in Engineering VI (Differentiation &amp; Integration)</title>
+
+<link rel='canonical' href='https://wanghaoming177.netlify.app/p/matlab-in-engineering-vi-differentiation-integration/'>
+
+<link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='MATLAB in Engineering VI (Differentiation &amp; Integration)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Numerical operations on polynomials Polynomials and it&amp;rsquo;s values In MATLAB, a polynomial can be represented as a vector, where the elements of the vector are the coefficients of the polynomial (in descending power order): the first is the coefficient of the highest term of the polynomial, and the last is the constant term.'>
+<meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-vi-differentiation-integration/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-02-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-02-04T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="MATLAB in Engineering VI (Differentiation &amp; Integration)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Numerical operations on polynomials Polynomials and it&amp;rsquo;s values In MATLAB, a polynomial can be represented as a vector, where the elements of the vector are the coefficients of the polynomial (in descending power order): the first is the coefficient of the highest term of the polynomial, and the last is the constant term.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/IMG_0770_hu86b91b9497cdda82d5c488540c7342b2_101927_300x0_resize_q75_box.jpg" width="300"
+                            height="273" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌏</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/floating15'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/%E6%B5%A9%E9%93%AD-%E7%8E%8B-b0a164171/'
+                        target="_blank"
+                        title="Linkedin"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://follow.it/haoming-wang?action=followPub'
+                        target="_blank"
+                        title="r-mail"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mailbox" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
+  <path d="M12 11v-8h4l2 2l-2 2h-4" />
+  <path d="M6 15h1" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#FF1C02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#35FF02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#02EAFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#0223FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#F402FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sci_compute/" >
+                Scientific Computing
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/matlab-in-engineering-vi-differentiation-integration/">MATLAB in Engineering VI (Differentiation &amp; Integration)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 04, 2021</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<h1 id="numerical-operations-on-polynomials">Numerical operations on polynomials</h1>
+<h2 id="polynomials-and-its-values">Polynomials and it&rsquo;s values</h2>
+<p>In MATLAB, a polynomial can be represented as a vector, where the elements of the vector are the coefficients of the polynomial (in descending power order): the first is the coefficient of the highest term of the polynomial, and the last is the constant term.</p>
+<p>For example, the polynomial:</p>
+<p>$$
+f ( x ) = x^3 - 2x - 5
+$$</p>
+<p>can be represented by the vector <code>p = [1 0 -2 -5]</code>. Furthermore, The coefficients of the polynomial product can be calculated by the <code>conv()</code> function. For example:</p>
+<p>$$
+(x^2+1)(x^2-1)=(x^4-1)
+$$</p>
+<p>and</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">p1</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">];</span> <span class="n">p2</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">conv</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+     1     0     0     0    -1
+</code></pre><p>After defining the coefficients <code>p</code>, we can use <code>polyval(p, x)</code> to compute the value of the polynomial at each point of <code>x</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% representation</span>
+
+<span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">];</span>
+<span class="n">x</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:.</span><span class="mi">01</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;$9x^3-5x^2+3x+7$&#39;</span><span class="p">,</span> <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span><span class="s">&#39;latex&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161505841.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="polynomials-differentiation-polyder">Polynomials differentiation: <code>polyder()</code></h2>
+<p>The <code>polyder(p)</code> function can be used to calculate the derivative of a polynomial. For example, the derivative of polynomial $f(x)=9x^3-5x^2+3x+7$ is $f'(x)=27x^2-10x+3$:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">polyder</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+    27   -10     3
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% poly diff</span>
+
+<span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="n">polyder</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:.</span><span class="mi">01</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="n">g</span> <span class="p">=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span> <span class="s">&#39;--r&#39;</span><span class="p">,</span><span class="c">...</span>
+     <span class="n">x</span><span class="p">,</span><span class="n">g</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;$f(x)=9x^3-5x^2+3x+7$&#39;</span><span class="p">,</span><span class="c">...</span>
+       &#34;$<span class="n">f</span><span class="o">&#39;</span><span class="p">(</span><span class="n">x</span><span class="p">)=</span><span class="mi">27</span><span class="n">x</span>^<span class="mi">2</span><span class="o">-</span><span class="mi">10</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span>$&#34;<span class="p">,</span><span class="c">...</span>
+       <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span><span class="s">&#39;latex&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161510754.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% poly product</span>
+
+<span class="n">a1</span> <span class="p">=</span> <span class="p">[</span><span class="mi">20</span> <span class="o">-</span><span class="mi">7</span> <span class="mi">5</span> <span class="mi">10</span><span class="p">];</span>
+<span class="n">a2</span> <span class="p">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">12</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">conv</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="n">polyder</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:.</span><span class="mi">01</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">polyval</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;--b&#39;</span><span class="p">,</span><span class="c">...</span>
+     <span class="n">x</span><span class="p">,</span><span class="n">polyval</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="c">...</span>
+     <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;f(x)&#39;</span><span class="p">,</span> &#34;<span class="n">f</span><span class="o">&#39;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>&#34;<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161511237.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="polynomials-integration-polyint">Polynomials integration: <code>polyint()</code></h2>
+<p>Use the <code>polyint(p, k)</code> function to calculate the original function of a polynomial <code>p</code>. The constant term of the integral result is set to <code>k</code>.</p>
+<p>For example, to the original function, whose constant term is 3, of the polynomial $5x^4−2x^2+1$ is $x^5-2/3x^3 +x +3$ :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">polyint</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+    1.0000         0   -0.6667         0    1.0000         3
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% poly int</span>
+
+<span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span> <span class="mi">3</span> <span class="o">-</span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">];</span>
+<span class="n">c</span> <span class="p">=</span> <span class="n">polyint</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c">% 3 specify the constant</span>
+<span class="n">x</span><span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:.</span><span class="mi">01</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">polyval</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;--b&#39;</span><span class="p">,</span><span class="c">...</span>
+     <span class="n">x</span><span class="p">,</span><span class="n">polyval</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="c">...</span>
+     <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;$f(x)$&#39;</span><span class="p">,</span> &#34;$<span class="o">\</span><span class="n">int</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">dx</span>$&#34;<span class="p">,</span><span class="c">...</span>
+       <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span> <span class="s">&#39;latex&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161516223.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="numerical-operations-on-functions">Numerical operations on functions</h1>
+<h2 id="numerical-differentiation">Numerical Differentiation</h2>
+<h3 id="differentiation-diff">Differentiation: <code>diff()</code></h3>
+<p>Use <code>diff(X, n)</code> to compute the n-th (<code>n=1</code> default) order difference of the vector <code>X</code>. If <code>X</code> is 2 dimension array, the operation of <code>diff()</code> is <strong>row-wise</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">X</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">X</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>X =
+
+     1     2     3     4     5
+     1     3     5     7     9
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">diff</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+     0     1     2     3     4
+</code></pre><p>Notice that the length of the corresponding dimension of <code>X</code> <strong>decreases by 1</strong> each time you take a first order difference.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>x =
+
+     1     4     9    16    25
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+     3     5     7     9
+</code></pre><h3 id="derivative-diffydiffx">Derivative:<code> diff(y)./diff(x)</code></h3>
+<p>Use the definition of derivative</p>
+<p>$$
+f^{\prime}\left(x_{0}\right)=\lim <em>{h \rightarrow 0} \frac{f\left(x</em>{0}+h\right)-f\left(x_{0}\right)}{h}
+$$</p>
+<p>You can compute the approximate derivative of a function at some point.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% slop: sin&#39;(pi/2)</span>
+
+<span class="n">x0</span> <span class="p">=</span> <span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.001</span><span class="p">;</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="n">x0</span> <span class="n">x0</span><span class="o">+</span><span class="n">h</span><span class="p">];</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">m1</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">./</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">m1</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>-5.0000e-04
+</code></pre><p>The smaller the value of <code>h</code>, the more accurate the approximate derivative.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% slop: h</span>
+<span class="n">clear</span>
+
+<span class="n">n</span><span class="p">=</span><span class="mi">1000</span><span class="p">;</span>
+<span class="n">h</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">x1</span> <span class="p">=</span> <span class="n">h</span> <span class="o">+</span> <span class="n">x0</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="n">x0</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">x1</span><span class="o">&#39;</span><span class="p">];</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">m</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="o">&#39;</span><span class="p">)</span><span class="o">&#39;./</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="o">&#39;</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
+
+<span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span>&#34;<span class="nb">sin</span><span class="o">&#39;</span><span class="p">(</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="n">given</span> <span class="n">by</span> <span class="n">h</span>&#34;<span class="p">);</span>
+<span class="n">set</span> <span class="p">(</span> <span class="n">gca</span><span class="p">,</span> <span class="s">&#39;xdir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="n">grid</span> <span class="n">on</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161532098.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>To calculate the values of the derivative over an interval:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% diff in an interval</span>
+
+<span class="n">clear</span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">h</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">m</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">./</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="c">...</span>
+     <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">m</span><span class="p">,</span><span class="s">&#39;--r&#39;</span><span class="p">,</span><span class="c">...</span>
+     <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;XLim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">]);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;XTick&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;XTickLabel&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="s">&#39;\pi/2&#39;</span><span class="p">,</span> <span class="s">&#39;\pi&#39;</span><span class="p">,</span> <span class="s">&#39;3\pi/2&#39;</span><span class="p">,</span> <span class="s">&#39;2\pi&#39;</span><span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161536162.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Second order derivative:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% second diff</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:.</span><span class="mi">005</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+<span class="n">m</span> <span class="p">=</span> <span class="n">diff</span> <span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">./</span> <span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">m2</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">./</span> <span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span><span class="c">...</span>
+     <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="s">&#39;g&#39;</span><span class="p">,</span><span class="c">...</span>
+     <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">m2</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">);</span>
+
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> &#34;<span class="n">f</span><span class="o">&#39;</span>&#34;<span class="p">,</span> &#34;<span class="n">f</span><span class="o">&#39;&#39;</span>&#34;<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161540276.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="numerical-integration">Numerical Integration</h2>
+<h3 id="midpoint-rule">Midpoint Rule</h3>
+<p>Midpoint Rule is to solve the Riemannian sum. For Riemannian integrable functions, the Riemannian sum will converge to the integral value.</p>
+<p>$$
+\int_{a}^{b} f(x) d x=2 h \sum_{i=0}^{\frac{n}{2}-1} f\left(x_{2 i+1}\right)
+$$</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161554695.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% int</span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.05</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">h</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">mp</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="o">./</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">mp</span> <span class="o">.^</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">s</span> <span class="p">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">y</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>15.9950
+</code></pre><h3 id="trapezoid-rule">Trapezoid Rule</h3>
+<p>$$
+\int_{a}^{b} f(x) d x=\frac{h}{2}\left[f(a)+2 \sum_{i=1}^{n-1} f\left(x_{i}\right)+f(b)\right]
+$$</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161553572.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% trap</span>
+
+<span class="n">h</span><span class="p">=</span><span class="mf">0.05</span><span class="p">;</span> 
+<span class="n">x</span><span class="p">=</span><span class="mi">0</span><span class="p">:</span><span class="n">h</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span> 
+<span class="n">y</span><span class="p">=</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span> 
+ 
+<span class="n">tp</span> <span class="p">=</span> <span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> 
+<span class="n">s</span> <span class="p">=</span> <span class="n">h</span><span class="o">*</span><span class="n">sum</span><span class="p">(</span><span class="n">tp</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>16.0100
+</code></pre><p>Alternatively,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% trap</span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.05</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">h</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+<span class="n">s</span> <span class="p">=</span> <span class="n">h</span><span class="o">*</span><span class="n">trapz</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>16.0100
+</code></pre><h3 id="simpsons-rule">Simpson’s Rule</h3>
+<p>$$
+\int_{a}^{b} f(x) d x=\frac{h}{3}\left[f(a)+2 \sum_{i=1}^{(n / 2)-1} f\left(x_{2 i}\right)+4 \sum_{i=1}^{n / 2} f\left(x_{2 i-1}\right)+f(b)\right]
+$$</p>
+<p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161607416.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% Simpson</span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.05</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">h</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+<span class="n">s</span> <span class="p">=</span> <span class="n">h</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="c">...</span>
+         <span class="mi">2</span><span class="o">*</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="c">...</span>
+         <span class="mi">4</span><span class="o">*</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="o">+</span><span class="c">...</span>
+         <span class="n">y</span><span class="p">(</span><span class="k">end</span><span class="p">));</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>16
+</code></pre><h3 id="convergence-of-three-algorithms">Convergence of three algorithms</h3>
+<p>As we can see, when <code>h</code> is small enough, all three algorithms converge to the integral value: 16.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% trap h</span>
+
+<span class="n">n</span><span class="p">=</span><span class="mi">10000</span><span class="p">;</span>
+<span class="n">hs</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="n">ss1</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="n">ss2</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="n">ss3</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+
+
+<span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">h</span> <span class="p">=</span> <span class="n">hs</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">h</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">y</span><span class="p">=</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span> 
+    
+    <span class="n">mp</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="o">./</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">ym</span> <span class="p">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">mp</span> <span class="o">.^</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">s1</span> <span class="p">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">ym</span><span class="p">);</span>
+    <span class="n">ss1</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">s1</span><span class="p">;</span>
+
+    <span class="n">tp</span> <span class="p">=</span> <span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> 
+    <span class="n">s2</span> <span class="p">=</span> <span class="n">h</span><span class="o">*</span><span class="n">sum</span><span class="p">(</span><span class="n">tp</span><span class="p">);</span>
+    <span class="n">ss2</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">s2</span><span class="p">;</span>
+
+    <span class="n">s3</span> <span class="p">=</span> <span class="n">h</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="c">...</span>
+         <span class="mi">2</span><span class="o">*</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="c">...</span>
+         <span class="mi">4</span><span class="o">*</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="o">+</span><span class="c">...</span>
+         <span class="n">y</span><span class="p">(</span><span class="k">end</span><span class="p">));</span>
+    <span class="n">ss3</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">s3</span><span class="p">;</span>
+    
+    <span class="nb">i</span> <span class="p">=</span> <span class="nb">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">semilogx</span><span class="p">(</span><span class="n">hs</span><span class="p">,</span> <span class="n">ss1</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Riemann Sum&#39;</span><span class="p">)</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;XDir&#39;</span><span class="p">,</span><span class="s">&#39;reverse&#39;</span><span class="p">,</span><span class="c">...</span>
+    <span class="s">&#39;YLim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mf">16.5</span><span class="p">]);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">semilogx</span><span class="p">(</span><span class="n">hs</span><span class="p">,</span> <span class="n">ss2</span><span class="p">,</span> <span class="s">&#39;g&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Trape Sum&#39;</span><span class="p">)</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;XDir&#39;</span><span class="p">,</span><span class="s">&#39;reverse&#39;</span><span class="p">,</span><span class="c">...</span>
+    <span class="s">&#39;YLim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mf">16.5</span><span class="p">]);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">semilogx</span><span class="p">(</span><span class="n">hs</span><span class="p">,</span> <span class="n">ss3</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Simpson Sum&#39;</span><span class="p">)</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;XDir&#39;</span><span class="p">,</span><span class="s">&#39;reverse&#39;</span><span class="p">,</span><span class="c">...</span>
+    <span class="s">&#39;YLim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mf">16.5</span><span class="p">]);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161617665.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="integralintegral2integral3"><code>integral()</code>,<code>integral2()</code>,<code>integral3()</code></h3>
+<ul>
+<li><code>q = integral(fun,xmin,xmax)</code></li>
+<li><code>q = integral2(fun,xmin,xmax,ymin,ymax)</code></li>
+<li><code>q = integral2(fun,xmin,xmax,ymin,ymax,zmin,zmax)</code></li>
+</ul>
+<p>Approximates the integral of the function over the planar region <code>xmin ≤ x ≤ xmax</code> (and <code>ymin(x) ≤ y ≤ ymax(x)</code> and <code>zmin(x,y) ≤ z ≤ zmax(x,y)</code>). Their first argument <code>fun</code> should be a function handle, instead of the name of function.</p>
+<p>For example:</p>
+<p>$$
+f(x, y)=\frac{1}{(\sqrt{x+y})(1+x+y)^{2}}
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% func</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">.*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="p">);</span>
+
+<span class="n">close</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:.</span><span class="mi">001</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:.</span><span class="mi">001</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">[</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">Z</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">);</span>
+<span class="n">mesh</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">Z</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span> <span class="n">zlabel</span><span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;zscale&#39;</span><span class="p">,</span><span class="s">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">view</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">colorbar</span><span class="p">;</span>
+<span class="n">colormap</span><span class="p">(</span><span class="n">jet</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161646365.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Compute integrals for the triangle regions defined by <code>0≤x≤1</code> and <code>0≤y≤1−x</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% integral2</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">.*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="p">);</span>
+<span class="n">ymax</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">;</span>
+<span class="n">q</span> <span class="p">=</span> <span class="n">integral2</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">ymax</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>0.2854
+</code></pre>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/matlab/">MATLAB</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-v-advanced-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering V (Advanced Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-iv-basic-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering IV (Basic Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-iii-data-structure/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering III (Data Structure)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-ii-script-and-function/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering II (Script and Function)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-i-array-operations/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering I (Array Operations)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#numerical-operations-on-polynomials">Numerical operations on polynomials</a>
+      <ol>
+        <li><a href="#polynomials-and-its-values">Polynomials and it&rsquo;s values</a></li>
+        <li><a href="#polynomials-differentiation-polyder">Polynomials differentiation: <code>polyder()</code></a></li>
+        <li><a href="#polynomials-integration-polyint">Polynomials integration: <code>polyint()</code></a></li>
+      </ol>
+    </li>
+    <li><a href="#numerical-operations-on-functions">Numerical operations on functions</a>
+      <ol>
+        <li><a href="#numerical-differentiation">Numerical Differentiation</a>
+          <ol>
+            <li><a href="#differentiation-diff">Differentiation: <code>diff()</code></a></li>
+            <li><a href="#derivative-diffydiffx">Derivative:<code> diff(y)./diff(x)</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#numerical-integration">Numerical Integration</a>
+          <ol>
+            <li><a href="#midpoint-rule">Midpoint Rule</a></li>
+            <li><a href="#trapezoid-rule">Trapezoid Rule</a></li>
+            <li><a href="#simpsons-rule">Simpson’s Rule</a></li>
+            <li><a href="#convergence-of-three-algorithms">Convergence of three algorithms</a></li>
+            <li><a href="#integralintegral2integral3"><code>integral()</code>,<code>integral2()</code>,<code>integral3()</code></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+
+    </body>
+</html>
