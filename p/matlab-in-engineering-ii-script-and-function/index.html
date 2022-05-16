@@ -937,7 +937,7 @@ $$</p>
 <span class="o">&lt;==</span> <span class="n">F</span>： 
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="built-in-function-parameters">Built-in function parameters</h2>
+</div><h2 id="built-in-parameters">Built-in parameters</h2>
 <p>In MATLAB, there are some built-in function parameters as follows:</p>
 <ul>
 <li><code>imputname</code>:	Variable name of function input</li>
@@ -964,7 +964,163 @@ $$</p>
 <span class="n">volume</span><span class="p">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">Do</span><span class="o">.^</span><span class="mi">2</span><span class="o">-</span><span class="n">Di</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.*</span><span class="n">height</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
+</div><h2 id="syntax-of-">syntax of <code>@</code></h2>
+<h3 id="f--parameter-expression"><code>f = @(parameter) expression</code></h3>
+<p>Sometimes you need to define a function to calculate the value of a certain expression, you can directly use the syntax:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">parameter</span><span class="p">)</span> <span class="n">expression</span>
+</code></pre></td></tr></table>
 </div>
+</div><p>to create an anonymous function that returns a <strong>handle of the function</strong> to variable <code>f</code>. Then you can use <code>f</code> to call the handle:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+    25
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span> <span class="n">y</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+     2     8    18    32    50
+</code></pre><p>Here <code>f</code> is a variable that represents the handle of the function, this means you can pass <code>f</code> to the other function as a parameter.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">f</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>f =
+
+  包含以下值的 function_handle:
+
+    @(x,y)x.^2+y.^2
+</code></pre><p>A corresponding concept is the <strong>name of function</strong>, note that the name of function does not represent the function, thus it cannot be assigned or passed to the other function as a parameter.</p>
+<h3 id="f--function-name"><code>f = @&lt;function-name&gt;</code></h3>
+<p>To get the function handle from the function name, add <code>@</code> before the function name, and MATLAB will return the function handle:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">sin</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>错误使用 sin
+输入参数的数目不足。
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">@</span><span class="nb">sin</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+  包含以下值的 function_handle:
+
+    @sin
+</code></pre><p>Once you obtain the function handle, you can assign it to another variable</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="p">=</span> <span class="p">@</span><span class="nb">sin</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">(</span><span class="nb">pi</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+   1.2246e-16
+</code></pre><p>or pass it to another function as a parameter, for example let&rsquo;s define a function <code>func_plot.m</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span><span class="nf">func_plot</span><span class="p">(</span>x, func, style, LineWidth<span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c">% plot the input function</span>
+<span class="c">% arguments:</span>
+<span class="c">%   func: the handle of the function</span>
+<span class="c">%   x: array of x values</span>
+
+    <span class="n">y</span> <span class="p">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">style</span><span class="p">,</span><span class="c">...</span>
+         <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="n">LineWidth</span><span class="p">);</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Call it and pass function handle to plot</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% plot funcs</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.01</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">;</span>
+<span class="n">f1</span> <span class="p">=</span> <span class="p">@</span><span class="nb">sin</span><span class="p">;</span>
+<span class="n">f2</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">func_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">func_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205161452972.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+
 </section>
 
 
@@ -1234,7 +1390,13 @@ $$</p>
       <ol>
         <li><a href="#standard-structure">Standard structure</a></li>
         <li><a href="#no-input-or-output">No input or output</a></li>
-        <li><a href="#built-in-function-parameters">Built-in function parameters</a></li>
+        <li><a href="#built-in-parameters">Built-in parameters</a></li>
+        <li><a href="#syntax-of-">syntax of <code>@</code></a>
+          <ol>
+            <li><a href="#f--parameter-expression"><code>f = @(parameter) expression</code></a></li>
+            <li><a href="#f--function-name"><code>f = @&lt;function-name&gt;</code></a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
