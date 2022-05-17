@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Symbolic Approach Root finding Symbolic variable and function Suppose you have a mathematical function $f(x)$ and you want to find $x_0$ such that $f(x_0)=0$, you can perform the mathematics on symbols. Use sym() or syms to create symbolic variables:
+1 2 3  syms x % or x = sym(&amp;#39;x&amp;#39;);   The variable created by symbolic variable is also symbolic variable:'><title>MATLAB in Engineering VII (Root Finding)</title>
+
+<link rel='canonical' href='https://wanghaoming177.netlify.app/p/matlab-in-engineering-vii-root-finding/'>
+
+<link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='MATLAB in Engineering VII (Root Finding)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Symbolic Approach Root finding Symbolic variable and function Suppose you have a mathematical function $f(x)$ and you want to find $x_0$ such that $f(x_0)=0$, you can perform the mathematics on symbols. Use sym() or syms to create symbolic variables:
+1 2 3  syms x % or x = sym(&amp;#39;x&amp;#39;);   The variable created by symbolic variable is also symbolic variable:'>
+<meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-vii-root-finding/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-02-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-02-09T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="MATLAB in Engineering VII (Root Finding)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Symbolic Approach Root finding Symbolic variable and function Suppose you have a mathematical function $f(x)$ and you want to find $x_0$ such that $f(x_0)=0$, you can perform the mathematics on symbols. Use sym() or syms to create symbolic variables:
+1 2 3  syms x % or x = sym(&amp;#39;x&amp;#39;);   The variable created by symbolic variable is also symbolic variable:">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/IMG_0770_hu86b91b9497cdda82d5c488540c7342b2_101927_300x0_resize_q75_box.jpg" width="300"
+                            height="273" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌏</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/floating15'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/%E6%B5%A9%E9%93%AD-%E7%8E%8B-b0a164171/'
+                        target="_blank"
+                        title="Linkedin"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://follow.it/haoming-wang?action=followPub'
+                        target="_blank"
+                        title="r-mail"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mailbox" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
+  <path d="M12 11v-8h4l2 2l-2 2h-4" />
+  <path d="M6 15h1" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#FF1C02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#35FF02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#02EAFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#0223FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#F402FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sci_compute/" >
+                Scientific Computing
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/matlab-in-engineering-vii-root-finding/">MATLAB in Engineering VII (Root Finding)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 09, 2021</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<h1 id="symbolic-approach">Symbolic Approach</h1>
+<h2 id="root-finding">Root finding</h2>
+<h3 id="symbolic-variable-and-function">Symbolic variable and function</h3>
+<p>Suppose you have a mathematical function $f(x)$ and you want to find $x_0$ such that $f(x_0)=0$, you can perform the mathematics on symbols. Use <code>sym()</code> or <code>syms</code> to create symbolic variables:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">syms</span> <span class="n">x</span>
+<span class="c">% or</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">sym</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The variable created by symbolic variable is also symbolic variable:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">syms</span> <span class="n">x</span><span class="p">;</span> <span class="n">y</span> <span class="p">=</span> <span class="n">x</span>^<span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">whos</span> <span class="n">x</span> <span class="n">y</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>  Name      Size            Bytes  Class    Attributes
+
+  x         1x1                 8  sym                
+  y         1x1                 8  sym   
+</code></pre><p>Furthermore, we can define the <strong>symbolic function</strong> by <code>syms y(x)</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% symfun</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span>^<span class="n">y</span> <span class="o">+</span> <span class="n">y</span>^<span class="n">x</span><span class="p">;</span>
+<span class="n">Z</span><span class="p">.</span><span class="n">z1y</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="n">Z</span><span class="p">.</span><span class="n">zx1</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">Z</span><span class="p">.</span><span class="n">z11</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">whos</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>  Name      Size            Bytes  Class     Attributes
+
+  x         1x1                 8  sym                 
+  y         1x1                 8  sym                 
+  z         1x1                 8  symfun              
+
+z1y: y + 1
+zx1: x + 1
+z11: 2
+</code></pre><p>or utilize <code>symfun()</code> function to transform the <code>sym</code> to <code>symfun</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span><span class="p">;</span>
+<span class="n">z</span> <span class="p">=</span> <span class="n">x</span>^<span class="n">y</span> <span class="o">+</span> <span class="n">y</span>^<span class="n">x</span><span class="p">;</span>
+<span class="n">zf</span> <span class="p">=</span> <span class="n">symfun</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span> <span class="n">y</span><span class="p">]);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">zf</span><span class="p">)</span>
+<span class="n">whos</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>x^y + y^x
+symbolic function inputs: x, y
+ 
+  Name      Size            Bytes  Class     Attributes
+
+  x         1x1                 8  sym                 
+  y         1x1                 8  sym                 
+  z         1x1                 8  sym                 
+  zf        1x1                 8  symfun   
+</code></pre><p>Symbolic functions accept array inputs. Calculate <code>z</code> for multiple values of <code>x</code> and <code>y</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% symfun</span>
+
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span>^<span class="n">y</span> <span class="o">+</span> <span class="n">y</span>^<span class="n">x</span><span class="p">;</span>
+<span class="n">xa</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span> <span class="n">ya</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+
+<span class="nb">disp</span><span class="p">(</span><span class="n">z</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span> <span class="n">ya</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[2, 8, 54, 512, 6250]
+</code></pre><p>To substitute the variable <code>old</code> in the symbolic function/scalar <code>s</code> with <code>new</code>, use <code>subs()</code> function. <code>snew = subs(s,old,new)</code> returns a copy of <code>s</code>, replacing all occurrences of <code>old</code> with <code>new</code>, and then evaluates <code>s</code>.</p>
+<blockquote>
+<p>Note that <code>subs()</code> works for <code>sym</code> variable as well.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% symfun</span>
+
+<span class="n">clc</span><span class="p">,</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span>^<span class="n">y</span> <span class="o">+</span> <span class="n">y</span>^<span class="n">x</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+<span class="n">z1</span> <span class="p">=</span> <span class="n">subs</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">z1</span><span class="p">);</span>
+<span class="n">z2</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span>^<span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">z2</span><span class="p">);</span>
+<span class="n">whos</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>x^y + y^x
+symbolic function inputs: x, y
+ 
+y^(x^2) + (x^2)^y
+symbolic function inputs: x, y
+ 
+y^(x^2) + (x^2)^y
+ 
+  Name      Size            Bytes  Class     Attributes
+
+  x         1x1                 8  sym                 
+  y         1x1                 8  sym                 
+  z         1x1                 8  symfun              
+  z1        1x1                 8  symfun              
+  z2        1x1                 8  sym        
+</code></pre><p>Althought you can achieve this by assign symbolic variable to the symbolic function, but it will return a <code>sym</code> instead of <code>symfun</code>, which means when you call <code>z2</code> with parentheses, MATLAB will view it as <strong>indexing</strong> (remember <code>z2</code> is 1x1 variable) instead of <strong>assigning</strong> values for the function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">([</span><span class="n">z1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">z2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>                2
+y^(x^2) + (x^2)^y
+</code></pre><h3 id="equations">Equations</h3>
+<p>Once we create the symbolic variable <code>x</code> and <code>y(x)</code> we can call the function <code>solve(y,x)</code> to find the root for the equation <code>y(x)=0</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% root 1</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="p">;</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   0
+pi/2
+</code></pre><h3 id="system-of-equations">System of equations</h3>
+<p>To solve the system eqs, just pass the multi eqs and the independent variables (they are all <code>sym</code> variable) into <code>solve()</code> function. For example, solve the system of equations:</p>
+<p>$$
+\left{\begin{array}{c}
+x-2 y=5 \
+x+y=6
+\end{array}\right.
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% eq system</span>
+<span class="n">clc</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span><span class="p">;</span>
+<span class="n">eq1</span> <span class="p">=</span> <span class="n">x</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
+<span class="n">eq2</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">-</span><span class="mi">6</span><span class="p">;</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eq1</span><span class="p">,</span><span class="n">eq2</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>x: 17/3
+y: 1/3
+</code></pre><p>here <code>r</code> is a <code>struct</code> variable:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">whos</span> <span class="n">r</span><span class="p">;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">x</span><span class="p">);</span> <span class="nb">disp</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>  Name      Size            Bytes  Class     Attributes
+
+  r         1x1               352  struct  
+
+17/3
+ 
+1/3
+</code></pre><h3 id="equations-with-arguments">Equations with arguments</h3>
+<p>To obtain the root formula of the general equation, we can define the arguments as <code>sym</code> variable as well, and specify the target variables need to be solved in <code>solve()</code> function. For example to get the root formula of $ax^2+bx+c=0$:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% arguments</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">a</span> <span class="n">b</span> <span class="n">c</span><span class="p">;</span>
+<span class="n">eq</span> <span class="p">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span><span class="n">c</span><span class="p">;</span>
+<span class="n">rx</span> <span class="p">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">ra</span> <span class="p">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+<span class="n">rb</span> <span class="p">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="n">rc</span> <span class="p">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+<span class="n">R</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">rx</span><span class="p">;</span> <span class="n">R</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="n">ra</span><span class="p">;</span> <span class="n">R</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="n">rb</span><span class="p">;</span> <span class="n">R</span><span class="p">.</span><span class="n">c</span> <span class="p">=</span> <span class="n">rc</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">R</span><span class="p">);</span> <span class="nb">disp</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>x: [2×1 sym]
+a: -(c + b*x)/x^2
+b: -(a*x^2 + c)/x
+c: - a*x^2 - b*x
+
+-(b + (b^2 - 4*a*c)^(1/2))/(2*a)
+-(b - (b^2 - 4*a*c)^(1/2))/(2*a)
+</code></pre><p>Find the matrix inverse using symbolic approach:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% inv</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="n">d</span>
+<span class="n">A</span><span class="p">=[</span><span class="n">a</span> <span class="n">b</span><span class="p">;</span> <span class="n">c</span> <span class="n">d</span><span class="p">];</span>
+<span class="n">B</span><span class="p">=</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> 
+<span class="nb">disp</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>[ d/(a*d - b*c), -b/(a*d - b*c)]
+[-c/(a*d - b*c),  a/(a*d - b*c)]
+</code></pre><h2 id="symbolic-differentiation">Symbolic Differentiation</h2>
+<p>To compute the analytic solution of the derivative of the function, pass the corresponding symbolic function in to <code>diff()</code> function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% diff</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">m</span> <span class="n">n</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">x</span>^<span class="n">n</span> <span class="o">+</span> <span class="n">m</span>^<span class="n">x</span><span class="p">;</span>
+<span class="n">yp</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">yp</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>n*x^(n - 1) + m^x*log(m)
+</code></pre><blockquote>
+<p>Note: actually the complete command is <code>diff(y,x)</code>, and if we do not specify the second variable, <code>diff()</code> will calculate base on the fist cleared <code>sym</code> variable, in this case it is <code>x</code>. This is the same to <code>solve()</code> function.</p>
+</blockquote>
+<p>To solve the <strong>partial derivative</strong>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% partial derivative</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span>
+<span class="n">g</span> <span class="p">=</span> <span class="n">x</span>^<span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">y</span>^<span class="mi">2</span><span class="o">/</span><span class="n">x</span><span class="p">;</span>
+<span class="n">gx</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">gy</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="n">gxx</span> <span class="p">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">G</span><span class="p">.</span><span class="n">gx</span> <span class="p">=</span> <span class="n">gx</span><span class="p">;</span> <span class="n">G</span><span class="p">.</span><span class="n">gy</span> <span class="p">=</span> <span class="n">gy</span><span class="p">;</span> <span class="n">G</span><span class="p">.</span><span class="n">gxx</span> <span class="p">=</span> <span class="n">gxx</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>gx: 2*x*y - y^2/x^2
+gy: (2*y)/x + x^2
+gxx: 2*y + (2*y^2)/x^3
+</code></pre><h2 id="symbolic-integration">Symbolic Integration</h2>
+<p>Just like solve the derivative, to compute the analytic solution of the indefinite Integration of the function, pass the corresponding symbolic function and the integral variable in to <code>int()</code> function, and it will return the corresponding <code>symfun</code> variable (If you pass the <code>sym</code> variable to <code>int()</code>, it will return <code>sym</code> variable):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% int</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="n">szdx</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">szdy</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="n">szdxdy</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">szdx</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="n">szdydx</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">szdy</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="nb">disp</span><span class="p">([</span><span class="n">szdx</span><span class="p">;</span> <span class="n">szdy</span><span class="p">;</span> <span class="n">szdxdy</span><span class="p">;</span> <span class="n">szdydx</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>  (x^3*y)/3
+(x^2*y^2)/2
+(x^3*y^2)/6
+(x^3*y^2)/6
+symbolic function inputs: x, y
+ 
+  Name        Size            Bytes  Class     Attributes
+
+  szdx        1x1                 8  symfun              
+  szdxdy      1x1                 8  symfun              
+  szdy        1x1                 8  symfun              
+  szdydx      1x1                 8  symfun              
+  x           1x1                 8  sym                 
+  y           1x1                 8  sym                 
+  z           1x1                 8  symfun     
+</code></pre><p>As we can see that <code>szdydx</code> equals to <code>szdxdxy</code> since <code>z(x,y)</code> is continuous. To specify the initial value of <code>z</code>, for example, as <code>z(0,0)=1</code>, we can achieve that by 2 methods:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% int</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="n">szdx</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">szdxdy</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">szdx</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+
+<span class="n">szdxdy</span> <span class="p">=</span> <span class="n">szdxdy</span> <span class="o">-</span> <span class="p">(</span><span class="n">szdxdy</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">szdxdy</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>(x^3*y^2)/6 + 1
+symbolic function inputs: x, y
+</code></pre><p>or utilize <code>subs()</code> function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% int</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="n">szdx</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">szdxdy</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">szdx</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+
+<span class="n">szdxdy</span> <span class="p">=</span> <span class="n">szdxdy</span> <span class="o">-</span> <span class="p">(</span><span class="n">subs</span><span class="p">(</span><span class="n">szdxdy</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">szdxdy</span> <span class="p">=</span> <span class="n">szdxdy</span> <span class="o">-</span> <span class="p">(</span><span class="n">subs</span><span class="p">(</span><span class="n">szdxdy</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">szdxdy</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>(x^3*y^2)/6 + 1
+symbolic function inputs: x, y
+</code></pre><p>Once we obtain the indefinite Integration of the given function, we can calculate the definite Integration. For example, calculate:</p>
+<p>$$
+\int_{0}^{10} \frac{x^{2}-x+1}{x+3} d x
+$$</p>
+<p>We can make it in 2 methods:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% int</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">syms</span> <span class="n">x</span><span class="p">;</span>
+<span class="n">y1</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span>^<span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">z1</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="n">s1</span> <span class="p">=</span> <span class="n">subs</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="n">subs</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="n">y2</span> <span class="p">=</span> <span class="n">symfun</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">z2</span> <span class="p">=</span> <span class="n">int</span><span class="p">(</span><span class="n">y2</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="n">s2</span> <span class="p">=</span> <span class="n">z2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">-</span> <span class="n">z2</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="nb">disp</span><span class="p">([</span><span class="n">s1</span><span class="p">;</span> <span class="n">s2</span><span class="p">])</span>
+<span class="n">whos</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>13*log(13) - 13*log(3) + 10
+13*log(13) - 13*log(3) + 10
+ 
+  Name      Size            Bytes  Class     Attributes
+
+  s1        1x1                 8  sym                 
+  s2        1x1                 8  sym                 
+  x         1x1                 8  sym                 
+  y1        1x1                 8  sym                 
+  y2        1x1                 8  symfun              
+  z1        1x1                 8  sym                 
+  z2        1x1                 8  symfun  
+</code></pre><h1 id="numeric-root-solvers">Numeric root solvers</h1>
+<h2 id="fsolve"><code>fsolve()</code></h2>
+<p><code>fsolve(f, a)</code> is a numeric root solver, where <code>f</code> is a function handle, <code>a</code> is an initial guess (<a class="link" href="https://ww2.mathworks.cn/help/optim/ug/fsolve.html?searchHighlight=fsolve&amp;s_tid=srchtitle_fsolve_1"  target="_blank" rel="noopener"
+    >doc</a>). For example, solve this equation: $f(x) = 1.2x+0.3+x\cdot \sin(x)=0$:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% fsolve</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="n">x</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Equation solved.
+
+fsolve completed because the vector of function values is near zero
+as measured by the value of the function tolerance, and
+the problem appears regular as measured by the gradient.
+
+&lt;stopping criteria details&gt;
+   -0.3500
+</code></pre><p>To solve the system of equations:</p>
+<p>$$
+\begin{array}{c}
+e^{-e^{-\left(x_{1}+x_{2}\right)}}-x_{2}\left(1+x_{1}^{2}\right)=0 \
+x_{1} \cos \left(x_{2}\right)+x_{2} \sin \left(x_{1}\right)-\frac{1}{2}=0 .
+\end{array}
+$$</p>
+<p>with initial guess $x=0, y=0$, we need see the function as an array <code>f</code> of functions, and variable <code>x</code> as an array of variables:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% sys of eqs</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">[</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))))</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span><span class="c">...</span>
+          <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">];</span>
+
+<span class="n">r</span> <span class="p">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Equation solved.
+
+fsolve completed because the vector of function values is near zero
+as measured by the value of the function tolerance, and
+the problem appears regular as measured by the gradient.
+
+&lt;stopping criteria details&gt;
+    0.3532    0.6061
+</code></pre><p>or write it as a function <code>.m</code> file:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>F <span class="p">=</span><span class="w"> </span><span class="nf">root2d</span><span class="p">(</span>x<span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">F</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))))</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="n">F</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>and call <code>fsolve()</code> in the terminal:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">fsolve</span><span class="p">(@</span><span class="n">root2d</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>Equation solved.
+
+fsolve completed because the vector of function values is near zero
+as measured by the value of the function tolerance, and
+the problem appears regular as measured by the gradient.
+
+&lt;stopping criteria details&gt;
+
+ans =
+
+    0.3532    0.6061
+</code></pre><blockquote>
+<p><code>fzero()</code> is another numeric root solver, it find the zero if and only if the function crosses the x-axis.</p>
+</blockquote>
+<p>We can also specify options for <code>fsolve()</code> (or <code>fzero()</code>) like</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">options</span><span class="p">=</span><span class="n">optimset</span><span class="p">(</span><span class="s">&#39;MaxIter&#39;</span><span class="p">,</span><span class="mf">1e3</span><span class="p">,</span><span class="s">&#39;TolFun&#39;</span><span class="p">,</span><span class="mf">1e-10</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>here <code>MaxIter</code> and <code>TolFun</code> indicate the number of iterations and tolerance respectively.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% options</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">ops</span> <span class="p">=</span> <span class="n">optimset</span><span class="p">(</span><span class="s">&#39;MaxIter&#39;</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">,</span> <span class="s">&#39;TolFun&#39;</span><span class="p">,</span> <span class="mf">1e-10</span><span class="p">);</span>
+<span class="n">r1</span> <span class="p">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ops</span><span class="p">);</span>
+<span class="n">r2</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ops</span><span class="p">);</span> 
+<span class="nb">disp</span><span class="p">(</span><span class="n">r1</span><span class="p">);</span> <span class="nb">disp</span><span class="p">(</span><span class="n">r2</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>
+Equation solved.
+
+fsolve completed because the vector of function values is near zero
+as measured by the value of the function tolerance, and
+the problem appears regular as measured by the gradient.
+
+&lt;stopping criteria details&gt;
+     1
+
+     1
+</code></pre><h2 id="roots"><code>roots()</code></h2>
+<p>To find the roots of polynomial, we can use <code>roots(p)</code>, where <code>p</code> is the array of coefficients of the polynomial.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% roots</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">3</span> <span class="o">-</span><span class="mi">6</span> <span class="o">-</span><span class="mi">12</span> <span class="mi">81</span><span class="p">];</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">roots</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="c">% display</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">:.</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   2.4092 + 1.9431i
+   2.4092 - 1.9431i
+  -2.8184 + 0.0000i
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205171304749.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="bracketing-methods">Bracketing methods</h2>
+<p>Here we introduce two famous roots finding algorithms: Bracketing methods amd Newton-Raphson Method. Roots are found iteratively until some criteria are satisfied:</p>
+<ul>
+<li>Accuracy</li>
+<li>Number of iteration</li>
+</ul>
+<p>Bracketing methods (e.g., bisection method) start with an interval <code>[l,r]</code> that contains the root, it requires <code>f(x)</code> is continuous. its pseudo code is like</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">L</span> <span class="p">=</span> <span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">]</span>
+<span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span> <span class="c">% &lt;-- Number of iteration</span>
+	<span class="n">m</span> <span class="p">=</span> <span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+	<span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+		<span class="n">L</span> <span class="p">=</span> <span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span>
+	<span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="n">f</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+		<span class="n">L</span> <span class="p">=</span> <span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">]</span>
+	<span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">h</span><span class="p">:</span> <span class="c">% &lt;-- Accuracy</span>
+		<span class="k">break</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205171317145.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="newton-raphson-method">Newton-Raphson Method</h2>
+<p>Newton-Raphson Method requires <code>f(x)</code> is continuous and has derivative. Its pseudo code is like</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="n">n</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span> <span class="c">% &lt;-- Number of iteration</span>
+	<span class="n">x_</span><span class="p">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="p">=</span> <span class="n">x_</span><span class="p">{</span><span class="n">n</span><span class="p">}</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x_n</span><span class="p">)</span><span class="o">/</span><span class="n">f</span><span class="o">&#39;</span><span class="p">(</span><span class="n">x_n</span><span class="p">)</span>
+	<span class="k">if</span> <span class="o">|</span><span class="n">f</span><span class="p">(</span><span class="n">x_</span><span class="p">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">})</span><span class="o">|</span> <span class="o">&lt;</span> <span class="n">h</span><span class="p">:</span> <span class="c">% &lt;-- Accuracy</span>
+		<span class="k">break</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205171320393.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/matlab/">MATLAB</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vi-differentiation-integration/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VI (Differentiation &amp; Integration)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-v-advanced-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering V (Advanced Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-iv-basic-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering IV (Basic Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-iii-data-structure/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering III (Data Structure)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-ii-script-and-function/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering II (Script and Function)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#symbolic-approach">Symbolic Approach</a>
+      <ol>
+        <li><a href="#root-finding">Root finding</a>
+          <ol>
+            <li><a href="#symbolic-variable-and-function">Symbolic variable and function</a></li>
+            <li><a href="#equations">Equations</a></li>
+            <li><a href="#system-of-equations">System of equations</a></li>
+            <li><a href="#equations-with-arguments">Equations with arguments</a></li>
+          </ol>
+        </li>
+        <li><a href="#symbolic-differentiation">Symbolic Differentiation</a></li>
+        <li><a href="#symbolic-integration">Symbolic Integration</a></li>
+      </ol>
+    </li>
+    <li><a href="#numeric-root-solvers">Numeric root solvers</a>
+      <ol>
+        <li><a href="#fsolve"><code>fsolve()</code></a></li>
+        <li><a href="#roots"><code>roots()</code></a></li>
+        <li><a href="#bracketing-methods">Bracketing methods</a></li>
+        <li><a href="#newton-raphson-method">Newton-Raphson Method</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+
+    </body>
+</html>

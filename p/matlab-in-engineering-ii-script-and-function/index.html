@@ -964,7 +964,47 @@ $$</p>
 <span class="n">volume</span><span class="p">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">Do</span><span class="o">.^</span><span class="mi">2</span><span class="o">-</span><span class="n">Di</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.*</span><span class="n">height</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="syntax-of-">syntax of <code>@</code></h2>
+</div><h2 id="recursive-functions">Recursive functions</h2>
+<p>Functions that call themselves, for example, the factorial of an integer n:</p>
+<p>$$
+n! = n\times\cdots \times 1
+$$</p>
+<p>can be defined in terms of another factorial: $n!=n\times (n-1)!$</p>
+<p>The recursive function includes a <strong>recursive case</strong> and a <strong>base case</strong>. The function stops when it reaches the base case:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>op <span class="p">=</span><span class="w"> </span><span class="nf">fact</span><span class="p">(</span>n<span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c">% fact recursively</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">op</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% &lt;-- Base case</span>
+<span class="k">else</span>
+    <span class="n">op</span> <span class="p">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% &lt;-- Recursive case</span>
+<span class="k">end</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">fact</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+     3628800
+</code></pre><h2 id="syntax-of-">Syntax of <code>@</code></h2>
 <h3 id="f--parameter-expression"><code>f = @(parameter) expression</code></h3>
 <p>Sometimes you need to define a function to calculate the value of a certain expression, you can directly use the syntax:</p>
 <div class="highlight"><div class="chroma">
@@ -1185,6 +1225,18 @@ $$</p>
             
                 
 <article class="">
+    <a href="/p/matlab-in-engineering-vii-root-finding/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VII (Root Finding)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
     <a href="/p/matlab-in-engineering-vi-differentiation-integration/">
         
         
@@ -1227,18 +1279,6 @@ $$</p>
 
         <div class="article-details">
             <h2 class="article-title">MATLAB in Engineering III (Data Structure)</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/matlab-in-engineering-i-array-operations/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">MATLAB in Engineering I (Array Operations)</h2>
         </div>
     </a>
 </article>
@@ -1391,7 +1431,8 @@ $$</p>
         <li><a href="#standard-structure">Standard structure</a></li>
         <li><a href="#no-input-or-output">No input or output</a></li>
         <li><a href="#built-in-parameters">Built-in parameters</a></li>
-        <li><a href="#syntax-of-">syntax of <code>@</code></a>
+        <li><a href="#recursive-functions">Recursive functions</a></li>
+        <li><a href="#syntax-of-">Syntax of <code>@</code></a>
           <ol>
             <li><a href="#f--parameter-expression"><code>f = @(parameter) expression</code></a></li>
             <li><a href="#f--function-name"><code>f = @&lt;function-name&gt;</code></a></li>
