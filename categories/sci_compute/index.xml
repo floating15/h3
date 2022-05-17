@@ -566,10 +566,10 @@ the problem appears regular as measured by the gradient.
    -0.3500
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To solve the system of equations:&lt;/p&gt;
 &lt;p&gt;$$
-\begin{array}{c}
-e^{-e^{-\left(x_{1}+x_{2}\right)}}-x_{2}\left(1+x_{1}^{2}\right)=0 \
-x_{1} \cos \left(x_{2}\right)+x_{2} \sin \left(x_{1}\right)-\frac{1}{2}=0 .
-\end{array}
+e^{-e^{-\left(x_{1}+x_{2}\right)}}-x_{2}\left(1+x_{1}^{2}\right)=0
+$$&lt;/p&gt;
+&lt;p&gt;$$
+x_{1} \cos \left(x_{2}\right)+x_{2} \sin \left(x_{1}\right)-\frac{1}{2}=0
 $$&lt;/p&gt;
 &lt;p&gt;with initial guess $x=0, y=0$, we need see the function as an array &lt;code&gt;f&lt;/code&gt; of functions, and variable &lt;code&gt;x&lt;/code&gt; as an array of variables:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
