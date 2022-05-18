@@ -1248,6 +1248,43 @@
 	
 	
 ></p>
+<h2 id="fplot3"><code>fplot3()</code></h2>
+<ul>
+<li>
+<p><code>fplot3(funx,funy,funz)</code> plots the parametric curve defined by <code>x = funx(t)</code>, <code>y = funy(t)</code>, and <code>z = funz(t)</code> over the default interval <code>[-5,5]</code> for <code>t</code>.</p>
+</li>
+<li>
+<p><code>fplot3(funx,funy,funz,tinterval)</code> plots over the specified interval. Specify the interval as a two-element vector of the form <code>[tmin tmax]</code>.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">fplot3</span><span class="p">(@(</span><span class="n">t</span><span class="p">)</span><span class="nb">sin</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span><span class="nb">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">],</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">fplot3</span><span class="p">(@(</span><span class="n">t</span><span class="p">)</span><span class="nb">sin</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span><span class="nb">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span> <span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">],</span> <span class="s">&#39;--or&#39;</span><span class="p">)</span>
+<span class="n">fplot3</span><span class="p">(@(</span><span class="n">t</span><span class="p">)</span><span class="nb">sin</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span><span class="nb">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span> <span class="mi">6</span><span class="o">*</span><span class="nb">pi</span><span class="p">],</span> <span class="s">&#39;-.*c&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">off</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181405871.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <h2 id="surf-mesh"><code>surf()</code>, <code>mesh()</code></h2>
 <p>We pass two 2-dimension matrix <code>X</code>, <code>Y</code> to the function $z = f(x,y)$ to obtain a 2-dimension matrix <code>Z</code> which records the function value at each point of the domain. And pass the <code>Z</code> to <code>surf()</code>/<code>mesh()</code> function to plot the 3-dimension function plot.</p>
 <p><code>meshgrid()</code> function transforms two inputting vectors to the corresponding row expansion and column expansion to obtain two expansion 2-dimension matrixes, and the matrixes can be applied to the binary function.</p>
@@ -1288,7 +1325,137 @@
 	
 ></p>
 <p>Note that if <code>X</code> and <code>Y</code> is not specified, <code>mesh(Z)</code>/<code>surf(Z)</code> will creates a mesh/grid plot and uses the column and row <strong>indices</strong> of the elements in Z as the x and y coordinates.</p>
-<h2 id="contour-contourf"><code>contour()</code>, <code>contourf()</code></h2>
+<h2 id="fsurf-fmesh"><code>fsurf()</code>, <code>fmesh()</code></h2>
+<ul>
+<li>
+<p><code>fsurf(f)</code> creates a surface plot of the function <code>z = f(x,y)</code> over the default interval <code>[-5 5]</code> for <code>x</code> and <code>y</code>.</p>
+</li>
+<li>
+<p><code>fsurf(f,xyinterval)</code> plots over the specified interval. To use the same interval for both <code>x</code> and <code>y</code>, specify xy-interval as a two-element vector of the form <code>[min max]</code>. To use different intervals, specify a four-element vector of the form <code>[xmin xmax ymin ymax]</code>.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% function</span>
+
+<span class="n">fs</span> <span class="p">=</span> <span class="n">fsurf</span><span class="p">(@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">y</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="c">...</span>
+           <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">]);</span>
+
+<span class="n">fs</span><span class="p">.</span><span class="n">FaceAlpha</span> <span class="p">=</span> <span class="p">.</span><span class="mi">5</span><span class="p">;</span>
+<span class="n">fs</span><span class="p">.</span><span class="n">ShowContours</span> <span class="p">=</span> <span class="s">&#39;on&#39;</span><span class="p">;</span>
+
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;ysin(x) - xcos(y) for x and y in [-2\pi,2\pi]&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">zlabel</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">);</span>
+<span class="n">box</span> <span class="n">on</span>
+
+<span class="n">ax</span> <span class="p">=</span> <span class="n">gca</span><span class="p">;</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">XTick</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">:</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">;</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">XTickLabel</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;-2\pi&#39;</span><span class="p">,</span><span class="s">&#39;-3\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;-\pi&#39;</span><span class="p">,</span><span class="s">&#39;-\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="c">...</span>
+    <span class="s">&#39;\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;\pi&#39;</span><span class="p">,</span><span class="s">&#39;3\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;2\pi&#39;</span><span class="p">};</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">YTick</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">:</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">;</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">YTickLabel</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;-2\pi&#39;</span><span class="p">,</span><span class="s">&#39;-3\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;-\pi&#39;</span><span class="p">,</span><span class="s">&#39;-\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="c">...</span>
+    <span class="s">&#39;\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;\pi&#39;</span><span class="p">,</span><span class="s">&#39;3\pi/2&#39;</span><span class="p">,</span><span class="s">&#39;2\pi&#39;</span><span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181415307.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ul>
+<li>
+<p><code>fsurf(funx,funy,funz)</code> plots the parametric surface defined by <code>x = funx(u,v)</code>, <code>y = funy(u,v)</code>, <code>z = funz(u,v)</code> over the default interval <code>[-5 5]</code> for <code>u</code> and <code>v</code>.</p>
+</li>
+<li>
+<p><code>fsurf(funx,funy,funz,uvinterval)</code> plots over the specified interval. To use the same interval for both <code>u</code> and <code>v</code>, specify uvinterval as a two-element vector of the form <code>[min max]</code>. To use different intervals, specify a four-element vector of the form <code>[umin umax vmin vmax]</code>.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% parametric function: Mobiusband</span>
+
+<span class="n">x</span><span class="p">=@(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">u</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">v</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="n">y</span><span class="p">=@(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">u</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">v</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="n">z</span><span class="p">=@(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="n">u</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">v</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">fsurf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">])</span>
+<span class="n">view</span><span class="p">(</span><span class="mi">78</span><span class="p">,</span><span class="mi">70</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181422887.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>or we can obtain this figure with <code>surf()</code> function as well:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">u</span><span class="p">=</span><span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">50</span><span class="p">);</span>
+<span class="n">v</span><span class="p">=</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="mi">50</span><span class="p">);</span>
+<span class="p">[</span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">]=</span><span class="nb">meshgrid</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+<span class="n">r</span><span class="p">=</span><span class="mi">2</span><span class="o">+</span><span class="n">U</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">V</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">x</span><span class="p">=</span><span class="n">r</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">y</span><span class="p">=</span><span class="n">r</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">z</span><span class="p">=</span><span class="n">U</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">V</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">surf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+<span class="n">view</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="contour-contourf"><code>contour()</code>, <code>contourf()</code></h2>
 <p><code>contour()</code> and <code>contourf()</code> functions can be used to draw contour lines of 3D shapes, the former will not fill the grid while the latter will.</p>
 <p>Passing arguments to the <code>contour()</code> function or manipulating the graphics handle can change the details of the image:</p>
 <div class="highlight"><div class="chroma">
@@ -1555,12 +1722,24 @@
             
                 
 <article class="">
-    <a href="/p/matlab-in-engineering-vii-root-finding/">
+    <a href="/p/matlab-in-engineering-viii-matrix-decomposition/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">MATLAB in Engineering VII (Root Finding)</h2>
+            <h2 class="article-title">MATLAB in Engineering VIII (Matrix Decomposition)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vii-symbolic-calculation-root-finding/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VII (Symbolic Calculation &amp; Root Finding)</h2>
         </div>
     </a>
 </article>
@@ -1597,18 +1776,6 @@
 
         <div class="article-details">
             <h2 class="article-title">MATLAB in Engineering III (Data Structure)</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/matlab-in-engineering-ii-script-and-function/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">MATLAB in Engineering II (Script and Function)</h2>
         </div>
     </a>
 </article>
@@ -1761,7 +1928,9 @@
       <ol>
         <li><a href="#imagesc"><code>imagesc()</code></a></li>
         <li><a href="#plot3"><code>plot3()</code></a></li>
+        <li><a href="#fplot3"><code>fplot3()</code></a></li>
         <li><a href="#surf-mesh"><code>surf()</code>, <code>mesh()</code></a></li>
+        <li><a href="#fsurf-fmesh"><code>fsurf()</code>, <code>fmesh()</code></a></li>
         <li><a href="#contour-contourf"><code>contour()</code>, <code>contourf()</code></a></li>
         <li><a href="#surfc-meshc"><code>surfc()</code>, <code>meshc()</code></a></li>
         <li><a href="#view"><code>view()</code></a></li>

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Matrix Decomposition Matrix decomposition functions qr() - QR decomposition [Q,R] = qr(A) performs a QR decomposition on m-by-n matrix A such that A = Q*R. The factor R is an m-by-n upper-triangular matrix, and the factor Q is an m-by-m orthogonal matrix.
+ldl() - Block LDL&#39; factorization for Hermitian indefinite matrices [L,D] = ldl(A) stores a block diagonal matrix D and a permuted lower triangular matrix in L such that A = L*D*L&#39;.'><title>MATLAB in Engineering VIII (Matrix Decomposition)</title>
+
+<link rel='canonical' href='https://wanghaoming177.netlify.app/p/matlab-in-engineering-viii-matrix-decomposition/'>
+
+<link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='MATLAB in Engineering VIII (Matrix Decomposition)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Matrix Decomposition Matrix decomposition functions qr() - QR decomposition [Q,R] = qr(A) performs a QR decomposition on m-by-n matrix A such that A = Q*R. The factor R is an m-by-n upper-triangular matrix, and the factor Q is an m-by-m orthogonal matrix.
+ldl() - Block LDL&#39; factorization for Hermitian indefinite matrices [L,D] = ldl(A) stores a block diagonal matrix D and a permuted lower triangular matrix in L such that A = L*D*L&#39;.'>
+<meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-viii-matrix-decomposition/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-02-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-02-15T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="MATLAB in Engineering VIII (Matrix Decomposition)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+ Matrix Decomposition Matrix decomposition functions qr() - QR decomposition [Q,R] = qr(A) performs a QR decomposition on m-by-n matrix A such that A = Q*R. The factor R is an m-by-n upper-triangular matrix, and the factor Q is an m-by-m orthogonal matrix.
+ldl() - Block LDL&#39; factorization for Hermitian indefinite matrices [L,D] = ldl(A) stores a block diagonal matrix D and a permuted lower triangular matrix in L such that A = L*D*L&#39;.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/IMG_0770_hu86b91b9497cdda82d5c488540c7342b2_101927_300x0_resize_q75_box.jpg" width="300"
+                            height="273" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌏</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/floating15'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/%E6%B5%A9%E9%93%AD-%E7%8E%8B-b0a164171/'
+                        target="_blank"
+                        title="Linkedin"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://follow.it/haoming-wang?action=followPub'
+                        target="_blank"
+                        title="r-mail"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mailbox" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
+  <path d="M12 11v-8h4l2 2l-2 2h-4" />
+  <path d="M6 15h1" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#FF1C02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#35FF02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#02EAFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#0223FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#F402FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sci_compute/" >
+                Scientific Computing
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/matlab-in-engineering-viii-matrix-decomposition/">MATLAB in Engineering VIII (Matrix Decomposition)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 15, 2021</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+</blockquote>
+<h1 id="matrix-decomposition">Matrix Decomposition</h1>
+<h2 id="matrix-decomposition-functions">Matrix decomposition functions</h2>
+<h3 id="qr---qr-decomposition"><code>qr()</code> - QR decomposition</h3>
+<p><code>[Q,R] = qr(A)</code> performs a QR decomposition on m-by-n matrix A such that <code>A = Q*R</code>. The factor R is an m-by-n <strong>upper-triangular matrix</strong>, and the factor Q is an m-by-m <strong>orthogonal matrix</strong>.</p>
+<h3 id="ldl---block-ldl-factorization-for-hermitian-indefinite-matrices"><code>ldl()</code> - Block LDL' factorization for Hermitian indefinite matrices</h3>
+<p><code>[L,D] = ldl(A)</code> stores a <strong>block diagonal matrix D</strong> and a permuted <strong>lower triangular matrix in L</strong> such that <code>A = L*D*L'</code>. The block diagonal matrix D has 1-by-1 and 2-by-2 blocks on its diagonal. Note, this syntax is not valid for sparse A.</p>
+<p><code>[L,D,P,S] = ldl(A)</code> returns unit lower triangular matrix L, block diagonal D, permutation matrix P, and scaling matrix S such that <code>P'*S*A*S*P = L*D*L'</code>. This syntax is only available for real sparse matrices, and only the lower triangle of A is referenced.</p>
+<h3 id="lu---lu-matrix-factorization"><code>lu()</code> - LU matrix factorization</h3>
+<p><code>[L,U] = lu(A)</code> factorizes the full or sparse matrix <code>A</code> into an upper triangular matrix <code>U</code> and a permuted lower triangular matrix <code>L</code> such that <code>A = L*U</code>.</p>
+<p>Thus <code>A*x=b -&gt; L*U*x=b -&gt; x = U^{-1}*L^{-1}*b</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% LU-F</span>
+
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">4</span><span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">[</span><span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">]</span> <span class="p">=</span> <span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="c">% L*U=A</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">U</span><span class="p">)</span><span class="o">*</span><span class="n">inv</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="n">b</span><span class="p">;</span> 
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>-3.0000
+2.0000
+1.0000
+</code></pre><h3 id="chol---cholesky-factorization"><code>chol()</code> - Cholesky factorization</h3>
+<p><code>R = chol(A)</code> factorizes <strong>symmetric positive definite matrix <code>A</code></strong> into an <strong>upper triangular R</strong> that satisfies <code>A = R'*R</code>.</p>
+<p>If <code>A</code> is nonsymmetric , use <code>R = chol(A,triangle)</code> to specifies which triangular factor of <code>A</code> to use in computing the factorization. For example, if triangle is &lsquo;lower&rsquo;, then <code>chol</code> uses only the diagonal and lower triangular portion of A to produce a <strong>lower triangular matrix <code>R</code></strong> that satisfies <code>A = R*R'</code>. The default value of triangle is &lsquo;upper&rsquo;.</p>
+<h3 id="svd---singular-value-decomposition"><code>svd()</code> - Singular value decomposition</h3>
+<p><code>[U,S,V] = svd(A)</code> performs a singular value decomposition of an mxn matrix <code>A</code>, such that <code>A = U*S*V'</code>.</p>
+<p>Here <code>U</code> is an mxm matrix, <code>S</code> is an mxn matrix with all zeros except for the elements on the main diagonal, and each element on the main diagonal is a <strong>singular value</strong>, and <code>V</code> is an nxn matrix. Both <code>U</code> and <code>V</code> are <strong>unitary matrices</strong>, i.e., they satisfy <code>U'U=I</code>, <code>V'V=I</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="p">=</span> <span class="nb">magic</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
+<span class="p">[</span><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span> <span class="p">]</span> <span class="p">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">U</span><span class="p">);</span> <span class="nb">disp</span><span class="p">(</span><span class="n">S</span><span class="p">);</span> <span class="nb">disp</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   -0.5774    0.7071    0.4082
+   -0.5774    0.0000   -0.8165
+   -0.5774   -0.7071    0.4082
+
+   15.0000         0         0
+         0    6.9282         0
+         0         0    3.4641
+
+   -0.5774    0.4082    0.7071
+   -0.5774   -0.8165   -0.0000
+   -0.5774    0.4082   -0.7071
+</code></pre><p>and <code>A=U*S*V'</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="nb">disp</span><span class="p">(</span><span class="n">U</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">V</span><span class="o">&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>8     1     6
+3     5     7
+4     9     2
+
+8.0000    1.0000    6.0000
+3.0000    5.0000    7.0000
+4.0000    9.0000    2.0000
+</code></pre><p>and <code>U*U'=I</code>, <code>V*V'=I</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">U</span><span class="o">*</span><span class="n">U</span><span class="o">&#39;</span><span class="p">);</span> <span class="nb">disp</span><span class="p">(</span><span class="n">V</span><span class="o">*</span><span class="n">V</span><span class="o">&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code> 1.0000         0   -0.0000
+	  0    1.0000   -0.0000
+-0.0000   -0.0000    1.0000
+
+ 1.0000   -0.0000   -0.0000
+-0.0000    1.0000    0.0000
+-0.0000    0.0000    1.0000
+</code></pre><h3 id="gsvd---generalized-singular-value-decomposition"><code>gsvd()</code> - Generalized singular value decomposition</h3>
+<p><code>[U,V,X,C,S] = gsvd(A,B)</code> performs a generalized singular value decomposition of matrices <code>A</code> and <code>B</code>, and returns <strong>unitary matrices</strong> <code>U</code> and <code>V</code>, a matrix <code>X</code>, and <strong>nonnegative diagonal matrices</strong> <code>C</code> and <code>S</code> such that</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="p">=</span> <span class="n">U</span><span class="o">*</span><span class="n">C</span><span class="o">*</span><span class="n">X</span><span class="o">&#39;</span>
+<span class="n">B</span> <span class="p">=</span> <span class="n">V</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">X</span><span class="o">&#39;</span>
+<span class="n">C</span><span class="o">&#39;*</span><span class="n">C</span> <span class="o">+</span> <span class="n">S</span><span class="o">&#39;*</span><span class="n">S</span> <span class="p">=</span> <span class="n">I</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="linear-eqs-and-system">Linear Eqs and System</h1>
+<h2 id="rref---gaussian-elimination-method"><code>rref()</code> - Gaussian elimination method</h2>
+<p><code>R = rref(A)</code> returns the reduced row echelon form of A using Gauss-Jordan elimination. For example, solve the linear equation:</p>
+<p>$$
+\begin{array}{r}
+x+2 y+z=2 \
+2 x+6 y+z=7 \
+x+y+4 z=3
+\end{array}
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% G-E</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">4</span><span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">3</span><span class="p">];</span>
+<span class="n">M</span> <span class="p">=</span> <span class="p">[</span><span class="n">A</span> <span class="n">b</span><span class="p">];</span>
+<span class="n">R</span> <span class="p">=</span> <span class="n">rref</span><span class="p">(</span><span class="n">M</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>1     0     0    -3
+0     1     0     2
+0     0     1     1
+</code></pre><h2 id="lu---lu-matrix-factorization-1"><code>lu()</code> - LU matrix factorization</h2>
+<p>$Ax=b \Rightarrow LUx=b \Rightarrow x = U^{-1}L^{-1}b$:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% LU-F</span>
+
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">4</span><span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">[</span><span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">]</span> <span class="p">=</span> <span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="c">% L*U=A</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">U</span><span class="p">)</span><span class="o">*</span><span class="n">inv</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="n">b</span><span class="p">;</span> 
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>-3.0000
+2.0000
+1.0000
+</code></pre><h2 id="-mldivide"><code>\</code>, <code>mldivide()</code></h2>
+<p><code>x = A\B</code> solves the system of linear equations <code>A*x = B</code>. The matrices <code>A</code> and <code>B</code> must have the same number of rows.</p>
+<ul>
+<li>
+<p>If <code>A</code> is a scalar, then <code>A\B</code> is equivalent to <code>A.\B</code>.</p>
+</li>
+<li>
+<p>If <code>A</code> is a square nxn matrix and <code>B</code> is a matrix with n rows, then <code>x = A\B</code> is a solution to the equation <code>A*x = B</code>, if it exists.</p>
+</li>
+<li>
+<p>replace <code>inv(A)*b</code> with <code>A\b</code>; replace <code>b*inv(A)</code> with <code>b/A</code></p>
+</li>
+</ul>
+<blockquote>
+<p>MATLAB displays a warning message if A is badly scaled or nearly singular, but performs the calculation regardless.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% Left Div</span>
+
+<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span> <span class="n">close</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">4</span><span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">3</span><span class="p">];</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">A</span><span class="o">\</span><span class="n">b</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">z1</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
+<span class="n">z2</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
+<span class="n">z3</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+<span class="n">itv</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">fsurf</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">itv</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="s">&#39;EdgeColor&#39;</span><span class="p">,</span><span class="s">&#39;none&#39;</span><span class="p">);</span> 
+<span class="n">fsurf</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span><span class="n">itv</span><span class="p">,</span><span class="s">&#39;g&#39;</span><span class="p">,</span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="s">&#39;EdgeColor&#39;</span><span class="p">,</span><span class="s">&#39;none&#39;</span><span class="p">);</span> 
+<span class="n">fsurf</span><span class="p">(</span><span class="n">z3</span><span class="p">,</span><span class="n">itv</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="s">&#39;EdgeColor&#39;</span><span class="p">,</span><span class="s">&#39;none&#39;</span><span class="p">);</span>
+<span class="n">hold</span> <span class="n">off</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>-3.0000
+2.0000
+1.0000
+</code></pre><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181504361.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="matrix-condition-number">Matrix condition number</h2>
+<h3 id="matrix-norm">Matrix norm</h3>
+<p>In a geometric sense, a vector represents a specific point, while a matrix is used to transform the coordinates of a point. That is, vectors are entities and matrices are transformations of entities. The length of an entity is norm, and correspondingly, the ability of a matrix to transform an entity is also norm. This ability is reflected precisely in the degree of scaling of the length of a vector before and after its transformation; the larger the matrix norm, the more likely it is that a vector will be stretched longer. This concept is expressed in the following equation</p>
+<p>$$
+|A|=\max _{x} \frac{|A x|}{|x|}
+$$</p>
+<p>The maximum value of the ratio of the norm length of the vector $x$ before and after the transformation of the matrix $A$ is defined as the norm of $A$. Now, we calculate the norm of $A^{-1}$ based on the above definition:</p>
+<p>$$
+\left|A^{-1}\right|=\max _{y} \frac{\left|A^{-1} y\right|}{|y|}=1 / \min _{y} \frac{|y|}{\left|A^{-1} y\right|}= 1/\min _{x} \frac{|Ax|}{|x|}
+$$</p>
+<p>where the third equation performs a variable substitution $Ax=y$ (or $x=A^{-1}y$) Thus, we find a correlation between the norm of the two matrices of the reciprocal inverse. The ability of $A$ to stretch the vector is equivalent to the ability of $A^{-1}$ to compress the vector.</p>
+<h3 id="condition-number">Condition number</h3>
+<p>Define</p>
+<p>$$
+\kappa(A)=|A|\left|A^{-1}\right|
+$$</p>
+<p>is the <strong>condition number</strong> of the matrix $A$. In combination with the geometric meaning mentioned above, the condition number describes both the stretching and compression ability of the matrix $A$. The larger the condition number, the more the vector is likely to change after the transformation.</p>
+<h3 id="stability-of-linear-eq">Stability of linear eq</h3>
+<p>Considering a linear equation $Ax=b$, how do we measure its stability? In this equation, $A$ is the coefficient matrix,  $x$ is the solutions to be solved, $b$ is generally the observed value.</p>
+<p>The equation is said to be <strong>stable</strong> if small changes in the observed values do not cause dramatic changes in the solution of the equation. In other words, stability measures the resistance to noise of a linear equation. Adding noise $\delta_b$ to the right-hand side of the equation , the solution of the equation then becomes $x+\delta_x$, and the equation is expressed as follows</p>
+<p>$$
+A(x+\delta_x) = b+\delta_b
+$$</p>
+<p>Substituting $Ax = b$,</p>
+<p>$$
+A\delta_x=\delta_b
+$$</p>
+<p>Take the norm of both sides.</p>
+<p>$$
+\left|A\delta_x\right|=\left|\delta_b\right|
+$$</p>
+<p>Combine with the definition of the norm we have that $\left|A\right|\geq \left|A\delta_x\right|/\left|\delta_x\right|$ ,  thus</p>
+<p>$$
+|A||\delta_x| \geq|A \delta_x|=|\delta_b|
+$$</p>
+<p>On the other hand, for any $x$, we have</p>
+<p>$$
+\left|A^{-1}\right|\geq \frac{1}{\left|Ax\right|/\left|x\right|}=\frac{\left|x\right|}{\left|Ax\right|}=\frac{\left|x\right|}{\left|b\right|}
+$$</p>
+<p>Thus</p>
+<p>$$
+\left|A^{-1}\right|\left|b\right|\geq \left|x\right|
+$$</p>
+<p>Multiply with $|A||\delta_x| \geq|\delta_b|$ , we have</p>
+<p>$$
+\left|A\right|\left|A^{-1}\right|\left|b\right|\left|\delta_x\right|\geq \left|\delta_{b}\right|\left|x\right|
+$$</p>
+<p>That is</p>
+<p>$$
+\frac{1}{\kappa(A)} \frac{|\delta b|}{|b|} \leq \frac{|\delta x|}{|x|}
+$$</p>
+<p>This equation specifies a <strong>lower bound</strong> on the solution $x$ of the linear equation as affected by the observation $b$. Similarly, we have the <strong>upper bound</strong> :</p>
+<p>$$
+\frac{|\delta x|}{|x|} \leq \kappa(A) \frac{|\delta b|}{|b|}
+$$</p>
+<p>Thus collectively</p>
+<p>$$
+\frac{1}{\kappa(A)} \frac{|\delta b|}{|b|} \leq \frac{|\delta x|}{|x|} \leq \kappa(A) \frac{|\delta b|}{|b|}
+$$</p>
+<p>We can draw some intuitive conclusions:</p>
+<p>First, the condition number of matrix $A$ only determines the degree to which the solution $x$ of the linear equation is affected by the noise of the observed value $b$. The larger the condition number is, the more severely $x$ is affected by the noise, which means that the rate of change of $x$ deviates from the rate of change of $b$ (note that it is not only the rate of change of $x$ that is much higher than the rate of change of $b$ that is the deviation. If the rate of change of $x$ is too small, it is also called deviation. For example, no matter how much $b$ changes, $x$ stays the same.</p>
+<p>Secondly, the stability of conditional number is not affected by scale, and any scaling of the whole will not affect the result of the inequality, because the degree of noise influence is measured by the rate of change, and has nothing to do with the absolute size.</p>
+<h3 id="cond"><code>cond()</code></h3>
+<p><code>C = cond(A,p)</code> returns the p-norm condition number, where <code>p</code> can be 1, 2, Inf, or &lsquo;fro&rsquo;. (<code>p=2</code> by default)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% cond</span>
+
+<span class="n">N</span><span class="p">=</span><span class="mi">100</span><span class="p">;</span> <span class="n">M</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+<span class="n">ub</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+<span class="n">rx</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+<span class="n">dbs</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="nb">magic</span><span class="p">(</span><span class="n">M</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">A</span><span class="o">\</span><span class="n">b</span><span class="p">;</span>
+
+<span class="n">k</span> <span class="p">=</span> <span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="n">nb</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="n">nx</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="nb">j</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">db</span> <span class="p">=</span> <span class="nb">i</span><span class="o">.*</span><span class="n">b</span><span class="p">;</span>
+    <span class="n">dx</span> <span class="p">=</span> <span class="n">A</span><span class="o">\</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">db</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">ndb</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">db</span><span class="p">);</span>
+    <span class="n">ndx</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">dx</span><span class="p">);</span>
+    <span class="n">rx</span><span class="p">(</span><span class="nb">j</span><span class="p">)</span> <span class="p">=</span> <span class="n">ndx</span><span class="o">/</span><span class="n">nx</span><span class="p">;</span>
+    <span class="n">ub</span><span class="p">(</span><span class="nb">j</span><span class="p">)</span> <span class="p">=</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">ndb</span><span class="o">/</span><span class="n">nb</span><span class="p">);</span>
+    <span class="n">lb</span><span class="p">(</span><span class="nb">j</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">ndb</span><span class="o">/</span><span class="n">nb</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">;</span>
+    <span class="n">dbs</span><span class="p">(</span><span class="nb">j</span><span class="p">)</span> <span class="p">=</span> <span class="n">ndb</span><span class="o">/</span><span class="n">nb</span><span class="p">;</span> 
+    <span class="nb">j</span> <span class="p">=</span> <span class="nb">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">dbs</span><span class="p">,</span> <span class="n">rx</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">dbs</span><span class="p">,</span> <span class="n">ub</span><span class="p">,</span> <span class="s">&#39;g&#39;</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">dbs</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">hold</span> <span class="n">off</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;ratio of change of x&#39;</span><span class="p">,</span> <span class="s">&#39;upper bound&#39;</span><span class="p">,</span> <span class="s">&#39;lower bound&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;$\|\delta_b\|/\|b\|$&#39;</span><span class="p">,</span> <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span> <span class="s">&#39;latex&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$\|\delta_x\|/\|x\|$&#39;</span><span class="p">,</span> <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span> <span class="s">&#39;latex&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181706476.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="linear-system">Linear system</h2>
+<p>A typical linear time-invariant system is usually formulated as</p>
+<p>$$
+y=\frac{d x(t)}{d t}=\dot{x}=A x
+$$</p>
+<p><code>Y = expm(X)</code> computes the matrix exponential of <code>X</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="o">-</span><span class="mi">6</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="mi">6</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">16</span><span class="p">;</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">20</span> <span class="o">-</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="n">X</span> <span class="p">=</span> <span class="p">[];</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:.</span><span class="mi">01</span><span class="p">:</span><span class="mi">1</span> 
+    <span class="n">X</span> <span class="p">=</span> <span class="p">[</span><span class="n">X</span> <span class="n">expm</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">x0</span><span class="p">];</span>
+<span class="k">end</span> 
+
+<span class="n">plot3</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="n">X</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s">&#39;-o&#39;</span><span class="p">);</span> 
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span> 
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span> 
+<span class="n">zlabel</span><span class="p">(</span><span class="s">&#39;x_3&#39;</span><span class="p">);</span> 
+<span class="n">grid</span> <span class="n">on</span><span class="p">;</span> 
+<span class="n">axis</span> <span class="n">tight</span> <span class="n">square</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181715892.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/matlab/">MATLAB</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vii-symbolic-calculation-root-finding/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VII (Symbolic Calculation &amp; Root Finding)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vi-differentiation-integration/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VI (Differentiation &amp; Integration)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-v-advanced-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering V (Advanced Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-iv-basic-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering IV (Basic Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-iii-data-structure/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering III (Data Structure)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#matrix-decomposition">Matrix Decomposition</a>
+      <ol>
+        <li><a href="#matrix-decomposition-functions">Matrix decomposition functions</a>
+          <ol>
+            <li><a href="#qr---qr-decomposition"><code>qr()</code> - QR decomposition</a></li>
+            <li><a href="#ldl---block-ldl-factorization-for-hermitian-indefinite-matrices"><code>ldl()</code> - Block LDL' factorization for Hermitian indefinite matrices</a></li>
+            <li><a href="#lu---lu-matrix-factorization"><code>lu()</code> - LU matrix factorization</a></li>
+            <li><a href="#chol---cholesky-factorization"><code>chol()</code> - Cholesky factorization</a></li>
+            <li><a href="#svd---singular-value-decomposition"><code>svd()</code> - Singular value decomposition</a></li>
+            <li><a href="#gsvd---generalized-singular-value-decomposition"><code>gsvd()</code> - Generalized singular value decomposition</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#linear-eqs-and-system">Linear Eqs and System</a>
+      <ol>
+        <li><a href="#rref---gaussian-elimination-method"><code>rref()</code> - Gaussian elimination method</a></li>
+        <li><a href="#lu---lu-matrix-factorization-1"><code>lu()</code> - LU matrix factorization</a></li>
+        <li><a href="#-mldivide"><code>\</code>, <code>mldivide()</code></a></li>
+        <li><a href="#matrix-condition-number">Matrix condition number</a>
+          <ol>
+            <li><a href="#matrix-norm">Matrix norm</a></li>
+            <li><a href="#condition-number">Condition number</a></li>
+            <li><a href="#stability-of-linear-eq">Stability of linear eq</a></li>
+            <li><a href="#cond"><code>cond()</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#linear-system">Linear system</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+
+    </body>
+</html>

@@ -3,21 +3,21 @@
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  Basic Plot plot() Function The plot function has two uses:
- plot(x,y): plot vector pair (x,y) plot(y): plots vector pair (x,y), where x=1:n, n=length(y).  1 2 3 4 5  %% plot x = 0:pi/20:2*pi; y = cos(x); plot(x,y);   1 2 3 4  %% y = rand(100,1); plot(y);   hold on/off Keyword When calling plot, MATLAB will automatically close the previous figure window (you can also close it manually with the close keyword).'><title>MATLAB in Engineering IV (Basic Plotting)</title>
+ plot(x,y): plot vector pair (x,y) plot(y): plots vector pair (x,y), where x=1:n, n=length(y).  1 2 3 4 5  %% plot x = 0:pi/20:2*pi; y = cos(x); plot(x,y);   1 2 3 4  %% y = rand(100,1); plot(y);   fplot() Function   fplot(f) plots the curve defined by the function y = f(x) over the default interval [-5 5] for x.'><title>MATLAB in Engineering IV (Basic Plotting)</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/matlab-in-engineering-iv-basic-plotting/'>
 
 <link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='MATLAB in Engineering IV (Basic Plotting)'>
 <meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  Basic Plot plot() Function The plot function has two uses:
- plot(x,y): plot vector pair (x,y) plot(y): plots vector pair (x,y), where x=1:n, n=length(y).  1 2 3 4 5  %% plot x = 0:pi/20:2*pi; y = cos(x); plot(x,y);   1 2 3 4  %% y = rand(100,1); plot(y);   hold on/off Keyword When calling plot, MATLAB will automatically close the previous figure window (you can also close it manually with the close keyword).'>
+ plot(x,y): plot vector pair (x,y) plot(y): plots vector pair (x,y), where x=1:n, n=length(y).  1 2 3 4 5  %% plot x = 0:pi/20:2*pi; y = cos(x); plot(x,y);   1 2 3 4  %% y = rand(100,1); plot(y);   fplot() Function   fplot(f) plots the curve defined by the function y = f(x) over the default interval [-5 5] for x.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-iv-basic-plotting/'>
 <meta property='og:site_name' content='Haoming Wang'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-01-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-01-25T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="MATLAB in Engineering IV (Basic Plotting)">
 <meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
  Basic Plot plot() Function The plot function has two uses:
- plot(x,y): plot vector pair (x,y) plot(y): plots vector pair (x,y), where x=1:n, n=length(y).  1 2 3 4 5  %% plot x = 0:pi/20:2*pi; y = cos(x); plot(x,y);   1 2 3 4  %% y = rand(100,1); plot(y);   hold on/off Keyword When calling plot, MATLAB will automatically close the previous figure window (you can also close it manually with the close keyword).">
+ plot(x,y): plot vector pair (x,y) plot(y): plots vector pair (x,y), where x=1:n, n=length(y).  1 2 3 4 5  %% plot x = 0:pi/20:2*pi; y = cos(x); plot(x,y);   1 2 3 4  %% y = rand(100,1); plot(y);   fplot() Function   fplot(f) plots the curve defined by the function y = f(x) over the default interval [-5 5] for x.">
     </head>
     <body class="
     article-page
@@ -391,6 +391,46 @@
 	
 	
 ></p>
+<h2 id="fplot-function"><code>fplot()</code> Function</h2>
+<ul>
+<li>
+<p><code>fplot(f)</code> plots the curve defined by the function <code>y = f(x)</code> over the default interval <code>[-5 5]</code> for <code>x</code>.</p>
+</li>
+<li>
+<p><code>fplot(f,xinterval)</code> plots over the specified interval. Specify the interval as a two-element vector of the form <code>[xmin xmax]</code>.</p>
+</li>
+<li>
+<p><code>fplot(funx,funy)</code> plots the curve defined by <code>x = funx(t)</code>and <code>y = funy(t)</code> over the default interval <code>[-5 5]</code> for <code>t</code>.</p>
+</li>
+<li>
+<p><code>fplot(funx,funy,tinterval)</code> plots over the specified interval. Specify the interval as a two-element vector of the form <code>[tmin tmax]</code>.</p>
+</li>
+</ul>
+<p>Here <code>f</code> is the handle of the function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">xt</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span> <span class="nb">cos</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+<span class="n">yt</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+<span class="n">fplot</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">yt</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181353276.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <h2 id="hold-onoff-keyword"><code>hold on/off</code> Keyword</h2>
 <p>When calling <code>plot</code>, MATLAB will automatically close the previous figure window (you can also close it manually with the <code>close</code> keyword). So to plot multiple <code>plot</code> commands in a single figure you need to call the <code>hold on/off</code> keyword:</p>
 <div class="highlight"><div class="chroma">
@@ -457,6 +497,37 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>to obtain the same figure.</p>
+<p><code>hold on/off</code> works on <code>fplot()</code> function as well:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% piecewise function</span>
+
+<span class="n">close</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span>
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">fplot</span><span class="p">(@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),[</span><span class="o">-</span><span class="mi">3</span> <span class="mi">0</span><span class="p">],</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fplot</span><span class="p">(@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),[</span><span class="mi">0</span> <span class="mi">3</span><span class="p">],</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">off</span>
+<span class="n">grid</span> <span class="n">on</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205181356467.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <h2 id="style">Style</h2>
 <p>The style of the graph line can be represented by three letters:</p>
 <ul>
@@ -1249,12 +1320,24 @@
             
                 
 <article class="">
-    <a href="/p/matlab-in-engineering-vii-root-finding/">
+    <a href="/p/matlab-in-engineering-viii-matrix-decomposition/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">MATLAB in Engineering VII (Root Finding)</h2>
+            <h2 class="article-title">MATLAB in Engineering VIII (Matrix Decomposition)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vii-symbolic-calculation-root-finding/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VII (Symbolic Calculation &amp; Root Finding)</h2>
         </div>
     </a>
 </article>
@@ -1291,18 +1374,6 @@
 
         <div class="article-details">
             <h2 class="article-title">MATLAB in Engineering III (Data Structure)</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/matlab-in-engineering-ii-script-and-function/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">MATLAB in Engineering II (Script and Function)</h2>
         </div>
     </a>
 </article>
@@ -1437,6 +1508,7 @@
     <li><a href="#basic-plot">Basic Plot</a>
       <ol>
         <li><a href="#plot-function"><code>plot()</code> Function</a></li>
+        <li><a href="#fplot-function"><code>fplot()</code> Function</a></li>
         <li><a href="#hold-onoff-keyword"><code>hold on/off</code> Keyword</a></li>
         <li><a href="#style">Style</a></li>
         <li><a href="#legend">Legend</a></li>
