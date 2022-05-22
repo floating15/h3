@@ -570,7 +570,7 @@ $$</p>
 <li>$\alpha_n = {r_{n-1}&lsquo;r_{n-1}}/{p_{n-1}&rsquo; Ap_{n-1}}$</li>
 <li>$x_n = x_{n-1} + \alpha_{n}p_{n-1}$</li>
 <li>$r_n = r_{n-1} - \alpha_n Ap_{n-1}$</li>
-<li>$\beta_n = {r'<em>nr_n}/{r</em>{n-1}&lsquo;r_{n-1}}$</li>
+<li>$\beta_n = {r'_nr_n}/{r_{n-1}&lsquo;r_{n-1}}$</li>
 <li>$p_n=r_n+\beta_n p_{n-1}$</li>
 </ul>
 <p>Here for each step $n$, $\alpha_n$ which is a scalar, represents the step length, it is how far we are going along a search direction to improve our current guess. $x_n$ is the approximate solution at step $n$, and $r_n$ is the corresponding residual. And $\beta_n$ measures the improvement in this step. And finally, $p_n$ is the search direction.</p>
@@ -644,7 +644,7 @@ $$</p>
 <p>Hence if there exists polynomials that are small at eigenvalues, then CG converges quickly. Thus the whole logic of the argument is that hte existence of the polynomial. Note that the $P_n(0)\equiv 0$, thus if some $\lambda$ are too close to 0, then the polynomial would be non exist which means CG will not convergent, there is a theorem shows this fact:</p>
 <p><strong>THM 2. The ratio of the error at the end step to the initial error is bounded by the minimal overall polynomials with the restriction of maximal of the eigenvalues of the matrix:</strong></p>
 <p>$$
-\frac{|e_n|<em>A}{|e_0|<em>A}\leq \min</em>{P_n}\max</em>{\lambda_k} | P_n(\lambda_k)|.
+\frac{|e_n|_A}{|e_0|_A}\leq \min_{P_n}\max_{\lambda_k} | P_n(\lambda_k)|.
 $$</p>
 <p><strong>where $P_n(0)=1$.</strong></p>
 <p>For example, if we create a SPD matrix which has very small eigenvalues:</p>
