@@ -6,7 +6,15 @@
         <description>Recent content in Categories on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 02 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Scientific Computing</title>
+        <link>https://wanghaoming177.netlify.app/categories/sci_compute/</link>
+        <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://wanghaoming177.netlify.app/categories/sci_compute/</guid>
+        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/sci_compute/sss05.png" alt="Featured image of post Scientific Computing" /&gt;</description>
+        </item>
+        <item>
         <title>Machine Learning</title>
         <link>https://wanghaoming177.netlify.app/categories/ml/</link>
         <pubDate>Wed, 02 Feb 2022 00:00:00 +0000</pubDate>
@@ -29,14 +37,6 @@
         
         <guid>https://wanghaoming177.netlify.app/categories/linux/</guid>
         <description>&lt;img src="https://wanghaoming177.netlify.app/categories/linux/images2.jpeg" alt="Featured image of post Linux" /&gt;</description>
-        </item>
-        <item>
-        <title>Scientific Computing</title>
-        <link>https://wanghaoming177.netlify.app/categories/sci_compute/</link>
-        <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://wanghaoming177.netlify.app/categories/sci_compute/</guid>
-        <description>&lt;img src="https://wanghaoming177.netlify.app/categories/sci_compute/sss05.png" alt="Featured image of post Scientific Computing" /&gt;</description>
         </item>
         <item>
         <title>Data Science</title>
