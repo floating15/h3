@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices. This blog contains a lot of LaTeX code, please use Chrome for quality reading.
  Common functions in MATLAB about sparse matrix Run
-1  help sparfun   or click here.
-Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements. If a matrix contains many zeros, converting the matrix to sparse storage saves memory.'><title>Scientific Computing I-I (Sparse Matrix &amp; Iteration Method i)</title>
+1  &amp;gt;&amp;gt; help sparfun   or click here.
+Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements.'><title>Scientific Computing I-I (Sparse Matrix &amp; Iteration Method i)</title>
 
 <link rel='canonical' href='https://wanghaoming177.netlify.app/p/scientific-computing-i-i-sparse-matrix-iteration-method-i/'>
 
 <link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='Scientific Computing I-I (Sparse Matrix &amp; Iteration Method i)'>
-<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices. This blog contains a lot of LaTeX code, please use Chrome for quality reading.
  Common functions in MATLAB about sparse matrix Run
-1  help sparfun   or click here.
-Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements. If a matrix contains many zeros, converting the matrix to sparse storage saves memory.'>
+1  &amp;gt;&amp;gt; help sparfun   or click here.
+Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements.'>
 <meta property='og:url' content='https://wanghaoming177.netlify.app/p/scientific-computing-i-i-sparse-matrix-iteration-method-i/'>
 <meta property='og:site_name' content='Haoming Wang'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2022-04-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-04-19T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Scientific Computing I-I (Sparse Matrix &amp; Iteration Method i)">
-<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices. This blog contains a lot of LaTeX code, please use Chrome for quality reading.
  Common functions in MATLAB about sparse matrix Run
-1  help sparfun   or click here.
-Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements. If a matrix contains many zeros, converting the matrix to sparse storage saves memory.">
+1  &amp;gt;&amp;gt; help sparfun   or click here.
+Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements.">
     </head>
     <body class="
     article-page
@@ -339,7 +339,8 @@ Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse f
     
     
     <blockquote>
-<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+This blog contains a lot of LaTeX code, please use Chrome for quality reading.</p>
 </blockquote>
 <h1 id="common-functions-in-matlab-about-sparse-matrix">Common functions in MATLAB about sparse matrix</h1>
 <p>Run</p>
@@ -348,7 +349,7 @@ Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse f
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">help</span> <span class="n">sparfun</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">help</span> <span class="n">sparfun</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>or click <a class="link" href="https://www.mathworks.com/help/matlab/sparse-matrices.html?searchHighlight=sparse&amp;s_tid=srchtitle_sparse_2"  target="_blank" rel="noopener"
@@ -541,17 +542,17 @@ Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse f
      0     0     0     0     1
 </code></pre><h1 id="conjugate-gradients">Conjugate Gradients</h1>
 <h2 id="algorithm">Algorithm</h2>
-<p>Let $A (N\times N)$ be symmetric positive definite (SPD), that is $A'=A$ and all eigenvalues is positive, or say $x&rsquo;Ax&gt;0$ for any $x\neq \bf 0$. Let $b$ be an $N\times 1$ vector, we want to solve a $x_<em>$ s.t. $Ax_</em>=b$, since $A$ is SPD $A$ is non-singular, and hence $x_*$ is existed and unique.</p>
-<p>Conjugate Gradients(CG) find $x_*$ iteratively starting from $x_0$, $x_0$ is could be any vector, and we will use $\bf 0$. And $x_n$ belongs to the Krylov space:</p>
+<p>Let $A (N\times N)$ be symmetric positive definite (SPD), that is $A^T=A$ and all eigenvalues is positive, or say $x^TAx&gt;0$ for any $x\neq \bf 0$. Let $b$ be an $N\times 1$ vector, we want to solve a $x_<em>$ s.t. $Ax_</em>=b$, since $A$ is SPD $A$ is non singular, and hence $x_*$ is existed and unique.</p>
+<p>Conjugate Gradients (CG) find $x_*$ iteratively starting from $x_0$, $x_0$ is could be any vector, and we will use $\bf 0$. And $x_n$ belongs to the Krylov space:</p>
 <p>$$
 K_n=\lang b, Ab,\cdots,A^{n-1}b\rang
 $$</p>
 <p>which is spanned by vectors $b, Ab,\cdots,A^{n-1}b$, and any $k\in K_n$ is a linear combination of these vectors. It is direct to see that $K_n\subseteq \mathbb{R}^N$, so conjugate gradient is searching in bigger and bigger space for a good approximation to the solution.</p>
 <p>Let define a special way to measure the size of a vector: define &ldquo;$A$ - norm&rdquo; of a vector $x$ as</p>
 <p>$$
-|x|_A=\sqrt{x&rsquo;Ax}
+|x|_A=\sqrt{x^TAx}
 $$</p>
-<p>So $|x|_A$ is a positive real number if $x\neq \bf 0$, because by definition, $A$ is symmetric positive definite, and therefore $x&rsquo;Ax$ is a positive number.</p>
+<p>So $|x|_A$ is a positive real number if $x\neq \bf 0$, because by definition, $A$ is symmetric positive definite, and therefore $x^TAx$ is a positive number.</p>
 <p>And define the error of each steps: define $n$-th error as</p>
 <p>$$
 e_n=x_*-x_n
@@ -563,14 +564,14 @@ $$</p>
 <p>In principle, we like a small error, but in practice, the thing we can measure is the residual. Thus we minimize the residual as a mean of minimizing.</p>
 <p><strong>THM 1. Among all $x\in K_n$, there exists one unique $x_n$ such that minimizes $|e_n|_A$.</strong></p>
 <p>So at every step of conjugate gradient, we can find the best approximation in a certain measure. And from this theorem, we obtain a corollary: $|e_0|_A\geq |e_1|_A\geq \cdots \geq 0$. That is the error keep going down monotonically.</p>
-<p>Define $f(x)=\frac{1}{2}x&rsquo;Ax-x&rsquo;b$, thus $\nabla f(x)=Ax-b$, now we want $Ax=b$, which means we want $\nabla f(x)=0$, i.e minimize of $f(x)$.</p>
+<p>Define $f(x)=\frac{1}{2}x^{T}Ax-x^{T}b$, thus $\nabla f(x)=Ax-b$, now we want $Ax=b$, which means we want $\nabla f(x)=0$, i.e minimize of $f(x)$.</p>
 <p>Now we can introduce the conjugate gradient algorithm. First, we start form an initial guess $x_0=\bf 0$, corresponding to this is a residual $r_0=b-Ax_0=b-A\mathbf{0}=b$. And then we define search direction vector $p_0=r_0$ which indicate the search direction in Krylov space.</p>
 <p>For $n=1, 2, 3,\cdots$:</p>
 <ul>
-<li>$\alpha_n = {r_{n-1}&lsquo;r_{n-1}}/{p_{n-1}&rsquo; Ap_{n-1}}$</li>
+<li>$\alpha_n = {r_{n-1}^{T}r_{n-1}}/{p_{n-1}^{T} Ap_{n-1}}$</li>
 <li>$x_n = x_{n-1} + \alpha_{n}p_{n-1}$</li>
 <li>$r_n = r_{n-1} - \alpha_n Ap_{n-1}$</li>
-<li>$\beta_n = {r'_nr_n}/{r_{n-1}&lsquo;r_{n-1}}$</li>
+<li>$\beta_n = {r^{T}<em>nr_n}/{r</em>{n-1}^{T}r_{n-1}}$</li>
 <li>$p_n=r_n+\beta_n p_{n-1}$</li>
 </ul>
 <p>Here for each step $n$, $\alpha_n$ which is a scalar, represents the step length, it is how far we are going along a search direction to improve our current guess. $x_n$ is the approximate solution at step $n$, and $r_n$ is the corresponding residual. And $\beta_n$ measures the improvement in this step. And finally, $p_n$ is the search direction.</p>
@@ -644,7 +645,7 @@ $$</p>
 <p>Hence if there exists polynomials that are small at eigenvalues, then CG converges quickly. Thus the whole logic of the argument is that hte existence of the polynomial. Note that the $P_n(0)\equiv 0$, thus if some $\lambda$ are too close to 0, then the polynomial would be non exist which means CG will not convergent, there is a theorem shows this fact:</p>
 <p><strong>THM 2. The ratio of the error at the end step to the initial error is bounded by the minimal overall polynomials with the restriction of maximal of the eigenvalues of the matrix:</strong></p>
 <p>$$
-\frac{|e_n|_A}{|e_0|_A}\leq \min_{P_n}\max_{\lambda_k} | P_n(\lambda_k)|.
+\frac{|e_n|<em>A}{|e_0|<em>A}\leq \min</em>{P_n}\max</em>{\lambda_k} | P_n(\lambda_k)|.
 $$</p>
 <p><strong>where $P_n(0)=1$.</strong></p>
 <p>For example, if we create a SPD matrix which has very small eigenvalues:</p>

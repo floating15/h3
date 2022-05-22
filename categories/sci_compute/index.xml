@@ -13,7 +13,8 @@
         
         <guid>https://wanghaoming177.netlify.app/p/scientific-computing-i-i-sparse-matrix-iteration-method-i/</guid>
         <description>&lt;blockquote&gt;
-&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
+&lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+This blog contains a lot of LaTeX code, please use Chrome for quality reading.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;common-functions-in-matlab-about-sparse-matrix&#34;&gt;Common functions in MATLAB about sparse matrix&lt;/h1&gt;
 &lt;p&gt;Run&lt;/p&gt;
@@ -22,7 +23,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span class=&#34;n&#34;&gt;help&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sparfun&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;help&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sparfun&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;or click &lt;a class=&#34;link&#34; href=&#34;https://www.mathworks.com/help/matlab/sparse-matrices.html?searchHighlight=sparse&amp;amp;s_tid=srchtitle_sparse_2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -215,17 +216,17 @@
      0     0     0     0     1
 &lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;conjugate-gradients&#34;&gt;Conjugate Gradients&lt;/h1&gt;
 &lt;h2 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h2&gt;
-&lt;p&gt;Let $A (N\times N)$ be symmetric positive definite (SPD), that is $A&#39;=A$ and all eigenvalues is positive, or say $x&amp;rsquo;Ax&amp;gt;0$ for any $x\neq \bf 0$. Let $b$ be an $N\times 1$ vector, we want to solve a $x_&lt;em&gt;$ s.t. $Ax_&lt;/em&gt;=b$, since $A$ is SPD $A$ is non-singular, and hence $x_*$ is existed and unique.&lt;/p&gt;
-&lt;p&gt;Conjugate Gradients(CG) find $x_*$ iteratively starting from $x_0$, $x_0$ is could be any vector, and we will use $\bf 0$. And $x_n$ belongs to the Krylov space:&lt;/p&gt;
+&lt;p&gt;Let $A (N\times N)$ be symmetric positive definite (SPD), that is $A^T=A$ and all eigenvalues is positive, or say $x^TAx&amp;gt;0$ for any $x\neq \bf 0$. Let $b$ be an $N\times 1$ vector, we want to solve a $x_&lt;em&gt;$ s.t. $Ax_&lt;/em&gt;=b$, since $A$ is SPD $A$ is non singular, and hence $x_*$ is existed and unique.&lt;/p&gt;
+&lt;p&gt;Conjugate Gradients (CG) find $x_*$ iteratively starting from $x_0$, $x_0$ is could be any vector, and we will use $\bf 0$. And $x_n$ belongs to the Krylov space:&lt;/p&gt;
 &lt;p&gt;$$
 K_n=\lang b, Ab,\cdots,A^{n-1}b\rang
 $$&lt;/p&gt;
 &lt;p&gt;which is spanned by vectors $b, Ab,\cdots,A^{n-1}b$, and any $k\in K_n$ is a linear combination of these vectors. It is direct to see that $K_n\subseteq \mathbb{R}^N$, so conjugate gradient is searching in bigger and bigger space for a good approximation to the solution.&lt;/p&gt;
 &lt;p&gt;Let define a special way to measure the size of a vector: define &amp;ldquo;$A$ - norm&amp;rdquo; of a vector $x$ as&lt;/p&gt;
 &lt;p&gt;$$
-|x|_A=\sqrt{x&amp;rsquo;Ax}
+|x|_A=\sqrt{x^TAx}
 $$&lt;/p&gt;
-&lt;p&gt;So $|x|_A$ is a positive real number if $x\neq \bf 0$, because by definition, $A$ is symmetric positive definite, and therefore $x&amp;rsquo;Ax$ is a positive number.&lt;/p&gt;
+&lt;p&gt;So $|x|_A$ is a positive real number if $x\neq \bf 0$, because by definition, $A$ is symmetric positive definite, and therefore $x^TAx$ is a positive number.&lt;/p&gt;
 &lt;p&gt;And define the error of each steps: define $n$-th error as&lt;/p&gt;
 &lt;p&gt;$$
 e_n=x_*-x_n
@@ -237,14 +238,14 @@ $$&lt;/p&gt;
 &lt;p&gt;In principle, we like a small error, but in practice, the thing we can measure is the residual. Thus we minimize the residual as a mean of minimizing.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;THM 1. Among all $x\in K_n$, there exists one unique $x_n$ such that minimizes $|e_n|_A$.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So at every step of conjugate gradient, we can find the best approximation in a certain measure. And from this theorem, we obtain a corollary: $|e_0|_A\geq |e_1|_A\geq \cdots \geq 0$. That is the error keep going down monotonically.&lt;/p&gt;
-&lt;p&gt;Define $f(x)=\frac{1}{2}x&amp;rsquo;Ax-x&amp;rsquo;b$, thus $\nabla f(x)=Ax-b$, now we want $Ax=b$, which means we want $\nabla f(x)=0$, i.e minimize of $f(x)$.&lt;/p&gt;
+&lt;p&gt;Define $f(x)=\frac{1}{2}x^{T}Ax-x^{T}b$, thus $\nabla f(x)=Ax-b$, now we want $Ax=b$, which means we want $\nabla f(x)=0$, i.e minimize of $f(x)$.&lt;/p&gt;
 &lt;p&gt;Now we can introduce the conjugate gradient algorithm. First, we start form an initial guess $x_0=\bf 0$, corresponding to this is a residual $r_0=b-Ax_0=b-A\mathbf{0}=b$. And then we define search direction vector $p_0=r_0$ which indicate the search direction in Krylov space.&lt;/p&gt;
 &lt;p&gt;For $n=1, 2, 3,\cdots$:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$\alpha_n = {r_{n-1}&amp;lsquo;r_{n-1}}/{p_{n-1}&amp;rsquo; Ap_{n-1}}$&lt;/li&gt;
+&lt;li&gt;$\alpha_n = {r_{n-1}^{T}r_{n-1}}/{p_{n-1}^{T} Ap_{n-1}}$&lt;/li&gt;
 &lt;li&gt;$x_n = x_{n-1} + \alpha_{n}p_{n-1}$&lt;/li&gt;
 &lt;li&gt;$r_n = r_{n-1} - \alpha_n Ap_{n-1}$&lt;/li&gt;
-&lt;li&gt;$\beta_n = {r&#39;_nr_n}/{r_{n-1}&amp;lsquo;r_{n-1}}$&lt;/li&gt;
+&lt;li&gt;$\beta_n = {r^{T}&lt;em&gt;nr_n}/{r&lt;/em&gt;{n-1}^{T}r_{n-1}}$&lt;/li&gt;
 &lt;li&gt;$p_n=r_n+\beta_n p_{n-1}$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here for each step $n$, $\alpha_n$ which is a scalar, represents the step length, it is how far we are going along a search direction to improve our current guess. $x_n$ is the approximate solution at step $n$, and $r_n$ is the corresponding residual. And $\beta_n$ measures the improvement in this step. And finally, $p_n$ is the search direction.&lt;/p&gt;
@@ -318,7 +319,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Hence if there exists polynomials that are small at eigenvalues, then CG converges quickly. Thus the whole logic of the argument is that hte existence of the polynomial. Note that the $P_n(0)\equiv 0$, thus if some $\lambda$ are too close to 0, then the polynomial would be non exist which means CG will not convergent, there is a theorem shows this fact:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;THM 2. The ratio of the error at the end step to the initial error is bounded by the minimal overall polynomials with the restriction of maximal of the eigenvalues of the matrix:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;$$
-\frac{|e_n|_A}{|e_0|_A}\leq \min_{P_n}\max_{\lambda_k} | P_n(\lambda_k)|.
+\frac{|e_n|&lt;em&gt;A}{|e_0|&lt;em&gt;A}\leq \min&lt;/em&gt;{P_n}\max&lt;/em&gt;{\lambda_k} | P_n(\lambda_k)|.
 $$&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;where $P_n(0)=1$.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;For example, if we create a SPD matrix which has very small eigenvalues:&lt;/p&gt;
