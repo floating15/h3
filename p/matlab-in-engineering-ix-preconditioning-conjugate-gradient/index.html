@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+This blog contains a lot of LaTeX code, please use Chrome for reading quality.
+ Common functions in MATLAB about sparse matrix Run
+1  &amp;gt;&amp;gt; help sparfun   or click here.
+Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements.'><title>MATLAB in Engineering IX (Preconditioning Conjugate Gradient)</title>
+
+<link rel='canonical' href='https://wanghaoming177.netlify.app/p/matlab-in-engineering-ix-preconditioning-conjugate-gradient/'>
+
+<link rel="stylesheet" href="/scss/style.min.6cb794b99473add9625fc6fcb4fd8782c21b06365b632b8fbb1076efe11c688e.css"><meta property='og:title' content='MATLAB in Engineering IX (Preconditioning Conjugate Gradient)'>
+<meta property='og:description' content='All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+This blog contains a lot of LaTeX code, please use Chrome for reading quality.
+ Common functions in MATLAB about sparse matrix Run
+1  &amp;gt;&amp;gt; help sparfun   or click here.
+Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements.'>
+<meta property='og:url' content='https://wanghaoming177.netlify.app/p/matlab-in-engineering-ix-preconditioning-conjugate-gradient/'>
+<meta property='og:site_name' content='Haoming Wang'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2021-02-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-02-21T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="MATLAB in Engineering IX (Preconditioning Conjugate Gradient)">
+<meta name="twitter:description" content="All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.
+This blog contains a lot of LaTeX code, please use Chrome for reading quality.
+ Common functions in MATLAB about sparse matrix Run
+1  &amp;gt;&amp;gt; help sparfun   or click here.
+Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse form by squeezing out any zero elements.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/IMG_0770_hu86b91b9497cdda82d5c488540c7342b2_101927_300x0_resize_q75_box.jpg" width="300"
+                            height="273" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌏</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Haoming Wang</a></h1>
+            <h2 class="site-description">We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/floating15'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/%E6%B5%A9%E9%93%AD-%E7%8E%8B-b0a164171/'
+                        target="_blank"
+                        title="Linkedin"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://follow.it/haoming-wang?action=followPub'
+                        target="_blank"
+                        title="r-mail"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mailbox" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5" />
+  <path d="M12 11v-8h4l2 2l-2 2h-4" />
+  <path d="M6 15h1" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#FF1C02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#35FF02" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/notes/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-function" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#02EAFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 10h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1" />
+  <path d="M13 17c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5" />
+  <path d="M3 19c0 1.5 .5 2 2 2s2 -4 3 -9s1.5 -9 3 -9s2 .5 2 2" />
+  <line x1="5" y1="12" x2="11" y2="12" />
+</svg>
+                
+                <span>Notes</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#0223FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#F402FF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sci_compute/" >
+                Scientific Computing
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/matlab-in-engineering-ix-preconditioning-conjugate-gradient/">MATLAB in Engineering IX (Preconditioning Conjugate Gradient)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 21, 2021</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.</p>
+<p>This blog contains a lot of LaTeX code, please use Chrome for reading quality.</p>
+</blockquote>
+<h1 id="common-functions-in-matlab-about-sparse-matrix">Common functions in MATLAB about sparse matrix</h1>
+<p>Run</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">help</span> <span class="n">sparfun</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>or click <a class="link" href="https://www.mathworks.com/help/matlab/sparse-matrices.html?searchHighlight=sparse&amp;s_tid=srchtitle_sparse_2"  target="_blank" rel="noopener"
+    >here</a>.</p>
+<h2 id="create-sparse-matrix">Create sparse matrix</h2>
+<h3 id="sparse"><code>sparse</code></h3>
+<ul>
+<li>
+<p><code>S = sparse(A)</code> converts a full matrix into sparse form by squeezing out any zero elements. If a matrix contains many zeros, converting the matrix to sparse storage saves memory.</p>
+</li>
+<li>
+<p><code>S = sparse(m,n)</code> generates an m-by-n all zero sparse matrix.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="nb">eye</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">SA</span> <span class="p">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">whos</span> <span class="n">A</span> <span class="n">SA</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>  Name          Size                   Bytes  Class     Attributes
+
+  A         10000x10000            800000000  double              
+  SA        10000x10000               240008  double    sparse    
+</code></pre><h3 id="sprand-sprandsym"><code>sprand</code>, <code>sprandsym</code></h3>
+<ul>
+<li>
+<p><code>R = sprandn(S)</code> creates a sparse matrix that has the same sparsity pattern as the matrix <code>S</code>, but with normally distributed random entries with mean 0 and variance 1.</p>
+</li>
+<li>
+<p><code>R = sprandn(m,n,density)</code> creates a random m-by-n sparse matrix with approximately <code>density*m*n</code> normally distributed nonzero entries for <code>density</code> in the interval [0,1].</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">S</span> <span class="p">=</span> <span class="n">sprandn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   (1,2)       1.7036
+   (3,2)      -1.5975
+   (3,3)      -0.8973
+   (4,3)      -1.7799
+   (5,3)       0.5464
+   (1,4)       1.9679
+   (1,5)      -0.9504
+   (2,5)      -0.0473
+   (3,5)      -0.0197
+   (5,5)      -0.3547
+</code></pre><ul>
+<li>
+<p><code>R = sprandsym(S)</code> returns a symmetric random matrix whose lower triangle and diagonal have the same structure as <code>S</code>. Its elements are normally distributed, with mean 0 and variance 1.</p>
+</li>
+<li>
+<p><code>R = sprandsym(n,density)</code> returns a symmetric random, n-by-n, sparse matrix with approximately <code>density*n*n</code> nonzeros; each entry is the sum of one or more normally distributed random samples, and (0 &lt;= density &lt;= 1).</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">S</span> <span class="p">=</span> <span class="n">sprandn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span> 
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">spy</span><span class="p">(</span><span class="n">S</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;S&#39;</span><span class="p">);</span>
+<span class="n">SSl</span> <span class="p">=</span> <span class="n">sprandsym</span><span class="p">(</span><span class="n">S</span><span class="p">);</span> 
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">spy</span><span class="p">(</span><span class="n">SSl</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;SSl&#39;</span><span class="p">);</span>
+<span class="n">SSu</span> <span class="p">=</span> <span class="n">sprandsym</span><span class="p">(</span><span class="n">S</span><span class="o">&#39;</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">spy</span><span class="p">(</span><span class="n">SSu</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;SSu&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205221434846.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="speye"><code>speye</code></h3>
+<ul>
+<li>
+<p><code>S = speye</code> returns a sparse scalar 1.</p>
+</li>
+<li>
+<p><code>S = speye(n)</code> returns a sparse n-by-n identity matrix, with ones on the main diagonal and zeros elsewhere.</p>
+</li>
+<li>
+<p><code>S = speye(n,m)</code> returns a sparse n-by-m matrix, with ones on the main diagonal and zeros elsewhere.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% speye</span>
+
+<span class="n">S1</span> <span class="p">=</span> <span class="n">speye</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">spy</span><span class="p">(</span><span class="n">S1</span><span class="p">);</span>
+<span class="n">S2</span> <span class="p">=</span> <span class="n">speye</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">150</span><span class="p">);</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">spy</span><span class="p">(</span><span class="n">S2</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205221438251.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="display-sparse-matrix">Display sparse matrix</h2>
+<h3 id="spy"><code>spy</code></h3>
+<ul>
+<li>
+<p><code>spy(S)</code> plots the sparsity pattern of matrix S. Nonzero values are colored while zero values are white. The plot displays the number of nonzeros in the matrix, <code>nz = nnz(S)</code>.</p>
+</li>
+<li>
+<p><code>spy(S,LineSpec)</code> additionally specifies <code>LineSpec</code> to give the marker symbol and color to use in the plot.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% spy</span>
+
+<span class="n">S</span> <span class="p">=</span> <span class="n">bucky</span><span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">spy</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">spy</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="s">&#39;r*&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205221440174.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="full"><code>full</code></h3>
+<p><code>A = full(S)</code> converts sparse matrix <code>S</code> to full storage organization, such that <code>issparse(A)</code> returns logical <code>0</code> (false).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% full</span>
+
+<span class="n">S</span> <span class="p">=</span> <span class="n">speye</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">A</span> <span class="p">=</span> <span class="n">full</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">issparse</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   0
+
+     1     0     0     0     0
+     0     1     0     0     0
+     0     0     1     0     0
+     0     0     0     1     0
+     0     0     0     0     1
+</code></pre><h1 id="conjugate-gradients-cg">Conjugate Gradients (CG)</h1>
+<h2 id="algorithm">Algorithm</h2>
+<p>Let $A (N\times N)$ be symmetric positive definite (SPD), that is $A^T=A$ and all eigenvalues is positive, or say $x^TAx&gt;0$ for any $x\neq \bf 0$.  We can construct a general SPD matrix quickly in MATLAB by</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">A</span><span class="o">&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Let $b$ be an $N\times 1$ vector, we want to solve a $x_<em>$ s.t. $Ax_</em>=b$, since $A$ is SPD $A$ is non singular, and hence $x_<em>$ is existed and unique. Conjugate Gradients (CG) find $x_</em>$ iteratively starting from $x_0$, $x_0$ is could be any vector, and we will use $\bf 0$. And $x_n$ belongs to the Krylov space:</p>
+<p>$$
+K_n=\lang b, Ab,\cdots,A^{n-1}b\rang
+$$</p>
+<p>which is spanned by vectors $b, Ab,\cdots,A^{n-1}b$, and any $k\in K_n$ is a linear combination of these vectors. It is direct to see that $K_n\subseteq \mathbb{R}^N$, so conjugate gradient is searching in bigger and bigger space for a good approximation to the solution.</p>
+<p>Let define a special way to measure the size of a vector: define &ldquo;$A$ - norm&rdquo; of a vector $x$ as</p>
+<p>$$
+|x|_A=\sqrt{x^TAx}
+$$</p>
+<p>So $|x|_A$ is a positive real number if $x\neq \bf 0$, because by definition, $A$ is symmetric positive definite, and therefore $x^TAx$ is a positive number.</p>
+<p>And define the error of each steps: define $n$-th error as</p>
+<p>$$
+e_n=x_*-x_n
+$$</p>
+<p>and define $n$-residual as</p>
+<p>$$
+r_n=Ae_n=b-Ax_n
+$$</p>
+<p>In principle, we like a small error, but in practice, the thing we can measure is the residual. Thus we minimize the residual as a mean of minimizing.</p>
+<p><strong>THM 1. Among all $x\in K_n$, there exists one unique $x_n$ such that minimizes $|e_n|_A$.</strong></p>
+<p>So at every step of conjugate gradient, we can find the best approximation in a certain measure. And from this theorem, we obtain a corollary: $|e_0|_A\geq |e_1|_A\geq \cdots \geq 0$. That is the error keep going down monotonically.</p>
+<p>Define $f(x)=\frac{1}{2}x^{T}Ax-x^{T}b$, thus $\nabla f(x)=Ax-b$, now we want $Ax=b$, which means we want $\nabla f(x)=0$, i.e minimize of $f(x)$.</p>
+<p>Now we can introduce the conjugate gradient algorithm. First, we start form an initial guess $x_0=\bf 0$, corresponding to this is a residual $r_0=b-Ax_0=b-A\mathbf{0}=b$. And then we define search direction vector $p_0=r_0$ which indicate the search direction in Krylov space.</p>
+<p>For $n=1, 2, 3,\cdots$:</p>
+<ul>
+<li>$\alpha_n = {r_{n-1}^{T}r_{n-1}}/{p_{n-1}^{T} Ap_{n-1}}$</li>
+<li>$x_n = x_{n-1} + \alpha_{n}p_{n-1}$</li>
+<li>$r_n = r_{n-1} - \alpha_n Ap_{n-1}$</li>
+<li>$\beta_n = {r^{T}<em>nr_n}/{r</em>{n-1}^{T}r_{n-1}}$</li>
+<li>$p_n=r_n+\beta_n p_{n-1}$</li>
+</ul>
+<p>Here for each step $n$, $\alpha_n$ which is a scalar, represents the step length, it is how far we are going along a search direction to improve our current guess. $x_n$ is the approximate solution at step $n$, and $r_n$ is the corresponding residual. And $\beta_n$ measures the improvement in this step. And finally, $p_n$ is the search direction.</p>
+<p>Although MATLAB has CG function <code>pcg()</code>, we still achieve this algorithm by:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">% cg.m - Simple CG iteration for 10-digit accuracy.</span>
+<span class="c">%        Remember, A must be symmetric positive definite!</span>
+<span class="k"> 
+</span><span class="k">function</span><span class="w"> </span>[x, errnorm, ii] <span class="p">=</span><span class="w"> </span><span class="nf">cg</span><span class="p">(</span>A,b, maxit<span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="n">N</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">errnorm</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">maxit</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">b</span><span class="p">;</span> <span class="n">p</span> <span class="p">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-10</span>
+
+    <span class="n">Ap</span> <span class="p">=</span> <span class="n">A</span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="n">rr</span> <span class="p">=</span> <span class="n">r</span><span class="o">&#39;*</span><span class="n">r</span><span class="p">;</span>
+    <span class="n">a</span>  <span class="p">=</span> <span class="n">rr</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="o">&#39;*</span><span class="n">Ap</span><span class="p">);</span>    <span class="c">% step length</span>
+    <span class="n">x</span>  <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">p</span><span class="p">;</span>       <span class="c">% approximate solution</span>
+    <span class="n">r</span>  <span class="p">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">a</span><span class="o">*</span><span class="n">Ap</span><span class="p">;</span>      <span class="c">% residual</span>
+    <span class="n">c</span>  <span class="p">=</span> <span class="n">r</span><span class="o">&#39;*</span><span class="n">r</span><span class="o">/</span><span class="n">rr</span><span class="p">;</span>       <span class="c">% improvement this step</span>
+    <span class="n">p</span>  <span class="p">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">p</span><span class="p">;</span>       <span class="c">% search direction</span>
+    <span class="n">errnorm</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">ii</span> <span class="p">=</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">ii</span> <span class="o">&gt;</span> <span class="n">maxit</span>
+        <span class="k">break</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="convergence-of-cg">Convergence of CG</h2>
+<p>Note that</p>
+<p>$$
+e_0=x_<em>-x_0=x_</em>
+$$</p>
+<p>and</p>
+<p>$$
+e_n=x_*-x_n=e_0-x_n
+$$</p>
+<p>and since $b=Ax_*= Ae_0$ we have that</p>
+<p>$$
+x_n\in K_n=\lang b,Ab,\cdots,A^{n-1}b\rang=\lang Ae_0, A^2e_0,\cdots, A^n e_0\rang
+$$</p>
+<p>And hence $x_n$ is the linear combination of $Ae_0, A^2e_0,\cdots, A^n e_0$ and can be interpreted as a polynomial of $A$. So in conjugate gradient, we implicitly dealing with n-degree polynomial of $A$ timing a constant $e_0$.</p>
+<p>Thus $e_n=e_0-x_n$ where $x_n$ is a polynomial of $A$ can be rewritten as</p>
+<p>$$
+e_n = e_0P_n(A)
+$$</p>
+<p>where $P_n$ is a polynomial of (at most) degree $n$ with the property $p_n(0)=1$. The THM 1. tells us that $|P_n(A)e_0|$ is the minimal among polynomials $P$ of degree $n$ with $P(0)=1$.</p>
+<p>Since $A$ is a symmetric positive defined matrix thus it has real valued, orthogonal eigenvectors and hence has an orthogonal basis. Let $A$ has positive eigenvalues $\lambda_1,\cdots, \lambda_n$ and eigenvectors $v_1,\cdots, v_n$, then $e_0=\sum_{k=1}^{N}a_kv_k$ and</p>
+<p>$$
+e_n = P_n(A)e_0=P_n(A)\sum_{k=1}^{N}a_kv_k=\sum_{k=1}^{N}a_kP_n(\lambda_k)v_k
+$$</p>
+<p>Hence if there exists polynomials that are small at eigenvalues, then CG converges quickly. Thus the whole logic of the argument is that hte existence of the polynomial. Note that the $P_n(0)\equiv 0$, thus if some $\lambda$ are too close to 0, then the polynomial would be non exist which means CG will not convergent, there is a theorem shows this fact:</p>
+<p><strong>THM 2. The ratio of the error at the end step to the initial error is bounded by the minimal overall polynomials with the restriction of maximal of the eigenvalues of the matrix:</strong></p>
+<p>$$
+\frac{|e_n|<em>A}{|e_0|<em>A}\leq \min</em>{P_n}\max</em>{\lambda_k} | P_n(\lambda_k)|.
+$$</p>
+<p><strong>where $P_n(0)=1$.</strong></p>
+<p>The condition number of an SPD matrix is</p>
+<p>$$
+\kappa(A)=\lambda_{\max}(A)/\lambda_{\min}(A)
+$$</p>
+<p>and then we have a famous corollary:</p>
+<p>$$
+\frac{\left|e_{n}\right|<em>{A}}{\left|e</em>{0}\right|_{A}} \leq 2\left(\frac{\sqrt{\kappa(A)}-1}{\sqrt{\kappa(A)}+1}\right)^{n}
+$$</p>
+<p>The right-hand side is approximately</p>
+<p>$$
+2\exp{\left(\frac{-2n}{\sqrt{\kappa(A)}}\right)}
+$$</p>
+<p>where $\exp(-2)\approx 0.14$ thus $|e_n|_A/|e_0|_A\approx 2\times 0.14^{\frac{n}{\sqrt{\kappa(A)}}}$, which implies the errors rate will reduce to 0.14 times scale each $\sqrt{\kappa(A)}$ steps, thus if $A$ has a very small and a very large eigenvalues, that is it has a large condition number $\kappa(A)$, then the CG on it converges very slowly. For example, we now create a SPD matrix which has a large condition number (b.t.w. we can compute condition number by <code>cond()</code> function):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">A</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">e</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">lmin</span> <span class="p">=</span> <span class="n">min</span><span class="p">(</span><span class="n">e</span><span class="p">);</span> <span class="n">lmax</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">([</span><span class="n">lmax</span><span class="o">/</span><span class="n">lmin</span><span class="p">;</span> <span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)])</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>   1.0e+06 *
+
+    5.7872
+    5.7872
+</code></pre><p>the condition number of $A$ is 6 million approximately, whose square root is:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+   2.4057e+03
+</code></pre><p>this means we need probably 2500 steps to scale the error rate $|e_n|_A/|e_0|_A$ down to 0.14 times; we can modify this matrix so that it can have a smaller condition number:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="p">=</span> <span class="n">A</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">cond</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code>ans =
+
+   20.6279
+</code></pre><p>which means we can reduce the error rate 10 times each 4~5 steps on average. We can check the difference of the convergence speed between $Ax=b$ and $Bx=b$:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% speed of convergence</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">A</span><span class="o">&#39;</span><span class="p">;</span> 
+<span class="n">B</span> <span class="p">=</span> <span class="n">A</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">ra</span><span class="p">,</span><span class="n">sa</span><span class="p">]</span> <span class="p">=</span> <span class="n">cg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mf">1e7</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">rb</span><span class="p">,</span><span class="n">sb</span><span class="p">]</span> <span class="p">=</span> <span class="n">cg</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mf">1e7</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">semilogy</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="s">&#39;-ob&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;steps&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$\|e_n\|_A/\|e_0\|_A$&#39;</span><span class="p">,</span> <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span><span class="s">&#39;latex&#39;</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;Ax=b&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="n">semilogy</span><span class="p">(</span><span class="n">rb</span><span class="p">,</span> <span class="s">&#39;-*r&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;steps&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$\|e_n\|_B/\|e_0\|_B$&#39;</span><span class="p">,</span> <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span><span class="s">&#39;latex&#39;</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;Bx=b&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205241608144.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h1 id="preconditioned-conjugate-gradient-pcg">Preconditioned Conjugate Gradient (PCG)</h1>
+<h2 id="preconditioning">Preconditioning</h2>
+<p>As we can see that we can speed up solutions by shifting by a multiple of $I$. This is useless, however, for there’s no way to relate the solution of</p>
+<p>$$
+(A + cI)x = b
+$$</p>
+<p>to that of $Ax = b$.</p>
+<p><strong>Preconditioning</strong> is a related but multiplicative idea. For example, a left preconditioner is a nonsingular matrix $M$ such that</p>
+<p>$$
+M^{-1}Ax=M^{-1}b,
+$$</p>
+<p>which is equivalent to the origin equation $Ax=b$, it is better behaved (e.g. better conditioned) than $Ax = b$, yet $M^{−1}$ can be computed fast. We don’t really mean that the inverse is computed, but that systems $My = c$ are solved fast.</p>
+<p>If $A$ is SPD and $M = CC^T$ for some $C$, then the <strong>symmetry can be preserved</strong> by preconditioning, since</p>
+<p>$$
+M^{-1}Ax=M^{-1}b \Rightarrow C^{-T}C^{-1}AC^{-T}C^Tx=C^{-T}C^{-1}b
+$$</p>
+<p>$$
+\Rightarrow [C^{-1}AC^{-T}]C^Tx=C^{-1}b
+$$</p>
+<p>where $C^{-1}AC^{-T}$ is still SPD, so we can use CG to solve the $C^Tx$ and then the $x$. To use precondition CG in MATLAB use <code>pcg()</code> function:</p>
+<ul>
+<li>
+<p><code>x = pcg(A,b,tol,maxit,M)</code> specifies a</p>
+</li>
+<li>
+<ul>
+<li>tolerance <code>tol</code>, the default tolerance is 1e-6.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>maximum number of iterations <code>maxit</code>.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>preconditioner matrix <code>M</code> and computes <code>x</code> by effectively solving the system $H^{-1}AH^{-T}y=H^{-1}b$ for $y$, where $y=H^{T}x$ and $HH^T=M$.
+The algorithm does not form $H$ explicitly. Using a preconditioner matrix can improve the numerical properties of the problem and the efficiency of the calculation.</li>
+</ul>
+</li>
+<li>
+<p><code>x = pcg(A,b,tol,maxit,M1,M2)</code> specifies factors of the preconditioner matrix <code>M</code> such that <code>M = M1*M2</code>.</p>
+</li>
+<li>
+<p><code>[x,flag,relres,iter,resvec] = pcg(___)</code> also returns a</p>
+</li>
+<li>
+<ul>
+<li>a <code>flag</code> that specifies whether the algorithm successfully converged. When <code>flag = 0</code>, convergence was successful.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>the relative residual <code>relres</code> <code>norm(b-A*x)/norm(b)</code>. If <code>flag</code> is 0, then <code>relres</code> &lt;= <code>tol</code>.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>iteration number <code>iter</code> at which x was computed.</li>
+</ul>
+</li>
+<li>
+<p>vector of the residual norm at each iteration <code>resvec</code>, including the first residual <code>norm(b-A*x0)</code>.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">close</span> <span class="n">all</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="n">delsq</span><span class="p">(</span><span class="n">numgrid</span><span class="p">(</span><span class="s">&#39;S&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">));</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">tol</span> <span class="p">=</span> <span class="mf">1e-8</span><span class="p">;</span>
+<span class="n">maxit</span> <span class="p">=</span> <span class="mf">1e5</span><span class="p">;</span>
+<span class="n">L</span> <span class="p">=</span> <span class="n">ichol</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">rv0</span><span class="p">]</span> <span class="p">=</span> <span class="n">pcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">maxit</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">rv1</span><span class="p">]</span> <span class="p">=</span> <span class="n">pcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">maxit</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="o">&#39;</span><span class="p">);</span>
+
+<span class="n">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">rv0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">rv0</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="s">&#39;r-o&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">rv1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">rv1</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="s">&#39;b-o&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">off</span>
+
+<span class="n">yline</span><span class="p">(</span><span class="n">tol</span><span class="p">,</span><span class="s">&#39;r--&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Iteration number&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Relative residual&#39;</span><span class="p">)</span>
+
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;No Preconditioner&#39;</span><span class="p">,</span><span class="s">&#39;ICHOL&#39;</span><span class="p">,</span><span class="s">&#39;Tolerance&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205241812705.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="survey-of-preconditioners">Survey of preconditioners</h2>
+<p>See chapter 40 of Trefethen &amp; Bau for general comments.
+for details.</p>
+<ol>
+<li>Diagonal scaling = “Jacobi”</li>
+<li>Incomplete factorisation (In MATLAB see <code>LUINC</code> and <code>CHOLINC</code>)</li>
+<li>Coarse-grid approximation ( -&gt; multigrid)</li>
+<li>Local approximation (omitting long-range interactions)</li>
+<li>Block preconditioners and domain decomposition</li>
+<li>Low-order discretization (e.g. approximate spectral by FEM)</li>
+<li>Constant-coefficient or symmetric approximation</li>
+<li>Splitting of multi-term operator</li>
+<li>Dimensional splitting or ADI</li>
+<li>One step of a classical iteration (Gauss-Seidel, SOR, SSOR. . . )</li>
+<li>Periodic approximation to nonperiodic problem (Toeplitz → circulant)</li>
+<li>Unstable direct method (iteration may circumvent instability)</li>
+<li>Polynomial preconditioners</li>
+<li>Sparse approximate inverses</li>
+<li>Low-rank approximations</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/matlab/">MATLAB</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-viii-matrix-decomposition/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VIII (Matrix Decomposition)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vii-symbolic-calculation-root-finding/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VII (Symbolic Calculation &amp; Root Finding)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-vi-differentiation-integration/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering VI (Differentiation &amp; Integration)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-v-advanced-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering V (Advanced Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/matlab-in-engineering-iv-basic-plotting/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MATLAB in Engineering IV (Basic Plotting)</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Haoming Wang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#common-functions-in-matlab-about-sparse-matrix">Common functions in MATLAB about sparse matrix</a>
+      <ol>
+        <li><a href="#create-sparse-matrix">Create sparse matrix</a>
+          <ol>
+            <li><a href="#sparse"><code>sparse</code></a></li>
+            <li><a href="#sprand-sprandsym"><code>sprand</code>, <code>sprandsym</code></a></li>
+            <li><a href="#speye"><code>speye</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#display-sparse-matrix">Display sparse matrix</a>
+          <ol>
+            <li><a href="#spy"><code>spy</code></a></li>
+            <li><a href="#full"><code>full</code></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#conjugate-gradients-cg">Conjugate Gradients (CG)</a>
+      <ol>
+        <li><a href="#algorithm">Algorithm</a></li>
+        <li><a href="#convergence-of-cg">Convergence of CG</a></li>
+      </ol>
+    </li>
+    <li><a href="#preconditioned-conjugate-gradient-pcg">Preconditioned Conjugate Gradient (PCG)</a>
+      <ol>
+        <li><a href="#preconditioning">Preconditioning</a></li>
+        <li><a href="#survey-of-preconditioners">Survey of preconditioners</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+    integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+    crossorigin="anonymous"
+    size="300"
+    alpha="0.6"
+    zindex="-1"
+    defer
+></script>
+
+
+    </body>
+</html>

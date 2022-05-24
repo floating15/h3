@@ -6,12 +6,12 @@
         <description>Recent content in Scientific Computing on Haoming Wang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/sci_compute/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Scientific Computing I-I (Sparse Matrix &amp; Iteration Method i)</title>
-        <link>https://wanghaoming177.netlify.app/p/scientific-computing-i-i-sparse-matrix-iteration-method-i/</link>
-        <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
+        <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wanghaoming177.netlify.app/categories/sci_compute/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MATLAB in Engineering IX (Preconditioning Conjugate Gradient)</title>
+        <link>https://wanghaoming177.netlify.app/p/matlab-in-engineering-ix-preconditioning-conjugate-gradient/</link>
+        <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://wanghaoming177.netlify.app/p/scientific-computing-i-i-sparse-matrix-iteration-method-i/</guid>
+        <guid>https://wanghaoming177.netlify.app/p/matlab-in-engineering-ix-preconditioning-conjugate-gradient/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;All figures in this blog are embedded by Github Image Hosting Service. These figures may not be displayed on mobile devices.&lt;/p&gt;
 &lt;p&gt;This blog contains a lot of LaTeX code, please use Chrome for reading quality.&lt;/p&gt;
@@ -254,11 +254,11 @@ $$&lt;/p&gt;
 &lt;p&gt;Now we can introduce the conjugate gradient algorithm. First, we start form an initial guess $x_0=\bf 0$, corresponding to this is a residual $r_0=b-Ax_0=b-A\mathbf{0}=b$. And then we define search direction vector $p_0=r_0$ which indicate the search direction in Krylov space.&lt;/p&gt;
 &lt;p&gt;For $n=1, 2, 3,\cdots$:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$\alpha_n = r_{n-1}^{T}r_{n-1}/p_{n-1}^{T} Ap_{n-1}$&lt;/li&gt;
+&lt;li&gt;$\alpha_n = {r_{n-1}^{T}r_{n-1}}/{p_{n-1}^{T} Ap_{n-1}}$&lt;/li&gt;
 &lt;li&gt;$x_n = x_{n-1} + \alpha_{n}p_{n-1}$&lt;/li&gt;
 &lt;li&gt;$r_n = r_{n-1} - \alpha_n Ap_{n-1}$&lt;/li&gt;
-&lt;li&gt;$\beta_{n} = r^{T}&lt;em&gt;{n} r&lt;/em&gt;{n}/r_{n-1}^{T}r_{n-1}$&lt;/li&gt;
-&lt;li&gt;$p_{n}=r_{n}+\beta_n p_{n-1}$&lt;/li&gt;
+&lt;li&gt;$\beta_n = {r^{T}&lt;em&gt;nr_n}/{r&lt;/em&gt;{n-1}^{T}r_{n-1}}$&lt;/li&gt;
+&lt;li&gt;$p_n=r_n+\beta_n p_{n-1}$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here for each step $n$, $\alpha_n$ which is a scalar, represents the step length, it is how far we are going along a search direction to improve our current guess. $x_n$ is the approximate solution at step $n$, and $r_n$ is the corresponding residual. And $\beta_n$ measures the improvement in this step. And finally, $p_n$ is the search direction.&lt;/p&gt;
 &lt;p&gt;Although MATLAB has CG function &lt;code&gt;pcg()&lt;/code&gt;, we still achieve this algorithm by:&lt;/p&gt;
@@ -315,7 +315,7 @@ $$&lt;/p&gt;
 &lt;/div&gt;&lt;h2 id=&#34;convergence-of-cg&#34;&gt;Convergence of CG&lt;/h2&gt;
 &lt;p&gt;Note that&lt;/p&gt;
 &lt;p&gt;$$
-e_{0} = x_{&lt;em&gt;} - x_{0} = x_{&lt;/em&gt;}
+e_0=x_&lt;em&gt;-x_0=x_&lt;/em&gt;
 $$&lt;/p&gt;
 &lt;p&gt;and&lt;/p&gt;
 &lt;p&gt;$$
