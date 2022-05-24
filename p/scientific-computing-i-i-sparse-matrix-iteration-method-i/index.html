@@ -790,12 +790,12 @@ $$</p>
 M^{-1}Ax=M^{-1}b,
 $$</p>
 <p>which is equivalent to the origin equation $Ax=b$, it is better behaved (e.g. better conditioned) than $Ax = b$, yet $M^{−1}$ can be computed fast. We don’t really mean that the inverse is computed, but that systems $My = c$ are solved fast.</p>
-<p>If $A$ is SPD and $M = CC^T$ for some $C$, then the <strong>symmetry can be preserved</strong> by preconditioning, since $M^{-1}A$</p>
+<p>If $A$ is SPD and $M = CC^T$ for some $C$, then the <strong>symmetry can be preserved</strong> by preconditioning, since</p>
 <p>$$
-\begin{align}\notag
-M^{-1}Ax=M^{-1}b &amp;\Rightarrow C^{-T}C^{-1}AC^{-T}C^Tx=C^{-T}C^{-1}b\\notag
-&amp;\Rightarrow [C^{-1}AC^{-T}]C^Tx=C^{-1}b
-\end{align}
+M^{-1}Ax=M^{-1}b \Rightarrow C^{-T}C^{-1}AC^{-T}C^Tx=C^{-T}C^{-1}b
+$$</p>
+<p>$$
+\Rightarrow [C^{-1}AC^{-T}]C^Tx=C^{-1}b
 $$</p>
 <p>where $C^{-1}AC^{-T}$ is still SPD, so we can use CG to solve the $C^Tx$ and then the $x$. To use precondition CG in MATLAB use <code>pcg()</code> function:</p>
 <ul>
