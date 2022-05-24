@@ -543,10 +543,22 @@ Create sparse matrix sparse   S = sparse(A) converts a full matrix into sparse f
      0     0     1     0     0
      0     0     0     1     0
      0     0     0     0     1
-</code></pre><h1 id="conjugate-gradients">Conjugate Gradients</h1>
+</code></pre><h1 id="conjugate-gradients-cg">Conjugate Gradients (CG)</h1>
 <h2 id="algorithm">Algorithm</h2>
-<p>Let $A (N\times N)$ be symmetric positive definite (SPD), that is $A^T=A$ and all eigenvalues is positive, or say $x^TAx&gt;0$ for any $x\neq \bf 0$. Let $b$ be an $N\times 1$ vector, we want to solve a $x_<em>$ s.t. $Ax_</em>=b$, since $A$ is SPD $A$ is non singular, and hence $x_*$ is existed and unique.</p>
-<p>Conjugate Gradients (CG) find $x_*$ iteratively starting from $x_0$, $x_0$ is could be any vector, and we will use $\bf 0$. And $x_n$ belongs to the Krylov space:</p>
+<p>Let $A (N\times N)$ be symmetric positive definite (SPD), that is $A^T=A$ and all eigenvalues is positive, or say $x^TAx&gt;0$ for any $x\neq \bf 0$.  We can construct a general SPD matrix quickly in MATLAB by</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">A</span><span class="o">&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Let $b$ be an $N\times 1$ vector, we want to solve a $x_<em>$ s.t. $Ax_</em>=b$, since $A$ is SPD $A$ is non singular, and hence $x_<em>$ is existed and unique. Conjugate Gradients (CG) find $x_</em>$ iteratively starting from $x_0$, $x_0$ is could be any vector, and we will use $\bf 0$. And $x_n$ belongs to the Krylov space:</p>
 <p>$$
 K_n=\lang b, Ab,\cdots,A^{n-1}b\rang
 $$</p>
@@ -578,6 +590,7 @@ $$</p>
 <li>$p_n=r_n+\beta_n p_{n-1}$</li>
 </ul>
 <p>Here for each step $n$, $\alpha_n$ which is a scalar, represents the step length, it is how far we are going along a search direction to improve our current guess. $x_n$ is the approximate solution at step $n$, and $r_n$ is the corresponding residual. And $\beta_n$ measures the improvement in this step. And finally, $p_n$ is the search direction.</p>
+<p>Although MATLAB has CG function <code>pcg()</code>, we still achieve this algorithm by:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -595,34 +608,40 @@ $$</p>
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">% cg.m - Simple CG iteration for 10-digit accuracy.</span>
+<span class="c">%        Remember, A must be symmetric positive definite!</span>
+<span class="k"> 
+</span><span class="k">function</span><span class="w"> </span>[x, errnorm, ii] <span class="p">=</span><span class="w"> </span><span class="nf">cg</span><span class="p">(</span>A,b, maxit<span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="n">N</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">errnorm</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">maxit</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">b</span><span class="p">;</span> <span class="n">p</span> <span class="p">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-10</span>
 
-<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span> <span class="n">clf</span>
-<span class="n">rng</span> <span class="n">default</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">sprand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,.</span><span class="mi">75</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">A</span><span class="o">&#39;*</span><span class="n">A</span><span class="p">;</span>
-<span class="n">b</span> <span class="p">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-
-<span class="n">tol</span> <span class="p">=</span> <span class="mf">1e-7</span><span class="p">;</span> <span class="n">maxit</span> <span class="p">=</span> <span class="mi">150</span><span class="p">;</span>
-<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fl0</span><span class="p">,</span><span class="n">rr0</span><span class="p">,</span><span class="n">it0</span><span class="p">,</span><span class="n">rv0</span><span class="p">]</span> <span class="p">=</span> <span class="n">pcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">maxit</span><span class="p">);</span>
-
-<span class="n">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">rv0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">rv0</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="s">&#39;-o&#39;</span><span class="p">)</span>
-<span class="n">yline</span><span class="p">(</span><span class="n">tol</span><span class="p">,</span><span class="s">&#39;r--&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Iteration number&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Relative residual&#39;</span><span class="p">)</span>
+    <span class="n">Ap</span> <span class="p">=</span> <span class="n">A</span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="n">rr</span> <span class="p">=</span> <span class="n">r</span><span class="o">&#39;*</span><span class="n">r</span><span class="p">;</span>
+    <span class="n">a</span>  <span class="p">=</span> <span class="n">rr</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="o">&#39;*</span><span class="n">Ap</span><span class="p">);</span>    <span class="c">% step length</span>
+    <span class="n">x</span>  <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">p</span><span class="p">;</span>       <span class="c">% approximate solution</span>
+    <span class="n">r</span>  <span class="p">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">a</span><span class="o">*</span><span class="n">Ap</span><span class="p">;</span>      <span class="c">% residual</span>
+    <span class="n">c</span>  <span class="p">=</span> <span class="n">r</span><span class="o">&#39;*</span><span class="n">r</span><span class="o">/</span><span class="n">rr</span><span class="p">;</span>       <span class="c">% improvement this step</span>
+    <span class="n">p</span>  <span class="p">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">p</span><span class="p">;</span>       <span class="c">% search direction</span>
+    <span class="n">errnorm</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">ii</span> <span class="p">=</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">ii</span> <span class="o">&gt;</span> <span class="n">maxit</span>
+        <span class="k">break</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205221713386.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<h2 id="convergence-of-cg">Convergence of CG</h2>
+</div><h2 id="convergence-of-cg">Convergence of CG</h2>
 <p>Note that</p>
 <p>$$
 e_0=x_<em>-x_0=x_</em>
@@ -651,112 +670,64 @@ $$</p>
 \frac{|e_n|<em>A}{|e_0|<em>A}\leq \min</em>{P_n}\max</em>{\lambda_k} | P_n(\lambda_k)|.
 $$</p>
 <p><strong>where $P_n(0)=1$.</strong></p>
-<p>For example, if we create a SPD matrix which has very small eigenvalues:</p>
+<p>The condition number of an SPD matrix is</p>
+<p>$$
+\kappa(A)=\lambda_{\max}(A)/\lambda_{\min}(A)
+$$</p>
+<p>and then we have a famous corollary:</p>
+<p>$$
+\frac{\left|e_{n}\right|<em>{A}}{\left|e</em>{0}\right|_{A}} \leq 2\left(\frac{\sqrt{\kappa(A)}-1}{\sqrt{\kappa(A)}+1}\right)^{n}
+$$</p>
+<p>The right-hand side is approximately</p>
+<p>$$
+2\exp{\left(\frac{-2n}{\sqrt{\kappa(A)}}\right)}
+$$</p>
+<p>where $\exp(-2)\approx 0.14$ thus $|e_n|_A/|e_0|_A\approx 2\times 0.14^{\frac{n}{\sqrt{\kappa(A)}}}$, which implies the errors rate will reduce to 0.14 times scale each $\sqrt{\kappa(A)}$ steps, thus if $A$ has a very small and a very large eigenvalues, that is it has a large condition number $\kappa(A)$, then the CG on it converges very slowly. For example, we now create a SPD matrix which has a large condition number (b.t.w. we can compute condition number by <code>cond()</code> function):</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
-
-<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span> <span class="n">clf</span>
-
-<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">A</span><span class="o">&#39;*</span><span class="n">A</span><span class="p">;</span>
-<span class="n">e</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="n">format</span> <span class="n">long</span>
-<span class="nb">disp</span><span class="p">([</span><span class="n">min</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">e</span><span class="p">)])</span>
-<span class="n">format</span> <span class="n">short</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">A</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">e</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">lmin</span> <span class="p">=</span> <span class="n">min</span><span class="p">(</span><span class="n">e</span><span class="p">);</span> <span class="n">lmax</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">([</span><span class="n">lmax</span><span class="o">/</span><span class="n">lmin</span><span class="p">;</span> <span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)])</span>
 </code></pre></td></tr></table>
 </div>
-</div><pre tabindex="0"><code>   1.0e+03 *
+</div><pre tabindex="0"><code>   1.0e+06 *
 
-   0.000000557765389   2.000311897319554
-</code></pre><p>As we can see that matrix $A$ has a very small eigenvalue. And the CG on $A$ performs badly:</p>
+    5.7872
+    5.7872
+</code></pre><p>the condition number of $A$ is 6 million approximately, whose square root is:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
-
-<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span> <span class="n">clf</span>
-<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">A</span><span class="o">&#39;*</span><span class="n">A</span><span class="p">;</span>
-<span class="n">b</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-
-<span class="n">tol</span> <span class="p">=</span> <span class="mf">1e-7</span><span class="p">;</span> <span class="n">maxit</span> <span class="p">=</span> <span class="mi">1000</span><span class="p">;</span>
-<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">rv0</span><span class="p">]</span> <span class="p">=</span> <span class="n">pcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">maxit</span><span class="p">);</span>
-
-<span class="n">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">rv0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">rv0</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="s">&#39;-o&#39;</span><span class="p">)</span>
-<span class="n">yline</span><span class="p">(</span><span class="n">tol</span><span class="p">,</span><span class="s">&#39;r--&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Iteration number&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Relative residual&#39;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205221758295.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>We can modify $A$ like</p>
+</div><pre tabindex="0"><code>ans =
+
+   2.4057e+03
+</code></pre><p>this means we need probably 2500 steps to scale the error rate $|e_n|_A/|e_0|_A$ down to 0.14 times; we can modify this matrix so that it can have a smaller condition number:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
-
-<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span> <span class="n">clf</span>
-
-<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">A</span><span class="o">&#39;*</span><span class="n">A</span><span class="p">;</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">+</span> <span class="mi">1000</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="n">e</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="n">format</span> <span class="n">long</span>
-<span class="nb">disp</span><span class="p">([</span><span class="n">min</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">e</span><span class="p">)])</span>
-<span class="n">format</span> <span class="n">short</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="p">=</span> <span class="n">A</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">cond</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><pre tabindex="0"><code>  1.0e+03 *
+</div><pre tabindex="0"><code>ans =
 
-   1.000000394127676   4.946870550127192
-</code></pre><p>and then CG converges quickly (in 17 steps):</p>
+   20.6279
+</code></pre><p>which means we can reduce the error rate 10 times each 4~5 steps on average. We can check the difference of the convergence speed between $Ax=b$ and $Bx=b$:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -774,26 +745,32 @@ $$</p>
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%% speed of convergence</span>
 
-<span class="n">clc</span><span class="p">;</span> <span class="n">clear</span><span class="p">;</span> <span class="n">clf</span>
-<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">A</span><span class="o">&#39;*</span><span class="n">A</span><span class="p">;</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">+</span> <span class="mi">1000</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="n">b</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="n">A</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">A</span><span class="o">&#39;</span><span class="p">;</span> 
+<span class="n">B</span> <span class="p">=</span> <span class="n">A</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="n">tol</span> <span class="p">=</span> <span class="mf">1e-7</span><span class="p">;</span> <span class="n">maxit</span> <span class="p">=</span> <span class="mi">1000</span><span class="p">;</span>
-<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">rv0</span><span class="p">]</span> <span class="p">=</span> <span class="n">pcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">maxit</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">ra</span><span class="p">,</span><span class="n">sa</span><span class="p">]</span> <span class="p">=</span> <span class="n">cg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mf">1e7</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">rb</span><span class="p">,</span><span class="n">sb</span><span class="p">]</span> <span class="p">=</span> <span class="n">cg</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mf">1e7</span><span class="p">);</span>
 
-<span class="n">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">rv0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">rv0</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="s">&#39;-o&#39;</span><span class="p">)</span>
-<span class="n">yline</span><span class="p">(</span><span class="n">tol</span><span class="p">,</span><span class="s">&#39;r--&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Iteration number&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Relative residual&#39;</span><span class="p">)</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">semilogy</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="s">&#39;-ob&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;steps&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$\|e_n\|_A/\|e_0\|_A$&#39;</span><span class="p">,</span> <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span><span class="s">&#39;latex&#39;</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;Ax=b&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="n">semilogy</span><span class="p">(</span><span class="n">rb</span><span class="p">,</span> <span class="s">&#39;-*r&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;steps&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$\|e_n\|_B/\|e_0\|_B$&#39;</span><span class="p">,</span> <span class="s">&#39;Interpreter&#39;</span><span class="p">,</span><span class="s">&#39;latex&#39;</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;Bx=b&#39;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205221802266.png"
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205241608144.png"
 	
 	
 	
@@ -801,7 +778,149 @@ $$</p>
 	
 	
 ></p>
-<h1 id="preconditioned-cg">Preconditioned CG</h1>
+<h1 id="preconditioned-conjugate-gradient-pcg">Preconditioned Conjugate Gradient (PCG)</h1>
+<h2 id="preconditioning">Preconditioning</h2>
+<p>As we can see that we can speed up solutions by shifting by a multiple of $I$. This is useless, however, for there’s no way to relate the solution of</p>
+<p>$$
+(A + cI)x = b
+$$</p>
+<p>to that of $Ax = b$.</p>
+<p><strong>Preconditioning</strong> is a related but multiplicative idea. For example, a left preconditioner is a nonsingular matrix $M$ such that</p>
+<p>$$
+M^{-1}Ax=M^{-1}b,
+$$</p>
+<p>which is equivalent to the origin equation $Ax=b$, it is better behaved (e.g. better conditioned) than $Ax = b$, yet $M^{−1}$ can be computed fast. We don’t really mean that the inverse is computed, but that systems $My = c$ are solved fast.</p>
+<p>If $A$ is SPD and $M = CC^T$ for some $C$, then the <strong>symmetry can be preserved</strong> by preconditioning, since $M^{-1}A$</p>
+<p>$$
+\begin{align}\notag
+M^{-1}Ax=M^{-1}b &amp;\Rightarrow C^{-T}C^{-1}AC^{-T}C^Tx=C^{-T}C^{-1}b\\notag
+&amp;\Rightarrow [C^{-1}AC^{-T}]C^Tx=C^{-1}b
+\end{align}
+$$</p>
+<p>where $C^{-1}AC^{-T}$ is still SPD, so we can use CG to solve the $C^Tx$ and then the $x$. To use precondition CG in MATLAB use <code>pcg()</code> function:</p>
+<ul>
+<li>
+<p><code>x = pcg(A,b,tol,maxit,M)</code> specifies a</p>
+</li>
+<li>
+<ul>
+<li>tolerance <code>tol</code>, the default tolerance is 1e-6.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>maximum number of iterations <code>maxit</code>.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>preconditioner matrix <code>M</code> and computes <code>x</code> by effectively solving the system $H^{-1}AH^{-T}y=H^{-1}b$ for $y$, where $y=H^{T}x$ and $HH^T=M$.
+The algorithm does not form $H$ explicitly. Using a preconditioner matrix can improve the numerical properties of the problem and the efficiency of the calculation.</li>
+</ul>
+</li>
+<li>
+<p><code>x = pcg(A,b,tol,maxit,M1,M2)</code> specifies factors of the preconditioner matrix <code>M</code> such that <code>M = M1*M2</code>.</p>
+</li>
+<li>
+<p><code>[x,flag,relres,iter,resvec] = pcg(___)</code> also returns a</p>
+</li>
+<li>
+<ul>
+<li>a <code>flag</code> that specifies whether the algorithm successfully converged. When <code>flag = 0</code>, convergence was successful.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>the relative residual <code>relres</code> <code>norm(b-A*x)/norm(b)</code>. If <code>flag</code> is 0, then <code>relres</code> &lt;= <code>tol</code>.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>iteration number <code>iter</code> at which x was computed.</li>
+</ul>
+</li>
+<li>
+<p>vector of the residual norm at each iteration <code>resvec</code>, including the first residual <code>norm(b-A*x0)</code>.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%%</span>
+
+<span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">close</span> <span class="n">all</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="n">delsq</span><span class="p">(</span><span class="n">numgrid</span><span class="p">(</span><span class="s">&#39;S&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">));</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">tol</span> <span class="p">=</span> <span class="mf">1e-8</span><span class="p">;</span>
+<span class="n">maxit</span> <span class="p">=</span> <span class="mf">1e5</span><span class="p">;</span>
+<span class="n">L</span> <span class="p">=</span> <span class="n">ichol</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">rv0</span><span class="p">]</span> <span class="p">=</span> <span class="n">pcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">maxit</span><span class="p">);</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">rv1</span><span class="p">]</span> <span class="p">=</span> <span class="n">pcg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">maxit</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="o">&#39;</span><span class="p">);</span>
+
+<span class="n">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">rv0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">rv0</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="s">&#39;r-o&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">semilogy</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">rv1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">rv1</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="s">&#39;b-o&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">off</span>
+
+<span class="n">yline</span><span class="p">(</span><span class="n">tol</span><span class="p">,</span><span class="s">&#39;r--&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Iteration number&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Relative residual&#39;</span><span class="p">)</span>
+
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;No Preconditioner&#39;</span><span class="p">,</span><span class="s">&#39;ICHOL&#39;</span><span class="p">,</span><span class="s">&#39;Tolerance&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/floating15/img/main/202205241812705.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="survey-of-preconditioners">Survey of preconditioners</h2>
+<p>See chapter 40 of Trefethen &amp; Bau for general comments.
+for details.</p>
+<ol>
+<li>Diagonal scaling = “Jacobi”</li>
+<li>Incomplete factorisation (In MATLAB see <code>LUINC</code> and <code>CHOLINC</code>)</li>
+<li>Coarse-grid approximation ( -&gt; multigrid)</li>
+<li>Local approximation (omitting long-range interactions)</li>
+<li>Block preconditioners and domain decomposition</li>
+<li>Low-order discretization (e.g. approximate spectral by FEM)</li>
+<li>Constant-coefficient or symmetric approximation</li>
+<li>Splitting of multi-term operator</li>
+<li>Dimensional splitting or ADI</li>
+<li>One step of a classical iteration (Gauss-Seidel, SOR, SSOR. . . )</li>
+<li>Periodic approximation to nonperiodic problem (Toeplitz → circulant)</li>
+<li>Unstable direct method (iteration may circumvent instability)</li>
+<li>Polynomial preconditioners</li>
+<li>Sparse approximate inverses</li>
+<li>Low-rank approximations</li>
+</ol>
 
 </section>
 
@@ -1069,13 +1188,18 @@ $$</p>
         </li>
       </ol>
     </li>
-    <li><a href="#conjugate-gradients">Conjugate Gradients</a>
+    <li><a href="#conjugate-gradients-cg">Conjugate Gradients (CG)</a>
       <ol>
         <li><a href="#algorithm">Algorithm</a></li>
         <li><a href="#convergence-of-cg">Convergence of CG</a></li>
       </ol>
     </li>
-    <li><a href="#preconditioned-cg">Preconditioned CG</a></li>
+    <li><a href="#preconditioned-conjugate-gradient-pcg">Preconditioned Conjugate Gradient (PCG)</a>
+      <ol>
+        <li><a href="#preconditioning">Preconditioning</a></li>
+        <li><a href="#survey-of-preconditioners">Survey of preconditioners</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
