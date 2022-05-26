@@ -93,7 +93,7 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;Eigenvalues and Eigenvectors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;Applied Mathematics and ATA&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;Fourier and Laplace Transforms&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;Solving ODEs in MATLAB&lt;!-- raw HTML omitted --&gt;®&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;Solving ODEs in MATLAB®&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;First Order Equations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;Second Order Equations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;Graphical and Numerical Methods&lt;/a&gt;&lt;/li&gt;
@@ -201,14 +201,10 @@
 &lt;/ul&gt;
 &lt;h1 id=&#34;introduction-to-analysis&#34;&gt;Introduction to Analysis&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/02matrix.pdf&#34; &gt;Matrix.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/03Vector_Linear_Eq.pdf&#34; &gt;Vector Systems and Linear Equations.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/04Eigenvalues_Eigenvectors.pdf&#34; &gt;Eigenvectors and eigenvalues.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/05quadratic.pdf&#34; &gt;Quadratic.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/02matrix.pdf&#34; &gt;Matrix.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/03Vector_Linear_Eq.pdf&#34; &gt;Vector Systems and Linear Equations.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_ana/ia01.pdf&#34; &gt;The completeness of the real numbers.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_ana/ia02.pdf&#34; &gt;Sequence.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_ana/ia03.pdf&#34; &gt;Series.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/intro_ana/collect.pdf&#34; &gt;COLLECTION.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;introduction-to-topology&#34;&gt;Introduction to Topology&lt;/h1&gt;
 &lt;ul&gt;
