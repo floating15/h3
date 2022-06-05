@@ -67,7 +67,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/floating15/note.git
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;in terminal.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;in terminal. If you like my notes, please give my Github repository a star, thank you.&lt;/p&gt;
 &lt;h1 id=&#34;singular-homology-theory&#34;&gt;Singular Homology Theory&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
@@ -130,7 +130,7 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/04Eigenvalues_Eigenvectors.pdf&#34; &gt;Eigenvectors and eigenvalues.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/05quadratic.pdf&#34; &gt;Quadratic.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;differential-equations-and-dynamic-system-ii&#34;&gt;Differential Equations and Dynamic System II&lt;/h1&gt;
+&lt;h1 id=&#34;differential-eq-and-dynamic-system-ii&#34;&gt;Differential Eq and Dynamic System II&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/02matrix.pdf&#34; &gt;Matrix.pdf&lt;/a&gt;&lt;/li&gt;
@@ -143,7 +143,20 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/04Eigenvalues_Eigenvectors.pdf&#34; &gt;Eigenvectors and eigenvalues.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/05quadratic.pdf&#34; &gt;Quadratic.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;differential-equations-and-dynamic-system-i&#34;&gt;Differential Equations and Dynamic System I&lt;/h1&gt;
+&lt;h1 id=&#34;differential-eq-and-dynamic-system-i&#34;&gt;Differential Eq and Dynamic System I&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/02matrix.pdf&#34; &gt;Matrix.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/03Vector_Linear_Eq.pdf&#34; &gt;Vector Systems and Linear Equations.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/04Eigenvalues_Eigenvectors.pdf&#34; &gt;Eigenvectors and eigenvalues.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/05quadratic.pdf&#34; &gt;Quadratic.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/02matrix.pdf&#34; &gt;Matrix.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/03Vector_Linear_Eq.pdf&#34; &gt;Vector Systems and Linear Equations.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/04Eigenvalues_Eigenvectors.pdf&#34; &gt;Eigenvectors and eigenvalues.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/05quadratic.pdf&#34; &gt;Quadratic.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;calculus-of-variation&#34;&gt;Calculus of Variation&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/01determinant.pdf&#34; &gt;Determinant.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../Note_pdf/lin_agb_tips/02matrix.pdf&#34; &gt;Matrix.pdf&lt;/a&gt;&lt;/li&gt;
